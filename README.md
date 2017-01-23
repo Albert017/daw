@@ -12,6 +12,7 @@
 * *Comentarios*: Un usuario puede escribir un comentario bajo una publicación.
 * *Mensajes*: Un usuario puede enviar mensajes de texto a otro.
 * *Suscriptores*: Los visitantes pueden introducir su dirección email para recibir notificaciones sobre publicaciones destacadas.
+* *Seguidores y seguidos*: Cada usuario tendrá una lista de los usuarios a los que quiere seguir y ver sus aportaciones y de los que le siguen a él.
 
 ##Integrantes:
 * García González, Helena
