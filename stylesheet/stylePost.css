@@ -1,0 +1,48 @@
+
+li:hover {
+    color: pink
+}
+
+#post-image {
+    background: url(https://dummyimage.com/900x800/000000/0011ff.jpg&text=Post+900x800) no-repeat;
+}
+
+
+
+.btn-primary {
+    background-color: white;
+    color: black;
+    border-color: darkslategray;
+}
+.thumbnail {
+    border:5px solid black;
+}
+.btn-primary.focus {
+  color: #fff;
+  background-color: black;
+  border-color: #122b40;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: black;
+  border-color: #204d74;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: black;
+  border-color: black;
+}
+a.bg-primary:hover,
+a.bg-primary:focus {
+  background-color: black;
+}
+a.text-primary:hover,
+a.text-primary:focus {
+  color: black;
+}
+.label-primary[href]:hover,
+.label-primary[href]:focus {
+  background-color: black;
+}
