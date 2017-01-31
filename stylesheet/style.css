@@ -2,22 +2,16 @@ body {
     padding-top: 50px;
 }
 
-.social-button{
+.social-button {
     margin-top: 7px;
 }
 
-.side-left{
-    margin-top: 7px;   
+.side-left {
+    margin-top: 7px;
 }
-.header{
-    margin-top: 1px;
-    background-image: url(../img/fondoPerfilUsuario.png);
-    height: 300px;
-    width: 1366px;
-}
-.header-info{
-    background-color: transparent;
-}
-span user-name{
-    
+
+.brand {
+    width: 40px;
+    height: 40px;
+    margin-top: -9px;
 }
