@@ -1,22 +1,25 @@
 div form {
-    padding-top: 4em;
+    padding-top: 10.5em;
+    padding-left: 1em;
 }
 
 #social {
     padding-top: 10em;
 }
 
-
-
-.signin {
+.login {
     width: 25em;
     padding-bottom: 1em;
 }
 
-.signin:hover {
+.login:hover {
     width: 26em;
 }
 
 #or {
     padding-top: 17em;
+}
+
+#btnlogin {
+    padding-top: 1em;
 }

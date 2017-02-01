@@ -16,7 +16,6 @@ body {
     margin-top: -9px;
 }
 
-
 #page-top {
     background-image: url(../img/fondoPerfilUsuario.png);
     height: 300px;
@@ -42,6 +41,7 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
 #title {
     color: white;
     font-size: 50px;
@@ -53,16 +53,34 @@ body {
 #title img {
     width: 3em;
 }
+
 .report-link {
     float: right;
 }
+
 .followers-container {
     margin-left: 100px;
 }
+
 .side-middle {
-    margin-top: 30px;    
+    margin-top: 30px;
 }
 
 .side-right {
     margin-top: 30px;
+}
+
+.social {
+    padding-left: 0.5em;
+    width: 4.5em;
+    height: 4em;
+}
+
+.social:hover {
+    width: 5em;
+    height: 5em;
+}
+
+#RedesSociales {
+    padding-top: 2em;
 }
