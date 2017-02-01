@@ -2,108 +2,109 @@
 <html>
 
 <head>
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="stylesheet/style.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+	<link href="stylesheet/style.css" rel="stylesheet">
+	<link href="stylesheet/stylePost.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <!--Contenido de la barra de navegación-->
-        <div class="container-fluid">
-            <!--Imagen-->
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#"><img class="brand" alt="Brand" src="img/icon_redondo_transparente.png" /></a>
-            </div>
-            <!--Resto del contenido-->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <!--Menus entre el logo y la busqueda-->
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Hot<span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Trending</a></li>
-                    <li><a href="#">Fresh</a></li>
-                    <li><a href="#">Random</a></li>
-                    <!--Ejemplo de botón que se desprende desde abajo-->
-                    <li class="dropdown">
-                        <!--Título botón--><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tags <span class="caret"></span></a>
-                        <!--Submenú-->
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <!--Barra de búsqueda-->
-                <form class="navbar-form navbar-left" role="search">
-                    <!--Cuadro donde introducir el texto-->
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Type to search"> </div>
-                    <!--Botón de lupa-->
-                    <button type="submit" class="btn btn-default"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </button>
-                </form>
-                <!--Menus después de la busqueda: Inicio de sesión-->
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Iniciar Sesion</a></li>
-                    <li><a href="#">Registrarse</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div id="title">LA FILA DE ATRAS <img alt="Brand" src="img/logoTitulo_blanco.png" /></div>
-    <div class="container-fluid">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<!--Contenido de la barra de navegación-->
+		<div class="container-fluid">
+			<!--Imagen-->
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#"><img class="brand" alt="Brand" src="img/icon_redondo_transparente.png" /></a>
+			</div>
+			<!--Resto del contenido-->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<!--Menus entre el logo y la busqueda-->
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Hot<span class="sr-only">(current)</span></a></li>
+					<li><a href="#">Trending</a></li>
+					<li><a href="#">Fresh</a></li>
+					<li><a href="#">Random</a></li>
+					<!--Ejemplo de botón que se desprende desde abajo-->
+					<li class="dropdown">
+						<!--Título botón--><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tags <span class="caret"></span></a>
+						<!--Submenú-->
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul>
+					</li>
+				</ul>
+				<!--Barra de búsqueda-->
+				<form class="navbar-form navbar-left" role="search">
+					<!--Cuadro donde introducir el texto-->
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Type to search"> </div>
+					<!--Botón de lupa-->
+					<button type="submit" class="btn btn-default"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </button>
+				</form>
+				<!--Menus después de la busqueda: Inicio de sesión-->
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Iniciar Sesion</a></li>
+					<li><a href="#">Registrarse</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div id="title">LA FILA DE ATRAS <img alt="Brand" src="img/logoTitulo_blanco.png" /></div>
+	<div class="container-fluid">
 
-        <div class="row">
-            <!--Para dejar margen-->
-            <div class="hidden-xs col-md-1"></div>
-            <!--Contenido Izquierda-->
-            <div class="hidden-xs col-md-2">
-                <div class="side-left">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/320x150" alt="" />
-                        <div class="caption">
-                            <p>Foto de gato</p>
-                        </div>
-                    </div>
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/320x150" alt="" />
-                        <div class="caption">
-                            <p>Foto de gato</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--Posts - Contenido central -->
-            <div class="col-xs-12 col-md-7">
-                <div class="side-middle">
-                    <div style="cursor: pointer;" onclick="window.location='http://google.com';" class="thumbnail">
-                        <img src="https://dummyimage.com/900x800/000000/0011ff.jpg&text=Post+900x800" />
-                        <div class="caption">
-                            <h3>Post's Title</h3>
-                            <p><a class="votes" href="#">Username</a><a id="date" class="votes" href="#"> Fecha</a></p>
-                            <p><a href="#" class="btn btn-primary" role="button">⬆</a> <a href="#" class="btn btn-primary" role="button">⬇</a><a class="votes" href="#"> Upvotes <span class="badge">42</span></a><a class="votes" href="#"> Downvotes <span class="badge">42</span></a><a class="votes" href="#"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a></p>
-                        </div>
-                    </div>
-                </div>
+		<div class="row">
+			<!--Para dejar margen-->
+			<div class="hidden-xs col-md-1"></div>
+			<!--Contenido Izquierda-->
+			<div class="hidden-xs col-md-2">
+				<div class="side-left">
+					<div class="thumbnail">
+						<img src="http://placehold.it/320x150" alt="" />
+						<div class="caption">
+							<p>Foto de gato</p>
+						</div>
+					</div>
+					<div class="thumbnail">
+						<img src="http://placehold.it/320x150" alt="" />
+						<div class="caption">
+							<p>Foto de gato</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--Posts - Contenido central -->
+			<div class="col-xs-12 col-md-7">
+				<div class="side-middle">
+					<div class="thumbnail">
+						<a href="postIndex.html" ><img src="https://dummyimage.com/900x800/000000/0011ff.jpg&text=Post+900x800" /></a>
+						<div class="caption">
+							<h3>Post's Title</h3>
+							<p><a class="votes" href="users.html">Username</a><a id="date" class="votes" href="#"> Fecha</a></p>
+							<p><a href="#" class="btn btn-primary" role="button">⬆</a> <a href="#" class="btn btn-primary" role="button">⬇</a><a class="votes" href="#"> Upvotes <span class="badge">42</span></a><a class="votes" href="#"> Downvotes <span class="badge">42</span></a><a class="votes" href="postIndex.html"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a></p>
+						</div>
+					</div>
+				</div>
 
-            </div>
-            <!--Redes sociales - Contenido derecha-->
-            <div class="hidden-xs col-md-1">
-                <div class="side-right">
-                    <button type="button" class="btn btn-primary social-button">Twitter</button>
-                    <button type="button" class="btn btn-primary social-button">Facebook</button>
-                    <button type="button" class="btn btn-primary social-button">Instagram</button>
-                </div>>
-            </div>
-            <!--Para dejar margen-->
-            <div class="hidden-xs col-md-1"></div>
-        </div>
-    </div>
+			</div>
+			<!--Redes sociales - Contenido derecha-->
+			<div class="hidden-xs col-md-1">
+				<div class="side-right">
+					<button type="button" class="btn btn-primary social-button">Twitter</button>
+					<button type="button" class="btn btn-primary social-button">Facebook</button>
+					<button type="button" class="btn btn-primary social-button">Instagram</button>
+				</div>>
+			</div>
+			<!--Para dejar margen-->
+			<div class="hidden-xs col-md-1"></div>
+		</div>
+	</div>
 </body>
 
 </html>

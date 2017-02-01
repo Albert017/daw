@@ -1,22 +1,39 @@
 <html>
 <head>
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="stylePost.css" rel="stylesheet">
+    <link href="stylesheet/stylePost.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div class="row">
         <div class="col-sm-6 col-md-4">
-            <!--This div is supposed to be a link to its post or to its post's comments, it's mplemented with js-->
-            <div style="cursor: pointer;" onclick="window.location='http://google.com';" class="thumbnail">
-                <img src="https://dummyimage.com/900x800/000000/0011ff.jpg&text=Post+900x800" />
+			<!--Post-->
+            <div class="thumbnail">
+                <img src="https://dummyimage.com/900x800/000000/0011ff.jpg&text=Post+900x800" href="post.html"/>
                 <div class="caption">
                     <h3>Post's Title</h3>
                     <p><a class="votes" href="#" >Username</a><a id="date" class="votes" href="#"> Fecha</a></p>
                     <p><a href="#" class="btn btn-primary" role="button">⬆</a> <a href="#" class="btn btn-primary" role="button">⬇</a><a class="votes" href="#"> Upvotes <span class="badge">42</span></a><a class="votes" href="#"> Downvotes <span class="badge">42</span></a><a class="votes" href="#"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a></p>
                 </div>
             </div>
+			<!--Comentarios-->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+				  <img href="users.html" alt="" class="userIconImg" src="img/userPhoto.jpg" /><a class="votes"> Username</a>
+				</div>
+				<div class="panel-body">
+					Even though using "lorem ipsum" often arouses curiosity due to its resemblance to classical Latin, it is not intended to have meaning. Where text is visible in a document, people tend to focus on the textual content rather than upon overall presentation, so publishers use lorem ipsum when displaying a typeface or design in order to direct the focus to presentation. "Lorem ipsum" also approximates a typical distribution of spaces in English.	
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+				  <img href="users.html" alt="" class="userIconImg" src="img/userPhoto.jpg" /><a class="votes"> Username</a>
+				</div>
+				<div class="panel-body">
+					Even though using "lorem ipsum" often arouses curiosity due to its resemblance to classical Latin, it is not intended to have meaning. Where text is visible in a document, people tend to focus on the textual content rather than upon overall presentation, so publishers use lorem ipsum when displaying a typeface or design in order to direct the focus to presentation. "Lorem ipsum" also approximates a typical distribution of spaces in English.	
+				</div>
+			</div>
         </div>
     </div>
 </body>
