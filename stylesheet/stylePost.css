@@ -87,3 +87,15 @@ a.text-primary:focus {
 #date {
     color:darkblue;
 }
+
+.followers-following {
+    color: white;
+    font-size: 15pt;
+    margin: 10px;
+}
+
+.badge-header {
+    background-color: white;
+    color: black;
+    font-size: 15;
+}
