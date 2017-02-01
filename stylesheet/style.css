@@ -56,3 +56,6 @@ body {
 .report-link {
     float: right;
 }
+.followers-container {
+    margin-left: 100px;
+}
