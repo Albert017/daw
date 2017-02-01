@@ -53,3 +53,6 @@ body {
 #title img {
     width: 3em;
 }
+.report-link {
+    float: right;
+}
