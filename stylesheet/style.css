@@ -16,19 +16,32 @@ body {
     margin-top: -9px;
 }
 
-.header {
-    margin-top: 1px;
+
+#page-top {
     background-image: url(../img/fondoPerfilUsuario.png);
     height: 300px;
-    width: 1366px;
 }
 
 .header-info {
-    background-color: transparent;
+    width: 200px;
+    margin: 0 auto;
 }
 
-span user-name {}
+.header-user-info {
+    background-color: transparent;
+    margin-top: 80px;
+}
 
+.name {
+    color: white;
+    font-size: xx-large;
+}
+
+.img-perfil {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 #title {
     color: white;
     font-size: 50px;
