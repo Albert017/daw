@@ -15,15 +15,28 @@ body {
     height: 40px;
     margin-top: -9px;
 }
-.header{
+
+.header {
     margin-top: 1px;
     background-image: url(../img/fondoPerfilUsuario.png);
     height: 300px;
     width: 1366px;
 }
-.header-info{
+
+.header-info {
     background-color: transparent;
 }
-span user-name{
-    
+
+span user-name {}
+
+#title {
+    color: white;
+    font-size: 50px;
+    padding-left: 5em;
+    padding-right: 5em;
+    background-color: #333;
+}
+
+#title img {
+    width: 3em;
 }
