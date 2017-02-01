@@ -15,3 +15,15 @@ body {
     height: 40px;
     margin-top: -9px;
 }
+.header{
+    margin-top: 1px;
+    background-image: url(../img/fondoPerfilUsuario.png);
+    height: 300px;
+    width: 1366px;
+}
+.header-info{
+    background-color: transparent;
+}
+span user-name{
+    
+}
