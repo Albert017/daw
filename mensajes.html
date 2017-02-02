@@ -4,9 +4,10 @@
 <head>
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="stylesheet/style.css" rel="stylesheet">
+    <link href="stylesheet/stylePost.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link href="stylesheet/styleLogin.css" rel="stylesheet">
+    <link href="stylesheet/styleMensajes.css" rel="stylesheet">
 </head>
 
 <body>
@@ -15,7 +16,7 @@
         <div class="container-fluid">
             <!--Imagen-->
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html"><img class="brand" alt="Brand" src="img/icon.png" /></a>
+                <a class="navbar-brand" href="#"><img class="brand" alt="Brand" src="img/icon.png" /></a>
             </div>
             <!--Resto del contenido-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -50,86 +51,59 @@
                 </form>
                 <!--Menus después de la busqueda: Inicio de sesión-->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Fresh</a></li>
-                    <li><a href="#">Random</a></li>
+                    <li><a href="#">Iniciar Sesion</a></li>
+                    <li><a href="#">Registrarse</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <div id="title">LA FILA DE ATRAS <img alt="Brand" src="img/logoTitulo_blanco.png" /></div>
-    </nav>
-
-
-
     <div class="container-fluid">
+
         <div class="row">
             <!--Para dejar margen-->
             <div class="hidden-xs col-md-1"></div>
-            <!--Contenido-->
-            <!--<div class="hidden-xs col-md-2">
 
-            </div>-->
-            <!--Posts-->
-            <div class="col-xs-12 col-md-4">
-                <!-- Formulario -->
-                <div id="form">
-                    <form class="form-horizontal" action="" method="POST">
-                        <fieldset>
-                            <div id="legend">
-                                <legend class="">Log in</legend>
-                            </div>
-                            <div class="control-group">
-                                <!-- Username -->
-                                <label class="control-label" for="username">Username</label>
-                                <div class="controls">
-                                    <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
-                                </div>
-                            </div>
 
-                            <div class="control-group">
-                                <!-- Password-->
-                                <label class="control-label" for="password">Password</label>
-                                <div class="controls">
-                                    <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
-                                </div>
-                            </div>
-
-                            <div class="control-group">
-                                <!-- Button -->
-                                <div class="controls" id="btnlogin">
-                                    <button class="btn btn-success">Log in</button>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
+            <!--Contenido Izquierda-->
+            <div class="hidden-xs col-md-8">
+                <div id="legend">
+                    <legend class="">Mis Mensajes</legend>
                 </div>
+                <div class="hidden-xs col-md-3">
 
+                    <div class="side-left">
+                        <div class="menu">
+                            <ul>
+                                <li><a href="#">RECIBIDOS</a></li>
+                                <li><a href="#">BORRADORES</a></li>
+                                <li><a href="#">SPAM</a></li>
+                            </ul>
+                        </div>
 
+                    </div>
 
-            </div>
-            <!--Redes sociales-->
-
-
-
-
-            <div id="or" class="hidden-xs col-md-1">
-                <label>OR</label>
-            </div>
-            <!--Redes sociales-->
-            <div id="social" class="hidden-xs col-md-1">
-                <div>
-
-
-                    <a href="#"><img src="img/login_twitter.png" class="login" /></a>
-                    <a href="#"><img src="img/login_facebook.png" class="login" /></a>
-                    <a href="#"><img src="img/login_google.png" class="login" /></a>
+                </div>
+                <!--Posts - Contenido central -->
+                <div class="col-xs-12 col-md-9">
+                    <div class="side-middle">
+                        <div class="thumbnail">
+                            <a href="postIndex.html"><img src="https://dummyimage.com/900x800/000000/0011ff.jpg&text=Post+900x800" /></a>
+                            <div class="caption">
+                                <h3>Post's Title</h3>
+                                <p><a class="votes" href="users.html">Username</a><a id="date" class="votes" href="#"> Fecha</a></p>
+                                <p><a href="#" class="btn btn-primary" role="button">⬆</a> <a href="#" class="btn btn-primary" role="button">⬇</a><a class="votes" href="#"> Upvotes <span class="badge">42</span></a><a class="votes" href="#"> Downvotes <span class="badge">42</span></a><a class="votes" href="postIndex.html"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+
+            <!--Redes sociales - Contenido derecha-->
             <div class="hidden-xs col-md-3">
                 <div id="RedesSociales">
                     <label>Siguenos en</label>
-
-
                     <a href="index.html"><img src="img/icon_twitter.png" class="social" /></a>
                     <a href="index.html"><img src="img/icon_instagram.png" class="social" /></a>
                     <a href="index.html"><img src="img/icon_facebook.png" class="social" /></a>
@@ -139,16 +113,6 @@
             <div class="hidden-xs col-md-1"></div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-    <!-- Formulario -->
-
 </body>
 
 </html>
