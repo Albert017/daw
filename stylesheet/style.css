@@ -84,3 +84,13 @@ body {
 #RedesSociales {
     padding-top: 2em;
 }
+.myaccount-link {
+    padding: initial;
+    /*padding: 0px;
+    padding-right: 35px;*/
+}
+
+.img-profile-mini {
+    height: 30px;
+    margin: 10px;
+}
