@@ -121,3 +121,23 @@ body {
     background-color: darkgray;
     border-color: darkgray;
 }
+
+.alignment-profile {
+    float: right;
+}
+
+.separation-profile {
+    margin: 10px;
+}
+
+.menu-profile {
+    margin-top: 20px;
+}
+
+.nav-pills>li.active>a {
+    background-color: darkgray;
+}
+
+.nav-pills>li.active>a:hover {
+    background-color: #6d6d6d;
+}
