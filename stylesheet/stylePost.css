@@ -5,6 +5,7 @@
 }
 .thumbnail {
     border:5px solid black;
+    margin-top: 6px;
 }
 .btn-primary.focus {
   color: #fff;
