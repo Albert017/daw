@@ -94,58 +94,5 @@ body {
 .img-profile-mini {
     margin-top: -0.5em;
     margin-right: 0.5em;
-    height: 2em ;
-}
-
-.panel-profile {
-    margin-top: 50px;
-}
-
-.text-profile {
-    margin-top: 40px;
-}
-
-.profile-save-button {
-    float: right;
-}
-
-.save-profile-button {
-    background-color: darkgrey;
-}
-
-.edit-profile-right-side {
-    margin-top: 170px;
-}
-
-.list-group-item.active {
-    background-color: darkgray;
-    border-color: darkgray;
-}
-
-.alignment-profile {
-    float: right;
-}
-
-.separation-profile {
-    margin: 10px;
-}
-
-.menu-profile {
-    margin-top: 20px;
-}
-
-.nav-pills>li.active>a {
-    background-color: darkgray;
-}
-
-.nav-pills>li.active>a:hover {
-    background-color: #6d6d6d;
-}
-.button-followers {
-    float: right;
-}
-
-.profile-followers {
-    height: 50px;
-    margin-right: 20px;
+    height: 2em;
 }

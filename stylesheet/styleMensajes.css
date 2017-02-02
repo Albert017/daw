@@ -1,0 +1,67 @@
+.img-profile-message {
+    height: 6em;
+    margin-left: -0.5em;
+}
+
+.menu li {
+    border-left-style: inset;
+}
+
+.menu li a {
+    color: black;
+}
+
+.user-message {
+    padding-left: 1em;
+    color: black;
+}
+
+.message-content {
+    height: 6em;
+    border-left-style: inset;
+}
+
+.message-content p {
+    padding-top: 1em;
+    padding-left: 1em;
+    color: black;
+}
+
+.message {
+    height: 6.2em;
+    border-style: inset
+}
+
+.mailbox {
+    margin-bottom: 5em;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+#legend {
+    padding-top: 2em;
+}
+
+input[type=checkbox] {
+    margin: 2.5em 0 0;
+}
+
+#btn-mailbox {
+    padding-bottom: 0.25em;
+    padding-left: 19.7em;
+}
+
+#btn-message {
+    padding-left: 38em
+}
+
+.conversation {
+    padding-top: 1em;
+}
+
+.conversation button {
+    margin: -3em 47em;
+    :
+}

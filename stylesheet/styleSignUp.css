@@ -1,5 +1,22 @@
-.signup-method {
-    margin-top: 2em;
-    margin-bottom: 2em;
-    text-align: center;
+div form {
+    padding-top: 4em;
+}
+
+#social {
+    padding-top: 10em;
+}
+
+
+
+.signin {
+    width: 25em;
+    padding-bottom: 1em;
+}
+
+.signin:hover {
+    width: 26em;
+}
+
+#or {
+    padding-top: 17em;
 }

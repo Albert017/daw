@@ -1,7 +1,10 @@
-.login-method {
-    margin-top: 2em;
-    margin-bottom: 2em;
-    text-align: center;
+div form {
+    padding-top: 10.5em;
+    padding-left: 1em;
+}
+
+#social {
+    padding-top: 10em;
 }
 
 .login {
