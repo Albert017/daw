@@ -96,3 +96,28 @@ body {
     margin-right: 0.5em;
     height: 2em ;
 }
+
+.panel-profile {
+    margin-top: 50px;
+}
+
+.text-profile {
+    margin-top: 40px;
+}
+
+.profile-save-button {
+    float: right;
+}
+
+.save-profile-button {
+    background-color: darkgrey;
+}
+
+.edit-profile-right-side {
+    margin-top: 170px;
+}
+
+.list-group-item.active {
+    background-color: darkgray;
+    border-color: darkgray;
+}
