@@ -141,3 +141,11 @@ body {
 .nav-pills>li.active>a:hover {
     background-color: #6d6d6d;
 }
+.button-followers {
+    float: right;
+}
+
+.profile-followers {
+    height: 50px;
+    margin-right: 20px;
+}
