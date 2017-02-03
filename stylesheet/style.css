@@ -96,3 +96,11 @@ body {
     margin-right: 0.5em;
     height: 2em;
 }
+.social-network-post {
+    display: inline-block;
+}
+
+.social-post {
+    padding-left: 0.5em;
+    width: 3em;
+}
