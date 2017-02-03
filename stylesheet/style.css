@@ -76,11 +76,6 @@ body {
     height: 4em;
 }
 
-.social:hover {
-    width: 5em;
-    height: 5em;
-}
-
 #RedesSociales {
     padding-top: 2em;
 }
@@ -96,6 +91,16 @@ body {
     margin-right: 0.5em;
     height: 2em;
 }
+
+.toUp a {
+    position: fixed;
+    bottom: 2em;
+    right: 3em;
+    background: #333;
+    color: white;
+    border-color: black;
+}
+
 .panel-profile {
     margin-top: 50px;
 }
@@ -140,6 +145,7 @@ body {
 .nav-pills>li.active>a:hover {
     background-color: #6d6d6d;
 }
+
 .button-followers {
     float: right;
 }
@@ -148,6 +154,7 @@ body {
     height: 50px;
     margin-right: 20px;
 }
+
 .social-network-post {
     display: inline-block;
 }

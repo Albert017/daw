@@ -29,7 +29,7 @@
 
 .message {
     height: 6.2em;
-    border-style: inset
+    border-style: inset;
 }
 
 .mailbox {
@@ -44,17 +44,15 @@ a:link {
     padding-top: 2em;
 }
 
-input[type=checkbox] {
-    margin: 2.5em 0 0;
-}
+input[type=checkbox] {}
 
 #btn-mailbox {
     padding-bottom: 0.25em;
-    padding-left: 19.7em;
+    padding-right: 1em;
 }
 
 #btn-message {
-    padding-left: 38em
+    padding-right: 1em;
 }
 
 .conversation {
@@ -62,6 +60,5 @@ input[type=checkbox] {
 }
 
 .conversation button {
-    margin: -3em 47em;
-    :
+    margin: -3em 0.25em;
 }
