@@ -5,6 +5,7 @@
 	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 	<link href="stylesheet/style.css" rel="stylesheet">
 	<link href="stylesheet/stylePost.css" rel="stylesheet">
+	<link href="stylesheet/addPost.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
@@ -95,7 +96,41 @@
 			</div>
 			<!-- Form to add a post-->
 			<div class="side-middle">
-
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h1>Subir post</h1>
+					</div>
+					<div class="panel-body">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<label class="control-label" for="postTitle">
+									<h3>Título del post</h3></label>
+								<div class="controls">
+									<input type="text" id="postTitle" name="Titulo" placeholder="" class="input-xlarge">
+									<a href="#" class="btn btn-primary" role="button">OK</a>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<h3>Imagen del post</h3>
+								<div class="upload">
+									<label class="control-label" for="postURL">URL de la imagen</label>
+									<input type="text" id="postURL" name="URL" placeholder="" class="input-xlarge">
+									<a href="#" class="btn btn-primary" role="button">OK</a>
+								</div>
+								<div class="upload">
+									<label class="control-label" for="postURL">O subir imagen</label>
+									<input type="text" id="postURL" name="URL" placeholder="" class="input-xlarge">
+									<a href="#" class="btn btn-primary" role="button">OK</a>
+								</div>
+							</div>
+						</div>
+						<div id="publishButton">
+							<a href="#" class="btn btn-primary" role="button">Publicar</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
