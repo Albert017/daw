@@ -76,5 +76,5 @@ El perfil del administrador es casi idéntico que el de un usuario corriente con
 
 ### Diagrama de Navegación
 
-![Diagrama de Navegación](/screenshots/DiagramaNavegacion.svg)
+![Diagrama de Navegación](/screenshots/DiagramaNavegacion.jpg)
 
