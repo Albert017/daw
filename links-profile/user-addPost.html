@@ -3,8 +3,8 @@
 
 <head>
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="stylesheet/style.css" rel="stylesheet">
-    <link href="stylesheet/stylePost.css" rel="stylesheet">
+    <link href="../stylesheet/style.css" rel="stylesheet">
+    <link href="../stylesheet/stylePost.css" rel="stylesheet">
     <link href="stylesheet/addPost.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -16,7 +16,7 @@
         <div class="container-fluid">
             <!--Imagen-->
             <div class="navbar-header">
-                <a class="navbar-brand" href="#"><img class="brand" alt="Brand" src="img/icon.png" /></a>
+                <a class="navbar-brand" href="#"><img class="brand" alt="Brand" src="../img/icon.png" /></a>
             </div>
             <!--Resto del contenido-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -51,10 +51,10 @@
                 </form>
                 <!--Menus después de la busqueda: Inicio de sesión-->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="addPost.html"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
+                    <li><a href="user-addPost.html"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
                     <li class="dropdown">
                         <!--Título botón-->
-                        <a href="#" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="img/userPhoto.jpg" />User name <span class="caret"></span></a>
+                        <a href="#" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="../img/userPhoto.jpg" />User name <span class="caret"></span></a>
                         <!--Submenú-->
                         <ul class="dropdown-menu">
                             <li><a href="profile.html">Profile</a></li>
@@ -64,14 +64,14 @@
                             <li><a href="index.html">Log out</a></li>
                         </ul>
                     </li>
-                    <li><a href="links-profile/mensajes.html">E-mail <span class="badge">4</span></a></li>
+                    <li><a href="mensajes.html">E-mail <span class="badge">4</span></a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <header id="page-top">
         <div class="container header-info">
-            <div class="header-user-info"> <img class="img-center" alt="" src="img/userPhoto.jpg" />
+            <div class="header-user-info"> <img class="img-center" alt="" src="../img/userPhoto.jpg" />
                 <div class="intro-text">
                     <p><span class="name">User name</span></p>
                 </div>
@@ -83,15 +83,14 @@
             <div class="btn-group-vertical separation-profile" role="group" aria-label="...">
                 <button type="button" class="btn btn-default">Profile photo<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button>
                 <button type="button" class="btn btn-default">Header<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button>
-                <button type="button" class="btn btn-default">Upload a post</button>
             </div>
         </div>
         <div class="col-xs-12 col-md-6">
             <div class="menu-profile">
                 <ul class="nav nav-pills">
-                    <li role="presentation" class="active"><a href="profile.html">Home</a></li>
-                    <li role="presentation"><a class="followers-following" href="links-profile/profile-followers.html"> Followers <span class="badge badge-header">42</span></a></li>
-                    <li role="presentation"><a class="followers-following" href="links-profile/profile-following.html"> Following <span class="badge badge-header">42</span></a></li>
+                    <li role="presentation"><a href="profile.html">Home</a></li>
+                    <li role="presentation"><a class="followers-following" href="profile-followers.html"> Followers <span class="badge badge-header">42</span></a></li>
+                    <li role="presentation"><a class="followers-following" href="profile-following.html"> Following <span class="badge badge-header">42</span></a></li>
                 </ul>
             </div>
             <!-- Form to add a post-->
@@ -128,9 +127,9 @@
         <div class="hidden-xs col-md-3">
             <div id="RedesSociales">
                 <label>Siguenos en</label>
-                <a href="index.html"><img src="img/icon_twitter.png" class="social" /></a>
-                <a href="index.html"><img src="img/icon_instagram.png" class="social" /></a>
-                <a href="index.html"><img src="img/icon_facebook.png" class="social" /></a>
+                <a href="index.html"><img src="../img/icon_twitter.png" class="social" /></a>
+                <a href="index.html"><img src="../img/icon_instagram.png" class="social" /></a>
+                <a href="index.html"><img src="../img/icon_facebook.png" class="social" /></a>
             </div>
         </div>
     </div>
