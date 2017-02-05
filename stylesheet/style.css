@@ -181,7 +181,7 @@ body {
     text-align: center;
     font-size: 15pt;
 }
-.followers-following {
+#page-top > .followers-following {
     background-color: rgba(0,0,0,0.6);
     padding: 3px;
     border-radius: 4px;
