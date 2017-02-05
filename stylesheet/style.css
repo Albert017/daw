@@ -17,7 +17,11 @@ body {
 }
 
 #page-top {
-    background-image: url(../img/fondoPerfilUsuario.png);
+    background-image: url(http://lorempixel.com/1000/400/city/);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-color: black;
     height: 300px;
 }
 
@@ -27,7 +31,9 @@ body {
 }
 
 .header-user-info {
-    background-color: transparent;
+    text-align: center;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 5px;
     margin-top: 80px;
 }
 
@@ -59,7 +65,8 @@ body {
 }
 
 .followers-container {
-    margin-left: 100px;
+    width: 100%;
+    text-align: center;
 }
 
 .side-middle {
@@ -168,10 +175,15 @@ body {
     height: 50px;
     float: right;
     margin-left: 5px;
-    
 }
 
 #reportUsers-text {
-        text-align: center;
+    text-align: center;
     font-size: 15pt;
+}
+.followers-following {
+    background-color: rgba(0,0,0,0.6);
+    padding: 3px;
+    border-radius: 4px;
+    margin: 5px;
 }
