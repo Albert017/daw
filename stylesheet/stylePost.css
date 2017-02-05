@@ -89,3 +89,12 @@ a.text-primary:focus {
 .panel-default>.panel-heading {
 	background-color: black;
 }
+
+#tocomment {
+    background-color: #eee;
+        border: 1px solid #ccc;
+}
+
+#commentInput {
+    width: 750;
+}
