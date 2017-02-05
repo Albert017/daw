@@ -163,3 +163,15 @@ body {
     padding-left: 0.5em;
     width: 3em;
 }
+
+.button-report-users {
+    height: 50px;
+    float: right;
+    margin-left: 5px;
+    
+}
+
+#reportUsers-text {
+        text-align: center;
+    font-size: 15pt;
+}
