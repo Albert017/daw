@@ -27,3 +27,15 @@
   * GitHub: [Albert017](https://github.com/Albert017)
   
 ##[Trello](https://trello.com/b/GwAWtjXx/daw-la-fila-de-atras)
+
+## Fase 2
+
+### Index
+![GitHub Logo](/img/index.png)
+
+En esta pantalla se muestra la página principal, en la que tenemos un navegador para ir a las diferentes categorías, un buscador y el inicio de seseión o registro. En esta página se visualizaran los post en el centro, a la derecha las redes sociales de la página y a la izquierda el post más votado del mes y del año.
+
+###Perfil de usuario
+![GitHub Logo](/img/profile.png)
+
+Aquí se visualiza el perfil de un usuario que ha iniciado sesión en la página. La barra de navegación anterior se mantiene en todas las páginas de la web. 
