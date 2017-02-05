@@ -36,28 +36,42 @@
 
 En esta pantalla se muestra la página principal, en la que tenemos un navegador para ir a las diferentes categorías, un buscador y el inicio de seseión o registro. En esta página se visualizaran los post en el centro, a la derecha las redes sociales de la página y a la izquierda el post más votado del mes y del año.
 
+### Comentarios
+
+![GitHub Logo](/screenshots/comments.png)
+
+Los comentarios aparecen después del post si se hace click sobre "Comments". Solo los usuarios registrados pueden comentar, pero todos los visitantes pueden ver los comentarios.
+
+### Registro e inicio de sesión.
+
+![GitHub Logo](/screenshots/register.png)
+![GitHub Logo](/screenshots/login.png)
+
+Para acceder a funcionalidades adicionales los usuarios pueden registrarse o iniciar sesión con su cuenta.
+
 ### Perfil de usuario
 
 ![GitHub Logo](/screenshots/profile.png)
 
 Aquí se visualiza el perfil de un usuario que ha iniciado sesión en la página. La barra de navegación anterior se mantiene en todas las páginas de la web, aunque cuando un usuario ha iniciado sesión se muestra el número de mensajes que tiene sin leer. El usuario puede ver en el centro los post que ha publicado el mismo. A la izquierda tiene las pestañas que le permiten editar su foto de perfil y la de la cabecera. 
 
+### Ajustes de perfil
+
+![GitHub Logo](/screenshots/ajustes.png)
+
+Los usuarios pueden modificar algunas opciones de su perfil, por ejemplo, modificar su cintraseña o decidir si quieren recibir notificaciones a su correo electrónico.
+
 ### Mensajes
 
 ![GitHub Logo](/screenshots/mensajes.png)
+![GitHub Logo](/screenshots/conversacion.png)
 
-Los usuarios pueden enviarse mensajes entre ellos. El contenido principal de esta ventana tiene; a la izquierda un pequeño menú para visualizar los mensajes recibidos, el borrador y los eliminados; en el centro se ven los distintos mensajes recibidos en este caso y encima hay tres botones para crear un nuevo mensaje, eliminar uno y seleccionar todos; a la derecha están de nuevo las redes sociales de la página, que se mantienen en todas las páginas.
-
-### Comentarios
-
-![GitHub Logo](/screenshots/comments.png)
-
-Los comentarios aparecen después del post si se hace click sobre "Comments". Solo los usuarios registrados pueden comentar.
+Los usuarios pueden enviarse mensajes entre ellos. El contenido principal de esta ventana tiene; a la izquierda un pequeño menú para visualizar los mensajes recibidos, el borrador y los eliminados; en el centro se ven los distintos mensajes recibidos en este caso y encima hay tres botones para crear un nuevo mensaje, eliminar uno y seleccionar todos; a la derecha están de nuevo las redes sociales de la página, que se mantienen en todas las páginas. Una vez enviado un mensaje se crea una conversación a la que se puede acceder presionando sobre la fila correspondiente al usuario.
 
 ### Administrador
 
-![GitHub Logo](/screenshots/comments.png)
+![GitHub Logo](/screenshots/admin-profile.png)
 
-El perfil del administrador es casi idéntico que el de un usuario corriente, excepto que están las pestañas de usuarios, post y comentarios que han sido denunciados.
+El perfil del administrador es casi idéntico que el de un usuario corriente con una diferencia, tiene pestañas de usuarios, post y comentarios que han sido denunciados.
 
 
