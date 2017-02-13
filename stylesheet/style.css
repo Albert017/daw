@@ -197,3 +197,9 @@ body {
     border: 1px solid #d6d6ce;
     visibility: hidden;
 }
+
+#follow {
+    background-color: #42a7f4;
+    color: white;
+    width: 10%;
+}
