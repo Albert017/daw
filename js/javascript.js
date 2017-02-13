@@ -1,15 +1,10 @@
 $(function () {
-  
-    $('.button-followers').click(function () {
-        $(this).next('.alert-unFollowUser').css('visibility', 'inherit');
-    });
-
-    $('.alert-unFollowUser > .btn-danger').click(function () {
-        $(this).parents('.alert-unFollowUser').css('visibility', 'hidden');
-    });
-
-    $('.alert-unFollowUser > .btn-success').click(function () {
-        $(this).parent().next('.alert-unFollowUser').css('visibility', 'hidden');
-        $(this).parents('.panel panel-default').remove();
+    $('.button-followers').mouseenter(function () {
+        $(this).text("Unfollow ");
+        $(this).append("<i class =\"fa fa-times\" aria-hidden=\"true\"></i>");
+        $(this).removeClass("btn-success").addClass("btn-danger");
+    }).mouseleave(function () {
+        $(this).text("Following");
+        $(this).removeClass("btn-danger").addClass("btn-success");
     });
 });
