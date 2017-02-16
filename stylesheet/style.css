@@ -203,3 +203,7 @@ body {
     color: white;
     width: 10%;
 }
+
+.button-follow-user {
+    float: right;
+}
