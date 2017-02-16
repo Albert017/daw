@@ -7,4 +7,8 @@ $(function () {
         $(this).text("Following");
         $(this).removeClass("btn-danger").addClass("btn-success");
     });
+
+    $('.button-follow-user').click(function () {
+        $(this).remove();
+    });
 });
