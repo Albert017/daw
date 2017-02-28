@@ -5,11 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class PostController {
+public class UsersController {
 	
-	@RequestMapping("/postIndex")
-	public String postController(Model model){
+	@RequestMapping("/users")
+	public String usersController(Model model){
 		
-		return "postIndex";
+		return "users";
 	}
 }
