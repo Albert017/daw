@@ -12,10 +12,15 @@ public class Comment {
 	
 	private String commentContent;
 	//private String commentDate;
+	
 	private User commentUser;
 	private Post commentPost;
 	
 	public Comment(){}
+	
+	public Comment(String comment){
+		commentContent = comment;
+	}
 
 	public long getId() {
 		return id;

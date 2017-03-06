@@ -17,6 +17,10 @@ public class Message {
 		private User messageDestinatary;
 		
 		public Message(){}
+		
+		public Message(String subject){
+			messageSubject = subject;
+		}
 
 		public long getId() {
 			return id;

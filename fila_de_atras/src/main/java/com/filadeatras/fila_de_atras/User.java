@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 @Entity
 public class User {
 		@Id
@@ -15,7 +16,9 @@ public class User {
 		private String username;
 		private String userPasswordHash;
 		
+		@OneToMany
 		private List<Comment> userComments;
+		
 		private List<Message> userMessages;
 		
 		private List<User> userFollowers;
