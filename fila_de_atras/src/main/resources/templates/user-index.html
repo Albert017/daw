@@ -53,7 +53,7 @@
                     <li><a href="user-addPost.html"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
                     <li class="dropdown">
                         <!--Título botón-->
-                        <a href="#" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="../img/userPhoto.jpg" />User name <span class="caret"></span></a>
+                        <a href="#" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="../img/userPhoto.jpg" />{{username}}<span class="caret"></span></a>
                         <!--Submenú-->
                         <ul class="dropdown-menu">
                             <li><a href="user-profile.html">Profile</a></li>
@@ -88,23 +88,17 @@
                             </div>
                         </a>
                     </div>
-                    <div class="thumbnail">
-                        <a href="user-postIndex.html"><img src="http://placehold.it/320x150" alt="" />
-                            <div class="caption">
-                                <p>Foto de gato</p>
-                            </div>
-                        </a>
-                    </div>
                 </div>
             </div>
             <!--Posts - Contenido central -->
             <div class="col-xs-12 col-md-6">
                 <div class="side-middle">
+                {{#Post}}
                     <div class="thumbnail">
                         <a href="user-postIndex.html"><img src="https://dummyimage.com/900x800/000000/0011ff.jpg&text=Post+900x800" /></a>
                         <div class="caption">
-                            <h3>Post's Title</h3>
-                            <p><a class="votes" href="user-users.html">Username</a><a id="date" class="votes" href="#"> Fecha</a></p>
+                            <h3>{{postTitle}}</h3>
+                            <p><a class="votes" href="user-users.html">{{authorUser}}</a><a id="date" class="votes" href="#">{{postDate}}</a></p>
                             <p> <a href="#" class="btn btn-primary" role="button">⬆</a> <a href="#" class="btn btn-primary" role="button">⬇</a> <a class="votes" href="#"> Upvotes <span class="badge">42</span></a> <a class="votes" href="#"> Downvotes <span class="badge">42</span></a> <a class="votes" href="user-postIndex.html"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a> </p>
                             <div>
                                 <a href="user-index.html" class="social-network-post"><img src="../img/icon_twitter.png" class="social-post" /></a>
@@ -113,6 +107,7 @@
                             </div>
                         </div>
                     </div>
+                  {{/Post}}
                 </div>
             </div>
             <!--Redes sociales - Contenido derecha-->
