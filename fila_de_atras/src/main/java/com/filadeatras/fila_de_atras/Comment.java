@@ -4,7 +4,8 @@ public class Comment {
 	
 	private long id;
 	
-	private String comment;
-	private User userComment;
+	private String commentContent;
+	//private String commentDate;
+	private User commentUser;
 	private Post commentPost;
 }

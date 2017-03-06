@@ -4,6 +4,7 @@ public class Post {
 	
 	private long id;
 	
-	private User authorUser;
+	private String postTitle;
+	private User postAuthor;
 	private String postDate;
 }
