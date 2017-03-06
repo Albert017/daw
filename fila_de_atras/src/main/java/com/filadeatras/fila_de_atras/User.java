@@ -2,8 +2,14 @@ package com.filadeatras.fila_de_atras;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity
 public class User {
-
+		@Id
+		@GeneratedValue(strategy=GenerationType.AUTO)
 		private long id;
 		
 		private String username;
@@ -18,6 +24,10 @@ public class User {
 		private List<Post> userPosts;
 		
 		public User(){}
+		
+		public User(String nombre){
+			username = nombre;
+		}
 
 		public long getId() {
 			return id;

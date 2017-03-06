@@ -1,7 +1,13 @@
 package com.filadeatras.fila_de_atras;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity
 public class Post {
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
 	private String postTitle;
@@ -10,6 +16,10 @@ public class Post {
 	
 	public Post(){}
 
+	public Post(String title){
+		postTitle=title;
+	}
+	
 	public long getId() {
 		return id;
 	}
