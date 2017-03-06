@@ -7,4 +7,40 @@ public class Post {
 	private String postTitle;
 	private User postAuthor;
 	private String postDate;
+	
+	public Post(){}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getPostTitle() {
+		return postTitle;
+	}
+
+	public void setPostTitle(String postTitle) {
+		this.postTitle = postTitle;
+	}
+
+	public User getPostAuthor() {
+		return postAuthor;
+	}
+
+	public void setPostAuthor(User postAuthor) {
+		this.postAuthor = postAuthor;
+	}
+
+	public String getPostDate() {
+		return postDate;
+	}
+
+	public void setPostDate(String postDate) {
+		this.postDate = postDate;
+	}
+	
+	
 }
