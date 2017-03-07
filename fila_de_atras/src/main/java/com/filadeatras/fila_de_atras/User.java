@@ -1,5 +1,6 @@
 package com.filadeatras.fila_de_atras;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -16,20 +17,33 @@ public class User {
 		private String username;
 		private String userPasswordHash;
 		
+<<<<<<< HEAD
 		@OneToMany(mappedBy="commentUser")
 		private List<Comment> userComments;
 		/*
 		private List<Message> userMessages;
+=======
+		@OneToMany
+		private List<Comment> userComments= new LinkedList();
 		
-		private List<User> userFollowers;
-		private List<User> userFollowing;
+		private List<Message> userMessages= new LinkedList();
+>>>>>>> origin/master
 		
+		private List<User> userFollowers= new LinkedList();
+		private List<User> userFollowing= new LinkedList();
+		
+<<<<<<< HEAD
 		private List<Post> userPosts;
 		*/
+=======
+		private List<Post> userPosts= new LinkedList();
+		
+>>>>>>> origin/master
 		public User(){}
 		
-		public User(String nombre){
+		public User(String nombre, String pass){
 			username = nombre;
+			userPasswordHash= pass;
 		}
 
 		public long getId() {
@@ -55,17 +69,24 @@ public class User {
 		public void setUserPasswordHash(String userPasswordHash) {
 			this.userPasswordHash = userPasswordHash;
 		}
-
+		
 		public List<Comment> getUserComments() {
 			return userComments;
 		}
-
+		
+		public void setComment(Comment c){
+			this.userComments.add(c);
+		}
 		public void setUserComments(List<Comment> userComments) {
 			this.userComments = userComments;
 		}
 		/*
 		public List<Message> getUserMessages() {
 			return userMessages;
+		}
+		
+		public void setMessage(Message m){
+			this.userMessages.add(m);
 		}
 
 		public void setUserMessages(List<Message> userMessages) {
@@ -75,6 +96,10 @@ public class User {
 		public List<User> getUserFollowers() {
 			return userFollowers;
 		}
+		
+		public void setFollower(User foll){
+			this.userFollowers.add(foll);
+		}
 
 		public void setUserFollowers(List<User> userFollowers) {
 			this.userFollowers = userFollowers;
@@ -83,6 +108,10 @@ public class User {
 		public List<User> getUserFollowing() {
 			return userFollowing;
 		}
+		
+		public void setFollowing(User e){
+			this.userFollowing.add(e);
+		}
 
 		public void setUserFollowing(List<User> userFollowing) {
 			this.userFollowing = userFollowing;
@@ -90,6 +119,10 @@ public class User {
 
 		public List<Post> getUserPosts() {
 			return userPosts;
+		}
+		
+		public void setPost(Post e){
+			this.userPosts.add(e);
 		}
 
 		public void setUserPosts(List<Post> userPosts) {
