@@ -14,7 +14,7 @@ public class PostController {
 	
 	@PostConstruct
 	public void init(){
-		repository.save(new Post("Pepe"));
+		
 	}
 	@RequestMapping("/postIndex")
 	public String postController(Model model){

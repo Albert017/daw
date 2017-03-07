@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 @Entity
 public class User {
@@ -14,38 +15,48 @@ public class User {
 		@GeneratedValue(strategy=GenerationType.AUTO)
 		private long id;
 		
+		//@ManyToOne
 		private String username;
+		
 		private String userPasswordHash;
 		
-<<<<<<< HEAD
 		@OneToMany(mappedBy="commentUser")
 		private List<Comment> userComments;
+
+		@OneToMany(mappedBy="messageRemitent")
+		private List<Message> userSentMessages;
+		
+		@OneToMany(mappedBy="messageDestinatary")
+		private List<Message> userReceivedMessages;
+		
 		/*
-		private List<Message> userMessages;
-=======
-		@OneToMany
-		private List<Comment> userComments= new LinkedList();
 		
-		private List<Message> userMessages= new LinkedList();
->>>>>>> origin/master
+		@OneToMany(mappedBy="username")
+		private List<User> userFollowers;
 		
-		private List<User> userFollowers= new LinkedList();
-		private List<User> userFollowing= new LinkedList();
-		
-<<<<<<< HEAD
-		private List<Post> userPosts;
+		@OneToMany(mappedBy="username")
+		private List<User> userFollowing;
 		*/
-=======
-		private List<Post> userPosts= new LinkedList();
-		
->>>>>>> origin/master
-		public User(){}
+		@OneToMany(mappedBy="postAuthor")
+		private List<Post> userPosts;
 		
 		public User(String nombre, String pass){
 			username = nombre;
 			userPasswordHash= pass;
+			userComments = new LinkedList<>();
+			userSentMessages = new LinkedList<>();
+			userReceivedMessages = new LinkedList<>();
+			//userFollowers = new LinkedList<>();
+			//userFollowing = new LinkedList<>();
+			userPosts = new LinkedList<>();
 		}
 
+		public User(){}
+
+		public User(String name){
+			username = name;
+		}
+		
 		public long getId() {
 			return id;
 		}
@@ -80,26 +91,36 @@ public class User {
 		public void setUserComments(List<Comment> userComments) {
 			this.userComments = userComments;
 		}
-		/*
-		public List<Message> getUserMessages() {
-			return userMessages;
+		
+		public List<Message> getUserReceivedMessages() {
+			return userReceivedMessages;
 		}
 		
-		public void setMessage(Message m){
-			this.userMessages.add(m);
+		public void setReceivedMessage(Message m){
+			this.userReceivedMessages.add(m);
 		}
 
-		public void setUserMessages(List<Message> userMessages) {
-			this.userMessages = userMessages;
+		public void setUserReceivedMessages(List<Message> userMessages) {
+			this.userReceivedMessages = userMessages;
 		}
-
+		
+		public void setUserSentMessages(List<Message> userMes){
+			this.userSentMessages = userMes;
+		}
+		
+		public void setSentMessage(Message m){
+			this.userSentMessages.add(m);
+		}
+		
+		public List<Message> getUserSentMessages(){
+			return userSentMessages;
+		}
+		/*ESTO NO FUNCIONA
 		public List<User> getUserFollowers() {
 			return userFollowers;
 		}
 		
-		public void setFollower(User foll){
-			this.userFollowers.add(foll);
-		}
+		//quitado setFollower, porque solo el follower decide si te va a seguir
 
 		public void setUserFollowers(List<User> userFollowers) {
 			this.userFollowers = userFollowers;
@@ -110,13 +131,14 @@ public class User {
 		}
 		
 		public void setFollowing(User e){
+			e.getUserFollowers().add(this);
 			this.userFollowing.add(e);
 		}
 
 		public void setUserFollowing(List<User> userFollowing) {
 			this.userFollowing = userFollowing;
 		}
-
+*/
 		public List<Post> getUserPosts() {
 			return userPosts;
 		}
@@ -129,5 +151,5 @@ public class User {
 			this.userPosts = userPosts;
 		}
 		
-		*/
+		
 }

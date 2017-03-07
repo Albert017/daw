@@ -14,7 +14,7 @@ public class MessageController {
 	
 	@PostConstruct
 	public void init(){
-		repository.save(new Message("Hola, esto es el asunto"));
+		
 	}
 	@RequestMapping("/user-mensajes")
 	public String usersController(Model model){

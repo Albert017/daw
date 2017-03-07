@@ -15,9 +15,14 @@ public class Comment {
 	//private String commentDate;
 	@ManyToOne
 	private User commentUser;
-	//private Post commentPost;
+	@ManyToOne
+	private Post commentPost;
 	
 	public Comment(){}
+	
+	public Comment(String c){
+		commentContent =c;
+	}
 	
 	public Comment(String comment, User user, Post post){
 		commentContent = comment;
@@ -48,7 +53,7 @@ public class Comment {
 	public void setCommentUser(User commentUser) {
 		this.commentUser = commentUser;
 	}
-/*
+
 	public Post getCommentPost() {
 		return commentPost;
 	}
@@ -56,5 +61,5 @@ public class Comment {
 	public void setCommentPost(Post commentPost) {
 		this.commentPost = commentPost;
 	}
-	*/
+
 }

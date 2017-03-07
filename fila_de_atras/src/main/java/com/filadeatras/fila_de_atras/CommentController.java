@@ -16,9 +16,9 @@ public class CommentController {
 	public void init(){
 		
 	}
-	@RequestMapping("/users")
+	@RequestMapping("/comments")
 	public String usersController(Model model){
 		
-		return "users";
+		return "comments";
 	}
 }

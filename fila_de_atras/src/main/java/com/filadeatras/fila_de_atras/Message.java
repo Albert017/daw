@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 @Entity
 public class Message {
 		@Id
@@ -13,11 +14,17 @@ public class Message {
 		private String messageSubject;
 		private String messageContent;
 		//private String messageDate;
-		/*
+		
+		@ManyToOne
 		private User messageRemitent;
+		@ManyToOne
 		private User messageDestinatary;
-		*/
+		
 		public Message(){}
+		
+		public Message(String m){
+			messageSubject =m;
+		}
 		
 		public Message(String subject, String content, User remitent, User destinatary){
 			messageSubject = subject;
@@ -49,7 +56,6 @@ public class Message {
 		public void setMessageContent(String messageContent) {
 			this.messageContent = messageContent;
 		}
-/*
 		public User getMessageRemitent() {
 			return messageRemitent;
 		}
@@ -65,6 +71,5 @@ public class Message {
 		public void setMessageDestinatary(User messageDestinatary) {
 			this.messageDestinatary = messageDestinatary;
 		}
-		*/
-		
+				
 }
