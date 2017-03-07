@@ -18,8 +18,11 @@ public class Message {
 		
 		public Message(){}
 		
-		public Message(String subject){
+		public Message(String subject, String content, User remitent, User destinatary){
 			messageSubject = subject;
+			messageContent= content;
+			messageRemitent= remitent;
+			messageDestinatary= destinatary;
 		}
 
 		public long getId() {

@@ -16,8 +16,10 @@ public class Post {
 	
 	public Post(){}
 
-	public Post(String title){
+	public Post(String title, User author, String postDate){
 		postTitle=title;
+		postAuthor= author;
+		this.postDate= postDate;
 	}
 	
 	public long getId() {

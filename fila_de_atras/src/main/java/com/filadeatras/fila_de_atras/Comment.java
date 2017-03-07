@@ -18,8 +18,10 @@ public class Comment {
 	
 	public Comment(){}
 	
-	public Comment(String comment){
+	public Comment(String comment, User user, Post post){
 		commentContent = comment;
+		commentUser=user;
+		commentPost=post;
 	}
 
 	public long getId() {
