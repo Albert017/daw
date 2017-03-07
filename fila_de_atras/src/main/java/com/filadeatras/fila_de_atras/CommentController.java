@@ -14,7 +14,7 @@ public class CommentController {
 	
 	@PostConstruct
 	public void init(){
-		repository.save(new Comment("Esto es el contenido de un comentario"));
+		
 	}
 	@RequestMapping("/users")
 	public String usersController(Model model){

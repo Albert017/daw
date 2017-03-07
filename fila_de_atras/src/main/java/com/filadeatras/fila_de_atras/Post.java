@@ -11,7 +11,7 @@ public class Post {
 	private long id;
 	
 	private String postTitle;
-	private User postAuthor;
+	//private User postAuthor;
 	private String postDate;
 	
 	public Post(){}
@@ -35,7 +35,7 @@ public class Post {
 	public void setPostTitle(String postTitle) {
 		this.postTitle = postTitle;
 	}
-
+	/*
 	public User getPostAuthor() {
 		return postAuthor;
 	}
@@ -43,7 +43,7 @@ public class Post {
 	public void setPostAuthor(User postAuthor) {
 		this.postAuthor = postAuthor;
 	}
-
+*/
 	public String getPostDate() {
 		return postDate;
 	}

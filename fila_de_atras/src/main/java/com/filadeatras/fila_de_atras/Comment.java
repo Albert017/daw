@@ -3,6 +3,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Comment {
@@ -12,9 +13,9 @@ public class Comment {
 	
 	private String commentContent;
 	//private String commentDate;
-	
+	@ManyToOne
 	private User commentUser;
-	private Post commentPost;
+	//private Post commentPost;
 	
 	public Comment(){}
 	
@@ -45,7 +46,7 @@ public class Comment {
 	public void setCommentUser(User commentUser) {
 		this.commentUser = commentUser;
 	}
-
+/*
 	public Post getCommentPost() {
 		return commentPost;
 	}
@@ -53,5 +54,5 @@ public class Comment {
 	public void setCommentPost(Post commentPost) {
 		this.commentPost = commentPost;
 	}
-	
+	*/
 }

@@ -13,9 +13,10 @@ public class Message {
 		private String messageSubject;
 		private String messageContent;
 		//private String messageDate;
+		/*
 		private User messageRemitent;
 		private User messageDestinatary;
-		
+		*/
 		public Message(){}
 		
 		public Message(String subject){
@@ -45,7 +46,7 @@ public class Message {
 		public void setMessageContent(String messageContent) {
 			this.messageContent = messageContent;
 		}
-
+/*
 		public User getMessageRemitent() {
 			return messageRemitent;
 		}
@@ -61,6 +62,6 @@ public class Message {
 		public void setMessageDestinatary(User messageDestinatary) {
 			this.messageDestinatary = messageDestinatary;
 		}
-		
+		*/
 		
 }

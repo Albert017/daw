@@ -16,16 +16,16 @@ public class User {
 		private String username;
 		private String userPasswordHash;
 		
-		@OneToMany
+		@OneToMany(mappedBy="commentUser")
 		private List<Comment> userComments;
-		
+		/*
 		private List<Message> userMessages;
 		
 		private List<User> userFollowers;
 		private List<User> userFollowing;
 		
 		private List<Post> userPosts;
-		
+		*/
 		public User(){}
 		
 		public User(String nombre){
@@ -63,7 +63,7 @@ public class User {
 		public void setUserComments(List<Comment> userComments) {
 			this.userComments = userComments;
 		}
-
+		/*
 		public List<Message> getUserMessages() {
 			return userMessages;
 		}
@@ -96,5 +96,5 @@ public class User {
 			this.userPosts = userPosts;
 		}
 		
-		
+		*/
 }
