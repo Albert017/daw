@@ -7,36 +7,34 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
 @Entity
 public class User {
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
 		private long id;
 		
-		//@ManyToOne
 		private String username;
+		
+		@ManyToMany
+		private List<User> userFollowing;
+		
+		@ManyToMany(mappedBy="userFollowing")
+		private List<User> userFollowers;
 		
 		private String userPasswordHash;
 		
 		@OneToMany(mappedBy="commentUser")
 		private List<Comment> userComments;
 
-		@OneToMany(mappedBy="messageRemitent")
+		@OneToMany(mappedBy="messageSender")
 		private List<Message> userSentMessages;
 		
-		@OneToMany(mappedBy="messageDestinatary")
+		@OneToMany(mappedBy="messageAddressee")
 		private List<Message> userReceivedMessages;
 		
-		/*
-		
-		@OneToMany(mappedBy="username")
-		private List<User> userFollowers;
-		
-		@OneToMany(mappedBy="username")
-		private List<User> userFollowing;
-		*/
 		@OneToMany(mappedBy="postAuthor")
 		private List<Post> userPosts;
 		
@@ -46,8 +44,8 @@ public class User {
 			userComments = new LinkedList<>();
 			userSentMessages = new LinkedList<>();
 			userReceivedMessages = new LinkedList<>();
-			//userFollowers = new LinkedList<>();
-			//userFollowing = new LinkedList<>();
+			userFollowers = new LinkedList<>();
+			userFollowing = new LinkedList<>();
 			userPosts = new LinkedList<>();
 		}
 
@@ -115,13 +113,15 @@ public class User {
 		public List<Message> getUserSentMessages(){
 			return userSentMessages;
 		}
-		/*ESTO NO FUNCIONA
+		
+		public void addFollowing(User following) {
+			this.userFollowing.add(following);
+		}
+		
 		public List<User> getUserFollowers() {
 			return userFollowers;
 		}
 		
-		//quitado setFollower, porque solo el follower decide si te va a seguir
-
 		public void setUserFollowers(List<User> userFollowers) {
 			this.userFollowers = userFollowers;
 		}
@@ -129,16 +129,11 @@ public class User {
 		public List<User> getUserFollowing() {
 			return userFollowing;
 		}
-		
-		public void setFollowing(User e){
-			e.getUserFollowers().add(this);
-			this.userFollowing.add(e);
-		}
 
 		public void setUserFollowing(List<User> userFollowing) {
 			this.userFollowing = userFollowing;
 		}
-*/
+		
 		public List<Post> getUserPosts() {
 			return userPosts;
 		}

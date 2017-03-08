@@ -23,9 +23,9 @@ public class UsersController {
 	
 	@PostConstruct
 	public void init(){
-		User u1 = new User("Pepe");
-		User u2 = new User("Sara");
-		//u2.setFollowing(u1);
+		User u1 = new User("Pepe", "pass");
+		User u2 = new User("Sara", "word");
+		u1.addFollowing(u2);
 		userRepository.save(u1);
 		userRepository.save(u2);
 		Message m1 = new Message("Este es el asunto del mensaje", "Este es el contenido del mensaje", u1,u2);
