@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface UserRepository extends JpaRepository<User, Long>{
 	
 	//Como en teoría no se puede repetir nombre de usuario solamente un usuario tendría ese nombre
-	User findUserByusername(String username);
+	//User findUserByusername(String username);
 	
-	List<User> finduserFollowersByusername(String username);
-	List<User> finduserFollowingByusername(String username);
+	//List<User> finduserFollowersByusername(String username);
+	//List<User> finduserFollowingByusername(String username);
 
 }
