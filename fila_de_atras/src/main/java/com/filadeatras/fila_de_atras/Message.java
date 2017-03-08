@@ -14,11 +14,12 @@ public class Message {
 		private String messageSubject;
 		private String messageContent;
 		//private String messageDate;
-		
+		private boolean messageRead;		
+
 		@ManyToOne
-		private User messageRemitent;
+		private User messageSender;
 		@ManyToOne
-		private User messageDestinatary;
+		private User messageAddressee;
 		
 		public Message(){}
 		
@@ -29,8 +30,8 @@ public class Message {
 		public Message(String subject, String content, User remitent, User destinatary){
 			messageSubject = subject;
 			messageContent= content;
-			messageRemitent= remitent;
-			messageDestinatary= destinatary;
+			messageSender= remitent;
+			messageAddressee= destinatary;
 		}
 
 		public long getId() {
@@ -56,20 +57,27 @@ public class Message {
 		public void setMessageContent(String messageContent) {
 			this.messageContent = messageContent;
 		}
-		public User getMessageRemitent() {
-			return messageRemitent;
+		public User getMessageSender() {
+			return messageSender;
 		}
 
-		public void setMessageRemitent(User messageRemitent) {
-			this.messageRemitent = messageRemitent;
+		public void setMessageSender(User messageRemitent) {
+			this.messageSender = messageRemitent;
 		}
 
-		public User getMessageDestinatary() {
-			return messageDestinatary;
+		public User getMessageAddressee() {
+			return messageAddressee;
 		}
 
-		public void setMessageDestinatary(User messageDestinatary) {
-			this.messageDestinatary = messageDestinatary;
+		public void setMessageAddressee(User messageDestinatary) {
+			this.messageAddressee = messageDestinatary;
 		}
-				
+
+		public boolean isMessageRead() {
+			return messageRead;
+		}
+
+		public void setMessageRead(boolean messageRead) {
+			this.messageRead = messageRead;
+		}		
 }
