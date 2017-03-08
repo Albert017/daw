@@ -32,9 +32,7 @@ public class UsersController {
 		messageRepository.save(m1);
 		Post p1 = new Post("El titulo del post", u2);
 		postRepository.save(p1);
-		Comment c1 = new Comment("Esto es el contenido de un comentario");
-		c1.setCommentUser(u1);
-		c1.setCommentPost(p1);
+		Comment c1 = new Comment("Esto es el contenido de un comentario",u1,p1);
 		commentRepository.save(c1);
 
 	}

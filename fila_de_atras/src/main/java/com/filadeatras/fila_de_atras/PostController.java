@@ -14,7 +14,7 @@ public class PostController {
 	
 	@PostConstruct
 	public void init(){
-		
+				
 	}
 	@RequestMapping("/postIndex")
 	public String postController(Model model){
