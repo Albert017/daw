@@ -1,7 +1,13 @@
 package com.filadeatras.fila_de_atras;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MessageRepository extends JpaRepository<Message, Long>{
+	
+	List<Message> findMessageBymessageAddressee(User messageAdressee);
+	
+	List<Message> findMessageBymessageRead(boolean messageRead);
 
 }
