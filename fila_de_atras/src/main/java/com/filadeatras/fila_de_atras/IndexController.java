@@ -1,5 +1,7 @@
 package com.filadeatras.fila_de_atras;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +14,10 @@ public class IndexController {
 	PostRepository postRepository;
 	
 	@RequestMapping(value={"/","/index"})
-	public String indexController(Model model){
+	public String indexController(Model model, HttpServletRequest request){
 		
-		
+		//model.addAttribute("loggedUser",request.isUserInRole("USER"));
+		model.addAttribute("loggedUser",true);
 		
 		return "index";
 	}

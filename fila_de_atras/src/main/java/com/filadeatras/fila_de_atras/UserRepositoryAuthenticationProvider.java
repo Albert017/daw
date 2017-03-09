@@ -3,11 +3,7 @@ package com.filadeatras.fila_de_atras;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -45,7 +41,6 @@ public class UserRepositoryAuthenticationProvider {
 		return new UsernamePasswordAuthenticationToken(user.getUsername(), password, roles);
 	}
 
-	@Override
 	public boolean supports(Class<?> authenticationObject) {
 		return true;
 	}
