@@ -63,10 +63,10 @@
 	 </dependency> -->
 	 <!--diapositiva 97 queryDSL Bases de datos falta -->
 	 
-	 <!-- <dependency>
+	  <dependency>
 		 <groupId>org.springframework.boot</groupId>
 		 <artifactId>spring-boot-starter-security</artifactId>
-	 </dependency>  -->
+	 </dependency>  
 
 	 <dependency>
 	 	<groupId>org.springframework.boot</groupId>
