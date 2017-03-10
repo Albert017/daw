@@ -99,12 +99,14 @@
                     <div class="panel-heading">
                         <h1>Subir post</h1> </div>
                     <div class="panel-body">
+                    	<form action="/users/post" method="post"
+		enctype="multipart/form-data">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <label class="control-label" for="postTitle">
                                     <h3>Título del post</h3></label>
                                 <div class="controls">
-                                    <input type="text" id="postTitle" name="Titulo" placeholder="" class="input-xlarge"> <a href="#" class="btn btn-primary" role="button">OK</a> </div>
+                                    <input type="text" id="postTitle" name="imageTitleFileUploader" placeholder="" class="input-xlarge"> <a href="#" class="btn btn-primary" role="button">OK</a> </div>
                             </div>
                         </div>
                         <div class="panel panel-default">
@@ -115,10 +117,12 @@
                                     <input type="text" id="postURL" name="URL" placeholder="" class="input-xlarge"> <a href="#" class="btn btn-primary" role="button">OK</a> </div>
                                 <div class="upload">
                                     <label class="control-label" for="postURL">O subir imagen</label>
-                                    <input type="text" id="postURL" name="URL" placeholder="" class="input-xlarge"> <a href="#" class="btn btn-primary" role="button">OK</a> </div>
+                                    <input type="file" id="postURL" name="file" placeholder="" class="input-xlarge"> <a href="#" class="btn btn-primary" role="button">OK</a> </div>
                             </div>
                         </div>
                         <div id="publishButton"> <a href="#" class="btn btn-primary" role="button">Publicar</a> </div>
+                    	<input type='submit' name='enviar' value='Enviar' />
+                    </form>
                     </div>
                 </div>
             </div>
