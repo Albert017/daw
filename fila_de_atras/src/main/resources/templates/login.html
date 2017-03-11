@@ -76,7 +76,10 @@
                     <form class="form-horizontal" action="/login" method="POST">
                         <fieldset>
                             <div id="legend">
+                            {{#loginerror}}
                                 <legend class="">Log in</legend>
+                                <span id="loginerror"><p>Wrong username or password</p></span>
+                            {{/loginerror}}
                             </div>
                             <div class="control-group">
                                 <!-- Username -->

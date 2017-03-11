@@ -14,6 +14,14 @@ public class LoginController {
 	
 	@RequestMapping(value={"/login"})
 	public String loginController(Model model, HttpServletRequest request){
+		model.addAttribute("loginerror",false);
+		return "login";
+	}
+	
+	@RequestMapping(value={"/loginerror"})
+	public String loginerrorController(Model model, HttpServletRequest request){
+		model.addAttribute("loginerror",true);
+		
 		return "login";
 	}
 }
