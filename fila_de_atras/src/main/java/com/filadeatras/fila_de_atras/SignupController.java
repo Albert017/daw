@@ -29,6 +29,8 @@ public class SignupController {
 			userRepository.save(new User(uName,uPass,uEmail,"USER_ROLE"));
 			return "login";
 		}catch (Exception e){
+			model.addAttribute("signupError",true);
+			model.addAttribute("signupErrorText",e.getCause());
 			return "signup";
 		}
 	}

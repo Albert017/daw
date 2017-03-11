@@ -78,6 +78,10 @@
                         <fieldset>
                             <div id="legend">
                                 <legend>Register</legend>
+                                {{#signupError}}
+                                <span class="text-danger"><p>Something went wrong, try again. You can send the following text to our support:</p></span>
+                                <span class="text-danger"><p>{{signupErrorText}}</p></span>
+                            	{{/signupError}}
                             </div>
                             <div class="control-group">
                                 <!-- Username -->
