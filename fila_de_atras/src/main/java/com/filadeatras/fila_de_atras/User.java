@@ -1,9 +1,13 @@
 package com.filadeatras.fila_de_atras;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.*;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class User {
@@ -39,9 +43,10 @@ public class User {
 		@OneToMany(mappedBy="postAuthor")
 		private List<Post> userPosts;
 		
-		public User(String nombre, String pass){
+		public User(String nombre, String pass, String... roles){
 			username = nombre;
-			userPasswordHash= pass;
+			this.roles = new ArrayList<>(Arrays.asList(roles));
+			userPasswordHash= new BCryptPasswordEncoder().encode(pass);;
 			userComments = new LinkedList<>();
 			userSentMessages = new LinkedList<>();
 			userReceivedMessages = new LinkedList<>();

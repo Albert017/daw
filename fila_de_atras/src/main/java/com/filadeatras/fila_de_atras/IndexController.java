@@ -13,11 +13,14 @@ public class IndexController {
 	@Autowired
 	PostRepository postRepository;
 	
+	@Autowired
+	UserComponent userComponent;
+	
 	@RequestMapping(value={"/","/index"})
-	public String indexController(Model model, HttpServletRequest request){
+	public String indexController(Model model){
 		
-		model.addAttribute("loggedUser",request.isUserInRole("USER"));
 		
+		model.addAttribute("loggedUser",userComponent.isLoggedUser());
 		return "index";
 	}
 }

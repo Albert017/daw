@@ -26,39 +26,39 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/postIndex").permitAll();
 
         // Private pages (all other pages)
-        http.authorizeRequests().antMatchers("/user-addPost*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/user-design-profile*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/user-index*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/user-mensajeNuevo*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/user-mensajes*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/user-mensajesConversacion*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/user-postIndex*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/user-profile-followers*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/user-profile-following*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/user-profile-myPosts*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/user-profile*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/user-Settings-notifications*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/user-Settings-password*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/user-Settings*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/user-users*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/users*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/user-addPost*").hasAnyRole("USER_ROLE");
+        http.authorizeRequests().antMatchers("/user-design-profile*").hasAnyRole("USER_ROLE");
+        http.authorizeRequests().antMatchers("/user-index*").hasAnyRole("USER_ROLE");
+        http.authorizeRequests().antMatchers("/user-mensajeNuevo*").hasAnyRole("USER_ROLE");
+        http.authorizeRequests().antMatchers("/user-mensajes*").hasAnyRole("USER_ROLE");
+        http.authorizeRequests().antMatchers("/user-mensajesConversacion*").hasAnyRole("USER_ROLE");
+        http.authorizeRequests().antMatchers("/user-postIndex*").hasAnyRole("USER_ROLE");
+        http.authorizeRequests().antMatchers("/user-profile-followers*").hasAnyRole("USER_ROLE");
+        http.authorizeRequests().antMatchers("/user-profile-following*").hasAnyRole("USER_ROLE");
+        http.authorizeRequests().antMatchers("/user-profile-myPosts*").hasAnyRole("USER_ROLE");
+        http.authorizeRequests().antMatchers("/user-profile*").hasAnyRole("USER_ROLE");
+        http.authorizeRequests().antMatchers("/user-Settings-notifications*").hasAnyRole("USER_ROLE");
+        http.authorizeRequests().antMatchers("/user-Settings-password*").hasAnyRole("USER_ROLE");
+        http.authorizeRequests().antMatchers("/user-Settings*").hasAnyRole("USER_ROLE");
+        http.authorizeRequests().antMatchers("/user-users*").hasAnyRole("USER_ROLE");
+        http.authorizeRequests().antMatchers("/users*").hasAnyRole("USER_ROLE");
         
-        http.authorizeRequests().antMatchers("/admin-addPost*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/admin-design-profile*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/admin-index*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/admin-mensajeNuevo*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/admin-mensajes*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/admin-mensajesConversacion*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/admin-postIndex*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/admin-profile-followers*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/admin-profile-following*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/admin-profile-report-comments*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/admin-profile-report-post*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/admin-profile-users*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/admin-Settings-notifications*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/admin-Settings-password*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/adminSettings*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/admin-users*").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin-addPost*").hasAnyRole("ADMIN_ROLE");
+        http.authorizeRequests().antMatchers("/admin-design-profile*").hasAnyRole("ADMIN_ROLE");
+        http.authorizeRequests().antMatchers("/admin-index*").hasAnyRole("ADMIN_ROLE");
+        http.authorizeRequests().antMatchers("/admin-mensajeNuevo*").hasAnyRole("ADMIN_ROLE");
+        http.authorizeRequests().antMatchers("/admin-mensajes*").hasAnyRole("ADMIN_ROLE");
+        http.authorizeRequests().antMatchers("/admin-mensajesConversacion*").hasAnyRole("ADMIN_ROLE");
+        http.authorizeRequests().antMatchers("/admin-postIndex*").hasAnyRole("ADMIN_ROLE");
+        http.authorizeRequests().antMatchers("/admin-profile-followers*").hasAnyRole("ADMIN_ROLE");
+        http.authorizeRequests().antMatchers("/admin-profile-following*").hasAnyRole("ADMIN_ROLE");
+        http.authorizeRequests().antMatchers("/admin-profile-report-comments*").hasAnyRole("ADMIN_ROLE");
+        http.authorizeRequests().antMatchers("/admin-profile-report-post*").hasAnyRole("ADMIN_ROLE");
+        http.authorizeRequests().antMatchers("/admin-profile-users*").hasAnyRole("ADMIN_ROLE");
+        http.authorizeRequests().antMatchers("/admin-Settings-notifications*").hasAnyRole("ADMIN_ROLE");
+        http.authorizeRequests().antMatchers("/admin-Settings-password*").hasAnyRole("ADMIN_ROLE");
+        http.authorizeRequests().antMatchers("/adminSettings*").hasAnyRole("ADMIN_ROLE");
+        http.authorizeRequests().antMatchers("/admin-users*").hasAnyRole("ADMIN_ROLE");
         
         http.csrf().disable();
         http.headers().frameOptions().sameOrigin();
@@ -79,8 +79,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         // Database authentication provider
-        //auth.authenticationProvider(authenticationProvider);
-    	auth.inMemoryAuthentication().withUser("user").password("pass").roles("USER");
+        auth.authenticationProvider(authenticationProvider);
+    	//auth.inMemoryAuthentication().withUser("user").password("pass").roles("USER_ROLE");
     }
 
     
