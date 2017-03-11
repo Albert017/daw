@@ -1,7 +1,5 @@
 package com.filadeatras.fila_de_atras;
 
-import java.util.ArrayList;
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +15,10 @@ public class DatabaseDataLoader {
 	    @PostConstruct
 	    private void initDatabase() {
 	    	for(int i=1;i<20;i++){
-	    		User newUs = (new User("user"+i, "pass"+i, "USER_ROLE"));
+	    		User newUs = (new User("user"+i, "pass"+i, "user"+i+".a@a.aa", "USER_ROLE"));
 	    		userRepository.save(newUs);
 	    	}
-	    	userRepository.save(new User("admin", "adminpass", "USER_ROLE","ADMIN_ROLE"));
+	    	userRepository.save(new User("admin", "adminpass", "admin.a@a.aa","USER_ROLE","ADMIN_ROLE"));
 
 	    }
 	    

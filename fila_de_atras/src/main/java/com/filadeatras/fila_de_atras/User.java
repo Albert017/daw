@@ -17,8 +17,8 @@ public class User {
 		
 		@Column(unique=true)
 		private String username;
-		
-
+		@Column(unique=true)
+		private String userEmail;
 
 		@ElementCollection(fetch = FetchType.EAGER)
 		private List<String> roles;
@@ -43,8 +43,9 @@ public class User {
 		@OneToMany(mappedBy="postAuthor")
 		private List<Post> userPosts;
 		
-		public User(String nombre, String pass, String... roles){
+		public User(String nombre, String pass,String email, String... roles){
 			username = nombre;
+			userEmail = email;
 			this.roles = new ArrayList<>(Arrays.asList(roles));
 			userPasswordHash= new BCryptPasswordEncoder().encode(pass);;
 			userComments = new LinkedList<>();
