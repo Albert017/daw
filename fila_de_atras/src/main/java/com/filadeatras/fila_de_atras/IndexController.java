@@ -16,8 +16,7 @@ public class IndexController {
 	@RequestMapping(value={"/","/index"})
 	public String indexController(Model model, HttpServletRequest request){
 		
-		//model.addAttribute("loggedUser",request.isUserInRole("USER"));
-		model.addAttribute("loggedUser",true);
+		model.addAttribute("loggedUser",request.isUserInRole("USER"));
 		
 		return "index";
 	}

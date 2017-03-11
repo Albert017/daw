@@ -60,15 +60,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/adminSettings*").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/admin-users*").hasAnyRole("ADMIN");
         
-        /*
+        http.csrf().disable();
+        http.headers().frameOptions().sameOrigin();
 
-        // Login form
+        //Login form
         http.formLogin().loginPage("/login");
         http.formLogin().usernameParameter("username");
         http.formLogin().passwordParameter("password");
-        http.formLogin().defaultSuccessUrl("/home");
+        http.formLogin().defaultSuccessUrl("/index");
         http.formLogin().failureUrl("/loginerror");
-
+        
         // Logout
         http.logout().logoutUrl("/logout");
         http.logout().logoutSuccessUrl("/");
@@ -78,8 +79,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         // Database authentication provider
-        auth.authenticationProvider(authenticationProvider);
-    }*/
-
+        //auth.authenticationProvider(authenticationProvider);
+    	auth.inMemoryAuthentication().withUser("user").password("pass").roles("USER");
     }
+
+    
 }
