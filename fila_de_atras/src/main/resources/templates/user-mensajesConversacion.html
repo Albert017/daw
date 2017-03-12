@@ -3,11 +3,11 @@
 
 <head>
     <link href="/stylesheet/bootstrap.min.css" rel="stylesheet">
-    <link href="../stylesheet/style.css" rel="stylesheet">
-    <link href="../stylesheet/stylePost.css" rel="stylesheet">
+    <link href="/stylesheet/style.css" rel="stylesheet">
+    <link href="/stylesheet/stylePost.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <link href="../stylesheet/styleMensajes.css" rel="stylesheet"> </head>
+    <link href="/stylesheet/styleMensajes.css" rel="stylesheet"> </head>
 
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <!--Imagen-->
             <div class="navbar-header">
-                <a class="navbar-brand" href="/"><img class="brand" alt="Brand" src="../img/icon.png" /></a>
+                <a class="navbar-brand" href="/"><img class="brand" alt="Brand" src="/img/icon.png" /></a>
             </div>
             <!--Resto del contenido-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -53,7 +53,7 @@
                     <li><a href="users/addPost"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
                     <li class="dropdown">
                         <!--Título botón-->
-                        <a href="#" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="../img/userPhoto.jpg" />User name <span class="caret"></span></a>
+                        <a href="#" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/img/userPhoto.jpg" />User name <span class="caret"></span></a>
                         <!--Submenú-->
                         <ul class="dropdown-menu">
                             <li><a href="/profile">Profile</a></li>
@@ -71,7 +71,7 @@
     <header>
         <div id="Up"></div>
         <div class="hidden-xs col-md-12" id="title">
-            <div>LA FILA DE ATRAS <img alt="Brand" src="../img/logoTitulo_blanco.png" /></div>
+            <div>LA FILA DE ATRAS <img alt="Brand" src="/img/logoTitulo_blanco.png" /></div>
         </div>
     </header>
     <div class="container-fluid">
@@ -117,18 +117,21 @@
                             {{/send-msg}}
                             <div class="col-xs-12 col-md-12">
                                 <div class="conversation">
+                                {{#sinMensajes}}
+                                <p>No hay mensajes</p>
+                                {{/sinMensajes}}
                                 {{#messages}}
                                     <div class="panel panel-default">
-                                        <div class="panel-heading"> <img href="user-users.html" alt="" class="userIconImg" src="../img/userPhoto.jpg" /><a href="user-users.html" class="votes"> {{messageSender.username}}</a>
+                                        <div class="panel-heading"> <img href="user-users.html" alt="" class="userIconImg" src="/img/userPhoto.jpg" /><a href="user-users.html" class="votes"> {{messageSender.username}}</a>
                                             <div class="btn-remove">
                                             	{{#conversation}}
-                                            	<form action="sent-to-deleted/{{id}}" method="POST">
-                                                	<input type="submit" class="btn btn-xs navbar-right"><span class="glyphicon glyphicon-trash" aria-hidden="false"></span></input>
+                                            	<form action="/mensajes/eliminados/movido/{{id}}" method="POST">
+                                                	<button type="submit" class="btn btn-xs navbar-right"><span class="glyphicon glyphicon-trash"></span></button>
                                             	</form>
                                             	{{/conversation}}
                                                 {{^conversation}}
-                                                <form action="delete/{{id}}" method="POST">
-                                                	<input type="submit" class="btn btn-xs navbar-right"><span class="glyphicon glyphicon-trash" aria-hidden="false"></span></input>
+                                                <form action="/mensajes/eliminado/{{id}}" method="POST">
+                                                	<button type="submit" class="btn btn-xs navbar-right"><span class="glyphicon glyphicon-trash"></span></button>
                                             	</form>
                                             	{{/conversation}}
                                             </div>
@@ -147,9 +150,9 @@
             <div class="hidden-xs col-md-3 ">
                 <div id="RedesSociales">
                     <label>Siguenos en</label>
-                    <a href="user-index.html "><img src="../img/icon_twitter.png " class="social " /></a>
-                    <a href="user-index.html "><img src="../img/icon_instagram.png " class="social " /></a>
-                    <a href="user-index.html "><img src="../img/icon_facebook.png " class="social " /></a>
+                    <a href="user-index.html "><img src="/img/icon_twitter.png " class="social " /></a>
+                    <a href="user-index.html "><img src="/img/icon_instagram.png " class="social " /></a>
+                    <a href="user-index.html "><img src="/img/icon_facebook.png " class="social " /></a>
                 </div>
             </div>
             <!--Para dejar margen-->

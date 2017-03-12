@@ -8,6 +8,7 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	
 	//Como en teoría no se puede repetir nombre de usuario solamente un usuario tendría ese nombre
 	User findByusername(String username);
+	User findById(Long id);
 	
 	//List<User> finduserFollowersByusername(String username);
 	//List<User> finduserFollowingByusername(String username);
