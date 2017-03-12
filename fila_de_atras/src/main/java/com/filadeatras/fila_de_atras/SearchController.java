@@ -1,10 +1,6 @@
 package com.filadeatras.fila_de_atras;
 
-import java.util.List;
-
-import org.h2.mvstore.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +12,28 @@ public class SearchController {
 	
 	@Autowired
 	PostRepository postRepository;
+	@Autowired
+	UserComponent userComponent;
 	
-	@RequestMapping(value="/search", method= RequestMethod.POST)
-	public Post postSearch(Model model, @RequestParam("searchedPost") String consultedPost){
-		return postRepository.findBypostTitle(consultedPost);
+	@RequestMapping(value="/search")
+	public String postSearch(Model model, @RequestParam("searchedPost") String consultedPost){
+		Post currPost = postRepository.findBypostTitle(consultedPost);
+		if (currPost ==null){
+			model.addAttribute("loggedUser",userComponent.isLoggedUser());
+			if (userComponent.isLoggedUser()){
+				model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
+			}
+			return "index";
+		} else {
+			model.addAttribute("loggedUser",userComponent.isLoggedUser());
+			if (userComponent.isLoggedUser()){
+				model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
+			}
+			model.addAttribute("Post",currPost);
+			model.addAttribute("PostComments",currPost.getPostComments());
+			
+			return "postIndex";
+		}
 	}
 
 }

@@ -36,7 +36,6 @@ public class IndexController {
 	
 	@RequestMapping(value={"/","/index"})
 	public String indexController(Model model, HttpServletRequest request){
-		System.out.println(request.getUserPrincipal()+" "+userComponent.isLoggedUser());
 		model.addAttribute("loggedUser",userComponent.isLoggedUser());
 		if (userComponent.isLoggedUser()){
 			model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
