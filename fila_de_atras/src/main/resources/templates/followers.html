@@ -72,7 +72,9 @@
     </nav>
     <header id="page-top">
         <div class="container header-info">
-            <div class="header-user-info"> <img class="img-center" alt="" src="../img/userPhoto.jpg" />
+        	{{#currentUser}}
+            <div class="header-user-info"> <img class="img-center" alt="" src="/avatarimg/{{id}}" />
+            {{/currentUser}}
                 <div class="intro-text">
                     <p><span class="name">{{loggedUsername}}</span></p>
                 </div>
