@@ -30,7 +30,7 @@ public class UsersController {
 		u1.addFollowing(u2); // u1 sigue a u2, añadir en la lista de seguidos en u1 a u2
 		userRepository.save(u1);
 		userRepository.save(u2);
-		Message m1 = new Message("Este es el asunto del mensaje", "Este es el contenido del mensaje", u1,u2);
+		Message m1 = new Message("Este es el contenido del mensaje", u1,u2);
 		messageRepository.save(m1);
 		Post p1 = new Post("El titulo del post", u2);
 		postRepository.save(p1);

@@ -11,7 +11,6 @@ public class Message {
 		@GeneratedValue(strategy=GenerationType.AUTO)
 		private long id;
 		
-		private String messageSubject;
 		private String messageContent;
 		//private String messageDate;
 		private boolean messageRead;		
@@ -24,11 +23,10 @@ public class Message {
 		public Message(){}
 		
 		public Message(String m){
-			messageSubject =m;
+			messageContent =m;
 		}
 		
-		public Message(String subject, String content, User remitent, User destinatary){
-			messageSubject = subject;
+		public Message(String content, User remitent, User destinatary){
 			messageContent= content;
 			messageSender= remitent;
 			messageAddressee= destinatary;
@@ -42,13 +40,6 @@ public class Message {
 			this.id = id;
 		}
 
-		public String getMessageSubject() {
-			return messageSubject;
-		}
-
-		public void setMessageSubject(String messageSubject) {
-			this.messageSubject = messageSubject;
-		}
 
 		public String getMessageContent() {
 			return messageContent;

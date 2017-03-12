@@ -63,7 +63,7 @@
                             <li><a href="index.html">Log out</a></li>
                         </ul>
                     </li>
-                    <li><a href="user-mensajes.html">E-mail <span class="badge">4</span></a></li>
+                    <li><a href="/mensajes">E-mail <span class="badge">4</span></a></li>
                 </ul>
             </div>
         </div>
@@ -87,7 +87,7 @@
                     <div class="side-left">
                         <div class="menu">
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="user-mensajes.html">RECIBIDOS</a></li>
+                                <li><a href="/mensajes">RECIBIDOS</a></li>
                                 <li><a href="#">BORRADORES</a></li>
                                 <li><a href="#">ELIMINADOS</a></li>
                             </ul>
@@ -113,54 +113,17 @@
                             </div>
                             <div class="col-xs-12 col-md-12">
                                 <div class="conversation">
+                                {{#messages}}
                                     <div class="panel panel-default">
-                                        <div class="panel-heading"> <img href="user-users.html" alt="" class="userIconImg" src="../img/userPhoto.jpg" /><a href="user-users.html" class="votes"> Username</a>
+                                        <div class="panel-heading"> <img href="user-users.html" alt="" class="userIconImg" src="../img/userPhoto.jpg" /><a href="user-users.html" class="votes"> {{messageSender.username}}</a>
                                             <div class="btn-remove">
                                                 <button type="button" class="btn btn-xs navbar-right"><span class="glyphicon glyphicon-trash" aria-hidden="false"></span></button>
                                             </div>
                                         </div>
-                                        <div class="panel-body"> Even though using "lorem ipsum" often arouses curiosity due to its resemblance to classical Latin, it is not intended to have meaning. Where text is visible in a document, people tend to focus on the textual content rather than upon overall presentation, so publishers use lorem ipsum when displaying a typeface or design in order to direct the focus to presentation. "Lorem ipsum" also approximates a typical distribution of spaces in English. </div>
+                                        <div class="panel-body"><p>{{messageContent}}</p> </div>
                                     </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading"> <img href="user-users.html" alt="" class="userIconImg" src="../img/userPhoto3.jpg" /><a href="user-users.html" class="votes"> Username</a>
-                                            <div class="btn-remove">
-                                                <button type="button" class="btn btn-xs navbar-right"><span class="glyphicon glyphicon-trash" aria-hidden="false"></span></button>
-                                            </div>
-                                        </div>
-                                        <div class="panel-body"> Even though using "lorem ipsum" often arouses curiosity due to its resemblance to classical Latin, it is not intended to have meaning. Where text is visible in a document, people tend to focus on the textual content rather than upon overall presentation, so publishers use lorem ipsum when displaying a typeface or design in order to direct the focus to presentation. "Lorem ipsum" also approximates a typical distribution of spaces in English. </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading"> <img href="user-users.html" alt="" class="userIconImg" src="../img/userPhoto.jpg" /><a href="user-users.html" class="votes"> Username</a>
-                                            <div class="btn-remove">
-                                                <button type="button" class="btn btn-xs navbar-right"><span class="glyphicon glyphicon-trash" aria-hidden="false"></span></button>
-                                            </div>
-                                        </div>
-                                        <div class="panel-body"> Even though using "lorem ipsum" often arouses curiosity due to its resemblance to classical Latin, it is not intended to have meaning. Where text is visible in a document, people tend to focus on the textual content rather than upon overall presentation, so publishers use lorem ipsum when displaying a typeface or design in order to direct the focus to presentation. "Lorem ipsum" also approximates a typical distribution of spaces in English. </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading"> <img href="user-users.html" alt="" class="userIconImg" src="../img/userPhoto3.jpg" /><a href="user-users.html" class="votes"> Username</a>
-                                            <div class="btn-remove">
-                                                <button type="button" class="btn btn-xs navbar-right"><span class="glyphicon glyphicon-trash" aria-hidden="false"></span></button>
-                                            </div>
-                                        </div>
-                                        <div class="panel-body"> Even though using "lorem ipsum" often arouses curiosity due to its resemblance to classical Latin, it is not intended to have meaning. Where text is visible in a document, people tend to focus on the textual content rather than upon overall presentation, so publishers use lorem ipsum when displaying a typeface or design in order to direct the focus to presentation. "Lorem ipsum" also approximates a typical distribution of spaces in English. </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading"> <img href="user-users.html" alt="" class="userIconImg" src="../img/userPhoto.jpg" /><a href="user-users.html" class="votes"> Username</a>
-                                            <div class="btn-remove">
-                                                <button type="button" class="btn btn-xs navbar-right"><span class="glyphicon glyphicon-trash" aria-hidden="false"></span></button>
-                                            </div>
-                                        </div>
-                                        <div class="panel-body"> Even though using "lorem ipsum" often arouses curiosity due to its resemblance to classical Latin, it is not intended to have meaning. Where text is visible in a document, people tend to focus on the textual content rather than upon overall presentation, so publishers use lorem ipsum when displaying a typeface or design in order to direct the focus to presentation. "Lorem ipsum" also approximates a typical distribution of spaces in English. </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading"> <img href="user-users.html" alt="" class="userIconImg" src="../img/userPhoto3.jpg" /><a href="user-users.html" class="votes"> Username</a>
-                                            <div class="btn-remove">
-                                                <button type="button" class="btn btn-xs navbar-right"><span class="glyphicon glyphicon-trash" aria-hidden="false"></span></button>
-                                            </div>
-                                        </div>
-                                        <div class="panel-body"> Even though using "lorem ipsum" often arouses curiosity due to its resemblance to classical Latin, it is not intended to have meaning. Where text is visible in a document, people tend to focus on the textual content rather than upon overall presentation, so publishers use lorem ipsum when displaying a typeface or design in order to direct the focus to presentation. "Lorem ipsum" also approximates a typical distribution of spaces in English. </div>
-                                    </div>
+                             {{/messages}}       
+
                                 </div>
                             </div>
                         </div>
