@@ -116,10 +116,24 @@
                 <!--Comentarios-->
                 {{#PostComments}}
                 <div class="panel panel-default">
-                    <div class="panel-heading"> <img href="users.html" alt="" class="userIconImg" src="/img/userPhoto1.jpg" /><a href="users.html" class="votes">{{commentUser.username}}</a> </div>
+                    <div class="panel-heading"> <img href="users.html" alt="" class="userIconImg" src="/img/userPhoto1.jpg" /><a href="users.html" class="votes"> {{commentUser.username}}</a> </div>
                     <div class="panel-body">{{commentContent}}</div>
                 </div>
                 {{/PostComments}}
+                {{#loggedUser}}
+                <div class="panel panel-default">
+                    <div class="panel-heading"> <img href="users.html" alt="" class="userIconImg" src="/img/userPhoto1.jpg" /><a href="users.html" class="votes"> {{loggedUsername}}</a> </div>
+                    <div class="panel-body ">
+                    	<form class="form-horizontal" action="/addComment" method="POST">
+                    		<fieldset >
+                    		<input type="text" name="commentContent" class="input-xlarge col-lg-12"></input><br/>
+                    		<input type="hidden" name="commentPost" value="{{Post.id}}"></input><br/>
+                    		<input class="btn btn-success" type="submit" value="Comment"></input><br/>
+                    		</fieldset>
+                    	</form>
+                    </div>
+                </div>
+                {{/loggedUser}}
             </div>
             <!--Redes sociales - Contenido derecha-->
             <div class="hidden-xs col-md-3">

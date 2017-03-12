@@ -3,7 +3,9 @@ package com.filadeatras.fila_de_atras;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +24,7 @@ public class Post {
 	private User postAuthor;
 	
 	@OneToMany(mappedBy="commentPost")
+	@ElementCollection(fetch = FetchType.EAGER)
 	private List<Comment> postComments;
 	
 	//private String postDate;

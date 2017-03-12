@@ -6,19 +6,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CommentController {
+	
 	@Autowired
-	private CommentRepository repository;
+	private CommentRepository commentRepository;
+	
+	@Autowired
+	private PostRepository postRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	UserComponent userComponent;
 	
 	@PostConstruct
 	public void init(){
 		
 	}
-	@RequestMapping("/comments")
-	public String usersController(Model model){
+	@RequestMapping(value={"/addComment"},method=RequestMethod.POST)
+	public String usersController(Model model,
+			@RequestParam(value="commentContent", required=true) String cContent,
+			@RequestParam(value="commentPost", required=true) String cPost){
 		
-		return "comments";
+		Long id = Long.parseLong(cPost);
+		Post currPost = postRepository.findOne(id);
+
+		User currUser = userRepository.findByusername(userComponent.getLoggedUser().getUsername());
+		
+		Comment newComment = new Comment(cContent,currUser,currPost);
+		commentRepository.save(newComment);
+		
+		currPost = postRepository.findOne(id);
+		
+		model.addAttribute("loggedUser",userComponent.isLoggedUser());
+		if (userComponent.isLoggedUser()){
+			model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
+		}
+		model.addAttribute("Post",currPost);
+		model.addAttribute("PostComments",currPost.getPostComments());
+		return "postIndex";
 	}
 }
