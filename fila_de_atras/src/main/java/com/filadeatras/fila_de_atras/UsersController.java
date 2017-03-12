@@ -40,7 +40,11 @@ public class UsersController {
 		Message m1 = new Message("Este es el contenido del mensaje", u1,u2);
 		messageRepository.save(m1);
 		Post p1 = new Post("El titulo del post", u2);
+		Post p2 = new Post("1", u2);
+		Post p3 =new Post("2", u2);
 		postRepository.save(p1);
+		postRepository.save(p2);
+		postRepository.save(p3);
 		Comment c1 = new Comment("Esto es el contenido de un comentario",u1,p1);
 		commentRepository.save(c1);
 
