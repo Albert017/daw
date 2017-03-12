@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,6 +44,10 @@ public class IndexController {
 		if (userComponent.isLoggedUser()){
 			model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
 		}
+		List<Post> original = postRepository.findAll();
+		List<Post> shallowCopy = original.subList(0, original.size());
+		Collections.reverse(shallowCopy);
+		model.addAttribute("Posts",shallowCopy);
 		return "index";
 	}
 	

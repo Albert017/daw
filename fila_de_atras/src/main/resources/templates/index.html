@@ -104,12 +104,12 @@
             </div>
             <!--Posts - Contenido central -->
             <div class="col-xs-12 col-md-6">
-                <div class="side-middle"> {{#Post}}
+                <div class="side-middle"> {{#Posts}}
                     <div class="thumbnail">
-                        <a href="postIndex.html"><img src="https://dummyimage.com/900x800/000000/0011ff.jpg&text=Post+900x800" /></a>
+                        <a href="postIndex.html"><img src="/postimg/{{id}}" /></a>
                         <div class="caption">
                             <h3>{{postTitle}}</h3>
-                            <p><a class="votes" href="users.html">{{userAuthor}}</a><a id="date" class="votes" href="#">{{postDate}}</a></p>
+                            <p><a class="votes" href="users.html">{{postAuthor.username}}</a><a id="date" class="votes" href="#">fecha</a></p>
                             <p> <a href="#" class="btn btn-primary" role="button">⬆</a> <a href="#" class="btn btn-primary" role="button">⬇</a> <a class="votes" href="#"> Upvotes <span class="badge">42</span></a> <a class="votes" href="#"> Downvotes <span class="badge">42</span></a> <a class="votes" href="/postIndex"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a> </p>
                             <div>
                                 <a href="index.html" class="social-network-post"><img src="img/icon_twitter.png" class="social-post" /></a>
@@ -117,7 +117,7 @@
                                 <a href="index.html" class="social-network-post"><img src="img/icon_facebook.png" class="social-post" /></a>
                             </div>
                         </div>
-                    </div> {{/Post}} </div>
+                    </div> {{/Posts}} </div>
             </div>
             <!--Redes sociales - Contenido derecha-->
             <div class="hidden-xs col-md-3">
