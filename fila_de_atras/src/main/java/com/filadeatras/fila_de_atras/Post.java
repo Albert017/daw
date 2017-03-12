@@ -23,6 +23,8 @@ public class Post {
 	
 	@OneToMany(mappedBy="commentPost")
 	private List<Comment> postComments;
+	
+	private String postImagePath;
 	//private String postDate;
 	
 	public Post(){}
@@ -31,11 +33,18 @@ public class Post {
 		postTitle=title;
 	}
 
+	public Post(String title, User author, String imagePath){
+		postTitle=title;
+		postAuthor= author;
+		postComments = new LinkedList<>();
+		postImagePath = imagePath;
+		//this.postDate= postDate;
+	}
+	
 	public Post(String title, User author){
 		postTitle=title;
 		postAuthor= author;
 		postComments = new LinkedList<>();
-		//this.postDate= postDate;
 	}
 	
 	public long getId() {
@@ -71,6 +80,14 @@ public class Post {
 	
 	public List<Comment> getPostComments(){
 		return postComments;
+	}
+
+	public String getPostImagePath() {
+		return postImagePath;
+	}
+
+	public void setPostImagePath(String postImagePath) {
+		this.postImagePath = postImagePath;
 	}
 	
 	
