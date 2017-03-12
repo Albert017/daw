@@ -23,7 +23,9 @@ public class IndexController {
 	
 	private static final String FILES_FOLDER = "files";
 
+	private static final String AVATARS_FOLDER = "avatars";
 	
+	private static final String HEADERS_FOLDER = "headers";
 	
 	@Autowired
 	PostRepository postRepository;
@@ -47,6 +49,14 @@ public class IndexController {
 	public String index() {
 		if (userComponent.isLoggedUser())
 			return "user-addPost";
+		else
+			return "index";
+	}
+	
+	@RequestMapping(value={"/users/changeAvatar","/changeAvatar"})
+	public String changeAvatar() {
+		if (userComponent.isLoggedUser())
+			return "user-changePhoto";
 		else
 			return "index";
 	}
@@ -105,6 +115,114 @@ public class IndexController {
 	
 		if (file.exists()) {
 			res.setContentType("post/jpeg");
+			res.setContentLength(new Long(file.length()).intValue());
+			FileCopyUtils
+					.copy(new FileInputStream(file), res.getOutputStream());
+		} else {
+			res.sendError(404, "File" + fileName + "(" + file.getAbsolutePath()
+					+ ") does not exist");
+		}
+	}
+	@RequestMapping(value = "/uploadHeader", method = RequestMethod.POST)
+	public String handleHeaderFileUpload(Model model, @RequestParam("file") MultipartFile file) {
+		
+		User currentUser=userComponent.getLoggedUser();
+				
+		
+		if (!file.isEmpty()) {
+			try {
+
+				File filesFolder = new File(HEADERS_FOLDER);
+				if (!filesFolder.exists()) {
+					filesFolder.mkdirs();
+				}
+				File uploadedFile = new File(filesFolder.getAbsolutePath(),+currentUser.getId()+".jpg");
+				file.transferTo(uploadedFile);
+				
+				//Si solo funciona en user probar a añadir los atributos en otro sitio
+				model.addAttribute("currentUser", currentUser);
+				model.addAttribute("loggedUser",userComponent.isLoggedUser());
+				if (userComponent.isLoggedUser()){
+					model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
+				}				
+				return "followers";
+
+			} catch (Exception e) {
+				model.addAttribute("username",currentUser.getUsername());
+				model.addAttribute("error",
+						e.getClass().getName() + ":" + e.getMessage());
+				System.out.println(e.getMessage());
+				return "user-index";//AÑADIR PAGINA HTML DE ERROR DE SUBIDA
+			}
+		}else {
+			
+			model.addAttribute("error",	"The file is empty");
+			 
+			return "user-index"; //AÑADIR PAGINA HTML DE ERROR DE SUBIDA
+		}
+	}
+	@RequestMapping("/headerimg/{fileName}")
+	public void handleHeaderFileDownload(@PathVariable String fileName,
+			HttpServletResponse res) throws FileNotFoundException, IOException {
+	
+		File file = new File(HEADERS_FOLDER, fileName+".jpg");
+	
+		if (file.exists()) {
+			res.setContentType("header/jpeg");
+			res.setContentLength(new Long(file.length()).intValue());
+			FileCopyUtils
+					.copy(new FileInputStream(file), res.getOutputStream());
+		} else {
+			res.sendError(404, "File" + fileName + "(" + file.getAbsolutePath()
+					+ ") does not exist");
+		}
+	}
+	@RequestMapping(value = "/uploadAvatar", method = RequestMethod.POST)
+	public String handleAvatarFileUpload(Model model, @RequestParam("file") MultipartFile file) {
+		
+		User currentUser=userComponent.getLoggedUser();
+				
+		
+		if (!file.isEmpty()) {
+			try {
+
+				File filesFolder = new File(AVATARS_FOLDER);
+				if (!filesFolder.exists()) {
+					filesFolder.mkdirs();
+				}
+				File uploadedFile = new File(filesFolder.getAbsolutePath(),+currentUser.getId()+".jpg");
+				file.transferTo(uploadedFile);
+				
+				//Si solo funciona en user probar a añadir los atributos en otro sitio
+				model.addAttribute("currentUser", currentUser);
+				model.addAttribute("loggedUser",userComponent.isLoggedUser());
+				if (userComponent.isLoggedUser()){
+					model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
+				}				
+				return "followers";
+
+			} catch (Exception e) {
+				model.addAttribute("username",currentUser.getUsername());
+				model.addAttribute("error",
+						e.getClass().getName() + ":" + e.getMessage());
+				System.out.println(e.getMessage());
+				return "user-index";//AÑADIR PAGINA HTML DE ERROR DE SUBIDA
+			}
+		}else {
+			
+			model.addAttribute("error",	"The file is empty");
+			 
+			return "user-index"; //AÑADIR PAGINA HTML DE ERROR DE SUBIDA
+		}
+	}
+	@RequestMapping("/avatarimg/{fileName}")
+	public void handleAvatarFileDownload(@PathVariable String fileName,
+			HttpServletResponse res) throws FileNotFoundException, IOException {
+	
+		File file = new File(AVATARS_FOLDER, fileName+".jpg");
+	
+		if (file.exists()) {
+			res.setContentType("avatar/jpeg");
 			res.setContentLength(new Long(file.length()).intValue());
 			FileCopyUtils
 					.copy(new FileInputStream(file), res.getOutputStream());
