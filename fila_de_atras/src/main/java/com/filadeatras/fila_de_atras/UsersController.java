@@ -62,4 +62,32 @@ public class UsersController {
 		
 		return "profile";
 	}
+	
+	@RequestMapping("/followers")
+	public String profileFollowersController(Model model){
+		
+		//Common parts
+				model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
+				model.addAttribute("unreadMessages","0"); //Replacee with DB query.
+				model.addAttribute("numberFollowers","0"); //Replacee with DB query.
+				model.addAttribute("numberFollowing","0"); //Replacee with DB query.
+				model.addAttribute("isUserAdmin",userComponent.isAdmin());
+		//End Common Parts
+	
+		return "followers";
+	}
+	
+	@RequestMapping("/following")
+	public String profileFollowingController(Model model){
+		
+		//Common parts
+				model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
+				model.addAttribute("unreadMessages","0"); //Replacee with DB query.
+				model.addAttribute("numberFollowers","0"); //Replacee with DB query.
+				model.addAttribute("numberFollowing","0"); //Replacee with DB query.
+				model.addAttribute("isUserAdmin",userComponent.isAdmin());
+		//End Common Parts
+	
+		return "following";
+	}
 }
