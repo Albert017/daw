@@ -44,7 +44,7 @@ public class IndexController {
 		return "index";
 	}
 	
-	@RequestMapping("/users/addPost/")
+	@RequestMapping(value={"/users/addPost/","/addPost"})
 	public String index() {
 		if (userComponent.isLoggedUser())
 			return "user-addPost";
@@ -74,11 +74,15 @@ public class IndexController {
 				file.transferTo(uploadedFile);
 				
 				//Si solo funciona en user probar a añadir los atributos en otro sitio
+				model.addAttribute("loggedUser",userComponent.isLoggedUser());
+				if (userComponent.isLoggedUser()){
+					model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
+				}
+				model.addAttribute("Post",p);
+				model.addAttribute("PostComments",p.getPostComments());
 				
-				model.addAttribute("imageTitle", imageTitle);
 				
-				
-				return "user-postIndex";
+				return "postIndex";
 
 			} catch (Exception e) {
 				model.addAttribute("username",currentUser.getUsername());

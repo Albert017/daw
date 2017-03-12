@@ -1,11 +1,15 @@
 package com.filadeatras.fila_de_atras;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import antlr.TokenWithIndex;
 
 @Controller
 public class UsersController {
@@ -56,6 +60,8 @@ public class UsersController {
 		model.addAttribute("numberFollowers","0"); //Replacee with DB query.
 		model.addAttribute("numberFollowing","0"); //Replacee with DB query.
 		model.addAttribute("isUserAdmin",userComponent.isAdmin());
+		List<Post> postListCurr = userRepository.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
+		model.addAttribute("Posts",postListCurr);
 		//End Common Parts
 		
 		
