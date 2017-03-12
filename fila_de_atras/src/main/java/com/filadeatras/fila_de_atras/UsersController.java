@@ -21,10 +21,13 @@ public class UsersController {
 	@Autowired
 	private PostRepository postRepository;
 	
+	@Autowired
+	UserComponent userComponent;
+	
 	@PostConstruct
 	public void init(){
-		User u1 = new User("Pepe", "pass", "pepe@a.aa" ,"USER_ROLE");
-		User u2 = new User("Sara", "word", "sara@a.aa" ,"USER_ROLE");
+		User u1 = new User("Pepe", "pass", "pepe@a.aa" ,"ROLE_USER");
+		User u2 = new User("Sara", "word", "sara@a.aa" ,"ROLE_USER");
 		userRepository.save(u1);
 		userRepository.save(u2);
 		u1.addFollowing(u2); // u1 sigue a u2, añadir en la lista de seguidos en u1 a u2
@@ -42,5 +45,21 @@ public class UsersController {
 	public String usersController(Model model){
 		
 		return "users";
+	}
+	
+	@RequestMapping("/profile")
+	public String profileController(Model model){
+		
+		//Common parts
+		model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
+		model.addAttribute("unreadMessages","0"); //Replacee with DB query.
+		model.addAttribute("numberFollowers","0"); //Replacee with DB query.
+		model.addAttribute("numberFollowing","0"); //Replacee with DB query.
+		model.addAttribute("isUserAdmin",userComponent.isAdmin());
+		//End Common Parts
+		
+		
+		
+		return "profile";
 	}
 }

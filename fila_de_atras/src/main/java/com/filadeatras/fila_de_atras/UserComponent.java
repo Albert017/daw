@@ -24,6 +24,7 @@ import org.springframework.web.context.WebApplicationContext;
 public class UserComponent {
 
 	private User user;
+	private boolean isAdmin = false;
 
 	public User getLoggedUser() {
 		return user;
@@ -31,10 +32,14 @@ public class UserComponent {
 
 	public void setLoggedUser(User user) {
 		this.user = user;
+		this.isAdmin = user.getRoles().contains("ROLE_ADMIN");
 	}
 
 	public boolean isLoggedUser() {
 		return this.user != null;
+	}
+	public boolean isAdmin(){
+		return isAdmin;
 	}
 
 }

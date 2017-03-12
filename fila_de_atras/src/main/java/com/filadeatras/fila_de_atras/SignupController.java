@@ -26,7 +26,7 @@ public class SignupController {
 			@RequestParam(value="email", required=true) String uEmail,
 			@RequestParam(value="password", required=true) String uPass){
 		try{
-			userRepository.save(new User(uName,uPass,uEmail,"USER_ROLE"));
+			userRepository.save(new User(uName,uPass,uEmail,"ROLE_USER"));
 			return "login";
 		}catch (Exception e){
 			model.addAttribute("signupError",true);

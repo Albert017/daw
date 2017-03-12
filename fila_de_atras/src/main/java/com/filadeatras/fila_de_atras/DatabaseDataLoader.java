@@ -15,10 +15,10 @@ public class DatabaseDataLoader {
 	    @PostConstruct
 	    private void initDatabase() {
 	    	for(int i=1;i<20;i++){
-	    		User newUs = (new User("user"+i, "pass"+i, "user"+i+".a@a.aa", "USER_ROLE"));
+	    		User newUs = (new User("user"+i, "pass"+i, "user"+i+".a@a.aa", "ROLE_USER"));
 	    		userRepository.save(newUs);
 	    	}
-	    	userRepository.save(new User("admin", "adminpass", "admin.a@a.aa","USER_ROLE","ADMIN_ROLE"));
+	    	userRepository.save(new User("admin", "adminpass", "admin.a@a.aa","ROLE_USER","ROLE_ADMIN"));
 
 	    }
 	    
