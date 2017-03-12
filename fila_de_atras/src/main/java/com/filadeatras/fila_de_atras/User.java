@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Cascade;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
@@ -145,7 +146,7 @@ public class User {
 			return userPosts;
 		}
 		
-		public void setPost(Post e){
+		public void addPost(Post e){
 			this.userPosts.add(e);
 		}
 

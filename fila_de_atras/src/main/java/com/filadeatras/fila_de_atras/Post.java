@@ -24,7 +24,6 @@ public class Post {
 	@OneToMany(mappedBy="commentPost")
 	private List<Comment> postComments;
 	
-	private String postImagePath;
 	//private String postDate;
 	
 	public Post(){}
@@ -37,7 +36,6 @@ public class Post {
 		postTitle=title;
 		postAuthor= author;
 		postComments = new LinkedList<>();
-		postImagePath = imagePath;
 		//this.postDate= postDate;
 	}
 	
@@ -82,13 +80,6 @@ public class Post {
 		return postComments;
 	}
 
-	public String getPostImagePath() {
-		return postImagePath;
-	}
-
-	public void setPostImagePath(String postImagePath) {
-		this.postImagePath = postImagePath;
-	}
 	
 	
 /*

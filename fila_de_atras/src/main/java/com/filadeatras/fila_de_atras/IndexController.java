@@ -23,11 +23,13 @@ public class IndexController {
 	
 	private static final String FILES_FOLDER = "files";
 
-	private String imageTitleFileUploader;
 	
 	
 	@Autowired
 	PostRepository postRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 	
 	@Autowired
 	UserComponent userComponent;
@@ -50,14 +52,14 @@ public class IndexController {
 			return "index";
 	}
 	
-	@RequestMapping(value = "/users/post", method = RequestMethod.POST)
+	@RequestMapping(value = "/uploadPost", method = RequestMethod.POST)
 	public String handleFileUpload(Model model, 
 			@RequestParam("imageTitleFileUploader") String imageTitle,
 			@RequestParam("file") MultipartFile file) {
 		
 		User currentUser=userComponent.getLoggedUser();
 				
-		String fileName = imageTitleFileUploader + ".jpg";
+		
 		if (!file.isEmpty()) {
 			try {
 
@@ -65,44 +67,26 @@ public class IndexController {
 				if (!filesFolder.exists()) {
 					filesFolder.mkdirs();
 				}
-
-				File uploadedFile = new File(filesFolder.getAbsolutePath(), imageTitle);
+				Post p = new Post(imageTitle, currentUser);
+				postRepository.save(p);
+				userRepository.findByusername(currentUser.getUsername()).getUserPosts().add(p);
+				File uploadedFile = new File(filesFolder.getAbsolutePath(),+p.getId()+".jpg");
 				file.transferTo(uploadedFile);
-
-				imageTitleFileUploader=imageTitle;
 				
 				//Si solo funciona en user probar a añadir los atributos en otro sitio
 				
-				model.addAttribute("imageTitleFileUploader", imageTitleFileUploader);
+				model.addAttribute("imageTitle", imageTitle);
 				
-				Post p = new Post(imageTitle, currentUser, uploadedFile.getAbsolutePath());
-				
-				postRepository.save(p);
-				
-				currentUser.setPost(p);
 				
 				return "user-postIndex";
 
 			} catch (Exception e) {
-				
-				model.addAttribute("fileName",fileName);
+				model.addAttribute("username",currentUser.getUsername());
 				model.addAttribute("error",
 						e.getClass().getName() + ":" + e.getMessage());
-				
+				System.out.println(e.getMessage());
 				return "user-index";//AÑADIR PAGINA HTML DE ERROR DE SUBIDA
 			}
-			/*
-		}else if(imagePath!=null){
-			Post p = new Post(imageTitle, currentUser, imagePath);
-			
-			postRepository.save(p);
-			
-			currentUser.setPost(p);
-			
-			model.addAttribute("imageTitleFileUploader", imageTitleFileUploader);
-		
-			return "user-postIndex";
-		*/
 		}else {
 			
 			model.addAttribute("error",	"The file is empty");
@@ -110,7 +94,7 @@ public class IndexController {
 			return "user-index"; //AÑADIR PAGINA HTML DE ERROR DE SUBIDA
 		}
 	}
-	@RequestMapping("/post/{fileName}")
+	@RequestMapping("/postimg/{fileName}")
 	public void handleFileDownload(@PathVariable String fileName,
 			HttpServletResponse res) throws FileNotFoundException, IOException {
 	
