@@ -14,9 +14,18 @@ public class Message {
 		private String messageContent;
 		//private String messageDate;
 		private boolean messageRead;		
+		private boolean messageDeleted;
 
 		@ManyToOne
 		private User messageSender;
+		public boolean isMessageDeleted() {
+			return messageDeleted;
+		}
+
+		public void setMessageDeleted(boolean messageDeleted) {
+			this.messageDeleted = messageDeleted;
+		}
+
 		@ManyToOne
 		private User messageAddressee;
 		
@@ -30,6 +39,8 @@ public class Message {
 			messageContent= content;
 			messageSender= remitent;
 			messageAddressee= destinatary;
+			messageRead = false;
+			messageDeleted = false;
 		}
 
 		public long getId() {

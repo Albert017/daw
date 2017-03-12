@@ -26,23 +26,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/postIndex").permitAll();
 
         // Private pages (all other pages)
-        http.authorizeRequests().antMatchers("/settings*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/profile*").hasRole("USER");
-        http.authorizeRequests().antMatchers("/myPosts*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/followers*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/following*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/settings").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/profile").hasRole("USER");
+        http.authorizeRequests().antMatchers("/myPosts").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/followers").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/following").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/users/addPost").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/mensaje/nuevo").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/mensajes").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/mensajes/*").hasAnyRole("USER");
         
         
         http.authorizeRequests().antMatchers("/reported-users*").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/reported-posts*").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/reported-comments*").hasAnyRole("ADMIN");
         
-        http.authorizeRequests().antMatchers("/user-addPost*").hasAnyRole("USER");
+        
         http.authorizeRequests().antMatchers("/user-design-profile*").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/user-index*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/user-mensajeNuevo*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/user-mensajes*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/user-mensajesConversacion*").hasAnyRole("USER");
+        
         http.authorizeRequests().antMatchers("/user-postIndex*").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/user-profile-followers*").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/user-profile-following*").hasAnyRole("USER");

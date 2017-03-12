@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <!--Imagen-->
             <div class="navbar-header">
-                <a class="navbar-brand" href="#"><img class="brand" alt="Brand" src="../img/icon.png" /></a>
+                <a class="navbar-brand" href="/"><img class="brand" alt="Brand" src="../img/icon.png" /></a>
             </div>
             <!--Resto del contenido-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -50,17 +50,17 @@
                 </form>
                 <!--Menus después de la busqueda: Inicio de sesión-->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="user-addPost.html"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
+                    <li><a href="users/addPost"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
                     <li class="dropdown">
                         <!--Título botón-->
                         <a href="#" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="../img/userPhoto.jpg" />User name <span class="caret"></span></a>
                         <!--Submenú-->
                         <ul class="dropdown-menu">
-                            <li><a href="user-profile.html">Profile</a></li>
-                            <li><a href="#">Help</a></li>
-                            <li><a href="user-Settings.html">Tools</a></li>
+                            <li><a href="/profile">Profile</a></li>
+                            <li><a href="/helps">Help</a></li>
+                            <li><a href="/settings">Tools</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="index.html">Log out</a></li>
+                            <li><a href="/logout">Log out</a></li>
                         </ul>
                     </li>
                     <li><a href="/mensajes">E-mail <span class="badge">4</span></a></li>
@@ -89,7 +89,7 @@
                             <ul class="nav nav-pills nav-stacked">
                                 <li><a href="/mensajes">RECIBIDOS</a></li>
                                 <li><a href="#">BORRADORES</a></li>
-                                <li><a href="#">ELIMINADOS</a></li>
+                                <li><a href="/mensajes/eliminados">ELIMINADOS</a></li>
                             </ul>
                         </div>
                     </div>
@@ -98,6 +98,7 @@
                 <div class="col-xs-12 col-md-9">
                     <div class="side-middle">
                         <div class="mailbox">
+                        {{#send-msg}}
                             <div class="col-xs-12 col-md-12">
                                 <form>
                                     <div class="form-group">
@@ -106,18 +107,30 @@
                                     </div>
                                 </form>
                             </div>
+                         
                             <div class="col-xs-12 col-md-12">
                                 <div id="btn-message">
                                     <button type="button" class="btn btn-default navbar-right"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Enviar</button>
                                 </div>
                             </div>
+                            
+                            {{/send-msg}}
                             <div class="col-xs-12 col-md-12">
                                 <div class="conversation">
                                 {{#messages}}
                                     <div class="panel panel-default">
                                         <div class="panel-heading"> <img href="user-users.html" alt="" class="userIconImg" src="../img/userPhoto.jpg" /><a href="user-users.html" class="votes"> {{messageSender.username}}</a>
                                             <div class="btn-remove">
-                                                <button type="button" class="btn btn-xs navbar-right"><span class="glyphicon glyphicon-trash" aria-hidden="false"></span></button>
+                                            	{{#conversation}}
+                                            	<form action="sent-to-deleted/{{id}}" method="POST">
+                                                	<input type="submit" class="btn btn-xs navbar-right"><span class="glyphicon glyphicon-trash" aria-hidden="false"></span></input>
+                                            	</form>
+                                            	{{/conversation}}
+                                                {{^conversation}}
+                                                <form action="delete/{{id}}" method="POST">
+                                                	<input type="submit" class="btn btn-xs navbar-right"><span class="glyphicon glyphicon-trash" aria-hidden="false"></span></input>
+                                            	</form>
+                                            	{{/conversation}}
                                             </div>
                                         </div>
                                         <div class="panel-body"><p>{{messageContent}}</p> </div>

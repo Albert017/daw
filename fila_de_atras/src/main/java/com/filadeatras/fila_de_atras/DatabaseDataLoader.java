@@ -25,7 +25,12 @@ public class DatabaseDataLoader {
 	    			Message m1 = new Message("Texto de prueba "+i, newUs[0], newUs[1]);
 	    			messageRepository.save(m1);
 	    		}
+	    		Message m1 = new Message("Texto de prueba aux "+i, newUs[i], newUs[1]);
+	    		messageRepository.save(m1);
 	    	}
+	    	Message m1 = new Message("Texto de prueba eliminado", newUs[0], newUs[1]);
+	    	m1.setMessageDeleted(true);
+			messageRepository.save(m1);
 	    	userRepository.save(new User("admin", "adminpass", "admin.a@a.aa","ROLE_USER","ROLE_ADMIN"));
 
 	    }
