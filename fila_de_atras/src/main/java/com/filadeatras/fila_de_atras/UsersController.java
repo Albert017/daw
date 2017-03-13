@@ -3,13 +3,11 @@ package com.filadeatras.fila_de_atras;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import antlr.TokenWithIndex;
 
 @Controller
 public class UsersController {
@@ -49,8 +47,20 @@ public class UsersController {
 		commentRepository.save(c1);
 
 	}
-	@RequestMapping("/users")
-	public String usersController(Model model){
+	@RequestMapping("/user/{reqUserName}")
+	public String usersController(Model model,
+			@PathVariable String reqUserName){
+		model.addAttribute("loggedUser",userComponent.isLoggedUser());
+		if (userComponent.isLoggedUser()){
+			model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
+		}
+		User viewUser = userRepository.findByusername(reqUserName);
+		List<Post> postListCurr = viewUser.getUserPosts();
+		Post ranPost = null;
+		if (postListCurr.size()>0){
+			ranPost = postListCurr.get((int)(Math.random()*postListCurr.size()));
+		}
+		model.addAttribute("Posts",ranPost);
 		
 		return "users";
 	}
@@ -66,6 +76,7 @@ public class UsersController {
 		model.addAttribute("isUserAdmin",userComponent.isAdmin());
 		List<Post> postListCurr = userRepository.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
 		model.addAttribute("Posts",postListCurr);
+		
 		//End Common Parts
 		
 		

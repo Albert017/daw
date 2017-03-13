@@ -1,5 +1,8 @@
 package com.filadeatras.fila_de_atras;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,25 +30,19 @@ public class Post {
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<Comment> postComments;
 	
-	//private String postDate;
+	private String postDate;
 	
 	public Post(){}
 	
 	public Post(String title){
 		postTitle=title;
 	}
-
-	public Post(String title, User author, String imagePath){
-		postTitle=title;
-		postAuthor= author;
-		postComments = new LinkedList<>();
-		//this.postDate= postDate;
-	}
 	
 	public Post(String title, User author){
 		postTitle=title;
 		postAuthor= author;
 		postComments = new LinkedList<>();
+		this.postDate= LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM,FormatStyle.MEDIUM));
 	}
 	
 	public long getId() {
@@ -83,16 +80,12 @@ public class Post {
 		return postComments;
 	}
 
-	
-	
-/*
 	public String getPostDate() {
 		return postDate;
 	}
 
 	public void setPostDate(String postDate) {
 		this.postDate = postDate;
-	}
-*/	
+	}	
 	
 }
