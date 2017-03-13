@@ -100,27 +100,15 @@
             </div>
             <div>
                 <div class="side-middle">
-                    <div class="panel panel-default">
-                        <div class="panel-body"> <img alt="" src="../img/userPhoto2.jpg" class="profile-followers" /> Username
-                            <p>Even though using "lorem ipsum" often arouses curiosity due to its resemblance to classical Latin, it is not intended to have meaning. Where text is visible in a document, people tend to focus on the textual content rather than upon overall presentation, so publishers use lorem ipsum when displaying a typeface or design in order to direct the focus to presentation. "Lorem ipsum" also approximates a typical distribution of spaces in English.</p>
-                            <button type="button" class="btn btn-danger button-report-users">Delete comment <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-default button-report-users">Delete from report list <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-body"> <img alt="" src="../img/userPhoto3.jpg" class="profile-followers" /> Username
-                            <p>Even though using "lorem ipsum" often arouses curiosity due to its resemblance to classical Latin, it is not intended to have meaning. Where text is visible in a document, people tend to focus on the textual content rather than upon overall presentation, so publishers use lorem ipsum when displaying a typeface or design in order to direct the focus to presentation. "Lorem ipsum" also approximates a typical distribution of spaces in English.</p>
-                            <button type="button" class="btn btn-danger button-report-users">Delete comment <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-default button-report-users">Delete from report list <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-body"> <img alt="" src="../img/userPhoto1.jpg" class="profile-followers" /> Username
-                            <p>Even though using "lorem ipsum" often arouses curiosity due to its resemblance to classical Latin, it is not intended to have meaning. Where text is visible in a document, people tend to focus on the textual content rather than upon overall presentation, so publishers use lorem ipsum when displaying a typeface or design in order to direct the focus to presentation. "Lorem ipsum" also approximates a typical distribution of spaces in English.</p>
-                            <button type="button" class="btn btn-danger button-report-users">Delete comment <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-default button-report-users">Delete from report list <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
+                	{{#reportedCommentList}}
+	                    <div class="panel panel-default">
+	                        <div class="panel-body"> <img alt="" src="../avatarimg/{{id}}" class="profile-followers" /> {{username}}
+	                            <p>{{commentContent}}</p>
+	                            <button type="button" class="btn btn-danger button-report-users">Delete comment <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></button>
+	                            <button type="button" class="btn btn-default button-report-users">Delete from report list <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+	                        </div>
+	                    </div>
+                    {{/reportedCommentList}}
                 </div>
             </div>
         </div>
