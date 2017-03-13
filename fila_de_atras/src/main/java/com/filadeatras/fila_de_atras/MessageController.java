@@ -19,7 +19,7 @@ public class MessageController {
 	private MessageRepository repository;
 	
 	@Autowired
-	private UserRepository repositoryUser;
+	private  UserRepository repositoryUser;
 	
 	@Autowired
 	private UserComponent userComponent;
@@ -46,8 +46,9 @@ public class MessageController {
 		
 	}
 	
-	private static void loadDeletedMessage(MessageRepository repository, Model model, UserComponent userComponent){
-		List<Message> eliminados = repository.findBymessageAddresseeAndMessageDeleted(userComponent.getLoggedUser(), true);
+	private static void loadDeletedMessage(MessageRepository repository, Model model, User userC){
+		
+		List<Message> eliminados = repository.findBymessageAddresseeAndMessageDeleted(userC, true);
 		if(eliminados.size()==0){
 			model.addAttribute("sinMensajes", true);
 		}
@@ -63,8 +64,8 @@ public class MessageController {
 	}
 	
 	
-	private static void loadUsernameMessage(MessageRepository repository, Model model, UserComponent userComponent, User user_aux){
-		List<Message> messageU1toU2 = repository.findByMessageAddresseeAndMessageSenderAndMessageDeleted(userComponent.getLoggedUser(), user_aux, false);
+	private static void loadUsernameMessage(MessageRepository repository, Model model, User userC, User user_aux){
+		List<Message> messageU1toU2 = repository.findByMessageAddresseeAndMessageSenderAndMessageDeleted(userC, user_aux, false);
 		
 		if(messageU1toU2.size()==0){
 			model.addAttribute("sinMensajes", true);
@@ -82,8 +83,8 @@ public class MessageController {
 		model.addAttribute("conversation",true);
 	}
 	
-	private static void loadMessage(MessageRepository repository, Model model, UserComponent userComponent){
-		List<Message> msg = repository.findBymessageAddresseeAndMessageDeleted(userComponent.getLoggedUser(), false);
+	private static void loadMessage(MessageRepository repository, Model model, User userC){
+		List<Message> msg = repository.findBymessageAddresseeAndMessageDeleted(userC, false);
 		List<Message> newMsg = new LinkedList();
 		getMessageWithDifferentSender(msg, newMsg);
 		
@@ -101,7 +102,8 @@ public class MessageController {
 	
 	@RequestMapping("/mensajes")
 	public String messageController(Model model){
-		loadMessage(repository, model, userComponent);
+		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
+		loadMessage(repository, model, conectedUser);
 		
 		return "user-mensajes";
 	}
@@ -115,7 +117,8 @@ public class MessageController {
 	
 	@RequestMapping("/mensajes/eliminados")
 	public String deletedMessageController(Model model){
-		loadDeletedMessage(repository, model, userComponent);
+		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
+		loadDeletedMessage(repository, model, conectedUser);
 		
 		return "user-mensajesConversacion";
 	}
@@ -125,7 +128,8 @@ public class MessageController {
 		User user_aux = repositoryUser.findByusername(username);
 		
 		if(user_aux != null){
-			loadUsernameMessage(repository, model, userComponent, user_aux);
+			User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
+			loadUsernameMessage(repository, model, conectedUser, user_aux);
 			
 			return "user-mensajesConversacion";
 		}
@@ -145,8 +149,8 @@ public class MessageController {
 		msg.setMessageDeleted(true);
 		repository.save(msg);
 		
-		
-		loadUsernameMessage(repository, model, userComponent, msg.getMessageSender());
+		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
+		loadUsernameMessage(repository, model, conectedUser, msg.getMessageSender());
 		
 		return "user-mensajesConversacion";
 	}
@@ -157,7 +161,8 @@ public class MessageController {
 		msg.setMessageDeleted(true);
 		repository.delete(msg);
 		
-		loadDeletedMessage(repository, model, userComponent);
+		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
+		loadDeletedMessage(repository, model, conectedUser);
 		
 		return "user-mensajesConversacion";
 	}
@@ -167,12 +172,14 @@ public class MessageController {
 			@RequestParam(value="message-content", required=true) String mensaje){
 		
 		User uDest = repositoryUser.findByusername(dest);
+		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
 		
 		if(uDest != null){
-			Message msg = new Message(mensaje, uDest, userComponent.getLoggedUser());
+			Message msg = new Message(mensaje, conectedUser, uDest);
 			repository.save(msg);
 			
-			loadMessage(repository, model, userComponent);
+			
+			loadMessage(repository, model, conectedUser);
 			
 			return "user-mensajes";
 		}
