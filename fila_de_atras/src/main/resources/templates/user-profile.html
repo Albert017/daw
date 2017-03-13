@@ -68,15 +68,17 @@
             </div>
         </div>
     </nav>
-    <header id="page-top">
+    {{#currentUser}}
+    <header id="page-top" style="background-image: url(/headerimg/{{id}})">
         <div class="container header-info">
-            <div class="header-user-info"> <img class="img-center" alt="" src="../img/userPhoto.jpg" />
+            <div class="header-user-info"> <img style="width:100" class="img-center" alt="" src="/avatarimg/{{id}}" />
                 <div class="intro-text">
-                    <p><span class="name">User name</span></p>
+                    <p><span class="name">{{loggedUsername}}</span></p>
                 </div>
             </div>
         </div>
     </header>
+    {{/currentUser}}
     <div class="row">
         <div class="hidden-xs col-md-3">
             <div class="btn-group-vertical separation-profile" role="group" aria-label="...">

@@ -28,7 +28,7 @@ public class IndexController {
 	private static final String AVATARS_FOLDER = "avatars";
 	
 	private static final String HEADERS_FOLDER = "headers";
-	
+		
 	@Autowired
 	PostRepository postRepository;
 	
@@ -63,6 +63,14 @@ public class IndexController {
 	public String changeAvatar() {
 		if (userComponent.isLoggedUser())
 			return "user-changePhoto";
+		else
+			return "index";
+	}
+	
+	@RequestMapping(value={"/users/changeHeader","/changeHeader"})
+	public String changeHeader() {
+		if (userComponent.isLoggedUser())
+			return "user-changeHeader";
 		else
 			return "index";
 	}
@@ -179,8 +187,11 @@ public class IndexController {
 			FileCopyUtils
 					.copy(new FileInputStream(file), res.getOutputStream());
 		} else {
-			res.sendError(404, "File" + fileName + "(" + file.getAbsolutePath()
-					+ ") does not exist");
+			File defaultFile = new File(HEADERS_FOLDER, "default.jpg");
+			res.setContentType("header/jpeg");
+			res.setContentLength(new Long(defaultFile.length()).intValue());
+			FileCopyUtils
+					.copy(new FileInputStream(defaultFile), res.getOutputStream());
 		}
 	}
 	@RequestMapping(value = "/uploadAvatar", method = RequestMethod.POST)
@@ -199,8 +210,7 @@ public class IndexController {
 				File uploadedFile = new File(filesFolder.getAbsolutePath(),+currentUser.getId()+".jpg");
 				file.transferTo(uploadedFile);
 				
-				//Si solo funciona en user probar a añadir los atributos en otro sitio
-				model.addAttribute("currentUser", currentUser);
+				model.addAttribute("currentUser", userRepository.findByusername(currentUser.getUsername()));
 				model.addAttribute("loggedUser",userComponent.isLoggedUser());
 				if (userComponent.isLoggedUser()){
 					model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
@@ -224,7 +234,7 @@ public class IndexController {
 	@RequestMapping("/avatarimg/{fileName}")
 	public void handleAvatarFileDownload(@PathVariable String fileName,
 			HttpServletResponse res) throws FileNotFoundException, IOException {
-	
+		
 		File file = new File(AVATARS_FOLDER, fileName+".jpg");
 	
 		if (file.exists()) {
@@ -233,8 +243,11 @@ public class IndexController {
 			FileCopyUtils
 					.copy(new FileInputStream(file), res.getOutputStream());
 		} else {
-			res.sendError(404, "File" + fileName + "(" + file.getAbsolutePath()
-					+ ") does not exist");
+			File defaultFile = new File(AVATARS_FOLDER, "default.jpg");
+			res.setContentType("avatar/jpeg");
+			res.setContentLength(new Long(defaultFile.length()).intValue());
+			FileCopyUtils
+					.copy(new FileInputStream(defaultFile), res.getOutputStream());
 		}
 	}
 }

@@ -66,6 +66,7 @@ public class UsersController {
 		model.addAttribute("isUserAdmin",userComponent.isAdmin());
 		List<Post> postListCurr = userRepository.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
 		model.addAttribute("Posts",postListCurr);
+		model.addAttribute("currentUser", userComponent.getLoggedUser());
 		//End Common Parts
 		
 		
@@ -82,6 +83,7 @@ public class UsersController {
 				model.addAttribute("numberFollowers","0"); //Replacee with DB query.
 				model.addAttribute("numberFollowing","0"); //Replacee with DB query.
 				model.addAttribute("isUserAdmin",userComponent.isAdmin());
+				model.addAttribute("currentUser", userComponent.getLoggedUser());
 		//End Common Parts
 	
 		return "followers";
@@ -96,6 +98,7 @@ public class UsersController {
 				model.addAttribute("numberFollowers","0"); //Replacee with DB query.
 				model.addAttribute("numberFollowing","0"); //Replacee with DB query.
 				model.addAttribute("isUserAdmin",userComponent.isAdmin());
+				model.addAttribute("currentUser", userComponent.getLoggedUser());
 		//End Common Parts
 	
 		return "following";

@@ -65,22 +65,22 @@
                             <li><a href="/logout">Log out</a></li>
                         </ul>
                     </li>
-                    <li><a href="/mensajes">E-mail <span class="badge">{{unreadMessages}}</span></a></li>
+                    <li><a href="/mensajes">E-mail <span class="badge"></span></a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <header id="page-top">
+    {{#currentUser}}
+    <header id="page-top" style="background-image: url(/headerimg/{{id}})">
         <div class="container header-info">
-        	{{#currentUser}}
-            <div class="header-user-info"> <img class="img-center" alt="" src="/avatarimg/{{id}}" />
-            {{/currentUser}}
+            <div class="header-user-info"> <img style="width:100" class="img-center" alt="" src="/avatarimg/{{id}}" />
                 <div class="intro-text">
                     <p><span class="name">{{loggedUsername}}</span></p>
                 </div>
             </div>
         </div>
     </header>
+    {{/currentUser}}
     <div class="row">
         <!--Para dejar margen-->
         <div class="hidden-xs col-md-3">
@@ -95,8 +95,8 @@
             <div class="menu-profile">
                 <ul class="nav nav-pills">
                     <li role="presentation" class="active"><a href="/profile">My Posts</a></li>
-                    <li role="presentation"><a class="followers-following" href="/followers"> Followers <span class="badge badge-header">{{numberFollowers}}</span></a></li>
-                    <li role="presentation"><a class="followers-following" href="/following"> Following <span class="badge badge-header">{{numberFollowing}}</span></a></li>
+                    <li role="presentation"><a class="followers-following" href="/followers"> Followers <span class="badge badge-header"></span></a></li>
+                    <li role="presentation"><a class="followers-following" href="/following"> Following <span class="badge badge-header"></span></a></li>
                     {{#isUserAdmin}}
                     <li role="presentation"><a href="/reports-users">Reported Users</a></li>
                     <li role="presentation"><a href="/reports-posts">Reported posts</a></li>

@@ -17,7 +17,7 @@ body {
 }
 
 #page-top {
-    background-image: url(http://lorempixel.com/1000/400/city/);
+    
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -207,7 +207,10 @@ body {
 .button-follow-user {
     float: right;
 }
-
+#user-profile-img{
+	heigth: 100 px;
+	width: 100 px;
+}
 
 #error{
 	color:red;
