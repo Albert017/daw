@@ -111,4 +111,44 @@ public class UsersController {
 	
 		return "following";
 	}
+	
+	@RequestMapping("/reports-users")
+	public String profileReportUsersController(Model model){
+		
+		//Common parts
+				model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
+				model.addAttribute("unreadMessages","0"); //Replacee with DB query.
+				model.addAttribute("numberFollowers","0"); //Replacee with DB query.
+				model.addAttribute("numberFollowing","0"); //Replacee with DB query.
+				model.addAttribute("isUserAdmin",userComponent.isAdmin());
+		//End Common Parts
+	
+		return "reports-users";
+	}
+	@RequestMapping("/reports-posts")
+	public String profileReportPostsController(Model model){
+		
+		//Common parts
+				model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
+				model.addAttribute("unreadMessages","0"); //Replacee with DB query.
+				model.addAttribute("numberFollowers","0"); //Replacee with DB query.
+				model.addAttribute("numberFollowing","0"); //Replacee with DB query.
+				model.addAttribute("isUserAdmin",userComponent.isAdmin());
+		//End Common Parts
+	
+		return "reports-posts";
+	}
+	@RequestMapping("/reports-comments")
+	public String profileReportCommentsController(Model model){
+		
+		//Common parts
+				model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
+				model.addAttribute("unreadMessages","0"); //Replacee with DB query.
+				model.addAttribute("numberFollowers","0"); //Replacee with DB query.
+				model.addAttribute("numberFollowing","0"); //Replacee with DB query.
+				model.addAttribute("isUserAdmin",userComponent.isAdmin());
+		//End Common Parts
+	
+		return "reports-comments";
+	}
 }
