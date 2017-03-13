@@ -100,63 +100,27 @@
             </div>
             <div>
                 <div class="side-middle">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="thumbnail">
-                                <a href="admin-postIndex.html"><img src="https://dummyimage.com/900x800/000000/0011ff.jpg&text=Post+900x800" /></a>
-                                <div class="caption">
-                                    <h3>Post's Title</h3>
-                                    <p><a class="votes" href="admin-users.html">Username</a><a id="date" class="votes" href="#"> Fecha</a></p>
-                                    <p> <a href="#" class="btn btn-primary" role="button">⬆</a> <a href="#" class="btn btn-primary" role="button">⬇</a> <a class="votes" href="#"> Upvotes <span class="badge">42</span></a> <a class="votes" href="#"> Downvotes <span class="badge">42</span></a> <a class="votes" href="admin-postIndex.html"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a> </p>
-                                    <div>
-                                        <a href="admin-index.html" class="social-network-post"><img src="../img/icon_twitter.png" class="social-post" /></a>
-                                        <a href="admin-index.html" class="social-network-post"><img src="../img/icon_instagram.png" class="social-post" /></a>
-                                        <a href="admin-index.html" class="social-network-post"><img src="../img/icon_facebook.png" class="social-post" /></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-danger button-report-users">Delete comment <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-default button-report-users">Delete from report list <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="thumbnail">
-                                <a href="admin-postIndex.html"><img src="https://dummyimage.com/900x800/000000/0011ff.jpg&text=Post+900x800" /></a>
-                                <div class="caption">
-                                    <h3>Post's Title</h3>
-                                    <p><a class="votes" href="admin-users.html">Username</a><a id="date" class="votes" href="#"> Fecha</a></p>
-                                    <p> <a href="#" class="btn btn-primary" role="button">⬆</a> <a href="#" class="btn btn-primary" role="button">⬇</a> <a class="votes" href="#"> Upvotes <span class="badge">42</span></a> <a class="votes" href="#"> Downvotes <span class="badge">42</span></a> <a class="votes" href="admin-postIndex.html"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a> </p>
-                                    <div>
-                                        <a href="admin-index.html" class="social-network-post"><img src="../img/icon_twitter.png" class="social-post" /></a>
-                                        <a href="admin-index.html" class="social-network-post"><img src="../img/icon_instagram.png" class="social-post" /></a>
-                                        <a href="admin-index.html" class="social-network-post"><img src="../img/icon_facebook.png" class="social-post" /></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-danger button-report-users">Delete comment <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-default button-report-users">Delete from report list <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="thumbnail">
-                                <a href="admin-postIndex.html"><img src="https://dummyimage.com/900x800/000000/0011ff.jpg&text=Post+900x800" /></a>
-                                <div class="caption">
-                                    <h3>Post's Title</h3>
-                                    <p><a class="votes" href="admin-users.html">Username</a><a id="date" class="votes" href="#"> Fecha</a></p>
-                                    <p> <a href="#" class="btn btn-primary" role="button">⬆</a> <a href="#" class="btn btn-primary" role="button">⬇</a> <a class="votes" href="#"> Upvotes <span class="badge">42</span></a> <a class="votes" href="#"> Downvotes <span class="badge">42</span></a> <a class="votes" href="admin-postIndex.html"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a> </p>
-                                    <div>
-                                        <a href="admin-index.html" class="social-network-post"><img src="../img/icon_twitter.png" class="social-post" /></a>
-                                        <a href="admin-index.html" class="social-network-post"><img src="../img/icon_instagram.png" class="social-post" /></a>
-                                        <a href="admin-index.html" class="social-network-post"><img src="../img/icon_facebook.png" class="social-post" /></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-danger button-report-users">Delete comment <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-default button-report-users">Delete from report list <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
+                	{{#reportedPostList}}
+	                    <div class="panel panel-default">
+	                        <div class="panel-body">
+	                            <div class="thumbnail">
+			                        <a href="postIndex.html"><img src="/postimg/{{id}}" /></a>
+			                        <div class="caption">
+			                            <h3>{{postTitle}}</h3>
+			                            <p><a class="votes" href="users.html">{{postAuthor.username}}</a><a id="date" class="votes" href="#"> fecha</a></p>
+			                            <p> <a href="#" class="btn btn-primary" role="button">⬆</a> <a href="#" class="btn btn-primary" role="button">⬇</a> <a class="votes" href="#"> Upvotes <span class="badge">42</span></a> <a class="votes" href="#"> Downvotes <span class="badge">42</span></a> <a class="votes" href="/postIndex"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a> </p>
+			                            <div>
+			                                <a href="index.html" class="social-network-post"><img src="img/icon_twitter.png" class="social-post" /></a>
+			                                <a href="index.html" class="social-network-post"><img src="img/icon_instagram.png" class="social-post" /></a>
+			                                <a href="index.html" class="social-network-post"><img src="img/icon_facebook.png" class="social-post" /></a>
+			                            </div>
+			                        </div>
+			                    </div>
+	                            <button type="button" class="btn btn-danger button-report-users">Delete comment <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></button>
+	                            <button type="button" class="btn btn-default button-report-users">Delete from report list <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+	                        </div>
+	                    </div>
+                    {{/reportedPostList}}                  
                 </div>
             </div>
         </div>
