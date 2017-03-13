@@ -3,8 +3,8 @@
 
 <head>
     <link href="/stylesheet/bootstrap.min.css" rel="stylesheet">
-    <link href="stylesheet/style.css" rel="stylesheet">
-    <link href="stylesheet/stylePost.css" rel="stylesheet">
+    <link href="/stylesheet/style.css" rel="stylesheet">
+    <link href="/stylesheet/stylePost.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
 </head>
@@ -15,13 +15,13 @@
         <div class="container-fluid">
             <!--Imagen-->
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html"><img class="brand" alt="Brand" src="img/icon.png" /></a>
+                <a class="navbar-brand" href="/index"><img class="brand" alt="Brand" src="/img/icon.png" /></a>
             </div>
             <!--Resto del contenido-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <!--Menus entre el logo y la busqueda-->
                 <ul class="nav navbar-nav">
-                    <li><a href="index.html">Hot</a></li>
+                    <li><a href="/">Hot</a></li>
                     <li><a href="#">Trending</a></li>
                     <li><a href="#">Fresh</a></li>
                     <li><a href="#">Random</a></li>
@@ -50,15 +50,33 @@
                 </form>
                 <!--Menus después de la busqueda: Inicio de sesión-->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="login.html">Iniciar sesión</a></li>
-                    <li><a href="signup.html">Registrarse</a></li>
+                    {{#loggedUser}}
+                	<li><a href="/users/addPost/"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
+                    <li class="dropdown">
+                        <!--Título botón-->
+                        <a href="#" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/img/userPhoto.jpg" />{{loggedUsername}}<span class="caret"></span></a>
+                        <!--Submenú-->
+                        <ul class="dropdown-menu">
+                            <li><a href="/profile">Profile</a></li>
+                            <li><a href="#">Help</a></li>
+                            <li><a href="/settings">Tools</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/logout">Log out</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/mensajes">E-mail <span class="badge">4</span></a></li> 
+                    {{/loggedUser}} 
+                    {{^loggedUser}}
+                    <li><a href="/login">Iniciar Sesion</a></li>
+                    <li><a href="/signup">Registrarse</a></li> 
+                    {{/loggedUser}}
                 </ul>
             </div>
         </div>
     </nav>
     <header id="page-top">
         <div class="container header-info">
-            <div class="header-user-info"> <img class="img-center" alt="" src="img/userPhoto3.jpg" />
+            <div class="header-user-info"> <img class="img-center" alt="" src="/img/userPhoto3.jpg" />
                 <div class="intro-text">
                     <p><span class="name">User name</span></p>
                 </div>
@@ -75,23 +93,30 @@
         <!--Posts-->
         <div class="col-xs-12 col-md-6">
             <div class="side-middle">
-                <div class="thumbnail">
-                    <a href="postIndex.html"><img src="https://dummyimage.com/900x800/000000/0011ff.jpg&text=Post+900x800" /></a>
-                    <div class="caption">
-                        <h3>Post's Title</h3>
-                        <p><a class="votes" href="users.html">Username</a><a id="date" class="votes" href="#"> Fecha</a></p>
-                        <p><a href="#" class="btn btn-primary" role="button">⬆</a> <a href="#" class="btn btn-primary" role="button">⬇</a><a class="votes" href="#"> Upvotes <span class="badge">42</span></a><a class="votes" href="#"> Downvotes <span class="badge">42</span></a><a class="votes" href="postIndex.html"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a></p>
+                {{#Posts}}
+                    <div class="thumbnail">
+                        <a href="/post/{{id}}"><img src="/postimg/{{id}}" /></a>
+                        <div class="caption">
+                            <h3>{{postTitle}}</h3>
+                            <p><a class="votes" href="/user/{{postAuthor.username}}">{{postAuthor.username}} </a>{{postDate}}</p>
+                            <p> <a href="#" class="btn btn-primary" role="button">⬆</a> <a href="#" class="btn btn-primary" role="button">⬇</a> <a class="votes" href="#"> Upvotes <span class="badge">42</span></a> <a class="votes" href="#"> Downvotes <span class="badge">42</span></a> <a class="votes" href="/post/{{id}}"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a> </p>
+                            <div>
+                                <a href="index.html" class="social-network-post"><img src="/img/icon_twitter.png" class="social-post" /></a>
+                                <a href="index.html" class="social-network-post"><img src="/img/icon_instagram.png" class="social-post" /></a>
+                                <a href="index.html" class="social-network-post"><img src="/img/icon_facebook.png" class="social-post" /></a>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                  {{/Posts}}
             </div>
         </div>
         <!--Redes sociales-->
         <div class="hidden-xs col-md-3">
             <div id="RedesSociales">
                 <label>Siguenos en</label>
-                <a href="index.html"><img src="img/icon_twitter.png" class="social" /></a>
-                <a href="index.html"><img src="img/icon_instagram.png" class="social" /></a>
-                <a href="index.html"><img src="img/icon_facebook.png" class="social" /></a>
+                <a href="index.html"><img src="/img/icon_twitter.png" class="social" /></a>
+                <a href="index.html"><img src="/img/icon_instagram.png" class="social" /></a>
+                <a href="index.html"><img src="/img/icon_facebook.png" class="social" /></a>
             </div>
         </div>
     </div>
