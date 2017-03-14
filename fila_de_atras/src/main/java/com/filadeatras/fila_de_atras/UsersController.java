@@ -32,7 +32,7 @@ public class UsersController {
 	@PostConstruct
 	public void init(){
 		User u1 = new User("Pepe", "pass", "pepe@a.aa" ,"ROLE_USER");
-		User u2 = new User("Sara", "word", "sara@a.aa" ,"ROLE_USER");
+		User u2 = new User("Sara", "word", "sara@a.aa" ,"ROLE_USER","ROLE_ADMIN");
 		userRepository.save(u1);
 		userRepository.save(u2);
 		u1.addFollowing(u2); // u1 sigue a u2, añadir en la lista de seguidos en u1 a u2
