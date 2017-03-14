@@ -13,7 +13,7 @@ public class Message {
 		
 		private String messageContent;
 		//private String messageDate;
-		private boolean messageRead;		
+		private boolean messageNotRead;		
 		private boolean messageDeleted;
 
 		@ManyToOne
@@ -39,7 +39,7 @@ public class Message {
 			messageContent= content;
 			messageSender= remitent;
 			messageAddressee= destinatary;
-			messageRead = false;
+			messageNotRead = true;
 			messageDeleted = false;
 		}
 
@@ -76,10 +76,10 @@ public class Message {
 		}
 
 		public boolean isMessageRead() {
-			return messageRead;
+			return !messageNotRead;
 		}
 
 		public void setMessageRead(boolean messageRead) {
-			this.messageRead = messageRead;
+			this.messageNotRead = !messageRead;
 		}		
 }

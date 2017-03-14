@@ -48,7 +48,7 @@ public class MessageController {
 	
 	private static void loadDeletedMessage(MessageRepository repository, Model model, User userC){
 		
-		List<Message> eliminados = repository.findBymessageAddresseeAndMessageDeleted(userC, true);
+		List<Message> eliminados = repository.findBymessageAddresseeAndMessageDeletedOrderByIdDesc(userC, true);
 		if(eliminados.size()==0){
 			model.addAttribute("sinMensajes", true);
 		}
@@ -65,8 +65,9 @@ public class MessageController {
 	
 	
 	private static void loadUsernameMessage(MessageRepository repository, Model model, User userC, User user_aux){
-		List<Message> messageU1toU2 = repository.findByMessageAddresseeAndMessageSenderAndMessageDeleted(userC, user_aux, false);
+		List<Message> messageU1toU2 = repository.findByMessageAddresseeAndMessageSenderAndMessageDeletedOrderByIdDesc(userC, user_aux, false);
 		
+		//List<Message> messageU1toU2 = repository.findConversationById(userC.getId());
 		if(messageU1toU2.size()==0){
 			model.addAttribute("sinMensajes", true);
 		}
@@ -75,17 +76,19 @@ public class MessageController {
 		}
 		
 		//Muestra la caja para enviar mensajes
-		model.addAttribute("sent-msg", true);
-		model.addAttribute("messages", messageU1toU2);
-		model.addAttribute("error",false);
+		model.addAttribute("send-msg", user_aux);
 		
 		//Muestra el boton que envia a eliminados
 		model.addAttribute("conversation",true);
+		model.addAttribute("messages", messageU1toU2);
+		model.addAttribute("error",false);
+		
+		
 	}
 	
 	private static void loadMessage(MessageRepository repository, Model model, User userC){
-		List<Message> msg = repository.findBymessageAddresseeAndMessageDeleted(userC, false);
-		List<Message> newMsg = new LinkedList();
+		List<Message> msg = repository.findBymessageAddresseeAndMessageDeletedOrderByIdDesc(userC, false);
+		List<Message> newMsg = new LinkedList<Message>();
 		getMessageWithDifferentSender(msg, newMsg);
 		
 		if(newMsg.size()==0){
@@ -130,6 +133,8 @@ public class MessageController {
 		if(user_aux != null){
 			User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
 			loadUsernameMessage(repository, model, conectedUser, user_aux);
+			
+			model.addAttribute("send-msg", user_aux);
 			
 			return "user-mensajesConversacion";
 		}
@@ -187,6 +192,30 @@ public class MessageController {
 			model.addAttribute("error", true);
 			
 			return "user-mensajeNuevo";
+		}
+		
+	}
+	
+	@RequestMapping(value="/mensajes/{username}/enviado" , method = RequestMethod.POST)
+	public String sentMessageConversationController(Model model, 
+			@RequestParam(value="message-content", required=true) String mensaje, @PathVariable String username){
+		User uDest = repositoryUser.findByusername(username);
+		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
+		
+		if(uDest != null){
+			Message msg = new Message(mensaje, conectedUser, uDest);
+			repository.save(msg);
+			
+			loadUsernameMessage(repository, model, conectedUser, uDest);
+			model.addAttribute("send-msg", uDest);
+			
+			return "user-mensajesConversacion";
+		}
+		else{
+			model.addAttribute("error", true);
+			model.addAttribute("name", username);
+			
+			return "user-mensajes";
 		}
 		
 	}

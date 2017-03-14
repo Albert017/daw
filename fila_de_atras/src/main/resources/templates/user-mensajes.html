@@ -127,6 +127,9 @@
                                             <div class="message-content">
                                                 <a href="/mensajes/{{messageSender.username}}">
                                                     <div class="message-text">
+                                                    	{{#messageNotRead}}
+                                                    	<span class="glyphicon glyphicon-envelope" aria-hidden="false"> Nuevo</span>
+                                                        {{/messageNotRead}}
                                                         <p>{{messageContent}}</p>
                                                     </div>
                                                 </a>

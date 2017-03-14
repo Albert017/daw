@@ -99,20 +99,22 @@
                     <div class="side-middle">
                         <div class="mailbox">
                         {{#send-msg}}
+                        <form action="/mensajes/{{username}}/enviado" method="POST">
                             <div class="col-xs-12 col-md-12">
-                                <form>
+                                
                                     <div class="form-group">
                                         <label for="inputdefault">Mensaje:</label>
-                                        <textarea class="form-control" id="textarea-message" rows="10"></textarea>
+                                        <textarea class="form-control" id="textarea-message" name="message-content" rows="10"></textarea>
                                     </div>
-                                </form>
+                                
                             </div>
                          
                             <div class="col-xs-12 col-md-12">
                                 <div id="btn-message">
-                                    <button type="button" class="btn btn-default navbar-right"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Enviar</button>
+                                    <input type="submit" class="btn btn-default navbar-right"></input>
                                 </div>
-                            </div>
+                            </div>´
+                            </form>
                             
                             {{/send-msg}}
                             <div class="col-xs-12 col-md-12">
