@@ -107,29 +107,32 @@ public class MessageController {
 	public String messageController(Model model){
 		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
 		loadMessage(repository, model, conectedUser);
-		
+		model.addAttribute("currentUser", userComponent.getLoggedUser());
+		model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
 		return "user-mensajes";
 	}
 	
 	@RequestMapping("/mensajes/nuevo")
 	public String newMessageController(Model model){
-		
-		
+		model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
+		model.addAttribute("currentUser", userComponent.getLoggedUser());
 		return "user-mensajeNuevo";
 	}
 	
 	@RequestMapping("/mensajes/eliminados")
 	public String deletedMessageController(Model model){
+		model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
 		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
 		loadDeletedMessage(repository, model, conectedUser);
-		
+		model.addAttribute("currentUser", userComponent.getLoggedUser());
 		return "user-mensajesConversacion";
 	}
 	
 	@RequestMapping("/mensajes/{username}")
 	public String messageUserController(Model model, @PathVariable String username){
+		model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
 		User user_aux = repositoryUser.findByusername(username);
-		
+		model.addAttribute("currentUser", userComponent.getLoggedUser());
 		if(user_aux != null){
 			User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
 			loadUsernameMessage(repository, model, conectedUser, user_aux);
@@ -150,10 +153,11 @@ public class MessageController {
 	
 	@RequestMapping(value="/mensajes/eliminados/movido/{id}")
 	public String sentToDeletedController(Model model, @PathVariable Long id){
+		model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
 		Message msg = repository.findMessageById(id);
 		msg.setMessageDeleted(true);
 		repository.save(msg);
-		
+		model.addAttribute("currentUser", userComponent.getLoggedUser());
 		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
 		loadUsernameMessage(repository, model, conectedUser, msg.getMessageSender());
 		
@@ -162,10 +166,12 @@ public class MessageController {
 	
 	@RequestMapping(value="/mensajes/eliminado/{id}", method = RequestMethod.POST)
 	public String DeleteController(Model model, @PathVariable Long id){
+		model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
 		Message msg = repository.findMessageById(id);
 		msg.setMessageDeleted(true);
 		repository.delete(msg);
-		
+		model.addAttribute("currentUser", userComponent.getLoggedUser());
+
 		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
 		loadDeletedMessage(repository, model, conectedUser);
 		
@@ -176,8 +182,10 @@ public class MessageController {
 	public String sentMessageController(Model model, @RequestParam(value="destinatario", required=true) String dest,
 			@RequestParam(value="message-content", required=true) String mensaje){
 		
+		model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
 		User uDest = repositoryUser.findByusername(dest);
 		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
+		model.addAttribute("currentUser", userComponent.getLoggedUser());
 		
 		if(uDest != null){
 			Message msg = new Message(mensaje, conectedUser, uDest);

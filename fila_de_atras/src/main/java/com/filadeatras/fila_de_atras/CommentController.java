@@ -33,6 +33,8 @@ public class CommentController {
 			@RequestParam(value="commentContent", required=true) String cContent,
 			@RequestParam(value="commentPost", required=true) String cPost){
 		
+		model.addAttribute("currentUser", userComponent.getLoggedUser());
+		
 		Long id = Long.parseLong(cPost);
 		Post currPost = postRepository.findOne(id);
 
