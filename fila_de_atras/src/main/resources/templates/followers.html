@@ -94,8 +94,8 @@
         <div class="col-xs-12 col-md-6">
             <div class="menu-profile">
                 <ul class="nav nav-pills">
-                    <li role="presentation" class="active"><a href="/profile">My Posts</a></li>
-                    <li role="presentation"><a class="followers-following" href="/followers"> Followers <span class="badge badge-header"></span></a></li>
+                    <li role="presentation"><a href="/profile">My Posts</a></li>
+                    <li role="presentation" class="active"><a class="followers-following" href="/followers"> Followers <span class="badge badge-header"></span></a></li>
                     <li role="presentation"><a class="followers-following" href="/following"> Following <span class="badge badge-header"></span></a></li>
                     {{#isUserAdmin}}
                     <li role="presentation"><a href="/reports-users">Reported Users</a></li>
@@ -105,21 +105,13 @@
                 </ul>
             </div>
             <div class="side-middle">
-                <div class="panel panel-default">
-                    <div class="panel-body"><a href="admin-users.html"> <img alt="" src="../img/userPhoto1.jpg" class="profile-followers" /> Username</a>
-                        <button type="button" class="btn btn-info button-follow-user">Follow</button>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-body"><a href="admin-users.html"> <img alt="" src="../img/userPhoto1.jpg" class="profile-followers" /> Username</a>
-                        <button type="button" class="btn btn-info button-follow-user">Follow</button>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-body"><a href="admin-users.html"> <img alt="" src="../img/userPhoto1.jpg" class="profile-followers" /> Username</a>
-                        <button type="button" class="btn btn-info button-follow-user">Follow</button>
-                    </div>
-                </div>
+            	{{#followersList}}
+	                <div class="panel panel-default">
+	                    <div class="panel-body"><a href="admin-users.html"> <img alt="" src="../avatarimg/{{id}}" class="profile-followers" />{{username}}</a>
+	                        <button type="button" class="btn btn-info button-follow-user">Follow</button>
+	                    </div>
+	                </div>
+                {{/followersList}}
             </div>
         </div>
         <!--Redes sociales-->
