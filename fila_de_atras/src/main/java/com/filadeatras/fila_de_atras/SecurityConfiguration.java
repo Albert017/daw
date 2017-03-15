@@ -24,10 +24,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/login").permitAll();
         http.authorizeRequests().antMatchers("/singnup").permitAll();
         http.authorizeRequests().antMatchers("/postIndex").permitAll();
+        http.authorizeRequests().antMatchers("/error").permitAll();
 
         // Private pages (all other pages)
-        http.authorizeRequests().antMatchers("/settings").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/settings*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/settings-notifications*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/settings-password*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/edit-profile").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/profile").hasRole("USER");
+        http.authorizeRequests().antMatchers("/followers").hasRole("USER");
+        http.authorizeRequests().antMatchers("/following").hasRole("USER");
         http.authorizeRequests().antMatchers("/myPosts").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/followers").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/following").hasAnyRole("USER");
@@ -36,15 +42,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/mensajes").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/mensajes/*").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/mensajes/eliminados/movido/*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/mensajes/eliminados").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/mensajes/enviado").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/mensajes/eliminados*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/mensajes/enviado*").hasAnyRole("USER");
+        
+        http.authorizeRequests().antMatchers("/changeHeader").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/users/changeHeader").hasAnyRole("USER")
+        http.authorizeRequests().antMatchers("/uploadHeader").hasAnyRole("USER");;
+        http.authorizeRequests().antMatchers("/changeAvatar").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/users/changeAvatar").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/uploadAvatar").hasAnyRole("USER");
+        
+        http.authorizeRequests().antMatchers("/uploadPost").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/profile/delete/post/{id}").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/addComment").hasAnyRole("USER");
         
         
-        http.authorizeRequests().antMatchers("/reported-users*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/reported-posts*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/reported-comments*").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/reports-users*").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/reports-posts*").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/reports-comments*").hasAnyRole("ADMIN");
         
         
+        //
         http.authorizeRequests().antMatchers("/user-design-profile*").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/user-index*").hasAnyRole("USER");
         

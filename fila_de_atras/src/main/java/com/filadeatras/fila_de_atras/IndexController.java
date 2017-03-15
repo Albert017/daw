@@ -38,6 +38,13 @@ public class IndexController extends NavbarController{
 	@Autowired
 	UserComponent userComponent;
 	
+	public void loadModel(Model model){
+		model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
+		model.addAttribute("unreadMessages","0"); //Replacee with DB query.
+		model.addAttribute("isUserAdmin",userComponent.isAdmin());
+		model.addAttribute("currentUser", userRepository.findByusername(userComponent.getLoggedUser().getUsername()));		
+	}
+	
 	@RequestMapping(value={"/","/index"})
 	public String indexController(Model model, HttpServletRequest request){
 		model.addAttribute("currentUser", userComponent.getLoggedUser());
@@ -87,7 +94,7 @@ public class IndexController extends NavbarController{
 		
 		User currentUser=userComponent.getLoggedUser();
 			
-		model.addAttribute("currentUser", userComponent.getLoggedUser());
+		loadModel(model);
 		if (!file.isEmpty()) {
 			try {
 
@@ -100,27 +107,20 @@ public class IndexController extends NavbarController{
 				userRepository.findByusername(currentUser.getUsername()).getUserPosts().add(p);
 				File uploadedFile = new File(filesFolder.getAbsolutePath(),+p.getId()+".jpg");
 				file.transferTo(uploadedFile);
-				
-				//Si solo funciona en user probar a añadir los atributos en otro sitio
-				model.addAttribute("loggedUser",userComponent.getLoggedUser());
 				model.addAttribute("Post",p);
 				model.addAttribute("PostComments",p.getPostComments());
-				
-				
+								
 				return "postIndex";
 
-			} catch (Exception e) {
-				model.addAttribute("username",currentUser.getUsername());
-				model.addAttribute("error",
+			}	catch (Exception e) {
+				model.addAttribute("ErrorMessage",
 						e.getClass().getName() + ":" + e.getMessage());
 				System.out.println(e.getMessage());
-				return "user-index";//AÑADIR PAGINA HTML DE ERROR DE SUBIDA
+				return "errorPage";
 			}
 		}else {
-			
-			model.addAttribute("error",	"The file is empty");
-			 
-			return "user-index"; //AÑADIR PAGINA HTML DE ERROR DE SUBIDA
+			model.addAttribute("ErrorMessage",	"The file is empty");
+			return "errorPage";
 		}
 	}
 	@RequestMapping("/postimg/{fileName}")
@@ -144,7 +144,7 @@ public class IndexController extends NavbarController{
 		
 		User currentUser=userComponent.getLoggedUser();
 				
-		model.addAttribute("currentUser", userComponent.getLoggedUser());
+		loadModel(model);
 		if (!file.isEmpty()) {
 			try {
 
@@ -154,27 +154,18 @@ public class IndexController extends NavbarController{
 				}
 				File uploadedFile = new File(filesFolder.getAbsolutePath(),+currentUser.getId()+".jpg");
 				file.transferTo(uploadedFile);
-				
-				//Si solo funciona en user probar a añadir los atributos en otro sitio
-				model.addAttribute("currentUser", currentUser);
-				model.addAttribute("loggedUser",userComponent.isLoggedUser());
-				if (userComponent.isLoggedUser()){
-					model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
-				}				
+								
 				return "followers";
 
 			} catch (Exception e) {
-				model.addAttribute("username",currentUser.getUsername());
-				model.addAttribute("error",
+				model.addAttribute("ErrorMessage",
 						e.getClass().getName() + ":" + e.getMessage());
 				System.out.println(e.getMessage());
-				return "user-index";//AÑADIR PAGINA HTML DE ERROR DE SUBIDA
+				return "errorPage";
 			}
 		}else {
-			
-			model.addAttribute("error",	"The file is empty");
-			 
-			return "user-index"; //AÑADIR PAGINA HTML DE ERROR DE SUBIDA
+			model.addAttribute("ErrorMessage",	"The file is empty");
+			return "errorPage";
 		}
 	}
 	@RequestMapping("/headerimg/{fileName}")
@@ -201,7 +192,7 @@ public class IndexController extends NavbarController{
 		
 		User currentUser=userComponent.getLoggedUser();
 				
-		model.addAttribute("currentUser", userComponent.getLoggedUser());
+		loadModel(model);
 		if (!file.isEmpty()) {
 			try {
 
@@ -211,26 +202,21 @@ public class IndexController extends NavbarController{
 				}
 				File uploadedFile = new File(filesFolder.getAbsolutePath(),+currentUser.getId()+".jpg");
 				file.transferTo(uploadedFile);
-				
-				model.addAttribute("currentUser", userRepository.findByusername(currentUser.getUsername()));
-				model.addAttribute("loggedUser",userComponent.isLoggedUser());
+
 				if (userComponent.isLoggedUser()){
 					model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
 				}				
 				return "followers";
 
 			} catch (Exception e) {
-				model.addAttribute("username",currentUser.getUsername());
-				model.addAttribute("error",
+				model.addAttribute("ErrorMessage",
 						e.getClass().getName() + ":" + e.getMessage());
 				System.out.println(e.getMessage());
-				return "user-index";//AÑADIR PAGINA HTML DE ERROR DE SUBIDA
+				return "errorPage";
 			}
 		}else {
-			
-			model.addAttribute("error",	"The file is empty");
-			 
-			return "user-index"; //AÑADIR PAGINA HTML DE ERROR DE SUBIDA
+			model.addAttribute("ErrorMessage",	"The file is empty");
+			return "errorPage";
 		}
 	}
 	@RequestMapping("/avatarimg/{fileName}")
