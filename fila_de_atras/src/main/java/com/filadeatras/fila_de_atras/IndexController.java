@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-public class IndexController {
+public class IndexController extends NavbarController{
 	
 	private static final String FILES_FOLDER = "files";
 
@@ -64,7 +64,7 @@ public class IndexController {
 	
 	@RequestMapping(value={"/users/changeAvatar","/changeAvatar"})
 	public String changeAvatar(Model model) {
-		model.addAttribute("currentUser", userComponent.getLoggedUser());
+		loadNavbar(model);
 		if (userComponent.isLoggedUser())
 			return "user-changePhoto";
 		else
@@ -73,7 +73,7 @@ public class IndexController {
 	
 	@RequestMapping(value={"/users/changeHeader","/changeHeader"})
 	public String changeHeader(Model model) {
-		model.addAttribute("currentUser", userComponent.getLoggedUser());
+		loadNavbar(model);
 		if (userComponent.isLoggedUser())
 			return "user-changeHeader";
 		else

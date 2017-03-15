@@ -84,8 +84,8 @@
         <div class="hidden-xs col-md-3">
             <div class="btn-group-vertical separation-profile" role="group" aria-label="...">
             	<a href="/edit-profile"><button type="button" class="btn btn-default">Edit profile<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
-                <a href=""><button type="button" class="btn btn-default">Avatar<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
-                <a><button type="button" class="btn btn-default">Header<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
+                <a href="/changeAvatar"><button type="button" class="btn btn-default">Avatar<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
+                <a href="/changeHeader"><button type="button" class="btn btn-default">Header<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
             </div>
         </div>
         <div class="col-xs-12 col-md-6">
@@ -104,7 +104,7 @@
             <div class="side-middle">
                 {{#Posts}}
                     <div class="thumbnail">
-                        <a href="postIndex.html"><img src="/postimg/{{id}}" /></a>
+                        <a href="/post/{{id}}"><img src="/postimg/{{id}}" /></a>
                         <div class="caption">
                             <h3>{{postTitle}}</h3>
                             <p><a class="votes" href="users.html">{{postAuthor.username}}</a><a id="date" class="votes" href="#">Fechapost</a></p>
