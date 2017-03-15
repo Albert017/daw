@@ -134,4 +134,28 @@ public class UsersController {
 	
 		return "reports-comments";
 	}
+	
+	@RequestMapping("/settings")
+	public String settingsController(Model model){
+		
+		loadModel(model);
+	
+		return "user-Settings";
+	}
+	
+	@RequestMapping("/settings-password")
+	public String settingsPasswordController(Model model){
+		
+		loadModel(model);
+	
+		return "user-Settings-password";
+	}
+	
+	@RequestMapping("/settings-notifications")
+	public String settingsNotificationsController(Model model){
+		
+		loadModel(model);
+	
+		return "user-Settings-notifications";
+	}
 }
