@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <!--Menus entre el logo y la busqueda-->
                 <ul class="nav navbar-nav">
-                    <li><a href="user-index.html">Hot</a></li>
+                    <li><a href="/index">Hot</a></li>
                     <li><a href="#">Trending</a></li>
                     <li><a href="#">Fresh</a></li>
                     <li><a href="#">Random</a></li>
@@ -29,7 +29,7 @@
                     <li class="dropdown">
                         <!--Título botón--><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tags <span class="caret"></span></a>
                         <!--Submenú-->
-                       <ul class="dropdown-menu">
+                        <ul class="dropdown-menu">
                             <li><a href="#">Funny</a></li>
                             <li><a href="#">Animals</a></li>
                             <li><a href="#">Anime and manga</a></li>
@@ -49,24 +49,37 @@
                 </form>
                 <!--Menus después de la busqueda: Inicio de sesión-->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="user-addPost.html"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
+                	<li><a href="/addPost"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
                     <li class="dropdown">
                         <!--Título botón-->
-                        <a href="#" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="../img/userPhoto.jpg" />User name <span class="caret"></span></a>
+                        {{#currentUser}}
+                        <a href="#" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/{{id}}" />{{loggedUsername}} <span class="caret"></span></a>
+                        {{/currentUser}}
                         <!--Submenú-->
                         <ul class="dropdown-menu">
-                            <li><a href="user-profile.html">Profile</a></li>
+                            <li><a href="/profile">Profile</a></li>
                             <li><a href="#">Help</a></li>
-                            <li><a href="user-Settings.html">Tools</a></li>
+                            <li><a href="/settings">Tools</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="index.html">Log out</a></li>
+                            <li><a href="/logout">Log out</a></li>
                         </ul>
                     </li>
-                    <li><a href="/mensajes">E-mail <span class="badge">4</span></a></li>
+                    <li><a href="/mensajes">E-mail <span class="badge">{{unreadMessages}}</span></a></li>
                 </ul>
             </div>
         </div>
     </nav>
+	{{#currentUser}}
+    <header id="page-top" style="background-image: url(/headerimg/{{id}})">
+        <div class="container header-info">
+            <div class="header-user-info"> <img style="width:100" class="img-center" alt="" src="/avatarimg/{{id}}" />
+                <div class="intro-text">
+                    <p><span class="name">{{loggedUsername}}</span></p>
+                </div>
+            </div>
+        </div>
+    </header>
+    {{/currentUser}}
     <div class="row">
         <!--Para dejar margen-->
         <div class="hidden-xs col-md-1"></div>
