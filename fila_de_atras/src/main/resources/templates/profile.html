@@ -3,8 +3,8 @@
 
 <head>
     <link href="/stylesheet/bootstrap.min.css" rel="stylesheet">
-    <link href="../stylesheet/style.css" rel="stylesheet">
-    <link href="../stylesheet/stylePost.css" rel="stylesheet">
+    <link href="/stylesheet/style.css" rel="stylesheet">
+    <link href="/stylesheet/stylePost.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
 </head>
@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <!--Imagen-->
             <div class="navbar-header">
-                <a class="navbar-brand" href="#"><img class="brand" alt="Brand" src="../img/icon.png" /></a>
+                <a class="navbar-brand" href="#"><img class="brand" alt="Brand" src="/img/icon.png" /></a>
             </div>
             <!--Resto del contenido-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -113,6 +113,9 @@
                                 <a href="index.html" class="social-network-post"><img src="img/icon_twitter.png" class="social-post" /></a>
                                 <a href="index.html" class="social-network-post"><img src="img/icon_instagram.png" class="social-post" /></a>
                                 <a href="index.html" class="social-network-post"><img src="img/icon_facebook.png" class="social-post" /></a>
+                                <form action="/profile/delete/post/{{id}}" method="POST">
+                                	<button type="submit" class="btn btn-primary  navbar-right delete-btn"><span class="glyphicon glyphicon-trash"></span></button>
+                           		</form>
                             </div>
                         </div>
                     </div>

@@ -98,3 +98,8 @@ a.text-primary:focus {
 #commentInput {
     width: 750;
 }
+
+.delete-btn{
+	position: relative;
+    margin: -35px 20px;
+}

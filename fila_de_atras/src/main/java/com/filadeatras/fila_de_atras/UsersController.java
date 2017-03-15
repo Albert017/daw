@@ -1,5 +1,6 @@
 package com.filadeatras.fila_de_atras;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import antlr.TokenWithIndex;
 
@@ -165,5 +168,33 @@ public class UsersController {
 		loadModel(model);
 	
 		return "user-design-profile";
+	}
+	
+	@RequestMapping(value="/profile/delete/post/{id}",  method = RequestMethod.POST)
+	public String deletePostController(Model model, @PathVariable Long id){
+		Post p = postRepository.findOne(id);
+		if(p.getPostComments().size()>0){
+			for(int i=0; i<p.getPostComments().size();i++){
+				commentRepository.delete(p.getPostComments().get(i));
+
+				
+			}
+			
+			
+		}
+		postRepository.delete(p);
+
+		//Common parts
+				model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
+				model.addAttribute("unreadMessages","0"); //Replacee with DB query.
+				model.addAttribute("numberFollowers","0"); //Replacee with DB query.
+				model.addAttribute("numberFollowing","0"); //Replacee with DB query.
+				model.addAttribute("isUserAdmin",userComponent.isAdmin());
+				List<Post> postListCurr = userRepository.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
+				model.addAttribute("Posts",postListCurr);
+				model.addAttribute("currentUser", userComponent.getLoggedUser());
+				//End Common Parts
+	
+		return "profile";
 	}
 }
