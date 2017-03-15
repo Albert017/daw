@@ -158,4 +158,12 @@ public class UsersController {
 	
 		return "user-Settings-notifications";
 	}
+	
+	@RequestMapping("/edit-profile")
+	public String editProfileController(Model model){
+		
+		loadModel(model);
+	
+		return "user-design-profile";
+	}
 }
