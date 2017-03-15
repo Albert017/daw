@@ -215,3 +215,17 @@ body {
 #error{
 	color:red;
 }
+
+.tagsLeft{
+	float:left;
+	margin-right:10px;
+}
+
+.radioWidth{
+	width: 200px;
+}
+
+.labelPosition{
+	float:left;
+	margin-right:30px;
+}

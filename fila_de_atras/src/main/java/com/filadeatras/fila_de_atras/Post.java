@@ -29,7 +29,8 @@ public class Post {
 	@OneToMany(mappedBy="commentPost")
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<Comment> postComments;
-	
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> postTags;
 	private String postDate;
 	
 	public Post(){}
@@ -42,6 +43,7 @@ public class Post {
 		postTitle=title;
 		postAuthor= author;
 		postComments = new LinkedList<>();
+		postTags= new LinkedList<>();
 		this.postDate= LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM,FormatStyle.MEDIUM));
 	}
 	
