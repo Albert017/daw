@@ -57,43 +57,40 @@ public class UsersController {
 	public void loadModel(Model model){
 		model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
 		model.addAttribute("unreadMessages","0"); //Replacee with DB query.
-		model.addAttribute("numberFollowers","0"); //Replacee with DB query.
-		model.addAttribute("numberFollowing","0"); //Replacee with DB query.
 		model.addAttribute("isUserAdmin",userComponent.isAdmin());
-		model.addAttribute("currentUser", userComponent.getLoggedUser());		
+		model.addAttribute("currentUser", userRepository.findByusername(userComponent.getLoggedUser().getUsername()));		
 	}
 	
 	@RequestMapping("/user/{reqUserName}")
 	public String usersController(Model model,
 			@PathVariable String reqUserName){
-		model.addAttribute("loggedUser",userComponent.isLoggedUser());
-		if (userComponent.isLoggedUser()){
-			model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
-		}
+		model.addAttribute("loggedUser",userComponent.getLoggedUser());
 		User viewUser = userRepository.findByusername(reqUserName);
-		List<Post> postListCurr = viewUser.getUserPosts();
-		Post ranPost = null;
-		if (postListCurr.size()>0){
-			ranPost = postListCurr.get((int)(Math.random()*postListCurr.size()));
+		if (viewUser==null){
+			model.addAttribute("ErrorMessage","User not found.");
+			return "errorPage";
+		} else{
+			List<Post> postListCurr = viewUser.getUserPosts();
+			Post ranPost = null;
+			if (postListCurr.size()>0){
+				ranPost = postListCurr.get((int)(Math.random()*postListCurr.size()));
+			}
+			model.addAttribute("UserViewUser",viewUser);
+			model.addAttribute("UserViewPost",ranPost);
+			
+			return "users";
 		}
-		model.addAttribute("Posts",ranPost);
-		
-		return "users";
 	}
 	
 	@RequestMapping("/profile")
 	public String profileController(Model model){
 		
 		//Common parts
-		model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
-		model.addAttribute("unreadMessages","0"); //Replacee with DB query.
-		model.addAttribute("numberFollowers","0"); //Replacee with DB query.
-		model.addAttribute("numberFollowing","0"); //Replacee with DB query.
-		model.addAttribute("isUserAdmin",userComponent.isAdmin());
+		loadModel(model);
+		//End Common Parts
 		List<Post> postListCurr = userRepository.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
 		model.addAttribute("Posts",postListCurr);
-		model.addAttribute("currentUser", userComponent.getLoggedUser());
-		//End Common Parts
+		
 		
 		
 		

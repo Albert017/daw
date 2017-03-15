@@ -229,3 +229,8 @@ body {
 	float:left;
 	margin-right:30px;
 }
+
+.userIconImgCom{
+	height: 40;
+	border-radius: 3px;
+}

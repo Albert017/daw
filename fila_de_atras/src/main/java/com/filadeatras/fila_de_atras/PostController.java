@@ -27,10 +27,7 @@ public class PostController {
 	public String postController(Model model,
 			@PathVariable Long id){
 		
-		model.addAttribute("loggedUser",userComponent.isLoggedUser());
-		if (userComponent.isLoggedUser()){
-			model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
-		}
+		model.addAttribute("loggedUser",userComponent.getLoggedUser());
 		Post currPost = postRepository.findOne(id);
 		model.addAttribute("Post",currPost);
 		model.addAttribute("PostComments",currPost.getPostComments());

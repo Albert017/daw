@@ -102,10 +102,7 @@ public class IndexController extends NavbarController{
 				file.transferTo(uploadedFile);
 				
 				//Si solo funciona en user probar a añadir los atributos en otro sitio
-				model.addAttribute("loggedUser",userComponent.isLoggedUser());
-				if (userComponent.isLoggedUser()){
-					model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
-				}
+				model.addAttribute("loggedUser",userComponent.getLoggedUser());
 				model.addAttribute("Post",p);
 				model.addAttribute("PostComments",p.getPostComments());
 				

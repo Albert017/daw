@@ -45,10 +45,7 @@ public class CommentController {
 		
 		currPost = postRepository.findOne(id);
 		
-		model.addAttribute("loggedUser",userComponent.isLoggedUser());
-		if (userComponent.isLoggedUser()){
-			model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
-		}
+		model.addAttribute("loggedUser",userComponent.getLoggedUser());
 		model.addAttribute("Post",currPost);
 		model.addAttribute("PostComments",currPost.getPostComments());
 		return "postIndex";

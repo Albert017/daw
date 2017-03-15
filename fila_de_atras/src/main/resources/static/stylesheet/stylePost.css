@@ -82,7 +82,7 @@ a.text-primary:focus {
 }
 
 .userIconImg {
-    width: 50;
+    width: 100;
 	border-radius: 5px;
 }
 
@@ -102,4 +102,9 @@ a.text-primary:focus {
 .delete-btn{
 	position: relative;
     margin: -35px 20px;
+}
+
+.header-user-info img {
+	height: 100;
+	border-radius: 5px;
 }
