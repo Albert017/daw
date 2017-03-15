@@ -10,7 +10,7 @@ public interface MessageRepository extends JpaRepository<Message, Long>{
 	
 	List<Message> findBymessageAddresseeAndMessageDeletedOrderByIdDesc(User messageAddressee, boolean messageDeleted);
 	List<Message> findByMessageAddresseeAndMessageSenderAndMessageDeletedOrderByIdDesc(User messageAddressee, User messageSender, boolean messageDeleted);
-	List<Message> findBymessageNotRead(boolean messageRead);
+	List <Message> findByMessageAddresseeAndMessageNew(User user, boolean messageRead);
 	Message findMessageById(Long id);
 	/*
 	@Query("SELECT * FROM MESSAGE m WHERE (m.MESSAGE_ADDRESSEE_ID=?1 AND m.MESSAGE_SENDER_ID=?1) OR (MESSAGE_ADDRESSEE_ID=?1 AND MESSAGE_SENDER_ID=?2)")

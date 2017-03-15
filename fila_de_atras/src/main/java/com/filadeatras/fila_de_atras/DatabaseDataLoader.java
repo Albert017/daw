@@ -30,7 +30,7 @@ public class DatabaseDataLoader {
 	    	}
 	    	Message m1 = new Message("Texto de prueba eliminado", newUs[0], newUs[1]);
 	    	Message m2 = new Message("Texto de prueba leido", newUs[3], newUs[1]);
-	    	m2.setMessageRead(true);
+	    	m2.setMessageNew(false);
 	    	m1.setMessageDeleted(true);
 			messageRepository.save(m1);
 			messageRepository.save(m2);
