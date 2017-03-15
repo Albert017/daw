@@ -18,22 +18,12 @@ public class SearchController {
 	@RequestMapping(value="/search")
 	public String postSearch(Model model, @RequestParam("searchedPost") String consultedPost){
 		Post currPost = postRepository.findBypostTitle(consultedPost);
-		if (currPost ==null){
-			model.addAttribute("loggedUser",userComponent.isLoggedUser());
-			if (userComponent.isLoggedUser()){
-				model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
-			}
-			return "index";
-		} else {
 			model.addAttribute("loggedUser",userComponent.isLoggedUser());
 			if (userComponent.isLoggedUser()){
 				model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
 			}
 			model.addAttribute("Post",currPost);
-			model.addAttribute("PostComments",currPost.getPostComments());
-			
 			return "postIndex";
-		}
 	}
 
 }
