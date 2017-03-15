@@ -42,7 +42,19 @@
     text-decoration: none;
     color: black;
 }
+.message a:visited {
+    text-decoration: none;
+    color: black;
+}
 
+.panel-heading a:link{
+	text-decoration: none;
+    color: white;
+}
+
+.panel-heading a:visited { 
+    color: white;
+}
 .message a {
     color: black;
 }
