@@ -40,6 +40,7 @@ public class IndexController {
 	
 	@RequestMapping(value={"/","/index"})
 	public String indexController(Model model, HttpServletRequest request){
+		model.addAttribute("currentUser", userComponent.getLoggedUser());
 		model.addAttribute("loggedUser",userComponent.isLoggedUser());
 		if (userComponent.isLoggedUser()){
 			model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
@@ -52,15 +53,18 @@ public class IndexController {
 	}
 	
 	@RequestMapping(value={"/users/addPost/","/addPost"})
-	public String index() {
-		if (userComponent.isLoggedUser())
+	public String index(Model model) {
+		if (userComponent.isLoggedUser()){
+			model.addAttribute("currentUser", userComponent.getLoggedUser());
+			model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
 			return "user-addPost";
-		else
+		}else
 			return "index";
 	}
 	
 	@RequestMapping(value={"/users/changeAvatar","/changeAvatar"})
-	public String changeAvatar() {
+	public String changeAvatar(Model model) {
+		model.addAttribute("currentUser", userComponent.getLoggedUser());
 		if (userComponent.isLoggedUser())
 			return "user-changePhoto";
 		else
@@ -68,7 +72,8 @@ public class IndexController {
 	}
 	
 	@RequestMapping(value={"/users/changeHeader","/changeHeader"})
-	public String changeHeader() {
+	public String changeHeader(Model model) {
+		model.addAttribute("currentUser", userComponent.getLoggedUser());
 		if (userComponent.isLoggedUser())
 			return "user-changeHeader";
 		else
@@ -81,8 +86,8 @@ public class IndexController {
 			@RequestParam("file") MultipartFile file) {
 		
 		User currentUser=userComponent.getLoggedUser();
-				
-		
+			
+		model.addAttribute("currentUser", userComponent.getLoggedUser());
 		if (!file.isEmpty()) {
 			try {
 
@@ -142,7 +147,7 @@ public class IndexController {
 		
 		User currentUser=userComponent.getLoggedUser();
 				
-		
+		model.addAttribute("currentUser", userComponent.getLoggedUser());
 		if (!file.isEmpty()) {
 			try {
 
@@ -199,7 +204,7 @@ public class IndexController {
 		
 		User currentUser=userComponent.getLoggedUser();
 				
-		
+		model.addAttribute("currentUser", userComponent.getLoggedUser());
 		if (!file.isEmpty()) {
 			try {
 

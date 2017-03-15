@@ -1,6 +1,6 @@
 <!DOCTYPE>
 <html>
-
+ 
 <head>
     <link href="/stylesheet/bootstrap.min.css" rel="stylesheet">
     <link href="/stylesheet/style.css" rel="stylesheet">
@@ -53,7 +53,9 @@
                     <li><a href="users/addPost"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
                     <li class="dropdown">
                         <!--Título botón-->
-                        <a href="#" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/img/userPhoto.jpg" />User name <span class="caret"></span></a>
+                        {{#currentUser}}
+                        <a href="#" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/{{id}}" />{{username}} <span class="caret"></span></a>
+                        {{/currentUser}}
                         <!--Submenú-->
                         <ul class="dropdown-menu">
                             <li><a href="/profile">Profile</a></li>
@@ -63,7 +65,7 @@
                             <li><a href="/logout">Log out</a></li>
                         </ul>
                     </li>
-                    <li><a href="/mensajes">E-mail <span class="badge">4</span></a></li>
+                    <li><a href="/mensajes">E-mail <span class="badge">{{numEmail}}</span></a></li>
                 </ul>
             </div>
         </div>
@@ -88,7 +90,6 @@
                         <div class="menu">
                             <ul class="nav nav-pills nav-stacked">
                                 <li><a href="/mensajes">RECIBIDOS</a></li>
-                                <li><a href="#">BORRADORES</a></li>
                                 <li><a href="/mensajes/eliminados">ELIMINADOS</a></li>
                             </ul>
                         </div>
@@ -99,20 +100,22 @@
                     <div class="side-middle">
                         <div class="mailbox">
                         {{#send-msg}}
+                        <form action="/mensajes/{{username}}/enviado" method="POST">
                             <div class="col-xs-12 col-md-12">
-                                <form>
+                                
                                     <div class="form-group">
                                         <label for="inputdefault">Mensaje:</label>
-                                        <textarea class="form-control" id="textarea-message" rows="10"></textarea>
+                                        <textarea class="form-control" id="textarea-message" name="message-content" rows="10"></textarea>
                                     </div>
-                                </form>
+                                
                             </div>
                          
                             <div class="col-xs-12 col-md-12">
                                 <div id="btn-message">
-                                    <button type="button" class="btn btn-default navbar-right"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Enviar</button>
+                                    <input type="submit" class="btn btn-default navbar-right"></input>
                                 </div>
-                            </div>
+                            </div>�
+                            </form>
                             
                             {{/send-msg}}
                             <div class="col-xs-12 col-md-12">
@@ -122,7 +125,7 @@
                                 {{/sinMensajes}}
                                 {{#messages}}
                                     <div class="panel panel-default">
-                                        <div class="panel-heading"> <img href="user-users.html" alt="" class="userIconImg" src="/img/userPhoto.jpg" /><a href="user-users.html" class="votes"> {{messageSender.username}}</a>
+                                        <div class="panel-heading"> <a href="/user/{{messageSender.username}}"><img  alt="" class="userIconImg" src="/avatarimg/{{messageSender.id}}" /> {{messageSender.username}}</a>
                                             <div class="btn-remove">
                                             	{{#conversation}}
                                             	<form action="/mensajes/eliminados/movido/{{id}}" method="POST">
