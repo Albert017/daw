@@ -16,13 +16,13 @@
         <div class="container-fluid">
             <!--Imagen-->
             <div class="navbar-header">
-                <a class="navbar-brand" href="/"><img class="brand" alt="Brand" src="/img/icon.png" /></a>
+                <a class="navbar-brand" href="#"><img class="brand" alt="Brand" src="../img/icon.png" /></a>
             </div>
             <!--Resto del contenido-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <!--Menus entre el logo y la busqueda-->
                 <ul class="nav navbar-nav">
-                    <li><a href="user-index.html">Hot</a></li>
+                    <li><a href="/index">Hot</a></li>
                     <li><a href="#">Trending</a></li>
                     <li><a href="#">Fresh</a></li>
                     <li><a href="#">Random</a></li>
@@ -31,13 +31,12 @@
                         <!--Título botón--><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tags <span class="caret"></span></a>
                         <!--Submenú-->
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
+                            <li><a href="#">Funny</a></li>
+                            <li><a href="#">Animals</a></li>
+                            <li><a href="#">Anime and manga</a></li>
+                            <li><a href="#">Movies and TV</a></li>
+                            <li><a href="#">WTF</a></li>
+                            <li><a href="#">Savage</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -51,7 +50,7 @@
                 </form>
                 <!--Menus después de la busqueda: Inicio de sesión-->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="user-addPost.html"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
+                	<li><a href="/addPost"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
                     <li class="dropdown">
                         <!--Título botón-->
                         {{#currentUser}}
@@ -59,19 +58,19 @@
                         {{/currentUser}}
                         <!--Submenú-->
                         <ul class="dropdown-menu">
-                            <li><a href="user-profile.html">Profile</a></li>
+                            <li><a href="/profile">Profile</a></li>
                             <li><a href="#">Help</a></li>
-                            <li><a href="links-profile/Settings.html">Tools</a></li>
+                            <li><a href="/settings">Tools</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="index.html">Log out</a></li>
+                            <li><a href="/logout">Log out</a></li>
                         </ul>
                     </li>
-                    <li><a href="/mensajes">E-mail <span class="badge">4</span></a></li>
+                    <li><a href="/mensajes">E-mail <span class="badge"></span></a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    {{#currentUser}}
+	{{#currentUser}}
     <header id="page-top" style="background-image: url(/headerimg/{{id}})">
         <div class="container header-info">
             <div class="header-user-info"> <img style="width:100" class="img-center" alt="" src="/avatarimg/{{id}}" />
@@ -84,17 +83,11 @@
     {{/currentUser}}
     <div class="row">
         <div class="hidden-xs col-md-3">
-            <div class="btn-group-vertical separation-profile" role="group" aria-label="...">
-                <a href="user-changePhoto.html"><button type="button" class="btn btn-default">Profile photo<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
-                <a href="user-changeHeader.html"><button type="button" class="btn btn-default">Header<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
-            </div>
         </div>
         <div class="col-xs-12 col-md-6">
             <div class="menu-profile">
                 <ul class="nav nav-pills">
-                    <li role="presentation"><a href="user-profile.html">Home</a></li>
-                    <li role="presentation"><a class="followers-following" href="user-profile-followers.html"> Followers <span class="badge badge-header">42</span></a></li>
-                    <li role="presentation"><a class="followers-following" href="user-profile-following.html"> Following <span class="badge badge-header">42</span></a></li>
+                    <li role="presentation"><a href="/profile">Home</a></li>
                 </ul>
             </div>
             <!-- Form to add a post-->
