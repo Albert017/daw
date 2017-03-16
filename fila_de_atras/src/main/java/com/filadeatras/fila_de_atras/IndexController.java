@@ -238,4 +238,7 @@ public class IndexController extends NavbarController{
 					.copy(new FileInputStream(defaultFile), res.getOutputStream());
 		}
 	}
+	
+	@RequestMapping(value="/uploadProfileNewData", method = RequestMethod.PUT)
+	
 }
