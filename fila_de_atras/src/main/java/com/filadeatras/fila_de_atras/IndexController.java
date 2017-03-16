@@ -240,5 +240,8 @@ public class IndexController extends NavbarController{
 	}
 	
 	@RequestMapping(value="/uploadProfileNewData", method = RequestMethod.PUT)
+	public void uploadProfileNewData(){
+		
+	}
 	
 }
