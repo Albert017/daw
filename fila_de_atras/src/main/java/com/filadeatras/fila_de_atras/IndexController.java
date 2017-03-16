@@ -11,10 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -239,9 +242,22 @@ public class IndexController extends NavbarController{
 		}
 	}
 	
-	@RequestMapping(value="/uploadProfileNewData", method = RequestMethod.PUT)
-	public void uploadProfileNewData(){
+	/**@RequestMapping(value="/uploadProfileNewData/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<User> uploadProfileNewData(Model model,@PathVariable long id, @RequestBody User updatedUser, @RequestParam ("username") String newName,
+			@RequestParam ("email") String newEmail){
+
+		loadModel(model);
+		User user= userRepository.findOne(id);
+		if(user != null){
+			updatedUser.setId(id);
+			updatedUser.setUsername(newName);
+			updatedUser.setUserEmail(newEmail);
+			userRepository.save(updatedUser);
+			return new ResponseEntity<> (updatedUser, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 		
-	}
+	}**/
 	
 }

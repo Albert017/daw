@@ -20,6 +20,14 @@ public class User {
 		@Column(unique=true)
 		private String userEmail;
 
+		public String getUserEmail() {
+			return userEmail;
+		}
+
+		public void setUserEmail(String userEmail) {
+			this.userEmail = userEmail;
+		}
+
 		@ElementCollection(fetch = FetchType.EAGER)
 		private List<String> roles;
 		
