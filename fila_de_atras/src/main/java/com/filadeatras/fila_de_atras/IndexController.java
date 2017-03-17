@@ -52,6 +52,14 @@ public class IndexController extends NavbarController{
 		return "index";
 	}
 	
+	@RequestMapping(value={"/trending"})
+	public String indexTrendingController(Model model, HttpServletRequest request){
+		loadNavbar(model);
+		List<Post> original = postRepository.findAllByOrderByPostUpVotesDesc();
+		model.addAttribute("Posts",original);
+		return "indexTrending";
+	}
+	
 	@RequestMapping(value={"/users/addPost/","/addPost"})
 	public String index(Model model) {
 		if (userComponent.isLoggedUser()){
