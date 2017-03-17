@@ -181,6 +181,9 @@ public class IndexController extends NavbarController{
 				}
 				File uploadedFile = new File(filesFolder.getAbsolutePath(),+currentUser.getId()+".jpg");
 				file.transferTo(uploadedFile);
+				
+				User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
+				model.addAttribute("followersList", conectedUser.getUserFollowers());
 								
 				return "followers";
 

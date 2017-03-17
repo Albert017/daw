@@ -83,6 +83,13 @@
         </div>
         <div class="followers-container">
         <div id="Up"></div> <a class="followers-following" href="#"> Followers <span class="badge badge-header">{{userFollowers.size}}</span></a><a class="followers-following" href="#"> Following <span class="badge badge-header">{{userFollowing.size}}</span></a> </div>
+    	{{#loggedUser}} 
+    	<div class="followers-container">
+            <p></p>
+            <!--<a href="#" id="follow" class="btn btn-primary" role="button">Follow</a>-->
+            <button type="button" id="follow" class="btn btn-info">Follow</button>
+        </div>
+    {{/loggedUser}} 
     </header>
     {{/UserViewUser}}
     <div class="row">
@@ -143,6 +150,7 @@
     <div class="col-md-12 toup">
         <div class="toUp"> <a href="#Up" type="button" class="btn btn-primary  btn-toUp btn-md navbar-right"><span class="glyphicon glyphicon-arrow-up" aria-hidden="false"></span></a> </div>
     </div>
+    <script src="/js/javascript.js"></script>
 </body>
 
 </html>

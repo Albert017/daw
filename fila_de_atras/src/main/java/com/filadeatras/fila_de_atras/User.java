@@ -133,6 +133,10 @@ public class User {
 			this.userFollowing.add(following);
 		}
 		
+		public void addFollower(User follower) {
+			this.userFollowers.add(follower);
+		}
+		
 		public List<User> getUserFollowers() {
 			return userFollowers;
 		}
@@ -167,6 +171,16 @@ public class User {
 
 		public void setRoles(List<String> roles) {
 			this.roles = roles;
+		}
+		
+		public void deleteFollowing(User user){
+			userFollowing.remove(user);
+			
+		}
+		
+		
+		public boolean equals(User user){
+			return this.id==user.id;
 		}
 
 		

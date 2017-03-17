@@ -105,8 +105,10 @@
             <div class="side-middle">
             	{{#followersList}}
 	                <div class="panel panel-default">
-	                    <div class="panel-body"><a href="admin-users.html"> <img alt="" src="../avatarimg/{{id}}" class="profile-followers" />{{username}}</a>
-	                        <button type="button" class="btn btn-info button-follow-user">Follow</button>
+	                    <div class="panel-body"><a href="/users/{{username}}"> <img alt="" src="/avatarimg/{{id}}" class="profile-followers" />{{username}}</a>
+	                        <form action="/follow/{{username}}" method="POST">
+	                        	<button type="submit" class="btn btn-success button-follow-user">Follow</button>
+	                        </form>
 	                    </div>
 	                </div>
                 {{/followersList}}
@@ -122,7 +124,6 @@
             </div>
         </div>
     </div>
-    <script src="../js/javascript.js"></script>
 </body>
 
 </html>

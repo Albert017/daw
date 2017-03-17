@@ -92,6 +92,9 @@ public class UsersController extends NavbarController{
 	@RequestMapping("/followers")
 	public String profileFollowersController(Model model){
 		loadProfileNavbar(model);
+		User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
+		model.addAttribute("followersList", conectedUser.getUserFollowers());
+		
 		return "followers";
 	}
 	
@@ -99,9 +102,40 @@ public class UsersController extends NavbarController{
 	public String profileFollowingController(Model model){
 		
 		loadProfileNavbar(model);
-	
+		User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
+		model.addAttribute("followingList", conectedUser.getUserFollowing());
+		
 		return "following";
 	}
+	
+	@RequestMapping(value="/unfollow/{username}", method = RequestMethod.POST)
+	public String unfollowUserController(Model model, @PathVariable String username){
+		
+		loadProfileNavbar(model);
+		User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
+		User unfollowUser = userRepository.findByusername(username);
+		conectedUser.deleteFollowing(unfollowUser);
+		userRepository.save(conectedUser);
+		model.addAttribute("followingList", conectedUser.getUserFollowing());
+		
+		return "following";
+	}
+	
+	@RequestMapping(value="/follow/{username}", method = RequestMethod.POST)
+	public String followUserController(Model model, @PathVariable String username){
+		
+		loadProfileNavbar(model);
+		User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
+		User followUser = userRepository.findByusername(username);
+		conectedUser.addFollowing(followUser);
+		userRepository.save(conectedUser);
+		model.addAttribute("followersList", conectedUser.getUserFollowing());
+		
+		return "followers";
+	}
+	
+	
+	
 	
 	@RequestMapping("/reports-posts")
 	public String profileReportPostsController(Model model){
@@ -165,12 +199,9 @@ public class UsersController extends NavbarController{
 		if(p.getPostComments().size()>0){
 			for(int i=0; i<p.getPostComments().size();i++){
 				commentRepository.delete(p.getPostComments().get(i));
-
-				
-			}
-			
-			
+			}	
 		}
+		
 		postRepository.delete(p);
 
 		loadProfileNavbar(model);
