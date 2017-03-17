@@ -55,8 +55,7 @@ public class IndexController extends NavbarController{
 	@RequestMapping(value={"/users/addPost/","/addPost"})
 	public String index(Model model) {
 		if (userComponent.isLoggedUser()){
-			model.addAttribute("currentUser", userComponent.getLoggedUser());
-			model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
+			loadNavbar(model);
 			return "user-addPost";
 		}else
 			return "index";
@@ -137,7 +136,7 @@ public class IndexController extends NavbarController{
 		
 		User currentUser=userComponent.getLoggedUser();
 				
-		loadNavbar(model);
+		loadProfileNavbar(model);
 		if (!file.isEmpty()) {
 			try {
 
@@ -185,7 +184,7 @@ public class IndexController extends NavbarController{
 		
 		User currentUser=userComponent.getLoggedUser();
 				
-		loadNavbar(model);
+		loadProfileNavbar(model);
 		if (!file.isEmpty()) {
 			try {
 

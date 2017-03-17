@@ -25,38 +25,43 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/singnup").permitAll();
         http.authorizeRequests().antMatchers("/postIndex").permitAll();
         http.authorizeRequests().antMatchers("/error").permitAll();
+        http.authorizeRequests().antMatchers("/user/{username}").permitAll();
+        http.authorizeRequests().antMatchers("/search").permitAll();
+        http.authorizeRequests().antMatchers("/post/{id}").permitAll();
 
         // Private pages (all other pages)
-        http.authorizeRequests().antMatchers("/settings*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/settings-notifications*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/settings-password*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/users/addPost").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/addPost").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/uploadPost").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/addComment").hasAnyRole("USER");
+        
+        http.authorizeRequests().antMatchers("/mensaje/nuevo").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/mensajes").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/mensajes/{username}").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/mensajes/eliminados/movido/{id}").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/mensajes/eliminados").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/mensajes/eliminado/{id}").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/mensajes/enviado/{id}").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/mensajes/{username}/enviado").hasAnyRole("USER");
+        
+        http.authorizeRequests().antMatchers("/headerimg/{fileName}").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/avatarimg/{fileName}").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/profile/delete/post/{id}").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/settings").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/settings-notifications").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/settings-password").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/edit-profile").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/profile").hasRole("USER");
         http.authorizeRequests().antMatchers("/followers").hasRole("USER");
         http.authorizeRequests().antMatchers("/following").hasRole("USER");
         http.authorizeRequests().antMatchers("/myPosts").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/followers").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/following").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/users/addPost").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/mensaje/nuevo").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/mensajes").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/mensajes/*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/mensajes/eliminados/movido/*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/mensajes/eliminados*").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/mensajes/enviado*").hasAnyRole("USER");
-        
         http.authorizeRequests().antMatchers("/changeHeader").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/users/changeHeader").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/uploadHeader").hasAnyRole("USER");;
         http.authorizeRequests().antMatchers("/changeAvatar").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/users/changeAvatar").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/uploadAvatar").hasAnyRole("USER");
-        
-        http.authorizeRequests().antMatchers("/uploadPost").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/profile/delete/post/{id}").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/addComment").hasAnyRole("USER");
-        
-        
+          
         http.authorizeRequests().antMatchers("/reports-users*").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/reports-posts*").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/reports-comments*").hasAnyRole("ADMIN");
