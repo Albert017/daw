@@ -60,6 +60,18 @@ public class IndexController extends NavbarController{
 		return "indexTrending";
 	}
 	
+	@RequestMapping(value={"/random"})
+	public String indexRandomController(Model model, HttpServletRequest request){
+		loadNavbar(model);
+		List<Post> postListCurr = postRepository.findAll();
+		Post ranPost = null;
+		if (postListCurr.size()>0){
+			ranPost = postListCurr.get((int)(Math.random()*postListCurr.size()));
+		}
+		model.addAttribute("Posts",ranPost);
+		return "indexRandom";
+	}
+	
 	@RequestMapping(value={"/users/addPost/","/addPost"})
 	public String index(Model model) {
 		if (userComponent.isLoggedUser()){
