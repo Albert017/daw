@@ -41,12 +41,6 @@ public class IndexController extends NavbarController{
 	@Autowired
 	UserComponent userComponent;
 	
-	public void loadModel(Model model){
-		model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
-		model.addAttribute("unreadMessages","0"); //Replacee with DB query.
-		model.addAttribute("isUserAdmin",userComponent.isAdmin());
-		model.addAttribute("currentUser", userRepository.findByusername(userComponent.getLoggedUser().getUsername()));		
-	}
 	
 	@RequestMapping(value={"/","/index"})
 	public String indexController(Model model, HttpServletRequest request){
@@ -93,7 +87,7 @@ public class IndexController extends NavbarController{
 		
 		User currentUser=userComponent.getLoggedUser();
 			
-		loadModel(model);
+		loadNavbar(model);
 		if (!file.isEmpty()) {
 			try {
 
@@ -143,7 +137,7 @@ public class IndexController extends NavbarController{
 		
 		User currentUser=userComponent.getLoggedUser();
 				
-		loadModel(model);
+		loadNavbar(model);
 		if (!file.isEmpty()) {
 			try {
 
@@ -191,7 +185,7 @@ public class IndexController extends NavbarController{
 		
 		User currentUser=userComponent.getLoggedUser();
 				
-		loadModel(model);
+		loadNavbar(model);
 		if (!file.isEmpty()) {
 			try {
 

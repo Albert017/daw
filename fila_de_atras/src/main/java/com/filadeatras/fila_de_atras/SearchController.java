@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class SearchController {
+public class SearchController extends NavbarController{
 	
 	@Autowired
 	PostRepository postRepository;
@@ -18,7 +18,7 @@ public class SearchController {
 	@RequestMapping(value="/search")
 	public String postSearch(Model model, @RequestParam("searchedPost") String consultedPost){
 		Post currPost = postRepository.findBypostTitle(consultedPost);
-			model.addAttribute("loggedUser",userComponent.getLoggedUser());
+			loadNavbar(model);
 			model.addAttribute("Post",currPost);
 			return "postIndex";
 	}

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class CommentController {
+public class CommentController extends NavbarController{
 	
 	@Autowired
 	private CommentRepository commentRepository;
@@ -33,7 +33,7 @@ public class CommentController {
 			@RequestParam(value="commentContent", required=true) String cContent,
 			@RequestParam(value="commentPost", required=true) String cPost){
 		
-		model.addAttribute("currentUser", userComponent.getLoggedUser());
+		loadNavbar(model);
 		
 		Long id = Long.parseLong(cPost);
 		Post currPost = postRepository.findOne(id);
@@ -45,7 +45,6 @@ public class CommentController {
 		
 		currPost = postRepository.findOne(id);
 		
-		model.addAttribute("loggedUser",userComponent.getLoggedUser());
 		model.addAttribute("Post",currPost);
 		model.addAttribute("PostComments",currPost.getPostComments());
 		return "postIndex";
