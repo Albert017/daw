@@ -28,6 +28,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/user/{username}").permitAll();
         http.authorizeRequests().antMatchers("/search").permitAll();
         http.authorizeRequests().antMatchers("/post/{id}").permitAll();
+        
+        http.authorizeRequests().antMatchers("/user/{username}/{id}/up-vote").permitAll();
+        http.authorizeRequests().antMatchers("/user/{username}/{id}/down-vote").permitAll();
+        http.authorizeRequests().antMatchers("/post/{id}/down-vote").permitAll();
+        http.authorizeRequests().antMatchers("/post/{id}/up-vote").permitAll();
+        http.authorizeRequests().antMatchers("/index/{id}/down-vote").permitAll();
+        http.authorizeRequests().antMatchers("/index/{id}/up-vote").permitAll();
 
         // Private pages (all other pages)
         http.authorizeRequests().antMatchers("/users/addPost").hasAnyRole("USER");
@@ -61,6 +68,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/changeAvatar").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/users/changeAvatar").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/uploadAvatar").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/profile/post/{id}/up-vote").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/profile/post/{id}/down-vote").hasAnyRole("USER");
           
         http.authorizeRequests().antMatchers("/reports-users*").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/reports-posts*").hasAnyRole("ADMIN");
