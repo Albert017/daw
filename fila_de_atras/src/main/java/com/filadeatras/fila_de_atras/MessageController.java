@@ -1,6 +1,5 @@
 package com.filadeatras.fila_de_atras;
 
-import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,10 +23,6 @@ public class MessageController extends NavbarController{
 	@Autowired
 	private UserComponent userComponent;
 	
-	@PostConstruct
-	public void init(){
-		
-	}
 	
 	// Metodo que te devuelve una lista con los diferentes usuarios con los que tienes mensajes
 	private static void getMessageWithDifferentSender(List<Message> lista, List<Message> result){

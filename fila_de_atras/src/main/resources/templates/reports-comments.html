@@ -15,13 +15,13 @@
         <div class="container-fluid">
             <!--Imagen-->
             <div class="navbar-header">
-                <a class="navbar-brand" href="#"><img class="brand" alt="Brand" src="../img/icon.png" /></a>
+                <a class="navbar-brand" href="/"><img class="brand" alt="Brand" src="../img/icon.png" /></a>
             </div>
             <!--Resto del contenido-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <!--Menus entre el logo y la busqueda-->
                 <ul class="nav navbar-nav">
-                    <li><a href="/index">Hot</a></li>
+                    <li><a href="/">Hot</a></li>
                     <li><a href="#">Trending</a></li>
                     <li><a href="#">Fresh</a></li>
                     <li><a href="#">Random</a></li>
@@ -49,20 +49,22 @@
                 </form>
                 <!--Menus después de la busqueda: Inicio de sesión-->
                 <ul class="nav navbar-nav navbar-right">
-                	<li><a href="/addPost"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
+                    <li><a href="/users/addPost"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
                     <li class="dropdown">
                         <!--Título botón-->
-                        <a href="#" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/{{currentUser.id}}" />{{loggedUsername}} <span class="caret"></span></a>
+                        {{#currentUser}}
+                        <a href="/profile" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/{{id}}" />{{username}} <span class="caret"></span></a>
+                        {{/currentUser}}
                         <!--Submenú-->
                         <ul class="dropdown-menu">
                             <li><a href="/profile">Profile</a></li>
-                            <li><a href="#">Help</a></li>
+                            <li><a href="/help">Help</a></li>
                             <li><a href="/settings">Tools</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="/logout">Log out</a></li>
                         </ul>
                     </li>
-                    <li><a href="/mensajes">E-mail <span class="badge">{{unreadMessages}}</span></a></li>
+                    <li><a href="/mensajes">E-mail <span class="badge">{{numEmail}}</span></a></li>
                 </ul>
             </div>
         </div>
@@ -90,8 +92,8 @@
             <div class="menu-profile">
                 <ul class="nav nav-pills">
                     <li role="presentation"><a href="/profile">My Posts</a></li>
-                    <li role="presentation"><a class="followers-following" href="/followers"> Followers <span class="badge badge-header">{{currentUser.userFollowers.size}}</span></a></li>
-                    <li role="presentation"><a class="followers-following" href="/following"> Following <span class="badge badge-header">{{currentUser.userFollowing.size}}</span></a></li>
+                    <li role="presentation"><a class="followers-following" href="/followers"> Followers <span class="badge badge-header">{{numFollowers}}</span></a></li>
+                    <li role="presentation"><a class="followers-following" href="/following"> Following <span class="badge badge-header">{{numFollowings}}</span></a></li>
                     <li role="presentation"><a href="/reports-users">Reported Users</a></li>
                     <li role="presentation"><a href="/reports-posts">Reported posts</a></li>
                     <li role="presentation" class="active"><a href="/reports-comments">Reported comments</a></li>

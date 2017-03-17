@@ -32,6 +32,8 @@ public class Post {
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> postTags;
 	private String postDate;
+	private int postUpVotes;
+	private int postDownVotes;
 	
 	public Post(){}
 	
@@ -45,8 +47,38 @@ public class Post {
 		postComments = new LinkedList<>();
 		postTags= new LinkedList<>();
 		this.postDate= LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM,FormatStyle.MEDIUM));
+		postUpVotes=0;
+		postDownVotes=0;
 	}
 	
+	public List<String> getPostTags() {
+		return postTags;
+	}
+
+	public void setPostTags(List<String> postTags) {
+		this.postTags = postTags;
+	}
+	
+	public void setPostTag(String tag) {
+		this.postTags.add(tag);
+	}
+
+	public int getPostUpVotes() {
+		return postUpVotes;
+	}
+
+	public void setPostUpVotes(int postUpVotes) {
+		this.postUpVotes = postUpVotes;
+	}
+
+	public int getPostDownVotes() {
+		return postDownVotes;
+	}
+
+	public void setPostDownVotes(int postDownVotes) {
+		this.postDownVotes = postDownVotes;
+	}
+
 	public long getId() {
 		return id;
 	}

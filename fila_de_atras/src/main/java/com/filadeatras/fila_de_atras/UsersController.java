@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import antlr.TokenWithIndex;
 
 @Controller
-public class UsersController {
+public class UsersController extends NavbarController{
 	@Autowired
 	private UserRepository userRepository;
 	
@@ -55,8 +55,6 @@ public class UsersController {
 	}
 
 	public void loadModel(Model model){
-		model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
-		model.addAttribute("unreadMessages","0"); //Replacee with DB query.
 		model.addAttribute("isUserAdmin",userComponent.isAdmin());
 		model.addAttribute("currentUser", userRepository.findByusername(userComponent.getLoggedUser().getUsername()));		
 	}
@@ -85,9 +83,7 @@ public class UsersController {
 	@RequestMapping("/profile")
 	public String profileController(Model model){
 		
-		//Common parts
-		loadModel(model);
-		//End Common Parts
+		loadProfileNavbar(model);
 		List<Post> postListCurr = userRepository.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
 		model.addAttribute("Posts",postListCurr);
 		
@@ -99,14 +95,14 @@ public class UsersController {
 	
 	@RequestMapping("/followers")
 	public String profileFollowersController(Model model){
-		loadModel(model);	
+		loadProfileNavbar(model);
 		return "followers";
 	}
 	
 	@RequestMapping("/following")
 	public String profileFollowingController(Model model){
 		
-		loadModel(model);
+		loadProfileNavbar(model);
 	
 		return "following";
 	}
@@ -114,7 +110,7 @@ public class UsersController {
 	@RequestMapping("/reports-posts")
 	public String profileReportPostsController(Model model){
 		
-		loadModel(model);
+		loadProfileNavbar(model);
 	
 		return "reports-posts";
 	}
@@ -122,7 +118,7 @@ public class UsersController {
 	@RequestMapping("/reports-users")
 	public String profileReportUsersController(Model model){
 		
-		loadModel(model);
+		loadProfileNavbar(model);
 	
 		return "reports-users";
 	}
@@ -130,7 +126,7 @@ public class UsersController {
 	@RequestMapping("/reports-comments")
 	public String profileReportCommentsController(Model model){
 		
-		loadModel(model);
+		loadProfileNavbar(model);
 	
 		return "reports-comments";
 	}
@@ -138,7 +134,7 @@ public class UsersController {
 	@RequestMapping("/settings")
 	public String settingsController(Model model){
 		
-		loadModel(model);
+		loadProfileNavbar(model);
 	
 		return "user-Settings";
 	}
@@ -162,7 +158,7 @@ public class UsersController {
 	@RequestMapping("/edit-profile")
 	public String editProfileController(Model model){
 		
-		loadModel(model);
+		loadProfileNavbar(model);
 	
 		return "user-design-profile";
 	}
@@ -181,16 +177,7 @@ public class UsersController {
 		}
 		postRepository.delete(p);
 
-		//Common parts
-				model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
-				model.addAttribute("unreadMessages","0"); //Replacee with DB query.
-				model.addAttribute("numberFollowers","0"); //Replacee with DB query.
-				model.addAttribute("numberFollowing","0"); //Replacee with DB query.
-				model.addAttribute("isUserAdmin",userComponent.isAdmin());
-				List<Post> postListCurr = userRepository.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
-				model.addAttribute("Posts",postListCurr);
-				model.addAttribute("currentUser", userComponent.getLoggedUser());
-				//End Common Parts
+		loadProfileNavbar(model);
 	
 		return "profile";
 	}

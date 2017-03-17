@@ -74,7 +74,7 @@ public class IndexController extends NavbarController{
 	
 	@RequestMapping(value={"/users/changeAvatar","/changeAvatar"})
 	public String changeAvatar(Model model) {
-		loadNavbar(model);
+		loadProfileNavbar(model);
 		if (userComponent.isLoggedUser())
 			return "user-changePhoto";
 		else
@@ -83,7 +83,7 @@ public class IndexController extends NavbarController{
 	
 	@RequestMapping(value={"/users/changeHeader","/changeHeader"})
 	public String changeHeader(Model model) {
-		loadNavbar(model);
+		loadProfileNavbar(model);
 		if (userComponent.isLoggedUser())
 			return "user-changeHeader";
 		else

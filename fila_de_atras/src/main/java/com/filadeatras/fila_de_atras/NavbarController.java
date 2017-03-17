@@ -28,5 +28,13 @@ public class NavbarController {
 		model.addAttribute("numEmail", num);
 		
 	}
+	
+	public void loadProfileNavbar(Model model){
+		loadNavbar(model);
+		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
+		model.addAttribute("isUserAdmin",userComponent.isAdmin());
+		model.addAttribute("numFollowers", conectedUser.getUserFollowers().size());
+		model.addAttribute("numFollowings", conectedUser.getUserFollowing().size());
+	}
 
 }
