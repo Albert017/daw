@@ -46,6 +46,7 @@ public class UsersController extends NavbarController{
 		Post p1 = new Post("El titulo del post", u2);
 		Post p2 = new Post("1", u2);
 		Post p3 =new Post("2", u2);
+		p3.setPostUpVotes(15);
 		postRepository.save(p1);
 		postRepository.save(p2);
 		postRepository.save(p3);

@@ -183,6 +183,12 @@ public class PostController extends NavbarController{
 			return "users";
 		}
 	}
-	
+	@RequestMapping("/bestPost")
+	public String bestPost(Model model){
+		Post bestPost = postRepository.findTop1BypostUpVotes();
+		model.addAttribute("Post", bestPost);
+		model.addAttribute("PostComments", bestPost.getPostComments());
+		return "bestPost";
+	}
 	
 }
