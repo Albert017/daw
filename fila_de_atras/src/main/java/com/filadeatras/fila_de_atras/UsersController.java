@@ -173,6 +173,8 @@ public class UsersController extends NavbarController{
 		postRepository.delete(p);
 
 		loadProfileNavbar(model);
+		List<Post> postListCurr = userRepository.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
+		model.addAttribute("Posts",postListCurr);
 	
 		return "profile";
 	}

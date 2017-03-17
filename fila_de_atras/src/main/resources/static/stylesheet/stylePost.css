@@ -108,3 +108,10 @@ a.text-primary:focus {
 	height: 100;
 	border-radius: 5px;
 }
+
+#up-votes{
+	float:left;
+}
+#down-votes{
+	float:right;
+}

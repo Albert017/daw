@@ -109,12 +109,16 @@
                             <h3>{{postTitle}}</h3>
                             <p><a class="votes" href="users.html">{{postAuthor.username}}</a><a id="date" class="votes" href="#"> {{postDate}}</a></p>
                             <p> 
-                            <form action="/profile/post/{{id}}/up-vote" method="POST">
-                            	<a type="submit" class="btn btn-primary" role="button">⬆</a> 
-                            </form>
-                            <form action="/profile/post/{{id}}/up-vote" method="POST">
-                            	<a type="submit" class="btn btn-primary" role="button">⬇</a> 
-                            </form>
+                            <div id="up-votes">
+	                            <form action="/profile/post/{{id}}/up-vote" method="POST">
+	                            	<button type="submit" class="btn btn-primary" >⬆</button> 
+	                            </form>
+                            </div>
+                            <div id=down-votes">
+	                            <form action="/profile/post/{{id}}/down-vote" method="POST">
+	                            	<button type="submit" class="btn btn-primary" role="button">⬇</button> 
+	                            </form>
+                            </div>
                             
                             	
                             	<a class="votes"> Upvotes <span class="badge">{{postUpVotes}}</span></a> 
@@ -122,9 +126,9 @@
                             	<a class="votes"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a> 
                             </p>
                             <div>
-                                <a href="index.html" class="social-network-post"><img src="img/icon_twitter.png" class="social-post" /></a>
-                                <a href="index.html" class="social-network-post"><img src="img/icon_instagram.png" class="social-post" /></a>
-                                <a href="index.html" class="social-network-post"><img src="img/icon_facebook.png" class="social-post" /></a>
+                                <a href="index.html" class="social-network-post"><img src="/img/icon_twitter.png" class="social-post" /></a>
+                                <a href="index.html" class="social-network-post"><img src="/img/icon_instagram.png" class="social-post" /></a>
+                                <a href="index.html" class="social-network-post"><img src="/img/icon_facebook.png" class="social-post" /></a>
                                 <form action="/profile/delete/post/{{id}}" method="POST">
                                 	<button type="submit" class="btn btn-primary  navbar-right delete-btn"><span class="glyphicon glyphicon-trash"></span></button>
                            		</form>
