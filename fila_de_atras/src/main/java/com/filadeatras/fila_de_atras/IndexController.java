@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -45,6 +46,20 @@ public class IndexController extends NavbarController{
 	@RequestMapping(value={"/","/index"})
 	public String indexController(Model model, HttpServletRequest request){
 		loadNavbar(model);
+		
+		/**Post post1= postRepository.findFirstByyearOrderBypostUpVotesAsc(LocalDateTime.now().getYear());
+		if(post1 != null){
+			model.addAttribute("BestPostOfYear",post1);
+		}
+		Post post2= postRepository.findFirstBymonthOrderBypostUpVotesAsc(LocalDateTime.now().getMonth().toString());
+		if(post2 != null){
+			model.addAttribute("BestPostOfMonth",post2);
+		}
+		Post post3= postRepository.findFirstBydayOrderBypostUpVotesAsc(LocalDateTime.now().getDayOfMonth());
+		if(post3 != null){
+			model.addAttribute("BestPostOfDay",post3);
+		}**/
+		
 		List<Post> original = postRepository.findAll();
 		List<Post> shallowCopy = original.subList(0, original.size());
 		Collections.reverse(shallowCopy);

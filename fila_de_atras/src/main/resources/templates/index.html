@@ -86,20 +86,33 @@
             <!--Contenido Izquierda-->
             <div class="hidden-xs col-md-2">
                 <div class="side-left">
+                	{{#BestPostOfYear}}
                     <div class="thumbnail">
-                        <a href="admin-postIndex.html"><img src="http://placehold.it/320x150" alt="" />
+                        <a href="admin-postIndex.html"><img class="tamTopDate" src="/postimg/{{id}}" alt="" />
                             <div class="caption">
-                                <p>Foto de gato</p>
+                                <p>{{postTitle}}</p>
                             </div>
                         </a>
                     </div>
+                    {{/BestPostOfYear}}
+                    {{#BestPostOfMonth}}
                     <div class="thumbnail">
-                        <a href="admin-postIndex.html"><img src="http://placehold.it/320x150" alt="" />
+                        <a href="admin-postIndex.html"><img class="tamTopDate" src="/postimg/{{id}}" alt="" />
                             <div class="caption">
-                                <p>Foto de gato</p>
+                                <p>{{postTitle}}</p>
                             </div>
                         </a>
                     </div>
+                    {{/BestPostOfMonth}}
+                    {{#BestPostOfDay}}
+                    <div class="thumbnail">
+                        <a href="admin-postIndex.html"><img class="tamTopDate" src="/postimg/{{id}}" alt="" />
+                            <div class="caption">
+                                <p>{{postTitle}}</p>
+                            </div>
+                        </a>
+                    </div>
+                    {{/BestPostOfDay}}
                 </div>
             </div>
             <!--Posts - Contenido central -->

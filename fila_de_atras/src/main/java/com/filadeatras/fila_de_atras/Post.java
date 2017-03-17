@@ -32,6 +32,9 @@ public class Post {
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> postTags;
 	private String postDate;
+	private String month;
+	private int day;
+	private int year;
 	private int postUpVotes;
 	private int postDownVotes;
 	
@@ -47,6 +50,9 @@ public class Post {
 		postComments = new LinkedList<>();
 		postTags= new LinkedList<>();
 		this.postDate= LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM,FormatStyle.MEDIUM));
+		day = LocalDateTime.now().getDayOfMonth();
+		month= LocalDateTime.now().getMonth().toString();
+		year= LocalDateTime.now().getYear();
 		postUpVotes=0;
 		postDownVotes=0;
 	}
