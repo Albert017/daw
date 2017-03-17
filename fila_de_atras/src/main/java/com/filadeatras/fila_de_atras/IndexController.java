@@ -50,11 +50,7 @@ public class IndexController extends NavbarController{
 	
 	@RequestMapping(value={"/","/index"})
 	public String indexController(Model model, HttpServletRequest request){
-		model.addAttribute("currentUser", userComponent.getLoggedUser());
-		model.addAttribute("loggedUser",userComponent.isLoggedUser());
-		if (userComponent.isLoggedUser()){
-			model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
-		}
+		loadNavbar(model);
 		List<Post> original = postRepository.findAll();
 		List<Post> shallowCopy = original.subList(0, original.size());
 		Collections.reverse(shallowCopy);

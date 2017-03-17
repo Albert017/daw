@@ -15,19 +15,19 @@
         <div class="container-fluid">
             <!--Imagen-->
             <div class="navbar-header">
-                <a class="navbar-brand" href="#"><img class="brand" alt="Brand" src="../img/icon.png" /></a>
+                <a class="navbar-brand" href="/"><img class="brand" alt="Brand" src="../img/icon.png" /></a>
             </div>
             <!--Resto del contenido-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <!--Menus entre el logo y la busqueda-->
                 <ul class="nav navbar-nav">
-                    <li><a href="/index">Hot</a></li>
+                    <li><a href="/">Hot</a></li>
                     <li><a href="#">Trending</a></li>
                     <li><a href="#">Fresh</a></li>
                     <li><a href="#">Random</a></li>
                     <!--Ejemplo de botón que se desprende desde abajo-->
                     <li class="dropdown">
-                        <!--Título botón--><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tags <span class="caret"></span></a>
+                        <!--Título botón--><a href="/profile" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tags <span class="caret"></span></a>
                         <!--Submenú-->
                         <ul class="dropdown-menu">
                             <li><a href="#">Funny</a></li>
@@ -49,22 +49,22 @@
                 </form>
                 <!--Menus después de la busqueda: Inicio de sesión-->
                 <ul class="nav navbar-nav navbar-right">
-                	<li><a href="/addPost"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
+                    <li><a href="/users/addPost"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
                     <li class="dropdown">
                         <!--Título botón-->
                         {{#currentUser}}
-                        <a href="#" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/{{id}}" />{{loggedUsername}} <span class="caret"></span></a>
+                        <a href="#" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/{{id}}" />{{username}} <span class="caret"></span></a>
                         {{/currentUser}}
                         <!--Submenú-->
                         <ul class="dropdown-menu">
                             <li><a href="/profile">Profile</a></li>
-                            <li><a href="#">Help</a></li>
+                            <li><a href="/help">Help</a></li>
                             <li><a href="/settings">Tools</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="/logout">Log out</a></li>
                         </ul>
                     </li>
-                    <li><a href="/mensajes">E-mail <span class="badge">{{unreadMessages}}</span></a></li>
+                    <li><a href="/mensajes">E-mail <span class="badge">{{numEmail}}</span></a></li>
                 </ul>
             </div>
         </div>
@@ -74,7 +74,7 @@
         <div class="container header-info">
             <div class="header-user-info"> <img style="width:100" class="img-center" alt="" src="/avatarimg/{{id}}" />
                 <div class="intro-text">
-                    <p><span class="name">{{loggedUsername}}</span></p>
+                    <p><span class="name">{{username}}</span></p>
                 </div>
             </div>
         </div>

@@ -54,7 +54,7 @@
                     <li class="dropdown">
                         <!--Título botón-->
                         {{#currentUser}}
-                        <a href="#" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/{{id}}" />{{loggedUsername}} <span class="caret"></span></a>
+                        <a href="#" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/{{id}}" />{{username}} <span class="caret"></span></a>
                         {{/currentUser}}
                         <!--Submenú-->
                         <ul class="dropdown-menu">
@@ -65,7 +65,7 @@
                             <li><a href="/logout">Log out</a></li>
                         </ul>
                     </li>
-                    <li><a href="/mensajes">E-mail <span class="badge">4</span></a></li> 
+                    <li><a href="/mensajes">E-mail <span class="badge">{{numEmail}}</span></a></li> 
                     {{/loggedUser}} 
                     {{^loggedUser}}
                     <li><a href="/login">Iniciar Sesion</a></li>

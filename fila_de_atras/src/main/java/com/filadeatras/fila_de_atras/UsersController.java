@@ -53,16 +53,11 @@ public class UsersController extends NavbarController{
 		commentRepository.save(c1);
 
 	}
-
-	public void loadModel(Model model){
-		model.addAttribute("isUserAdmin",userComponent.isAdmin());
-		model.addAttribute("currentUser", userRepository.findByusername(userComponent.getLoggedUser().getUsername()));		
-	}
 	
 	@RequestMapping("/user/{reqUserName}")
 	public String usersController(Model model,
 			@PathVariable String reqUserName){
-		model.addAttribute("loggedUser",userComponent.getLoggedUser());
+		loadNavbar(model);
 		User viewUser = userRepository.findByusername(reqUserName);
 		if (viewUser==null){
 			model.addAttribute("ErrorMessage","User not found.");
@@ -142,7 +137,7 @@ public class UsersController extends NavbarController{
 	@RequestMapping("/settings-password")
 	public String settingsPasswordController(Model model){
 		
-		loadModel(model);
+		loadNavbar(model);
 	
 		return "user-Settings-password";
 	}
@@ -150,7 +145,7 @@ public class UsersController extends NavbarController{
 	@RequestMapping("/settings-notifications")
 	public String settingsNotificationsController(Model model){
 		
-		loadModel(model);
+		loadNavbar(model);
 	
 		return "user-Settings-notifications";
 	}

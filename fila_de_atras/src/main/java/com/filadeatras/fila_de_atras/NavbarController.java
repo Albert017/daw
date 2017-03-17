@@ -21,11 +21,15 @@ public class NavbarController {
 	}
 	
 	public void loadNavbar(Model model){
-		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
-		model.addAttribute("currentUser", userComponent.getLoggedUser());
+		model.addAttribute("loggedUser",userComponent.getLoggedUser());
+		if(userComponent.isLoggedUser()){
+			User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
+			model.addAttribute("currentUser", userComponent.getLoggedUser());
+			
+			int num = repository.findByMessageAddresseeAndMessageNew(conectedUser, true).size();
+			model.addAttribute("numEmail", num);
+		}
 		
-		int num = repository.findByMessageAddresseeAndMessageNew(conectedUser, true).size();
-		model.addAttribute("numEmail", num);
 		
 	}
 	

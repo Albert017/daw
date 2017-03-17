@@ -64,7 +64,7 @@
                             <li><a href="/logout">Log out</a></li>
                         </ul>
                     </li>
-                    <li><a href="/mensajes">E-mail <span class="badge">4</span></a></li> 
+                    <li><a href="/mensajes">E-mail <span class="badge">{{numEmail}}</span></a></li> 
                     {{/loggedUser}} 
                     {{^loggedUser}}
                     <li><a href="/login">Iniciar Sesion</a></li>
@@ -103,7 +103,7 @@
                         <a href="/post/{{id}}"><img src="/postimg/{{id}}" /></a>
                         <div class="caption">
                             <h3>{{postTitle}}</h3>
-                            <p><a class="votes" href="/user/{{postAuthor.username}}">{{postAuthor.username}} </a>{{postDate}}</p>
+                            <p><a class="votes" href="/user/{{postAuthor.username}}">{{postAuthor.username}} </a> {{postDate}}</p>
                             <p> <a href="#" class="btn btn-primary" role="button">⬆</a> <a href="#" class="btn btn-primary" role="button">⬇</a> <a class="votes" href="#"> Upvotes <span class="badge">42</span></a> <a class="votes" href="#"> Downvotes <span class="badge">42</span></a> <a class="votes" href="/post/{{id}}"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a> </p>
                             <div>
                                 <a href="index.html" class="social-network-post"><img src="/img/icon_twitter.png" class="social-post" /></a>

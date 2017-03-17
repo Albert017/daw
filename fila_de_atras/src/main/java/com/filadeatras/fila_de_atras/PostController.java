@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class PostController {
+public class PostController extends NavbarController{
 	@Autowired
 	private PostRepository postRepository;
 	
@@ -30,7 +30,7 @@ public class PostController {
 	public String postController(Model model,
 			@PathVariable Long id){
 		
-		model.addAttribute("loggedUser",userComponent.getLoggedUser());
+		loadNavbar(model);
 		Post currPost = postRepository.findOne(id);
 		model.addAttribute("Post",currPost);
 		model.addAttribute("PostComments",currPost.getPostComments());
@@ -48,9 +48,7 @@ public class PostController {
 		List<Post> postListCurr = userRepository.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
 		model.addAttribute("Posts",postListCurr);
 		
-		model.addAttribute("loggedUsername",userComponent.getLoggedUser().getUsername());
-		model.addAttribute("isUserAdmin",userComponent.isAdmin());
-		model.addAttribute("currentUser", userRepository.findByusername(userComponent.getLoggedUser().getUsername()));	
+		loadProfileNavbar(model);
 		
 		return "profile";
 	}
