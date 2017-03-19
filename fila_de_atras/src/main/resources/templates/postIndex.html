@@ -157,6 +157,19 @@
 	                </div>
                 {{/loggedUser}}
           	{{/Post}}
+           	{{^User}}
+                <div class="side-middle">
+                	<p class="text-center text-info">User not found.</p>
+                </div>
+           	{{/User}}
+          	{{#User}}
+	          	<div class="panel panel-default">
+	          			<form action="/reportUser/{{id}}" method="PUT" enctype="multipart/form-data" class="reportLink">
+							<input type='submit' class="btn btn-primary" name='report' value='Report' />
+						</form>
+                      <div class="panel-body"> <a href="/user/{{username}}"><img alt="" src="../avatarimg/{{id}}" class="profile-followers" /> {{username}}</a></div>
+                </div>
+          	{{/User}}
             </div>
             <!--Redes sociales - Contenido derecha-->
             <div class="hidden-xs col-md-3">

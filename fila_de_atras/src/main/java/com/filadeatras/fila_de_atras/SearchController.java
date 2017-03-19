@@ -13,13 +13,18 @@ public class SearchController extends NavbarController{
 	@Autowired
 	PostRepository postRepository;
 	@Autowired
+	UserRepository userRepository;
+	@Autowired
 	UserComponent userComponent;
 	
 	@RequestMapping(value="/search")
 	public String postSearch(Model model, @RequestParam("searchedPost") String consultedPost){
 		Post currPost = postRepository.findBypostTitle(consultedPost);
+		User u= userRepository.findByusername(consultedPost);
 			loadNavbar(model);
 			model.addAttribute("Post",currPost);
+			model.addAttribute("User",u);
+			
 			return "postIndex";
 	}
 
