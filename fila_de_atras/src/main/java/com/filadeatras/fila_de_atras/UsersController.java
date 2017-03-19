@@ -70,6 +70,10 @@ public class UsersController extends NavbarController{
 			if (postListCurr.size()>0){
 				ranPost = postListCurr.get((int)(Math.random()*postListCurr.size()));
 			}
+			if(userComponent.isLoggedUser()){
+				User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
+				model.addAttribute("isFollowing", conectedUser.isFollowing(viewUser));
+			}
 			model.addAttribute("UserViewUser",viewUser);
 			model.addAttribute("UserViewPost",ranPost);
 			
@@ -110,29 +114,92 @@ public class UsersController extends NavbarController{
 	}
 	
 	@RequestMapping(value="/unfollow/{username}", method = RequestMethod.POST)
-	public String unfollowUserController(Model model, @PathVariable String username){
+	public String unfollowUser_followingController(Model model, @PathVariable String username){
 		
-		loadProfileNavbar(model);
+		
 		User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
 		User unfollowUser = userRepository.findByusername(username);
 		conectedUser.deleteFollowing(unfollowUser);
 		userRepository.save(conectedUser);
 		model.addAttribute("followingList", conectedUser.getUserFollowing());
+		loadProfileNavbar(model);
 		
 		return "following";
 	}
 	
 	@RequestMapping(value="/follow/{username}", method = RequestMethod.POST)
-	public String followUserController(Model model, @PathVariable String username){
+	public String followUser_followersController(Model model, @PathVariable String username){
 		
-		loadProfileNavbar(model);
+		
 		User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
 		User followUser = userRepository.findByusername(username);
 		conectedUser.addFollowing(followUser);
 		userRepository.save(conectedUser);
-		model.addAttribute("followersList", conectedUser.getUserFollowing());
+		model.addAttribute("followersList", conectedUser.getUserFollowers());
+		loadProfileNavbar(model);
 		
 		return "followers";
+	}
+	
+	@RequestMapping(value="/users/{username}/follow", method = RequestMethod.POST)
+	public String followUser_usersController(Model model, @PathVariable String username){
+		
+		User followUser = userRepository.findByusername(username);
+		if (followUser==null){
+			model.addAttribute("ErrorMessage","User not found.");
+			return "errorPage";
+		} else{
+			List<Post> postListCurr = followUser.getUserPosts();
+			Post ranPost = null;
+			if (postListCurr.size()>0){
+				ranPost = postListCurr.get((int)(Math.random()*postListCurr.size()));
+			}
+			
+			
+			if(userComponent.isLoggedUser()){
+				User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
+				conectedUser.addFollowing(followUser);
+				userRepository.save(conectedUser);
+				model.addAttribute("isFollowing", conectedUser.isFollowing(followUser));
+			}
+			//model.addAttribute("followersList", conectedUser.getUserFollowers());
+			loadProfileNavbar(model);
+			model.addAttribute("UserViewUser",followUser);
+			model.addAttribute("UserViewPost",ranPost);
+			
+			return "users";	
+		}
+	}
+	
+	
+	@RequestMapping(value="/users/{username}/unfollow", method = RequestMethod.POST)
+	public String unfollowUser_usersController(Model model, @PathVariable String username){
+		
+		User followUser = userRepository.findByusername(username);
+		if (followUser==null){
+			model.addAttribute("ErrorMessage","User not found.");
+			return "errorPage";
+		} else{
+			List<Post> postListCurr = followUser.getUserPosts();
+			Post ranPost = null;
+			if (postListCurr.size()>0){
+				ranPost = postListCurr.get((int)(Math.random()*postListCurr.size()));
+			}
+			
+			
+			if(userComponent.isLoggedUser()){
+				User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
+				conectedUser.deleteFollowing(followUser);
+				userRepository.save(conectedUser);
+				model.addAttribute("isFollowing", conectedUser.isFollowing(followUser));
+			}
+			//model.addAttribute("followersList", conectedUser.getUserFollowers());
+			loadProfileNavbar(model);
+			model.addAttribute("UserViewUser",followUser);
+			model.addAttribute("UserViewPost",ranPost);
+			
+			return "users";	
+		}
 	}
 	
 	

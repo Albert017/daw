@@ -133,8 +133,14 @@ public class User {
 			this.userFollowing.add(following);
 		}
 		
-		public void addFollower(User follower) {
-			this.userFollowers.add(follower);
+		public boolean isFollowing(User user){
+			for(int i=0; i<this.getUserFollowing().size(); i++){
+				if(this.getUserFollowing().get(i).equals(user)){
+					return true;
+				}
+			}
+			return false;
+			
 		}
 		
 		public List<User> getUserFollowers() {

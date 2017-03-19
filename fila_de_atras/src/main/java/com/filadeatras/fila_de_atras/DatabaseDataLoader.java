@@ -24,6 +24,8 @@ public class DatabaseDataLoader {
 	    		if(i>0){
 	    			Message m1 = new Message("Texto de prueba "+i, newUs[0], newUs[1]);
 	    			messageRepository.save(m1);
+	    			newUs[0].addFollowing(newUs[i]);
+	    			userRepository.save(newUs[0]);
 	    		}
 	    		Message m1 = new Message("Texto de prueba aux "+i, newUs[i], newUs[1]);
 	    		messageRepository.save(m1);
