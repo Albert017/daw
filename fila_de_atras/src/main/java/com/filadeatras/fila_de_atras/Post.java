@@ -37,6 +37,7 @@ public class Post {
 	private int year;
 	private int postUpVotes;
 	private int postDownVotes;
+	private boolean report;
 	
 	public Post(){}
 	
@@ -55,6 +56,7 @@ public class Post {
 		year= LocalDateTime.now().getYear();
 		postUpVotes=0;
 		postDownVotes=0;
+		report=false;
 	}
 	
 	public List<String> getPostTags() {
@@ -126,6 +128,40 @@ public class Post {
 
 	public void setPostDate(String postDate) {
 		this.postDate = postDate;
-	}	
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public boolean isReport() {
+		return report;
+	}
+
+	public void setReport(boolean report) {
+		this.report = report;
+	}
+	
+	
 	
 }

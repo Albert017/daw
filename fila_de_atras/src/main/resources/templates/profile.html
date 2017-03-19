@@ -104,6 +104,9 @@
                 {{#Posts}}
                     <div class="thumbnail">
                         <a href="/post/{{id}}"><img src="/postimg/{{id}}" /></a>
+                        <form action="/reportPost/{{id}}" method="PUT" enctype="multipart/form-data" class="reportLink">
+							<input type='submit' class="btn btn-primary" name='report' value='Report' />
+						</form>
                         <div class="caption">
                             <h3>{{postTitle}}</h3>
                             <p><a class="votes" href="users.html">{{postAuthor.username}}</a><a id="date" class="votes" href="#"> {{postDate}}</a></p>

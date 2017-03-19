@@ -9,6 +9,7 @@ public interface PostRepository extends JpaRepository<Post, Long>{
 	
 	List<Post> findBypostAuthor(User postAuthor);
 	List<Post> findAllByOrderByPostUpVotesDesc();
+	List<Post> findAllByreport(boolean report);
 	
 	/**Post findFirstByyearOrderBypostUpVotesAsc(int year);
 	Post findFirstBydayOrderBypostUpVotesAsc(int day);

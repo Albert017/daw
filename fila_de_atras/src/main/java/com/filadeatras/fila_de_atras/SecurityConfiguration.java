@@ -41,6 +41,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/addPost").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/uploadPost").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/addComment").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/reportedPostPage/{id}").hasAnyRole("USER");
+        
         
         http.authorizeRequests().antMatchers("/mensaje/nuevo").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/mensajes").hasAnyRole("USER");
