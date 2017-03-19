@@ -284,4 +284,99 @@ public class UsersController extends NavbarController{
 	
 		return "profile";
 	}
+	
+	@RequestMapping(value="/deleteReportComment/{id}")
+	public String deleteReportCommentController(Model model, @PathVariable Long id){
+		Comment p = commentRepository.findOne(id);
+		
+		commentRepository.delete(p);
+
+		loadProfileNavbar(model);
+		
+		model.addAttribute("reportedCommentList",commentRepository.findAllByreport(true));
+	
+		return "profile";
+	}
+	@RequestMapping(value="/deleteReportUser/{id}")
+	public String deleteReportUserController(Model model, @PathVariable Long id){
+		User user= userRepository.findOne(id);
+		if(user.getUserPosts().size()>0){
+			for(Post p: user.getUserPosts()){
+				if(p.getPostComments().size()>0){
+					for(int i=0; i<p.getPostComments().size();i++){
+						commentRepository.delete(p.getPostComments().get(i));
+					}	
+				}
+				
+				postRepository.delete(p);
+			}
+			for(Message p: user.getUserReceivedMessages()){
+				messageRepository.delete(p);
+			}
+		}
+		userRepository.delete(user);
+		
+		loadProfileNavbar(model);
+		
+		model.addAttribute("reportedUserList",userRepository.findAllByreport(true));
+	
+		return "profile";
+	}
+	
+	@RequestMapping(value="/deleteReportPost/{id}")
+	public String deleteReportPostController(Model model, @PathVariable Long id){
+		Post p = postRepository.findOne(id);
+		if(p.getPostComments().size()>0){
+			for(int i=0; i<p.getPostComments().size();i++){
+				commentRepository.delete(p.getPostComments().get(i));
+			}	
+		}
+		
+		postRepository.delete(p);
+		
+		loadProfileNavbar(model);
+		
+		model.addAttribute("reportedPostList",postRepository.findAllByreport(true));
+	
+		return "profile";
+	}
+
+
+	@RequestMapping(value="/falseReportComment/{id}")
+	public String handleFalseReportComment(Model model,@PathVariable("id") long id){
+		Comment comment= commentRepository.findOne(id);
+		comment.setReport(false);
+		commentRepository.save(comment);
+		
+		loadProfileNavbar(model);
+		
+		model.addAttribute("reportedCommentList",commentRepository.findAllByreport(true));
+		
+		return "profile";
+	}
+	@RequestMapping(value="/falseReportUser/{id}")
+	public String handleFalseReportUser(Model model,@PathVariable("id") long id){
+		User user= userRepository.findOne(id);
+		user.setReport(false);
+		userRepository.save(user);
+		
+		loadProfileNavbar(model);
+		
+		model.addAttribute("reportedUserList",userRepository.findAllByreport(true));
+		
+		return "profile";
+	}
+	@RequestMapping(value="/falseReportPost/{id}")
+	public String handleFalseReportPost(Model model,@PathVariable("id") long id){
+		Post post= postRepository.findOne(id);
+		post.setReport(false);
+		postRepository.save(post);
+		
+		loadProfileNavbar(model);
+		
+		model.addAttribute("reportedPostList",postRepository.findAllByreport(true));
+		
+		return "profile";
+	
+	}
 }

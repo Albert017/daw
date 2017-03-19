@@ -117,8 +117,12 @@
 			                            </div>
 			                        </div>
 			                    </div>
-	                            <button type="button" class="btn btn-danger button-report-users">Delete comment <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></button>
-	                            <button type="button" class="btn btn-default button-report-users">Delete from report list <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+	                            <form action="/deleteReportPost/{{id}}" method="DELETE" enctype="multipart/form-data" class="btn btn-default button-report-users">
+									<input type='submit' class="btn btn-primary" name='deleteComment' value='Delete post' style="background-color:rgba(255, 0, 0, 0.81)"/> <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
+								</form>
+								<form action="/falseReportPost/{{id}}" method="PUT" enctype="multipart/form-data" class="btn btn-default button-report-users">
+									<input type='submit' class="btn btn-primary" name='falsereport' value='Delete from report list ' /><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+								</form>
 	                        </div>
 	                    </div>
                     {{/reportedPostList}}                  

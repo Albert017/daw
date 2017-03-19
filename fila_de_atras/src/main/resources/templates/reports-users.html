@@ -111,8 +111,12 @@
                 	{{#reportedUserList}}
 	                    <div class="panel panel-default">
 	                        <div class="panel-body"> <img alt="" src="../avatarimg/{{id}}" class="profile-followers" /> {{username}}
-	                            <button type="button" class="btn btn-danger button-report-users">Ban user <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></button>
-	                            <button type="button" class="btn btn-default button-report-users">Delete from report list <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+	                            <form action="/deleteReportUser/{{id}}" method="DELETE" enctype="multipart/form-data" class="btn btn-default button-report-users">
+									<input type='submit' class="btn btn-primary" name='deleteComment' value='Delete user' style="background-color:rgba(255, 0, 0, 0.81)"/> <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
+								</form>
+								<form action="/falseReportUser/{{id}}" method="PUT" enctype="multipart/form-data" class="btn btn-default button-report-users">
+									<input type='submit' class="btn btn-primary" name='falsereport' value='Delete from report list ' /><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+								</form>
 	                        </div>
 	                    </div>
                     {{/reportedUserList}}

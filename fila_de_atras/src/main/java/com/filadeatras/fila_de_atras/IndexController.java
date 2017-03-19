@@ -298,8 +298,8 @@ public class IndexController extends NavbarController{
 		
 		return "/";
 	}
-	
-	/**@RequestMapping(value="/uploadProfileNewData/{id}", method = RequestMethod.PUT)
+
+	/**@RequestMapping(value="/uploadProfileNewData/{id}")
 	public ResponseEntity<User> uploadProfileNewData(Model model,@PathVariable long id, @RequestBody User updatedUser, @RequestParam ("username") String newName,
 			@RequestParam ("email") String newEmail){
 
