@@ -29,12 +29,12 @@
                         <!--Título botón--><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tags <span class="caret"></span></a>
                         <!--Submenú-->
                         <ul class="dropdown-menu">
-                            <li><a href="#">Funny</a></li>
-                            <li><a href="#">Animals</a></li>
-                            <li><a href="#">Anime and manga</a></li>
-                            <li><a href="#">Movies and TV</a></li>
-                            <li><a href="#">WTF</a></li>
-                            <li><a href="#">Savage</a></li>
+                            <li><a href="/tag/funny">Funny</a></li>
+                            <li><a href="/tag/animals">Animals</a></li>
+                            <li><a href="/tag/anime">Anime and manga</a></li>
+                            <li><a href="/tag/movies">Movies and TV</a></li>
+                            <li><a href="/tag/wtf">WTF</a></li>
+                            <li><a href="/tag/savage">Savage</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -53,12 +53,11 @@
                     <li class="dropdown">
                         <!--Título botón-->
                         {{#currentUser}}
-                        <a href="#" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/{{id}}" />{{username}} <span class="caret"></span></a>
+                        <a href="/profile" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/{{id}}" />{{username}} <span class="caret"></span></a>
                         {{/currentUser}}
                         <!--Submenú-->
                         <ul class="dropdown-menu">
                             <li><a href="/profile">Profile</a></li>
-                            <li><a href="#">Help</a></li>
                             <li><a href="/settings">Tools</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="/logout">Log out</a></li>
@@ -87,14 +86,14 @@
             <div class="hidden-xs col-md-2">
                 <div class="side-left">
                     <div class="thumbnail">
-                        <a href="admin-postIndex.html"><img src="http://placehold.it/320x150" alt="" />
+                        <a href="#"><img src="http://placehold.it/320x150" alt="" />
                             <div class="caption">
                                 <p>Foto de gato</p>
                             </div>
                         </a>
                     </div>
                     <div class="thumbnail">
-                        <a href="admin-postIndex.html"><img src="http://placehold.it/320x150" alt="" />
+                        <a href="#"><img src="http://placehold.it/320x150" alt="" />
                             <div class="caption">
                                 <p>Foto de gato</p>
                             </div>
