@@ -1,6 +1,7 @@
 package com.filadeatras.fila_de_atras;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -68,17 +69,27 @@ public class UsersController extends NavbarController{
 			model.addAttribute("ErrorMessage","User not found.");
 			return "errorPage";
 		} else{
+			//Si buscas tu propio usuario que te mande a profile
+			if(viewUser.equals(userComponent.getLoggedUser())){
+				loadProfileNavbar(model);
+				List<Post> postListCurr = userRepository.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
+				model.addAttribute("Posts",postListCurr);
+				
+				return "profile";
+				
+			}
 			List<Post> postListCurr = viewUser.getUserPosts();
 			Post ranPost = null;
 			if (postListCurr.size()>0){
 				ranPost = postListCurr.get((int)(Math.random()*postListCurr.size()));
 			}
+			model.addAttribute("UserViewUser",viewUser);
+			model.addAttribute("UserViewPost",ranPost);
 			if(userComponent.isLoggedUser()){
 				User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
 				model.addAttribute("isFollowing", conectedUser.isFollowing(viewUser));
 			}
-			model.addAttribute("UserViewUser",viewUser);
-			model.addAttribute("UserViewPost",ranPost);
+			
 			
 			return "users";
 		}
@@ -91,9 +102,6 @@ public class UsersController extends NavbarController{
 		List<Post> postListCurr = userRepository.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
 		model.addAttribute("Posts",postListCurr);
 		
-		
-		
-		
 		return "profile";
 	}
 	
@@ -101,7 +109,14 @@ public class UsersController extends NavbarController{
 	public String profileFollowersController(Model model){
 		loadProfileNavbar(model);
 		User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
-		model.addAttribute("followersList", conectedUser.getUserFollowers());
+		LinkedList<Follower> followers = new LinkedList();
+		for(int i=0; i< conectedUser.getUserFollowers().size();i++){
+			User user = conectedUser.getUserFollowers().get(i);
+			boolean isFollowing = conectedUser.getUserFollowing().contains(user);
+			followers.addLast(new Follower(user, isFollowing));	
+		}
+		model.addAttribute("followersList", followers);
+		
 		
 		return "followers";
 	}
@@ -130,6 +145,8 @@ public class UsersController extends NavbarController{
 		return "following";
 	}
 	
+	
+	
 	@RequestMapping(value="/follow/{username}", method = RequestMethod.POST)
 	public String followUser_followersController(Model model, @PathVariable String username){
 		
@@ -138,13 +155,19 @@ public class UsersController extends NavbarController{
 		User followUser = userRepository.findByusername(username);
 		conectedUser.addFollowing(followUser);
 		userRepository.save(conectedUser);
-		model.addAttribute("followersList", conectedUser.getUserFollowers());
+		LinkedList<Follower> followers = new LinkedList();
+		for(int i=0; i< conectedUser.getUserFollowers().size();i++){
+			User user = conectedUser.getUserFollowers().get(i);
+			boolean isFollowing = conectedUser.getUserFollowing().contains(user);
+			followers.addLast(new Follower(user, isFollowing));	
+		}
+		model.addAttribute("followersList", followers);
 		loadProfileNavbar(model);
 		
 		return "followers";
 	}
 	
-	@RequestMapping(value="/users/{username}/follow", method = RequestMethod.POST)
+	@RequestMapping(value="/user/{username}/follow", method = RequestMethod.POST)
 	public String followUser_usersController(Model model, @PathVariable String username){
 		
 		User followUser = userRepository.findByusername(username);
@@ -175,7 +198,7 @@ public class UsersController extends NavbarController{
 	}
 	
 	
-	@RequestMapping(value="/users/{username}/unfollow", method = RequestMethod.POST)
+	@RequestMapping(value="/user/{username}/unfollow", method = RequestMethod.POST)
 	public String unfollowUser_usersController(Model model, @PathVariable String username){
 		
 		User followUser = userRepository.findByusername(username);

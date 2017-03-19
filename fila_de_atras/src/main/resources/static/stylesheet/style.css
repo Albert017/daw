@@ -153,7 +153,7 @@ body {
     background-color: #6d6d6d;
 }
 
-.button-followers {
+#following .button-followers {
     float: right;
 }
 
@@ -209,7 +209,7 @@ body {
 }
 
 #unfollow {
-    background-color:  #c9302c;
+    
     color: white;
     width: 10%;
 }

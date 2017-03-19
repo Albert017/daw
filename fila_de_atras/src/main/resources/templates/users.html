@@ -87,18 +87,16 @@
     	<div class="followers-container">
             <p></p>
             <!--<a href="#" id="follow" class="btn btn-primary" role="button">Follow</a>-->
-             {{#UserViewPost}}
             {{#isFollowing}}
-            <form action="/users/{{postAuthor.username}}/unfollow" method="POST">
-            	<button type="submit" id="unfollow" class="btn btn-info">Unfollow</button>
+            <form action="/user/{{UserViewUser.username}}/unfollow" method="POST">
+            	<button type="submit" id="unfollow" class="btn btn-info button-followers">Following</button>
             </form>
             {{/isFollowing}}
             {{^isFollowing}}
-            <form action="/users/{{postAuthor.username}}/follow" method="POST">
+            <form action="/user/{{UserViewUser.username}}/follow" method="POST">
             	<button type="submit" id="follow" class="btn btn-info">Follow</button>
             </form>
             {{/isFollowing}}
-             {{/UserViewPost}}
         </div>
     {{/loggedUser}} 
     </header>
