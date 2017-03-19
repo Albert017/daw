@@ -270,13 +270,21 @@ public class IndexController extends NavbarController{
 	}
 	
 	@RequestMapping(value="/reportPost/{id}")
-	public String handleReportPost(Model model,@PathVariable("id") long id, HttpServletResponse res){
+	public String handleReportPost(Model model,@PathVariable("id") long id){
 		Post post= postRepository.findOne(id);
 		post.setReport(true);
 		postRepository.save(post);
 		model.addAttribute("Post",postRepository.findOne(id));
 		
 		return "/reportedPostPage";
+	}
+	@RequestMapping(value="/reportUser/{id}")
+	public String handleReportUser(Model model,@PathVariable("id") long id){
+		User user= userRepository.findOne(id);
+		user.setReport(true);
+		userRepository.save(user);
+		
+		return "/";
 	}
 	
 	/**@RequestMapping(value="/uploadProfileNewData/{id}", method = RequestMethod.PUT)

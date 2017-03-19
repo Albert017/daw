@@ -219,6 +219,8 @@ public class UsersController extends NavbarController{
 	public String profileReportUsersController(Model model){
 		
 		loadProfileNavbar(model);
+		
+		model.addAttribute("reportedUserList",userRepository.findAllByreport(true));
 	
 		return "reports-users";
 	}

@@ -19,7 +19,6 @@ public class User {
 		private String username;
 		@Column(unique=true)
 		private String userEmail;
-
 		public String getUserEmail() {
 			return userEmail;
 		}
@@ -50,6 +49,7 @@ public class User {
 		
 		@OneToMany(mappedBy="postAuthor")
 		private List<Post> userPosts;
+		private boolean report;
 		
 		public User(String nombre, String pass,String email, String... roles){
 			username = nombre;
@@ -62,6 +62,7 @@ public class User {
 			userFollowers = new LinkedList<>();
 			userFollowing = new LinkedList<>();
 			userPosts = new LinkedList<>();
+			report=false;
 		}
 
 		public User(){}
@@ -187,6 +188,14 @@ public class User {
 		
 		public boolean equals(User user){
 			return this.id==user.id;
+		}
+
+		public boolean isReport() {
+			return report;
+		}
+
+		public void setReport(boolean report) {
+			this.report = report;
 		}
 
 		
