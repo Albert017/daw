@@ -229,6 +229,8 @@ public class UsersController extends NavbarController{
 	public String profileReportCommentsController(Model model){
 		
 		loadProfileNavbar(model);
+		
+		model.addAttribute("reportedCommentList",commentRepository.findAllByreport(true));
 	
 		return "reports-comments";
 	}

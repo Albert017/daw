@@ -135,6 +135,9 @@
                 <!--Comentarios-->
                 {{#postComments}}
 	                <div class="panel panel-default">
+	                	<form action="/reportComment/{{id}}" method="PUT" enctype="multipart/form-data" class="reportLink">
+							<input type='submit' class="btn btn-primary" name='report' value='Report' />
+						</form>
 	                    <div class="panel-heading"> <img href="/user/{{commentUser.username}}" alt="" class="userIconImgCom" src="/avatarimg/{{commentUser.id}}" /><a href="/user/{{commentUser.username}}" class="votes"> {{commentUser.username}}</a> </div>
 	                    <div class="panel-body">{{commentContent}}</div>
 	                </div>

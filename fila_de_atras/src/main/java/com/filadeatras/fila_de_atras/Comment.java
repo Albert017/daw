@@ -18,16 +18,28 @@ public class Comment {
 	@ManyToOne
 	private Post commentPost;
 	
+	private boolean report;
+	
 	public Comment(){}
 	
 	public Comment(String c){
 		commentContent =c;
+		report=false;
 	}
 	
 	public Comment(String comment, User user, Post post){
 		commentContent = comment;
 		commentUser=user;
 		commentPost=post;
+		report=false;
+	}
+
+	public boolean isReport() {
+		return report;
+	}
+
+	public void setReport(boolean report) {
+		this.report = report;
 	}
 
 	public long getId() {

@@ -40,6 +40,9 @@ public class IndexController extends NavbarController{
 	UserRepository userRepository;
 	
 	@Autowired
+	CommentRepository commentRepository;
+	
+	@Autowired
 	UserComponent userComponent;
 	
 	
@@ -276,13 +279,22 @@ public class IndexController extends NavbarController{
 		postRepository.save(post);
 		model.addAttribute("Post",postRepository.findOne(id));
 		
-		return "/reportedPostPage";
+		return "/";
 	}
 	@RequestMapping(value="/reportUser/{id}")
 	public String handleReportUser(Model model,@PathVariable("id") long id){
 		User user= userRepository.findOne(id);
 		user.setReport(true);
 		userRepository.save(user);
+		
+		return "/";
+	}
+	
+	@RequestMapping(value="/reportComment/{id}")
+	public String handleReportComment(Model model,@PathVariable("id") long id){
+		Comment comment= commentRepository.findOne(id);
+		comment.setReport(true);
+		commentRepository.save(comment);
 		
 		return "/";
 	}
