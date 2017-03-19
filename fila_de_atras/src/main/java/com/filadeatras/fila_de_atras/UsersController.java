@@ -6,9 +6,12 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -378,5 +381,42 @@ public class UsersController extends NavbarController{
 		
 		return "profile";
 	
+	}
+	@RequestMapping(value="/uploadProfileNewData/{id}")
+	public String uploadProfileNewData(Model model,@PathVariable long id, @RequestParam ("username") String newName,
+			@RequestParam ("email") String newEmail){
+		
+		User u= userRepository.findOne(id);
+		u.setUsername(newName);
+		u.setUserEmail(newEmail);
+		userRepository.save(u);
+		for(Post p:u.getUserPosts()){
+			p.getPostAuthor().setUsername(newName);
+			p.getPostAuthor().setUserEmail(newEmail);
+			postRepository.save(p);
+		}
+		for(Comment c:u.getUserComments()){
+			c.getCommentUser().setUsername(newName);
+			c.getCommentUser().setUserEmail(newEmail);
+			commentRepository.save(c);
+		}
+		for(Message c:u.getUserReceivedMessages()){
+			c.getMessageAddressee().setUsername(newName);
+			c.getMessageAddressee().setUserEmail(newEmail);
+			messageRepository.save(c);
+		}
+		for(Message c:u.getUserSentMessages()){
+			c.getMessageSender().setUsername(newName);
+			c.getMessageSender().setUserEmail(newEmail);
+			messageRepository.save(c);
+		}
+		
+		
+		loadProfileNavbar(model);
+		
+		model.addAttribute("currentUser",u);
+		
+		return "profile";
+		
 	}
 }

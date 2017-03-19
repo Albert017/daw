@@ -299,22 +299,6 @@ public class IndexController extends NavbarController{
 		return "/";
 	}
 
-	/**@RequestMapping(value="/uploadProfileNewData/{id}")
-	public ResponseEntity<User> uploadProfileNewData(Model model,@PathVariable long id, @RequestBody User updatedUser, @RequestParam ("username") String newName,
-			@RequestParam ("email") String newEmail){
-
-		loadModel(model);
-		User user= userRepository.findOne(id);
-		if(user != null){
-			updatedUser.setId(id);
-			updatedUser.setUsername(newName);
-			updatedUser.setUserEmail(newEmail);
-			userRepository.save(updatedUser);
-			return new ResponseEntity<> (updatedUser, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		
-	}**/
+	
 	
 }

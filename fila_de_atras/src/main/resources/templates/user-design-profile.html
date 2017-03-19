@@ -78,13 +78,12 @@
             </div>
         </div>
     </header>
-    {{/currentUser}}
     <div class="row">
         <!--Para dejar margen-->
         <div class="hidden-xs col-md-1"></div>
         <!--Posts-->
         <div class="col-xs-12 col-md-6">
-        <form action="/uploadProfileNewData" method="post"
+        <form action="/uploadProfileNewData/{{id}}" method="PUT"
 		enctype="multipart/form-data">
             <div class="panel panel-inverse panel-profile">
                 <div class="panel-heading">
@@ -111,8 +110,9 @@
             </div>
             <input type='submit' class="btn btn-default save-profile-button" name='enviar' value='Save changes' />
             </form>
-        </div>
+        </div>        
         <div class="hidden-xs col-md-1"></div>
+    {{/currentUser}}
         <!--Redes sociales-->
         <div class="hidden-xs col-md-3">
             <div class="edit-profile-right-side">
