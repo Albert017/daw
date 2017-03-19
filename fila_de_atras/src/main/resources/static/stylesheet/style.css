@@ -157,6 +157,10 @@ body {
     float: right;
 }
 
+.form-follow{
+	float: right;
+}
+
 .profile-followers {
     height: 50px;
     margin-right: 20px;
@@ -200,6 +204,12 @@ body {
 
 #follow {
     background-color: #42a7f4;
+    color: white;
+    width: 10%;
+}
+
+#unfollow {
+    background-color:  #c9302c;
     color: white;
     width: 10%;
 }

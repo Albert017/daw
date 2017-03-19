@@ -1,5 +1,6 @@
 package com.filadeatras.fila_de_atras;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -185,8 +186,13 @@ public class PostController extends NavbarController{
 	}
 	@RequestMapping("/bestPost")
 	public String bestPost(Model model){
-		Post bestPost = postRepository.findTop1BypostUpVotes();
+		String currentMonth= LocalDateTime.now().getMonth().toString();
+		System.out.println(currentMonth);
+		Post bestPost = postRepository.findTop1BypostUpVotes(currentMonth);
 		model.addAttribute("Post", bestPost);
+		if(bestPost==null){
+			System.out.println("vacio");
+		}
 		model.addAttribute("PostComments", bestPost.getPostComments());
 		return "bestPost";
 	}
