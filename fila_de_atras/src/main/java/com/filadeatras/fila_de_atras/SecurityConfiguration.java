@@ -28,6 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/user/{username}").permitAll();
         http.authorizeRequests().antMatchers("/search").permitAll();
         http.authorizeRequests().antMatchers("/post/{id}").permitAll();
+        http.authorizeRequests().antMatchers("/bestPost").permitAll();
         
         http.authorizeRequests().antMatchers("/user/{username}/{id}/up-vote").permitAll();
         http.authorizeRequests().antMatchers("/user/{username}/{id}/down-vote").permitAll();
@@ -72,10 +73,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/uploadAvatar").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/profile/post/{id}/up-vote").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/profile/post/{id}/down-vote").hasAnyRole("USER");
+        
+        http.authorizeRequests().antMatchers("/profile/delete/post/{id}").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/user/{username}/unfollow").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/user/{username}/follow").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/follow/{username}").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/unfollow/{username}").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/uploadProfileNewData/{id}").hasAnyRole("USER");
           
-        http.authorizeRequests().antMatchers("/reports-users*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/reports-posts*").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/reports-comments*").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/reports-users").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/reports-posts").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/reports-comments").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/falseReportPost/{id}").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/falseReportUser/{id}").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/falseReportComment/{id}").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/deleteReportPost/{id}").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/deleteReportUser/{id}").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/deleteReportComment/{id}").hasAnyRole("ADMIN");
         
         
         //        
