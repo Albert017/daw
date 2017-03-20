@@ -50,19 +50,30 @@ public class IndexController extends NavbarController{
 	public String indexController(Model model, HttpServletRequest request){
 		loadNavbar(model);
 		
-		/**Post post1= postRepository.findFirstByyearOrderBypostUpVotesAsc(LocalDateTime.now().getYear());
+		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
-		Post post2= postRepository.findFirstBymonthOrderBypostUpVotesAsc(LocalDateTime.now().getMonth().toString());
+		Post post2= postRepository.findTop1BypostUpVotesMonth(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear()).get(0);
 		if(post2 != null){
 			model.addAttribute("BestPostOfMonth",post2);
 		}
-		Post post3= postRepository.findFirstBydayOrderBypostUpVotesAsc(LocalDateTime.now().getDayOfMonth());
+		Post post3= postRepository.findTop1BypostUpVotesDay(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear(), LocalDateTime.now().getDayOfMonth()).get(0);
 		if(post3 != null){
 			model.addAttribute("BestPostOfDay",post3);
-		}**/
-		
+		}
+		int currentDayofTheWeek= LocalDateTime.now().getDayOfWeek().getValue();
+		int postWeek=(LocalDateTime.now().getDayOfYear() - currentDayofTheWeek + 10)/7;
+		int currentYear= LocalDateTime.now().getYear();
+		Post bestPost=null;
+		if(postWeek==0){
+			bestPost = postRepository.findTop1BypostUpVotesWeek(postWeek, currentYear, 53, currentYear-1).get(0);
+		}
+		else{
+			bestPost = postRepository.findTop1BypostUpVotesWeek(postWeek, currentYear).get(0);
+		}
+		if(bestPost!=null)
+			model.addAttribute("BestPostOfWeek", bestPost);
 		List<Post> original = postRepository.findAll();
 		List<Post> shallowCopy = original.subList(0, original.size());
 		Collections.reverse(shallowCopy);
@@ -72,6 +83,30 @@ public class IndexController extends NavbarController{
 	
 	@RequestMapping(value={"/trending"})
 	public String indexTrendingController(Model model, HttpServletRequest request){
+		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		if(post1 != null){
+			model.addAttribute("BestPostOfYear",post1);
+		}
+		Post post2= postRepository.findTop1BypostUpVotesMonth(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear()).get(0);
+		if(post2 != null){
+			model.addAttribute("BestPostOfMonth",post2);
+		}
+		Post post3= postRepository.findTop1BypostUpVotesDay(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear(), LocalDateTime.now().getDayOfMonth()).get(0);
+		if(post3 != null){
+			model.addAttribute("BestPostOfDay",post3);
+		}
+		int currentDayofTheWeek= LocalDateTime.now().getDayOfWeek().getValue();
+		int postWeek=(LocalDateTime.now().getDayOfYear() - currentDayofTheWeek + 10)/7;
+		int currentYear= LocalDateTime.now().getYear();
+		Post bestPost=null;
+		if(postWeek==0){
+			bestPost = postRepository.findTop1BypostUpVotesWeek(postWeek, currentYear, 53, currentYear-1).get(0);
+		}
+		else{
+			bestPost = postRepository.findTop1BypostUpVotesWeek(postWeek, currentYear).get(0);
+		}
+		if(bestPost!=null)
+			model.addAttribute("BestPostOfWeek", bestPost);
 		loadNavbar(model);
 		List<Post> original = postRepository.findAllByOrderByPostUpVotesDesc();
 		model.addAttribute("Posts",original);
@@ -80,6 +115,30 @@ public class IndexController extends NavbarController{
 	
 	@RequestMapping(value={"/random"})
 	public String indexRandomController(Model model, HttpServletRequest request){
+		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		if(post1 != null){
+			model.addAttribute("BestPostOfYear",post1);
+		}
+		Post post2= postRepository.findTop1BypostUpVotesMonth(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear()).get(0);
+		if(post2 != null){
+			model.addAttribute("BestPostOfMonth",post2);
+		}
+		Post post3= postRepository.findTop1BypostUpVotesDay(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear(), LocalDateTime.now().getDayOfMonth()).get(0);
+		if(post3 != null){
+			model.addAttribute("BestPostOfDay",post3);
+		}
+		int currentDayofTheWeek= LocalDateTime.now().getDayOfWeek().getValue();
+		int postWeek=(LocalDateTime.now().getDayOfYear() - currentDayofTheWeek + 10)/7;
+		int currentYear= LocalDateTime.now().getYear();
+		Post bestPost=null;
+		if(postWeek==0){
+			bestPost = postRepository.findTop1BypostUpVotesWeek(postWeek, currentYear, 53, currentYear-1).get(0);
+		}
+		else{
+			bestPost = postRepository.findTop1BypostUpVotesWeek(postWeek, currentYear).get(0);
+		}
+		if(bestPost!=null)
+			model.addAttribute("BestPostOfWeek", bestPost);
 		loadNavbar(model);
 		List<Post> postListCurr = postRepository.findAll();
 		Post ranPost = null;

@@ -87,7 +87,7 @@
                 <div class="side-left">
                 	{{#BestPostOfYear}}
                     <div class="thumbnail">
-                        <a href="/best/year"><img class="tamTopDate" src="/postimg/{{id}}" alt="" />
+                        <a href="/bestPostYear"><img src="/postimg/{{id}}" alt="" />
                             <div class="caption">
                                 <p>{{postTitle}}</p>
                             </div>
@@ -96,7 +96,7 @@
                     {{/BestPostOfYear}}
                     {{#BestPostOfMonth}}
                     <div class="thumbnail">
-                        <a href="/best/month"><img class="tamTopDate" src="/postimg/{{id}}" alt="" />
+                        <a href="/bestPOstMonth"><img src="/postimg/{{id}}" alt="" />
                             <div class="caption">
                                 <p>{{postTitle}}</p>
                             </div>
@@ -105,13 +105,22 @@
                     {{/BestPostOfMonth}}
                     {{#BestPostOfDay}}
                     <div class="thumbnail">
-                        <a href="/best/day"><img class="tamTopDate" src="/postimg/{{id}}" alt="" />
+                        <a href="/bestPostDay"><img src="/postimg/{{id}}" alt="" />
                             <div class="caption">
                                 <p>{{postTitle}}</p>
                             </div>
                         </a>
                     </div>
                     {{/BestPostOfDay}}
+                    {{#BestPostOfWeek}}
+                    <div class="thumbnail">
+                        <a href="/bestPostWeek"><img src="/postimg/{{id}}" alt="" />
+                            <div class="caption">
+                                <p>{{postTitle}}</p>
+                            </div>
+                        </a>
+                    </div>
+                    {{/BestPostOfWeek}}
                 </div>
             </div>
             <!--Posts - Contenido central -->

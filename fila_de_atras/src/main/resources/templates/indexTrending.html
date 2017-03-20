@@ -85,20 +85,42 @@
             <!--Contenido Izquierda-->
             <div class="hidden-xs col-md-2">
                 <div class="side-left">
+                	{{#BestPostOfYear}}
                     <div class="thumbnail">
-                        <a href="#"><img src="http://placehold.it/320x150" alt="" />
+                        <a href="/bestPostYear"><img src="/postimg/{{id}}" alt="" />
                             <div class="caption">
-                                <p>Foto de gato</p>
+                                <p>{{postTitle}}</p>
                             </div>
                         </a>
                     </div>
+                    {{/BestPostOfYear}}
+                    {{#BestPostOfMonth}}
                     <div class="thumbnail">
-                        <a href="#"><img src="http://placehold.it/320x150" alt="" />
+                        <a href="/bestPOstMonth"><img src="/postimg/{{id}}" alt="" />
                             <div class="caption">
-                                <p>Foto de gato</p>
+                                <p>{{postTitle}}</p>
                             </div>
                         </a>
                     </div>
+                    {{/BestPostOfMonth}}
+                    {{#BestPostOfDay}}
+                    <div class="thumbnail">
+                        <a href="/bestPostDay"><img src="/postimg/{{id}}" alt="" />
+                            <div class="caption">
+                                <p>{{postTitle}}</p>
+                            </div>
+                        </a>
+                    </div>
+                    {{/BestPostOfDay}}
+                    {{#BestPostOfWeek}}
+                    <div class="thumbnail">
+                        <a href="/bestPostWeek"><img src="/postimg/{{id}}" alt="" />
+                            <div class="caption">
+                                <p>{{postTitle}}</p>
+                            </div>
+                        </a>
+                    </div>
+                    {{/BestPostOfWeek}}
                 </div>
             </div>
             <!--Posts - Contenido central -->

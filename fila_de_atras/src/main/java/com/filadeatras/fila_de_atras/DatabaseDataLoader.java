@@ -39,7 +39,7 @@ public class DatabaseDataLoader {
 			Post p1 = new Post("El titulo del post", u2, "savage");
 			Post p2 = new Post("1", u2, "wtf");
 			Post p3 =new Post("2", u2, "funny");
-			p2.setPostUpVotes(10);
+			p2.setPostUpVotes(15);
 			p3.setPostUpVotes(15);
 			postRepository.save(p1);
 			postRepository.save(p2);
