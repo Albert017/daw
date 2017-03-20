@@ -197,4 +197,57 @@ public class PostController extends NavbarController{
 		return "bestPost";
 	}
 	
+	
+	public void loadTag(Model model, String tag){
+		loadNavbar(model);
+		List<Post> original = postRepository.findByPostTag(tag);
+		List<Post> shallowCopy = original.subList(0, original.size());
+		Collections.reverse(shallowCopy);
+		model.addAttribute("Posts",shallowCopy);
+		
+	}
+	@RequestMapping("/tag/wtf")
+	public String wtfTagController(Model model){
+		loadTag(model, "wtf");
+		
+		return "index";
+	}
+	
+	@RequestMapping("/tag/funny")
+	public String funnyTagController(Model model){
+		loadTag(model, "funny");
+		
+		return "index";
+	}
+	
+	@RequestMapping("/tag/animals")
+	public String animalsTagController(Model model){
+		loadTag(model, "animals");
+		
+		return "index";
+	}
+	
+	@RequestMapping("/tag/movies")
+	public String moviesTagController(Model model){
+		loadTag(model, "movies");
+		
+		return "index";
+	}
+	
+	@RequestMapping("/tag/savage")
+	public String savageTagController(Model model){
+		loadTag(model, "savage");
+		
+		return "index";
+	}
+	
+	@RequestMapping("/tag/anime")
+	public String mangaTagController(Model model){
+		loadTag(model, "anime");
+		
+		return "index";
+	}
+	
+	
+	
 }

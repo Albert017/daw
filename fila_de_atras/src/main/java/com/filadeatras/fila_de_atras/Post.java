@@ -29,8 +29,8 @@ public class Post {
 	@OneToMany(mappedBy="commentPost")
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<Comment> postComments;
-	@ElementCollection(fetch = FetchType.EAGER)
-	private List<String> postTags;
+
+	private String postTag;
 	private String postDate;
 	private String month;
 	private int day;
@@ -45,11 +45,11 @@ public class Post {
 		postTitle=title;
 	}
 	
-	public Post(String title, User author){
+	public Post(String title, User author, String tag){
 		postTitle=title;
 		postAuthor= author;
 		postComments = new LinkedList<>();
-		postTags= new LinkedList<>();
+		postTag = tag;
 		this.postDate= LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM,FormatStyle.MEDIUM));
 		day = LocalDateTime.now().getDayOfMonth();
 		month= LocalDateTime.now().getMonth().toString();
@@ -60,17 +60,14 @@ public class Post {
 	}
 	
 
-	public List<String> getPostTags() {
-		return postTags;
+	public String getPostTag() {
+		return postTag;
 	}
 
-	public void setPostTags(List<String> postTags) {
-		this.postTags = postTags;
+	public void setPostTags(String postTag) {
+		this.postTag = postTag;
 	}
 	
-	public void setPostTag(String tag) {
-		this.postTags.add(tag);
-	}
 
 	public int getPostUpVotes() {
 		return postUpVotes;

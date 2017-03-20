@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface PostRepository extends JpaRepository<Post, Long>{
 	
 	List<Post> findBypostAuthor(User postAuthor);
+	List<Post> findByPostTag(String postTag);
 	List<Post> findAllByOrderByPostUpVotesDesc();
 	List<Post> findAllByreport(boolean report);
 	

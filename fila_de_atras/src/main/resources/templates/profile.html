@@ -108,7 +108,7 @@
 						</form>
                         <div class="caption">
                             <h3>{{postTitle}}</h3>
-                            <p><a class="votes" href="/user/{{postAuthor.username}}">{{postAuthor.username}}</a><span id="date" class="votes" > {{postDate}}</span></p>
+                            <p><a class="votes" href="/user/{{postAuthor.username}}">{{postAuthor.username}}</a><span id="date" class="votes" > {{postDate}}</span>   <span class="label label-primary">{{postTag}}</span></p>
                             <p> 
                             <div id="up-votes">
 	                            <form action="/profile/post/{{id}}/up-vote" method="POST">

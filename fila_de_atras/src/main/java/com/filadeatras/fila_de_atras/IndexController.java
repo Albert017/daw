@@ -120,7 +120,7 @@ public class IndexController extends NavbarController{
 	@RequestMapping(value = "/uploadPost", method = RequestMethod.POST)
 	public String handleFileUpload(Model model, 
 			@RequestParam("imageTitleFileUploader") String imageTitle,
-			@RequestParam("file") MultipartFile file) {
+			@RequestParam("file") MultipartFile file, @RequestParam("op") String opcion) {
 		
 		User currentUser=userComponent.getLoggedUser();
 			
@@ -132,7 +132,7 @@ public class IndexController extends NavbarController{
 				if (!filesFolder.exists()) {
 					filesFolder.mkdirs();
 				}
-				Post p = new Post(imageTitle, currentUser);
+				Post p = new Post(imageTitle, currentUser, opcion);
 				postRepository.save(p);
 				userRepository.findByusername(currentUser.getUsername()).getUserPosts().add(p);
 				File uploadedFile = new File(filesFolder.getAbsolutePath(),+p.getId()+".jpg");

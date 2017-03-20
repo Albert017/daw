@@ -1,23 +1,18 @@
 package com.filadeatras.fila_de_atras;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import antlr.TokenWithIndex;
 
 @Controller
 public class UsersController extends NavbarController{
@@ -47,9 +42,9 @@ public class UsersController extends NavbarController{
 		userRepository.save(u2);
 		Message m1 = new Message("Este es el contenido del mensaje", u1,u2);
 		messageRepository.save(m1);
-		Post p1 = new Post("El titulo del post", u2);
-		Post p2 = new Post("1", u2);
-		Post p3 =new Post("2", u2);
+		Post p1 = new Post("El titulo del post", u2, "savage");
+		Post p2 = new Post("1", u2, "wtf");
+		Post p3 =new Post("2", u2, "funny");
 		p2.setPostUpVotes(10);
 		p3.setPostUpVotes(15);
 		postRepository.save(p1);
@@ -109,7 +104,7 @@ public class UsersController extends NavbarController{
 	public String profileFollowersController(Model model){
 		loadProfileNavbar(model);
 		User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
-		LinkedList<Follower> followers = new LinkedList();
+		LinkedList<Follower> followers = new LinkedList<Follower>();
 		for(int i=0; i< conectedUser.getUserFollowers().size();i++){
 			User user = conectedUser.getUserFollowers().get(i);
 			boolean isFollowing = conectedUser.getUserFollowing().contains(user);
@@ -155,7 +150,7 @@ public class UsersController extends NavbarController{
 		User followUser = userRepository.findByusername(username);
 		conectedUser.addFollowing(followUser);
 		userRepository.save(conectedUser);
-		LinkedList<Follower> followers = new LinkedList();
+		LinkedList<Follower> followers = new LinkedList<Follower>();
 		for(int i=0; i< conectedUser.getUserFollowers().size();i++){
 			User user = conectedUser.getUserFollowers().get(i);
 			boolean isFollowing = conectedUser.getUserFollowing().contains(user);

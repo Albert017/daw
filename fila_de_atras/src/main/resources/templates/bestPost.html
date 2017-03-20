@@ -104,7 +104,7 @@
 						</form>
                         <div class="caption">
                             <h3>Mejor post: {{postTitle}}</h3>
-                            <p><a class="votes" href="/user/{{postAuthor.username}}">{{postAuthor.username}} </a> {{postDate}}</p>
+                            <p><a class="votes" href="/user/{{postAuthor.username}}">{{postAuthor.username}} </a> {{postDate}}   <span class="label label-primary">{{postTag}}</span></p>
                             <p> 
                             <div id="up-votes">
 	                            <form action="/post/{{id}}/up-vote" method="POST">

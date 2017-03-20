@@ -32,9 +32,9 @@
                             <li><a href="/tag/funny">Funny</a></li>
                             <li><a href="/tag/animals">Animals</a></li>
                             <li><a href="/tag/anime">Anime and manga</a></li>
-                            <li><a href="/movies">Movies and TV</a></li>
-                            <li><a href="/wtf">WTF</a></li>
-                            <li><a href="/Savage">Savage</a></li>
+                            <li><a href="/tag/movies">Movies and TV</a></li>
+                            <li><a href="/tag/wtf">WTF</a></li>
+                            <li><a href="/tag/savage">Savage</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -116,7 +116,8 @@
             </div>
             <!--Posts - Contenido central -->
             <div class="col-xs-12 col-md-6">
-                <div class="side-middle"> {{#Posts}}
+                <div class="side-middle"> 
+                {{#Posts}}
                     <div class="thumbnail">
                         <a href="/post/{{id}}"><img src="/postimg/{{id}}" /></a>
                         <form action="/reportPost/{{id}}" method="PUT" enctype="multipart/form-data" class="reportLink">
@@ -125,7 +126,7 @@
                         <!-- <a href="/reportPost/{{id}}" class="reportLink">Report</a>-->
                         <div class="caption">
                             <h3>{{postTitle}}</h3>
-                            <p><a class="votes" href="/user/{{postAuthor.username}}">{{postAuthor.username}} </a>{{postDate}}</p>
+                            <p><a class="votes" href="/user/{{postAuthor.username}}">{{postAuthor.username}} </a>{{postDate}} <span class="label label-primary">{{postTag}}</span></p>
                             <p> 
                             <div id="up-votes">
 	                            <form action="/index/{{id}}/up-vote" method="POST">
@@ -135,6 +136,7 @@
                             <div id=down-votes">
 	                            <form action="/index/{{id}}/down-vote" method="POST">
 	                            	<button type="submit" class="btn btn-primary" role="button">⬇</button> 
+	                            	
 	                            </form>
                             </div>
                             
@@ -149,7 +151,12 @@
                                 <a href="#" class="social-network-post"><img src="/img/icon_facebook.png" class="social-post" /></a>
                             </div>
                         </div>
-                    </div> {{/Posts}} </div>
+                    </div> 
+                    {{/Posts}}
+                    {{^Posts}}
+                    <p class="text-center text-info">No hay posts<p>
+                    {{/Posts}}
+                     </div>
             </div>
             <!--Redes sociales - Contenido derecha-->
             <div class="hidden-xs col-md-3">
