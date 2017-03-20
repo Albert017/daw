@@ -97,6 +97,7 @@
                     <div class="side-middle">
                         <div class="mailbox">
                         {{#send-msg}}
+                        
                         <form action="/mensajes/{{username}}/enviado" method="POST">
                             <div class="col-xs-12 col-md-12">
                                 
@@ -122,7 +123,7 @@
                                 {{/sinMensajes}}
                                 {{#messages}}
                                     <div class="panel panel-default">
-                                        <div class="panel-heading"> <a href="/user/{{messageSender.username}}"><img  alt="" class="userIconImg" src="/avatarimg/{{messageSender.id}}" /> {{messageSender.username}}</a>
+                                        <div class="panel-heading"> <a href="/user/{{messageSender.username}}" class="votes"><img  alt="" class="userIconImgCom" src="/avatarimg/{{messageSender.id}}" /> {{messageSender.username}}</a>
                                             <div class="btn-remove">
                                             	{{#conversation}}
                                             	<form action="/mensajes/eliminados/movido/{{id}}" method="POST">

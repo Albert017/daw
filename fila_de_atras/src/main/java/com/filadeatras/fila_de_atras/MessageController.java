@@ -144,11 +144,9 @@ public class MessageController extends NavbarController{
 		User user_aux = repositoryUser.findByusername(username);
 		if(user_aux != null){
 			User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
-			loadUsernameMessage(repository, model, conectedUser, user_aux);
-			
-			model.addAttribute("send-msg", user_aux);
 			loadNavbar(model);
-			
+			loadUsernameMessage(repository, model, conectedUser, user_aux);
+					
 			return "user-mensajesConversacion";
 		}
 		else{
@@ -169,7 +167,13 @@ public class MessageController extends NavbarController{
 		msg.setMessageDeleted(true);
 		repository.save(msg);
 		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
-		loadUsernameMessage(repository, model, conectedUser, msg.getMessageSender());
+		if(conectedUser.equals(msg.getMessageAddressee())){
+			loadUsernameMessage(repository, model, conectedUser, msg.getMessageSender());
+		}
+		else{
+			loadUsernameMessage(repository, model, conectedUser, msg.getMessageAddressee());
+		}
+		
 		
 		return "user-mensajesConversacion";
 	}

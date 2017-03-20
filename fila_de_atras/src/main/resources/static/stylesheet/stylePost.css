@@ -115,3 +115,9 @@ a.text-primary:focus {
 #down-votes{
 	float:right;
 }
+
+.img-post{
+	width: 600px;
+	padding-bottom: 12px;
+	padding-top: 12px;
+}

@@ -33,25 +33,7 @@ public class UsersController extends NavbarController{
 	
 	@PostConstruct
 	public void init(){
-		User u1 = new User("Pepe", "pass", "pepe@a.aa" ,"ROLE_USER");
-		User u2 = new User("Sara", "word", "sara@a.aa" ,"ROLE_USER","ROLE_ADMIN");
-		userRepository.save(u1);
-		userRepository.save(u2);
-		u1.addFollowing(u2); // u1 sigue a u2, añadir en la lista de seguidos en u1 a u2
-		userRepository.save(u1);
-		userRepository.save(u2);
-		Message m1 = new Message("Este es el contenido del mensaje", u1,u2);
-		messageRepository.save(m1);
-		Post p1 = new Post("El titulo del post", u2, "savage");
-		Post p2 = new Post("1", u2, "wtf");
-		Post p3 =new Post("2", u2, "funny");
-		p2.setPostUpVotes(10);
-		p3.setPostUpVotes(15);
-		postRepository.save(p1);
-		postRepository.save(p2);
-		postRepository.save(p3);
-		Comment c1 = new Comment("Esto es el contenido de un comentario",u1,p1);
-		commentRepository.save(c1);
+		
 
 	}
 	
