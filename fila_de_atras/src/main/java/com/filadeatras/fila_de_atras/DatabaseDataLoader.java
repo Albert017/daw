@@ -1,6 +1,8 @@
 package com.filadeatras.fila_de_atras;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 import javax.annotation.PostConstruct;
 
@@ -43,7 +45,9 @@ public class DatabaseDataLoader {
 			Post p3 =new Post("2", u2, "funny");
 			p2.setPostUpVotes(15);
 			p3.setPostUpVotes(30);
+			p3.setPostDate(LocalDateTime.now().minusMonths(2).format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM,FormatStyle.MEDIUM)));
 			p3.setMonth(LocalDateTime.now().minusMonths(2).toString());
+			p3.setPostWeek(3);
 			postRepository.save(p1);
 			postRepository.save(p2);
 			postRepository.save(p3);

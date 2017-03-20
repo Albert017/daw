@@ -162,6 +162,18 @@ public class Post {
 	public void setReport(boolean report) {
 		this.report = report;
 	}
+
+	public int getPostWeek() {
+		return postWeek;
+	}
+
+	public void setPostWeek(int postWeek) {
+		this.postWeek = postWeek;
+	}
+
+	public void setPostTag(String postTag) {
+		this.postTag = postTag;
+	}
 	
 	
 	

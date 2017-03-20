@@ -192,11 +192,6 @@
                 {{/loggedUser}}
           	{{/Post}}
           	<hr>
-           	{{^User}}
-                <div class="side-middle">
-                	<p class="text-center text-info">User not found.</p>
-                </div>
-           	{{/User}}
           	{{#User}}
 	          	<div class="panel panel-default">
 	          			<form action="/reportUser/{{id}}" method="PUT" enctype="multipart/form-data" class="reportLink">

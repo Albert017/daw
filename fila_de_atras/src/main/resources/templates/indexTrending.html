@@ -87,6 +87,7 @@
                 <div class="side-left">
                 	{{#BestPostOfYear}}
                     <div class="thumbnail">
+                    	<p class="text-center text-warning">Best of this year.</p>
                         <a href="/bestPostYear"><img src="/postimg/{{id}}" alt="" />
                             <div class="caption">
                                 <p>{{postTitle}}</p>
@@ -95,25 +96,18 @@
                     </div>
                     {{/BestPostOfYear}}
                     {{#BestPostOfMonth}}
-                    <div class="thumbnail">
-                        <a href="/bestPOstMonth"><img src="/postimg/{{id}}" alt="" />
-                            <div class="caption">
-                                <p>{{postTitle}}</p>
-                            </div>
-                        </a>
-                    </div>
+	              	<div class="thumbnail">
+                   		<p class="text-center text-warning">Best of this month.</p>
+	                    <a href="/bestPOstMonth"><img src="/postimg/{{id}}" alt="" />
+	                        <div class="caption">
+	                             <p>{{postTitle}}</p>
+	                        </div>
+	                    </a>
+	                </div>
                     {{/BestPostOfMonth}}
-                    {{#BestPostOfDay}}
-                    <div class="thumbnail">
-                        <a href="/bestPostDay"><img src="/postimg/{{id}}" alt="" />
-                            <div class="caption">
-                                <p>{{postTitle}}</p>
-                            </div>
-                        </a>
-                    </div>
-                    {{/BestPostOfDay}}
                     {{#BestPostOfWeek}}
                     <div class="thumbnail">
+                   		<p class="text-center text-warning">Best of this week.</p>
                         <a href="/bestPostWeek"><img src="/postimg/{{id}}" alt="" />
                             <div class="caption">
                                 <p>{{postTitle}}</p>
@@ -121,6 +115,16 @@
                         </a>
                     </div>
                     {{/BestPostOfWeek}}
+                    {{#BestPostOfDay}}
+                    <div class="thumbnail">
+                    	<p class="text-center text-warning">Best of today.</p>
+                        <a href="/bestPostDay"><img src="/postimg/{{id}}" alt="" />
+                            <div class="caption">
+                                <p>{{postTitle}}</p>
+                            </div>
+                        </a>
+                    </div>
+                    {{/BestPostOfDay}}
                 </div>
             </div>
             <!--Posts - Contenido central -->
