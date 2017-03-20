@@ -65,13 +65,15 @@ public class UsersController extends NavbarController{
 			return "errorPage";
 		} else{
 			//Si buscas tu propio usuario que te mande a profile
-			if(viewUser.equals(userComponent.getLoggedUser())){
-				loadProfileNavbar(model);
-				List<Post> postListCurr = userRepository.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
-				model.addAttribute("Posts",postListCurr);
-				
-				return "profile";
-				
+			if(userComponent.isLoggedUser()){
+				if(viewUser.equals(userComponent.getLoggedUser())){
+					loadProfileNavbar(model);
+					List<Post> postListCurr = userRepository.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
+					model.addAttribute("Posts",postListCurr);
+					
+					return "profile";
+					
+				}
 			}
 			List<Post> postListCurr = viewUser.getUserPosts();
 			Post ranPost = null;

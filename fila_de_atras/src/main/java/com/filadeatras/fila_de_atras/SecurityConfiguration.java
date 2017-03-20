@@ -29,6 +29,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/search").permitAll();
         http.authorizeRequests().antMatchers("/post/{id}").permitAll();
         http.authorizeRequests().antMatchers("/bestPost").permitAll();
+        http.authorizeRequests().antMatchers("/tag/funny").permitAll();
+        http.authorizeRequests().antMatchers("/tag/movies").permitAll();
+        http.authorizeRequests().antMatchers("/tag/anime").permitAll();
+        http.authorizeRequests().antMatchers("/tag/wtf").permitAll();
+        http.authorizeRequests().antMatchers("/tag/savage").permitAll();
         
         http.authorizeRequests().antMatchers("/user/{username}/{id}/up-vote").permitAll();
         http.authorizeRequests().antMatchers("/user/{username}/{id}/down-vote").permitAll();
