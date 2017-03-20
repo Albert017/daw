@@ -80,6 +80,6 @@ El perfil del administrador es casi idéntico que el de un usuario corriente con
 
 ### Diagrama de base de datos
 
-![Diagrama de Base de datos](/screenshots/diagramabasededatos.jpg)
-![Diagrama de Base de datos](/screenshots/diagramabasededatosatributos.jpg)
+![Diagrama de Base de datos](/screenshots/diagramabasededatos.png)
+![Diagrama de Base de datos](/screenshots/diagramabasededatosatributos.png)
 
