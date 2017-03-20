@@ -33,21 +33,26 @@ public class User {
 		@ManyToMany
 		private List<User> userFollowing;
 		
-		@ManyToMany(mappedBy="userFollowing")
+		@ManyToMany(mappedBy="userFollowing",cascade=CascadeType.REMOVE)
 		private List<User> userFollowers;
 		
 		private String userPasswordHash;
 		
-		@OneToMany(mappedBy="commentUser")
+		private String userBiography;
+		private String userLocation;
+		private String userLink;
+		
+
+		@OneToMany(mappedBy="commentUser",cascade=CascadeType.REMOVE)
 		private List<Comment> userComments;
 
-		@OneToMany(mappedBy="messageSender")
+		@OneToMany(mappedBy="messageSender",cascade=CascadeType.REMOVE)
 		private List<Message> userSentMessages;
 		
-		@OneToMany(mappedBy="messageAddressee")
+		@OneToMany(mappedBy="messageAddressee",cascade=CascadeType.REMOVE)
 		private List<Message> userReceivedMessages;
 		
-		@OneToMany(mappedBy="postAuthor")
+		@OneToMany(mappedBy="postAuthor",cascade=CascadeType.REMOVE)
 		private List<Post> userPosts;
 		private boolean report;
 		
@@ -63,6 +68,9 @@ public class User {
 			userFollowing = new LinkedList<>();
 			userPosts = new LinkedList<>();
 			report=false;
+			userBiography="";
+			userLocation="";
+			userLink="";
 		}
 
 		public User(){}
@@ -185,6 +193,21 @@ public class User {
 			
 		}
 		
+		public String getUserBiography() {
+			return userBiography;
+		}
+
+		public void setUserBiography(String userBiography) {
+			this.userBiography = userBiography;
+		}
+
+		public String getUserLocation() {
+			return userLocation;
+		}
+
+		public void setUserLocation(String userLocation) {
+			this.userLocation = userLocation;
+		}
 		
 		public boolean equals(User user){
 			return this.id==user.id;
@@ -196,6 +219,14 @@ public class User {
 
 		public void setReport(boolean report) {
 			this.report = report;
+		}
+
+		public String getUserLink() {
+			return userLink;
+		}
+
+		public void setUserLink(String userLink) {
+			this.userLink = userLink;
 		}
 
 		

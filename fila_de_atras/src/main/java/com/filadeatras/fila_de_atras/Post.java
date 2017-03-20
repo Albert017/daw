@@ -6,6 +6,7 @@ import java.time.format.FormatStyle;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +27,7 @@ public class Post {
 	@ManyToOne
 	private User postAuthor;
 	
-	@OneToMany(mappedBy="commentPost")
+	@OneToMany(mappedBy="commentPost",cascade=CascadeType.REMOVE)
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<Comment> postComments;
 

@@ -53,7 +53,7 @@
                     <li class="dropdown">
                         <!--Título botón-->
                         {{#currentUser}}
-                        <a href="/profile" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/{{id}}" />{{loggedUsername}} <span class="caret"></span></a>
+                        <a href="/profile" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/{{id}}" />{{username}} <span class="caret"></span></a>
                         {{/currentUser}}
                         <!--Submenú-->
                         <ul class="dropdown-menu">
@@ -91,12 +91,10 @@
             <!--Posts - Contenido central -->
             <div class="col-xs-12 col-md-6">
             <div class="side-middle">
-                <p class="text-center text-info">Post not found.</p>
                 {{#ErrorMessage}}
-                	<p class="text-center text-info">{{toString()}}</p>
+                	<p class="text-center text-info">{{toString}}</p>
                 {{/ErrorMessage}}
             </div>
-          	{{/Post}}
             </div>
             <!--Redes sociales - Contenido derecha-->
             <div class="hidden-xs col-md-3">

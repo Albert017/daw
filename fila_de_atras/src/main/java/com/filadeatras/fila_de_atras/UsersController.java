@@ -323,20 +323,6 @@ public class UsersController extends NavbarController{
 	@RequestMapping(value="/deleteReportUser/{id}")
 	public String deleteReportUserController(Model model, @PathVariable Long id){
 		User user= userRepository.findOne(id);
-		if(user.getUserPosts().size()>0){
-			for(Post p: user.getUserPosts()){
-				if(p.getPostComments().size()>0){
-					for(int i=0; i<p.getPostComments().size();i++){
-						commentRepository.delete(p.getPostComments().get(i));
-					}	
-				}
-				
-				postRepository.delete(p);
-			}
-			for(Message p: user.getUserReceivedMessages()){
-				messageRepository.delete(p);
-			}
-		}
 		userRepository.delete(user);
 		
 		loadProfileNavbar(model);
@@ -349,11 +335,6 @@ public class UsersController extends NavbarController{
 	@RequestMapping(value="/deleteReportPost/{id}")
 	public String deleteReportPostController(Model model, @PathVariable Long id){
 		Post p = postRepository.findOne(id);
-		if(p.getPostComments().size()>0){
-			for(int i=0; i<p.getPostComments().size();i++){
-				commentRepository.delete(p.getPostComments().get(i));
-			}	
-		}
 		
 		postRepository.delete(p);
 		
@@ -403,40 +384,36 @@ public class UsersController extends NavbarController{
 	
 	}
 	@RequestMapping(value="/uploadProfileNewData/{id}")
-	public String uploadProfileNewData(Model model,@PathVariable long id, @RequestParam ("username") String newName,
-			@RequestParam ("email") String newEmail){
-		
-		User u= userRepository.findOne(id);
-		u.setUsername(newName);
-		u.setUserEmail(newEmail);
-		userRepository.save(u);
-		for(Post p:u.getUserPosts()){
-			p.getPostAuthor().setUsername(newName);
-			p.getPostAuthor().setUserEmail(newEmail);
-			postRepository.save(p);
-		}
-		for(Comment c:u.getUserComments()){
-			c.getCommentUser().setUsername(newName);
-			c.getCommentUser().setUserEmail(newEmail);
-			commentRepository.save(c);
-		}
-		for(Message c:u.getUserReceivedMessages()){
-			c.getMessageAddressee().setUsername(newName);
-			c.getMessageAddressee().setUserEmail(newEmail);
-			messageRepository.save(c);
-		}
-		for(Message c:u.getUserSentMessages()){
-			c.getMessageSender().setUsername(newName);
-			c.getMessageSender().setUserEmail(newEmail);
-			messageRepository.save(c);
-		}
-		
+	public String uploadProfileNewData(Model model,
+			@PathVariable long id,
+			@RequestParam ("username") String newName,
+			@RequestParam ("email") String newEmail,
+			@RequestParam ("biography") String newBio,
+			@RequestParam ("location") String newLoc,
+			@RequestParam ("links") String newLink){
 		
 		loadProfileNavbar(model);
 		
-		model.addAttribute("currentUser",u);
-		
-		return "profile";
+		User u= userRepository.findOne(id);
+		if (u.getId()!=userComponent.getLoggedUser().getId()){
+			model.addAttribute("ErrorMessage","Could not edit profile info.");
+			return "errorPage";
+		}
+		try {
+			u.setUsername(newName);
+			u.setUserEmail(newEmail);
+			u.setUserBiography(newBio);
+			u.setUserLocation(newLoc);
+			u.setUserLink(newLink);
+			
+			userRepository.save(u);
+			userComponent.setLoggedUser(userRepository.findOne(id));
+			loadProfileNavbar(model);
+			return "profile";
+		} catch (Exception e){
+			model.addAttribute("ErrorMessage","Oops, an error ocurred. The username/email is probably already in use.");
+			return "errorPage";
+		}
 		
 	}
 }
