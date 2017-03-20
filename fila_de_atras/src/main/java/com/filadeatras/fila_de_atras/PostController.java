@@ -1,5 +1,6 @@
 package com.filadeatras.fila_de_atras;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -192,17 +193,18 @@ public class PostController extends NavbarController{
 		Post bestPost = postRepository.findTop1BypostUpVotesMonth(currentMonth, currentYear);
 		model.addAttribute("Post", bestPost);
 		model.addAttribute("PostComments", bestPost.getPostComments());
-		return "bestPostMonth";
+		model.addAttribute("best", "del mes");
+		return "bestPost";
 	}
 	
 	@RequestMapping("/bestPostYear")
 	public String bestPostYear(Model model){
 		int currentYear= LocalDateTime.now().getYear();
-		System.out.println(currentYear);
 		Post bestPost = postRepository.findTop1BypostUpVotesYear(currentYear);
 		model.addAttribute("Post", bestPost);
 		model.addAttribute("PostComments", bestPost.getPostComments());
-		return "bestPostYear";
+		model.addAttribute("best", "del año");
+		return "bestPost";
 	}
 	
 	@RequestMapping("/bestPostDay")
@@ -213,23 +215,28 @@ public class PostController extends NavbarController{
 		Post bestPost = postRepository.findTop1BypostUpVotesDay(currentMonth, currentYear, currentDay);
 		model.addAttribute("Post", bestPost);
 		model.addAttribute("PostComments", bestPost.getPostComments());
-		return "bestPostDay";
+		model.addAttribute("best", "del día");
+		return "bestPost";
 	}
-	/*
+	
 	@RequestMapping("/bestPostWeek")
 	public String bestPostWeek(Model model){
-		int currentDayofTheWeek= LocalDateTime.now().get
-		currentMonth="JANUARY";
-		System.out.println(currentMonth);
-		Post bestPost = postRepository.findTop1BypostUpVotes(currentMonth);
-		model.addAttribute("Post", bestPost);
-		if(bestPost==null){
-			System.out.println("vacio");
+		int currentDayofTheWeek= LocalDateTime.now().getDayOfWeek().getValue();
+		int postWeek=(LocalDateTime.now().getDayOfYear() - currentDayofTheWeek + 10)/7;
+		int currentYear= LocalDateTime.now().getYear();
+		Post bestPost=null;
+		if(postWeek==0){
+			bestPost = postRepository.findTop1BypostUpVotesWeek(postWeek, currentYear, 53, currentYear-1);
 		}
+		else{
+			bestPost = postRepository.findTop1BypostUpVotesWeek(postWeek, currentYear);
+		}
+		model.addAttribute("Post", bestPost);
 		model.addAttribute("PostComments", bestPost.getPostComments());
-		return "bestPostMonth";
+		model.addAttribute("best", "de la semana");
+		return "bestPost";
 	}
-	*/
+	
 	public void loadTag(Model model, String tag){
 		loadNavbar(model);
 		List<Post> original = postRepository.findByPostTag(tag);

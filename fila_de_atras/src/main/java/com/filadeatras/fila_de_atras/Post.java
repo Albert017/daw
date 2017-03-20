@@ -39,7 +39,7 @@ public class Post {
 	private int postUpVotes;
 	private int postDownVotes;
 	private boolean report;
-	
+	int postWeek;
 	public Post(){}
 	
 	public Post(String title){
@@ -57,6 +57,8 @@ public class Post {
 		year= LocalDateTime.now().getYear();
 		postUpVotes=0;
 		postDownVotes=0;
+		int currentDayofTheWeek= LocalDateTime.now().getDayOfWeek().getValue();
+		postWeek=(LocalDateTime.now().getDayOfYear() - currentDayofTheWeek + 10)/7;
 		report=false;
 	}
 	
