@@ -1,5 +1,7 @@
 package com.filadeatras.fila_de_atras;
 
+import java.time.LocalDateTime;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +42,8 @@ public class DatabaseDataLoader {
 			Post p2 = new Post("1", u2, "wtf");
 			Post p3 =new Post("2", u2, "funny");
 			p2.setPostUpVotes(15);
-			p3.setPostUpVotes(15);
+			p3.setPostUpVotes(30);
+			p3.setMonth(LocalDateTime.now().minusMonths(2).toString());
 			postRepository.save(p1);
 			postRepository.save(p2);
 			postRepository.save(p3);

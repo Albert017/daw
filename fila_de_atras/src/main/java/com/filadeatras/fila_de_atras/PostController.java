@@ -1,6 +1,5 @@
 package com.filadeatras.fila_de_atras;
 
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -168,13 +167,8 @@ public class PostController extends NavbarController{
 		currPost.setPostUpVotes(currPost.getPostUpVotes()+1);
 		postRepository.save(currPost);
 		
-		loadNavbar(model);
-		List<Post> original = postRepository.findAll();
-		List<Post> shallowCopy = original.subList(0, original.size());
-		Collections.reverse(shallowCopy);
-		model.addAttribute("Posts",shallowCopy);
-		
-		return "index";
+		//return "index";
+		return "redirect:/index";
 	}
 	
 	@RequestMapping("/post/{id}/up-vote")
