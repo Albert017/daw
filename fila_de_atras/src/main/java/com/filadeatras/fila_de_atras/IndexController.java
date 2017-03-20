@@ -77,7 +77,7 @@ public class IndexController extends NavbarController{
 		List<Post> original = postRepository.findAll();
 		Collections.reverse(original);
 		model.addAttribute("Posts",original.subList(0,Math.min(original.size(), 10)));
-		return "index";
+		return "indexNew";
 	}
 	
 	@RequestMapping(value={"/indexScroll/{interval}"})
