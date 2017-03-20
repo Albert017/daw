@@ -75,10 +75,26 @@ public class IndexController extends NavbarController{
 		if(bestPost!=null)
 			model.addAttribute("BestPostOfWeek", bestPost);
 		List<Post> original = postRepository.findAll();
-		List<Post> shallowCopy = original.subList(0, original.size());
-		Collections.reverse(shallowCopy);
-		model.addAttribute("Posts",shallowCopy);
+		Collections.reverse(original);
+		model.addAttribute("Posts",original.subList(0,Math.min(original.size(), 10)));
 		return "index";
+	}
+	
+	@RequestMapping(value={"/indexScroll/{interval}"})
+	public String indexScrollPosts(Model model,
+			@PathVariable int interval){
+		List<Post> original = postRepository.findAll();
+		Collections.reverse(original);
+		List<Post> newPosts = null;
+		if (interval*10<original.size()){
+			if ((interval+1)*10<=original.size()){
+				newPosts = original.subList(interval*10, (interval+1)*10);
+			} else {
+				newPosts = original.subList(interval*10,original.size());
+			}
+		}
+		model.addAttribute("Posts",newPosts);
+		return "postScroll";
 	}
 	
 	@RequestMapping(value={"/trending"})

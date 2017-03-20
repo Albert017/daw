@@ -1,0 +1,37 @@
+<div class="side-middle"> 
+{{#Posts}}
+                    <div class="thumbnail">
+                        <a href="/post/{{id}}"><img class="img-post" src="/postimg/{{id}}" /></a>
+                        <form action="/reportPost/{{id}}" method="PUT" enctype="multipart/form-data" class="reportLink">
+							<input type='submit' class="btn btn-primary" name='report' value='Report' />
+						</form>
+                        <div class="caption">
+                            <h3>{{postTitle}}</h3>
+                            <p><a class="votes" href="/user/{{postAuthor.username}}">{{postAuthor.username}} </a> {{postDate}}  <span class="label label-primary">{{postTag}}</span></p>
+                            <p> 
+                            <div id="up-votes">
+	                            <form action="/post/{{id}}/up-vote" method="POST">
+	                            	<button type="submit" class="btn btn-primary" >â¬†</button> 
+	                            </form>
+                            </div>
+                            <div id=down-votes">
+	                            <form action="/post/{{id}}/down-vote" method="POST">
+	                            	<button type="submit" class="btn btn-primary" role="button">â¬‡</button> 
+	                            </form>
+                            </div>
+                            
+                            	
+                            	<a class="votes"> Upvotes <span class="badge">{{postUpVotes}}</span></a> 
+                            	<a class="votes"> Downvotes <span class="badge">{{postDownVotes}}</span></a> 
+                            	<a class="votes"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a> 
+                            </p>
+                            <div>
+                                <a href="index.html" class="social-network-post"><img src="/img/icon_twitter.png" class="social-post" /></a>
+                                <a href="index.html" class="social-network-post"><img src="/img/icon_instagram.png" class="social-post" /></a>
+                                <a href="index.html" class="social-network-post"><img src="/img/icon_facebook.png" class="social-post" /></a>
+                            </div>
+                        </div>
+                	</div> 
+                	
+                </div>
+{{/Posts}}

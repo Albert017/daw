@@ -1,4 +1,4 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -7,6 +7,7 @@
     <link href="/stylesheet/stylePost.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/indexScroll.js"></script>
 </head>
 
 <body>
@@ -125,7 +126,7 @@
             </div>
             <!--Posts - Contenido central -->
             <div class="col-xs-12 col-md-6">
-                <div class="side-middle"> 
+                <div id="postContainer" class="side-middle"> 
                 {{#Posts}}
                     <div class="thumbnail">
                         <a href="/post/{{id}}"><img class="img-post" src="/postimg/{{id}}" /></a>
@@ -163,9 +164,14 @@
                     </div> 
                     {{/Posts}}
                     {{^Posts}}
-                    <p class="text-center text-info">No hay posts<p>
+                    <p class="text-center text-info">No hay posts</p>
                     {{/Posts}}
-                     </div>
+                    </div>
+                    <div class="side-middle minHeight"> 
+	                    <p id="loading" class="text-center">
+							<img src="/img/loading.gif" alt="Loading…" />
+						</p>
+					</div>
             </div>
             <!--Redes sociales - Contenido derecha-->
             <div class="hidden-xs col-md-3">
@@ -182,6 +188,6 @@
     <div class="col-md-12 toup">
         <div class="toUp"> <a href="#Up" type="button" class="btn btn-primary  btn-toUp btn-md navbar-right"><span class="glyphicon glyphicon-arrow-up" aria-hidden="false"></span></a> </div>
     </div>
+    <div id="footer"></div>
 </body>
-
 </html>

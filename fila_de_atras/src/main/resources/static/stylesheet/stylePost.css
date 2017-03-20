@@ -99,6 +99,10 @@ a.text-primary:focus {
     width: 750;
 }
 
+.minHeight{
+	height: 100px;
+}
+
 .delete-btn{
 	position: relative;
     margin: -35px 20px;
