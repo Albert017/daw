@@ -43,10 +43,8 @@ public class UsersController extends NavbarController{
 		Message m1 = new Message("Este es el contenido del mensaje", u1,u2);
 		messageRepository.save(m1);
 		Post p1 = new Post("El titulo del post", u2, "savage");
-		p1.setMonth("JANUARY");
 		Post p2 = new Post("1", u2, "wtf");
 		Post p3 =new Post("2", u2, "funny");
-		p3.setMonth("JANUARY");
 		p2.setPostUpVotes(10);
 		p3.setPostUpVotes(15);
 		postRepository.save(p1);

@@ -16,8 +16,14 @@ public interface PostRepository extends JpaRepository<Post, Long>{
 	Post findFirstBydayOrderBypostUpVotesAsc(int day);
 	Post findFirstBymonthOrderBypostUpVotesAsc(String month);**/
 	
-	@Query(value = "SELECT * FROM POST WHERE (POST_UP_VOTES =SELECT MAX(POST_UP_VOTES) FROM POST WHERE MONTH=?#{[0]})", nativeQuery = true)
-	Post findTop1BypostUpVotes(String month);
+	@Query(value = "SELECT * FROM POST WHERE (POST_UP_VOTES =SELECT MAX(POST_UP_VOTES) FROM POST WHERE (MONTH=?#{[0]} AND YEAR=?#{[1]}))", nativeQuery = true)
+	Post findTop1BypostUpVotesMonth(String month, int year);
+	
+	@Query(value = "SELECT * FROM POST WHERE (POST_UP_VOTES =SELECT MAX(POST_UP_VOTES) FROM POST WHERE YEAR=?#{[0]})", nativeQuery = true)
+	Post findTop1BypostUpVotesYear(int year);
+	
+	@Query(value = "SELECT * FROM POST WHERE (POST_UP_VOTES =SELECT MAX(POST_UP_VOTES) FROM POST WHERE (MONTH=?#{[0]} AND YEAR=?#{[1]} AND DAY=?#{[2]}))", nativeQuery = true)
+	Post findTop1BypostUpVotesDay(String month, int year, int day);
 	
 	Post findBypostTitle(String postTitle);
 

@@ -185,8 +185,40 @@ public class PostController extends NavbarController{
 		}
 	}
 	@RequestMapping("/bestPostMonth")
-	public String bestPost(Model model){
+	public String bestPostMonth(Model model){
 		String currentMonth= LocalDateTime.now().getMonth().toString();
+		System.out.println(currentMonth);
+		int currentYear=LocalDateTime.now().getYear();
+		Post bestPost = postRepository.findTop1BypostUpVotesMonth(currentMonth, currentYear);
+		model.addAttribute("Post", bestPost);
+		model.addAttribute("PostComments", bestPost.getPostComments());
+		return "bestPostMonth";
+	}
+	
+	@RequestMapping("/bestPostYear")
+	public String bestPostYear(Model model){
+		int currentYear= LocalDateTime.now().getYear();
+		System.out.println(currentYear);
+		Post bestPost = postRepository.findTop1BypostUpVotesYear(currentYear);
+		model.addAttribute("Post", bestPost);
+		model.addAttribute("PostComments", bestPost.getPostComments());
+		return "bestPostYear";
+	}
+	
+	@RequestMapping("/bestPostDay")
+	public String bestPostDay(Model model){
+		String currentMonth= LocalDateTime.now().getMonth().toString();
+		int currentDay = LocalDateTime.now().getDayOfMonth();
+		int currentYear=LocalDateTime.now().getYear();
+		Post bestPost = postRepository.findTop1BypostUpVotesDay(currentMonth, currentYear, currentDay);
+		model.addAttribute("Post", bestPost);
+		model.addAttribute("PostComments", bestPost.getPostComments());
+		return "bestPostDay";
+	}
+	/*
+	@RequestMapping("/bestPostWeek")
+	public String bestPostWeek(Model model){
+		int currentDayofTheWeek= LocalDateTime.now().get
 		currentMonth="JANUARY";
 		System.out.println(currentMonth);
 		Post bestPost = postRepository.findTop1BypostUpVotes(currentMonth);
@@ -195,10 +227,9 @@ public class PostController extends NavbarController{
 			System.out.println("vacio");
 		}
 		model.addAttribute("PostComments", bestPost.getPostComments());
-		return "bestPost";
+		return "bestPostMonth";
 	}
-	
-	
+	*/
 	public void loadTag(Model model, String tag){
 		loadNavbar(model);
 		List<Post> original = postRepository.findByPostTag(tag);
