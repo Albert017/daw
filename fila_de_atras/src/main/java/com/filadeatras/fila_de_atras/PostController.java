@@ -184,9 +184,10 @@ public class PostController extends NavbarController{
 			return "users";
 		}
 	}
-	@RequestMapping("/bestPost")
+	@RequestMapping("/bestPostMonth")
 	public String bestPost(Model model){
 		String currentMonth= LocalDateTime.now().getMonth().toString();
+		currentMonth="JANUARY";
 		System.out.println(currentMonth);
 		Post bestPost = postRepository.findTop1BypostUpVotes(currentMonth);
 		model.addAttribute("Post", bestPost);
