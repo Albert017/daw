@@ -60,7 +60,7 @@ public class User {
 			username = nombre;
 			userEmail = email;
 			this.roles = new ArrayList<>(Arrays.asList(roles));
-			userPasswordHash= new BCryptPasswordEncoder().encode(pass);;
+			userPasswordHash= new BCryptPasswordEncoder().encode(pass);
 			userComments = new LinkedList<>();
 			userSentMessages = new LinkedList<>();
 			userReceivedMessages = new LinkedList<>();

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -365,6 +366,24 @@ public class UsersController extends NavbarController{
 		return "profile";
 	
 	}
+	
+	@RequestMapping(value="/userChangePassword")
+	public String changeUserPassword(Model model,
+			@RequestParam(value="oldPass", required=true) String oPass,
+			@RequestParam(value="newPass", required=true) String nPass){
+		if(!new BCryptPasswordEncoder().matches(oPass, userComponent.getLoggedUser().getUserPasswordHash())){
+			loadProfileNavbar(model);
+			model.addAttribute("ErrorMessage","Could not edit profile info.");
+			return "errorPage";
+		}else{
+			User u= userRepository.findOne(userComponent.getLoggedUser().getId());
+			u.setUserPasswordHash(new BCryptPasswordEncoder().encode(nPass));
+			userRepository.save(u);
+			userComponent.setLoggedUser(u);
+			return "redirect:/profile";
+		}
+	}
+	
 	@RequestMapping(value="/uploadProfileNewData/{id}")
 	public String uploadProfileNewData(Model model,
 			@PathVariable long id,
