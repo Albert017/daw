@@ -39,7 +39,7 @@ public class PostController extends NavbarController{
 			@PathVariable Long id){
 		
 		loadNavbar(model);
-		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
@@ -104,7 +104,7 @@ public class PostController extends NavbarController{
 	@RequestMapping(value="/index/{id}/down-vote", method = RequestMethod.POST)
 	public String postIndexDownVoteController(Model model,
 			@PathVariable Long id){
-		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
@@ -145,7 +145,7 @@ public class PostController extends NavbarController{
 	@RequestMapping(value="/index/{id}/up-vote", method = RequestMethod.POST)
 	public String postIndexUpVoteController(Model model,
 			@PathVariable Long id){
-		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
@@ -182,7 +182,7 @@ public class PostController extends NavbarController{
 			@PathVariable Long id){
 		
 		loadNavbar(model);
-		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
@@ -221,7 +221,7 @@ public class PostController extends NavbarController{
 			@PathVariable Long id){
 		
 		loadNavbar(model);
-		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
@@ -305,7 +305,7 @@ public class PostController extends NavbarController{
 	}
 	@RequestMapping("/bestPostMonth")
 	public String bestPostMonth(Model model){
-		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
@@ -341,7 +341,7 @@ public class PostController extends NavbarController{
 	
 	@RequestMapping("/bestPostYear")
 	public String bestPostYear(Model model){
-		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
@@ -366,7 +366,7 @@ public class PostController extends NavbarController{
 		if(p4!=null)
 			model.addAttribute("BestPostOfWeek", p4);
 		int currentYear= LocalDateTime.now().getYear();
-		Post bestPost = postRepository.findTop1BypostUpVotesYear(currentYear).get(0);
+		Post bestPost = postRepository.findFirst1ByYearOrderByPostUpVotesDesc(currentYear).get(0);
 		model.addAttribute("Post", bestPost);
 		model.addAttribute("PostComments", bestPost.getPostComments());
 		model.addAttribute("best", "del año");
@@ -375,7 +375,7 @@ public class PostController extends NavbarController{
 	
 	@RequestMapping("/bestPostDay")
 	public String bestPostDay(Model model){
-		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
@@ -411,7 +411,7 @@ public class PostController extends NavbarController{
 	
 	@RequestMapping("/bestPostWeek")
 	public String bestPostWeek(Model model){
-		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
@@ -462,7 +462,7 @@ public class PostController extends NavbarController{
 	@RequestMapping("/tag/wtf")
 	public String wtfTagController(Model model){
 		loadTag(model, "wtf");
-		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
@@ -492,7 +492,7 @@ public class PostController extends NavbarController{
 	@RequestMapping("/tag/funny")
 	public String funnyTagController(Model model){
 		loadTag(model, "funny");
-		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
@@ -522,7 +522,7 @@ public class PostController extends NavbarController{
 	@RequestMapping("/tag/animals")
 	public String animalsTagController(Model model){
 		loadTag(model, "animals");
-		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
@@ -552,7 +552,7 @@ public class PostController extends NavbarController{
 	@RequestMapping("/tag/movies")
 	public String moviesTagController(Model model){
 		loadTag(model, "movies");
-		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
@@ -582,7 +582,7 @@ public class PostController extends NavbarController{
 	@RequestMapping("/tag/savage")
 	public String savageTagController(Model model){
 		loadTag(model, "savage");
-		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
@@ -612,7 +612,7 @@ public class PostController extends NavbarController{
 	@RequestMapping("/tag/anime")
 	public String mangaTagController(Model model){
 		loadTag(model, "anime");
-		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}

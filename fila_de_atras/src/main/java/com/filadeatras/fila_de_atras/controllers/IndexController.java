@@ -55,7 +55,7 @@ public class IndexController extends NavbarController{
 	public String indexController(Model model, HttpServletRequest request){
 		loadNavbar(model);
 		
-		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
@@ -104,7 +104,7 @@ public class IndexController extends NavbarController{
 	
 	@RequestMapping(value={"/trending"})
 	public String indexTrendingController(Model model, HttpServletRequest request){
-		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
@@ -136,7 +136,7 @@ public class IndexController extends NavbarController{
 	
 	@RequestMapping(value={"/random"})
 	public String indexRandomController(Model model, HttpServletRequest request){
-		Post post1= postRepository.findTop1BypostUpVotesYear(LocalDateTime.now().getYear()).get(0);
+		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
