@@ -73,12 +73,12 @@ public class DatabaseDataLoader {
 	    		userRepository.save(newUs[i]);
 	    		if(i>0){
 	    			Message m = new Message("Texto de prueba "+i, newUs[0], newUs[1]);
-	    			messageRepository.save(m1);
+	    			messageRepository.save(m);
 	    			newUs[0].addFollowing(newUs[i]);
 	    			userRepository.save(newUs[0]);
 	    		}
 	    		Message m = new Message("Texto de prueba aux "+i, newUs[i], newUs[1]);
-	    		messageRepository.save(m1);
+	    		messageRepository.save(m);
 	    	}
 	    	
 	    	for(int i=0; i<11; i++){
@@ -99,8 +99,8 @@ public class DatabaseDataLoader {
 	    	Message m = new Message("Texto de prueba eliminado", newUs[0], newUs[1]);
 	    	Message m2 = new Message("Texto de prueba leido", newUs[3], newUs[1]);
 	    	m2.setMessageNew(false);
-	    	m1.setMessageDeleted(true);
-			messageRepository.save(m1);
+	    	m.setMessageDeleted(true);
+			messageRepository.save(m);
 			messageRepository.save(m2);
 	    	userRepository.save(new User("admin", "adminpass", "admin.a@a.aa","ROLE_USER","ROLE_ADMIN"));
 

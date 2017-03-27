@@ -20,7 +20,6 @@ import com.filadeatras.fila_de_atras.models.Follower;
 import com.filadeatras.fila_de_atras.models.Post;
 import com.filadeatras.fila_de_atras.models.User;
 import com.filadeatras.fila_de_atras.repositories.CommentRepository;
-import com.filadeatras.fila_de_atras.repositories.MessageRepository;
 import com.filadeatras.fila_de_atras.repositories.PostRepository;
 import com.filadeatras.fila_de_atras.repositories.UserRepository;
 
@@ -32,9 +31,6 @@ public class UsersController extends NavbarController{
 	
 	@Autowired
 	private CommentRepository commentRepository;
-	
-	@Autowired
-	private MessageRepository messageRepository;
 
 	@Autowired
 	private PostRepository postRepository;
