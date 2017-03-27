@@ -1,4 +1,4 @@
-package com.filadeatras.fila_de_atras;
+package com.filadeatras.fila_de_atras.controllers;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -12,6 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.filadeatras.fila_de_atras.UserComponent;
+import com.filadeatras.fila_de_atras.models.Post;
+import com.filadeatras.fila_de_atras.models.User;
+import com.filadeatras.fila_de_atras.repositories.PostRepository;
+import com.filadeatras.fila_de_atras.repositories.UserRepository;
 
 @Controller
 public class PostController extends NavbarController{

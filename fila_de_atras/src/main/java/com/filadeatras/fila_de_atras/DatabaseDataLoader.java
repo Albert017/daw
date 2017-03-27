@@ -9,6 +9,15 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.filadeatras.fila_de_atras.models.Comment;
+import com.filadeatras.fila_de_atras.models.Message;
+import com.filadeatras.fila_de_atras.models.Post;
+import com.filadeatras.fila_de_atras.models.User;
+import com.filadeatras.fila_de_atras.repositories.CommentRepository;
+import com.filadeatras.fila_de_atras.repositories.MessageRepository;
+import com.filadeatras.fila_de_atras.repositories.PostRepository;
+import com.filadeatras.fila_de_atras.repositories.UserRepository;
+
 
 @Component
 public class DatabaseDataLoader {

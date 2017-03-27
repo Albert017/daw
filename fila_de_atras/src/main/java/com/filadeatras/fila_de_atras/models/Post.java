@@ -1,4 +1,4 @@
-package com.filadeatras.fila_de_atras;
+package com.filadeatras.fila_de_atras.models;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

@@ -1,4 +1,4 @@
-package com.filadeatras.fila_de_atras;
+package com.filadeatras.fila_de_atras.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.filadeatras.fila_de_atras.models.User;
+import com.filadeatras.fila_de_atras.repositories.UserRepository;
 
 
 @Controller

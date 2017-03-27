@@ -1,4 +1,4 @@
-package com.filadeatras.fila_de_atras;
+package com.filadeatras.fila_de_atras.models;
 
 
 //Clase auxiliar para la lista de followers en profile

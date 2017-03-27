@@ -6,6 +6,8 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.filadeatras.fila_de_atras.models.User;
+
 /**
  * This class is designed to manage the information for the user while he is
  * logged in the service. This object can be used in any other @Component

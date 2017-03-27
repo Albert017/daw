@@ -1,9 +1,12 @@
-package com.filadeatras.fila_de_atras;
+package com.filadeatras.fila_de_atras.repositories;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import com.filadeatras.fila_de_atras.models.Post;
+import com.filadeatras.fila_de_atras.models.User;
 
 public interface PostRepository extends JpaRepository<Post, Long>{
 	

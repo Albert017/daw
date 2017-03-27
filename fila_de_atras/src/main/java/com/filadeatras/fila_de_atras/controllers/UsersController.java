@@ -1,4 +1,4 @@
-package com.filadeatras.fila_de_atras;
+package com.filadeatras.fila_de_atras.controllers;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -13,6 +13,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.filadeatras.fila_de_atras.UserComponent;
+import com.filadeatras.fila_de_atras.models.Comment;
+import com.filadeatras.fila_de_atras.models.Follower;
+import com.filadeatras.fila_de_atras.models.Post;
+import com.filadeatras.fila_de_atras.models.User;
+import com.filadeatras.fila_de_atras.repositories.CommentRepository;
+import com.filadeatras.fila_de_atras.repositories.MessageRepository;
+import com.filadeatras.fila_de_atras.repositories.PostRepository;
+import com.filadeatras.fila_de_atras.repositories.UserRepository;
 
 
 @Controller

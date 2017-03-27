@@ -1,4 +1,4 @@
-package com.filadeatras.fila_de_atras;
+package com.filadeatras.fila_de_atras.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 
