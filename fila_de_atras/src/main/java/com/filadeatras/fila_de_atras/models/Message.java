@@ -5,27 +5,34 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonView;
+import com.filadeatras.fila_de_atras.models.Post.ViewPost;
 @Entity
 public class Message {
+	
+		public interface ViewMessage extends User.UserPost{}
+		
+		@JsonView(ViewMessage.class)
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
 		private long id;
 		
+		@JsonView(ViewMessage.class)
 		private String messageContent;
 		//private String messageDate;
+		
+		@JsonView(ViewMessage.class)
 		private boolean messageNew;		
+		@JsonView(ViewMessage.class)
 		private boolean messageDeleted;
 
+		@JsonView(ViewMessage.class)
 		@ManyToOne
 		private User messageSender;
-		public boolean isMessageDeleted() {
-			return messageDeleted;
-		}
-
-		public void setMessageDeleted(boolean messageDeleted) {
-			this.messageDeleted = messageDeleted;
-		}
-
+		
+		
+		@JsonView(ViewMessage.class)
 		@ManyToOne
 		private User messageAddressee;
 		
@@ -41,6 +48,15 @@ public class Message {
 			messageAddressee= destinatary;
 			messageNew = true;
 			messageDeleted = false;
+		}
+		
+		
+		public boolean isMessageDeleted() {
+			return messageDeleted;
+		}
+
+		public void setMessageDeleted(boolean messageDeleted) {
+			this.messageDeleted = messageDeleted;
 		}
 
 		public long getId() {
