@@ -5,19 +5,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Comment {
+	
+	public interface PostComment extends User.UserPost{}
+	
+	@JsonView(PostComment.class)
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
+	@JsonView(PostComment.class)
 	private String commentContent;
 	//private String commentDate;
+	@JsonView(PostComment.class)
 	@ManyToOne
 	private User commentUser;
 	@ManyToOne
 	private Post commentPost;
 	
+	@JsonView(PostComment.class)
 	private boolean report;
 	
 	public Comment(){}

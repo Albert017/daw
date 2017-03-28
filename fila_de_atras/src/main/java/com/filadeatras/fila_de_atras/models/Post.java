@@ -16,30 +16,46 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Post {
+	
+	public interface ViewPost extends User.UserPost, Comment.PostComment{}
+	
+	@JsonView(ViewPost.class)
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
+	@JsonView(ViewPost.class)
 	private String postTitle;
 	
+	@JsonView(ViewPost.class)
 	@ManyToOne
 	private User postAuthor;
 	
+	@JsonView(ViewPost.class)
 	@OneToMany(mappedBy="commentPost",cascade=CascadeType.REMOVE)
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<Comment> postComments;
-
+	
+	@JsonView(ViewPost.class)
 	private String postTag;
+	@JsonView(ViewPost.class)
 	private String postDate;
 	private String month;
 	private int day;
 	private int year;
+	@JsonView(ViewPost.class)
 	private int postUpVotes;
+	@JsonView(ViewPost.class)
 	private int postDownVotes;
+	@JsonView(ViewPost.class)
 	private boolean report;
 	int postWeek;
+	
 	public Post(){}
 	
 	public Post(String title){

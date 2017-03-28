@@ -9,24 +9,24 @@ import javax.persistence.*;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class User {
+	
+	public interface UserPost{}
+		
+		@JsonView(UserPost.class)
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
 		private long id;
 		
+		@JsonView(UserPost.class)
 		@Column(unique=true)
 		private String username;
 		@Column(unique=true)
 		private String userEmail;
-		public String getUserEmail() {
-			return userEmail;
-		}
-
-		public void setUserEmail(String userEmail) {
-			this.userEmail = userEmail;
-		}
-
+		
 		@ElementCollection(fetch = FetchType.EAGER)
 		private List<String> roles;
 		
@@ -101,6 +101,13 @@ public class User {
 
 		public void setUserPasswordHash(String userPasswordHash) {
 			this.userPasswordHash = userPasswordHash;
+		}
+		public String getUserEmail() {
+			return userEmail;
+		}
+
+		public void setUserEmail(String userEmail) {
+			this.userEmail = userEmail;
 		}
 		
 		public List<Comment> getUserComments() {

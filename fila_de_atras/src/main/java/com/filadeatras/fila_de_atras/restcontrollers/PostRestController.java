@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.filadeatras.fila_de_atras.models.Post;
+import com.filadeatras.fila_de_atras.models.Post.ViewPost;
 import com.filadeatras.fila_de_atras.repositories.PostRepository;
 
 @RestController
@@ -18,7 +20,7 @@ public class PostRestController {
 	@Autowired
 	private PostRepository postRepository;
 	
-	
+	@JsonView(ViewPost.class)
 	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Post> postController (@PathVariable long id){
 		
