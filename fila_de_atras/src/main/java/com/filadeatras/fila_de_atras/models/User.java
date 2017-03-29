@@ -16,10 +16,9 @@ import com.filadeatras.fila_de_atras.models.Message.*;
 public class User {
 	
 	public interface UserPost{}
-	public interface UserSentMessage extends Message.MessageAddressee{}
+	public interface UserSendMessage extends Message.MessageAddressee{}
 	public interface UserReceiveMessage extends Message.MessageSender{}
-	//public interface ViewUser extends User.UserPost, Comment.CommentId, UserSentMessage, UserReceiveMessage, Post.PostBasic{}
-	public interface ViewUser extends User.UserPost, Post.PostBasic, UserReceiveMessage{}
+	public interface ViewUser extends User.UserPost, Post.PostBasic, UserReceiveMessage, UserSendMessage, Comment.CommentId{}
 		@JsonView(UserPost.class)
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
@@ -53,15 +52,18 @@ public class User {
 		private String userLink;
 		
 
-		//@JsonView(ViewUser.class)
+		@JsonView(ViewUser.class)
 		@OneToMany(mappedBy="commentUser",cascade=CascadeType.REMOVE)
 		private List<Comment> userComments;
 		
-		//@JsonView(UserSentMessage.class)
+		/**Coge la interfaz MessageId que me proporciona el contenido y el id del mensaje y la interfaz MessageAddressse
+		 * que me proporciona al destino del mensaje pero solamente lo proporcionado por la interfaz UserPost
+		 * que me proporciona el id y nombre de usuario lo mismo pasa con UserReceiveMessage**/
+		//@JsonView(UserSendMessage.class)
 		@OneToMany(mappedBy="messageSender",cascade=CascadeType.REMOVE)
 		private List<Message> userSentMessages;
 		
-		@JsonView(UserReceiveMessage.class)
+		//@JsonView(UserReceiveMessage.class)
 		@OneToMany(mappedBy="messageAddressee",cascade=CascadeType.REMOVE)
 		private List<Message> userReceivedMessages;
 		

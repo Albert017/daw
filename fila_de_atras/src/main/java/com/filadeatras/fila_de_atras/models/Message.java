@@ -11,10 +11,10 @@ import com.filadeatras.fila_de_atras.models.Post.ViewPost;
 @Entity
 public class Message {
 		
-		public interface MessageSender{}
-		public interface MessageAddressee{}
+		public interface MessageSender extends MessageId, User.UserPost{}
+		public interface MessageAddressee extends MessageId, User.UserPost{}
 		public interface MessageId{}
-		public interface ViewMessage extends User.UserPost, MessageId, MessageSender,MessageAddressee{}
+		public interface ViewMessage extends User.UserPost, MessageSender,MessageAddressee{}
 		
 		@JsonView(MessageId.class)
 		@Id

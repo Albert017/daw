@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 public class Comment {
 	
-	public interface CommentId{}
+	public interface CommentId extends Post.PostBasic{}
 	public interface PostComment extends User.UserPost, CommentId{}
 	
 	@JsonView(CommentId.class)
@@ -24,6 +24,7 @@ public class Comment {
 	@JsonView(PostComment.class)
 	@ManyToOne
 	private User commentUser;
+	@JsonView(CommentId.class)
 	@ManyToOne
 	private Post commentPost;
 	
