@@ -10,12 +10,16 @@ import javax.persistence.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.filadeatras.fila_de_atras.models.Message.*;
 
 @Entity
 public class User {
 	
 	public interface UserPost{}
-		
+	public interface UserSentMessage extends Message.MessageAddressee{}
+	public interface UserReceiveMessage extends Message.MessageSender{}
+	//public interface ViewUser extends User.UserPost, Comment.CommentId, UserSentMessage, UserReceiveMessage, Post.PostBasic{}
+	public interface ViewUser extends User.UserPost, Post.PostBasic, UserReceiveMessage{}
 		@JsonView(UserPost.class)
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
@@ -24,9 +28,11 @@ public class User {
 		@JsonView(UserPost.class)
 		@Column(unique=true)
 		private String username;
+		@JsonView(ViewUser.class)
 		@Column(unique=true)
 		private String userEmail;
 		
+		@JsonView(ViewUser.class)
 		@ElementCollection(fetch = FetchType.EAGER)
 		private List<String> roles;
 		
@@ -38,22 +44,31 @@ public class User {
 		
 		private String userPasswordHash;
 		
+
+		@JsonView(ViewUser.class)
 		private String userBiography;
+		@JsonView(ViewUser.class)
 		private String userLocation;
+		@JsonView(ViewUser.class)
 		private String userLink;
 		
 
+		//@JsonView(ViewUser.class)
 		@OneToMany(mappedBy="commentUser",cascade=CascadeType.REMOVE)
 		private List<Comment> userComments;
-
+		
+		//@JsonView(UserSentMessage.class)
 		@OneToMany(mappedBy="messageSender",cascade=CascadeType.REMOVE)
 		private List<Message> userSentMessages;
 		
+		@JsonView(UserReceiveMessage.class)
 		@OneToMany(mappedBy="messageAddressee",cascade=CascadeType.REMOVE)
 		private List<Message> userReceivedMessages;
 		
+		@JsonView(ViewUser.class)
 		@OneToMany(mappedBy="postAuthor",cascade=CascadeType.REMOVE)
 		private List<Post> userPosts;
+		@JsonView(ViewUser.class)
 		private boolean report;
 		
 		public User(String nombre, String pass,String email, String... roles){

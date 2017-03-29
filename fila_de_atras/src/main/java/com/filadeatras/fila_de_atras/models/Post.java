@@ -21,15 +21,15 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Post {
+	public interface PostBasic{}
+	public interface ViewPost extends User.UserPost, Comment.PostComment, PostBasic{}
 	
-	public interface ViewPost extends User.UserPost, Comment.PostComment{}
-	
-	@JsonView(ViewPost.class)
+	@JsonView(PostBasic.class)
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
-	@JsonView(ViewPost.class)
+	@JsonView(PostBasic.class)
 	private String postTitle;
 	
 	@JsonView(ViewPost.class)
@@ -41,18 +41,18 @@ public class Post {
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<Comment> postComments;
 	
-	@JsonView(ViewPost.class)
+	@JsonView(PostBasic.class)
 	private String postTag;
-	@JsonView(ViewPost.class)
+	@JsonView(PostBasic.class)
 	private String postDate;
 	private String month;
 	private int day;
 	private int year;
-	@JsonView(ViewPost.class)
+	@JsonView(PostBasic.class)
 	private int postUpVotes;
-	@JsonView(ViewPost.class)
+	@JsonView(PostBasic.class)
 	private int postDownVotes;
-	@JsonView(ViewPost.class)
+	@JsonView(PostBasic.class)
 	private boolean report;
 	int postWeek;
 	

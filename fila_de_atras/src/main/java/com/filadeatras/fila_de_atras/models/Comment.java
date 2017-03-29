@@ -10,14 +10,15 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 public class Comment {
 	
-	public interface PostComment extends User.UserPost{}
+	public interface CommentId{}
+	public interface PostComment extends User.UserPost, CommentId{}
 	
-	@JsonView(PostComment.class)
+	@JsonView(CommentId.class)
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
-	@JsonView(PostComment.class)
+	@JsonView(CommentId.class)
 	private String commentContent;
 	//private String commentDate;
 	@JsonView(PostComment.class)

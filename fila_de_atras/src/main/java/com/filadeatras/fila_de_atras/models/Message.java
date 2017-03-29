@@ -10,15 +10,18 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.filadeatras.fila_de_atras.models.Post.ViewPost;
 @Entity
 public class Message {
-	
-		public interface ViewMessage extends User.UserPost{}
 		
-		@JsonView(ViewMessage.class)
+		public interface MessageSender{}
+		public interface MessageAddressee{}
+		public interface MessageId{}
+		public interface ViewMessage extends User.UserPost, MessageId, MessageSender,MessageAddressee{}
+		
+		@JsonView(MessageId.class)
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
 		private long id;
 		
-		@JsonView(ViewMessage.class)
+		@JsonView(MessageId.class)
 		private String messageContent;
 		//private String messageDate;
 		
@@ -27,12 +30,12 @@ public class Message {
 		@JsonView(ViewMessage.class)
 		private boolean messageDeleted;
 
-		@JsonView(ViewMessage.class)
+		@JsonView(MessageSender.class)
 		@ManyToOne
 		private User messageSender;
 		
 		
-		@JsonView(ViewMessage.class)
+		@JsonView(MessageAddressee.class)
 		@ManyToOne
 		private User messageAddressee;
 		
