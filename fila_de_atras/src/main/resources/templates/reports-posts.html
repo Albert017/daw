@@ -3,6 +3,7 @@
 
 <head>
     <link href="/stylesheet/bootstrap.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="/stylesheet/font-awesome.min.css">
     <link href="/stylesheet/style.css" rel="stylesheet">
     <link href="/stylesheet/stylePost.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -110,12 +111,12 @@
 		                            <p> 
 		                            <div id="up-votes">
 			                            <form action="/post/{{id}}/up-vote" method="POST">
-			                            	<button type="submit" class="btn btn-primary" >⬆</button> 
+			                            	<button type="submit" class="btn btn-primary" ><i class="fa fa-arrow-up" aria-hidden="true"></i></button> 
 			                            </form>
 		                            </div>
 		                            <div id=down-votes">
 			                            <form action="/post/{{id}}/down-vote" method="POST">
-			                            	<button type="submit" class="btn btn-primary" role="button">⬇</button> 
+			                            	<button type="submit" class="btn btn-primary" role="button"><i class="fa fa-arrow-down" aria-hidden="true"></i></button> 
 			                            </form>
 		                            </div>
 		                            
