@@ -12,19 +12,20 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.filadeatras.fila_de_atras.models.Post;
 import com.filadeatras.fila_de_atras.models.Post.ViewPost;
 import com.filadeatras.fila_de_atras.repositories.PostRepository;
+import com.filadeatras.fila_de_atras.services.PostService;
 
 @RestController
 @RequestMapping("/api/post")
 public class PostRestController {
 
 	@Autowired
-	private PostRepository postRepository;
+	private PostService servicePost;
 	
 	@JsonView(ViewPost.class)
 	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Post> postController (@PathVariable long id){
 		
-		Post postFound = postRepository.getOne(id);
+		Post postFound = servicePost.findOne(id);
 		if(postFound==null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

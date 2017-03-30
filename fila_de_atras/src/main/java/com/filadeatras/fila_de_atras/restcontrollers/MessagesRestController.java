@@ -11,23 +11,56 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.filadeatras.fila_de_atras.models.Message;
 import com.filadeatras.fila_de_atras.models.Message.ViewMessage;
 import com.filadeatras.fila_de_atras.repositories.MessageRepository;
+import com.filadeatras.fila_de_atras.services.MessageService;
+import com.filadeatras.fila_de_atras.services.UserService;
 
 @RestController
 @RequestMapping("/api/mensajes")
 public class MessagesRestController {
 	
 	@Autowired
-	private MessageRepository msgRepository;
+	private MessageService serviceMessage;
+	
+	@Autowired
+	private UserService serviceUser;
 	
 	@JsonView(ViewMessage.class)
 	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Message> msgController (@PathVariable long id){
+	public ResponseEntity<Message>getMessageById(@PathVariable long id){
 		
-		Message msgFound = msgRepository.getOne(id);
+		Message msgFound = serviceMessage.getOne(id);
 		if(msgFound==null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(msgFound,HttpStatus.OK);
 	}
 
+
+
+	@JsonView(ViewMessage.class)
+	@RequestMapping(value = "/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Message> deleteMessageById(@PathVariable long id){
+		
+		Message msgDeleted = serviceMessage.getOne(id);
+		if(msgDeleted==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		serviceMessage.delete(msgDeleted);
+		return new ResponseEntity<>(msgDeleted,HttpStatus.OK);
+	}
+	
+	/*
+	@JsonView(ViewMessage.class)
+	@RequestMapping(value = "/{username}", method=RequestMethod.GET)
+	public ResponseEntity<Message> deleteMessageById(@PathVariable String username){
+		
+		Message msgDeleted;
+		if(msgDeleted==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		serviceMessage.delete(msgDeleted);
+		return new ResponseEntity<>(msgDeleted,HttpStatus.OK);
+	}*/
+
 }
+

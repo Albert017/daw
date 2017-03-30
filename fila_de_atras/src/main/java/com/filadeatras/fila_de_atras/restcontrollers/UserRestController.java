@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.filadeatras.fila_de_atras.repositories.UserRepository;
+import com.filadeatras.fila_de_atras.services.UserService;
 import com.filadeatras.fila_de_atras.models.User;
 import com.filadeatras.fila_de_atras.models.User.ViewUser;
 
@@ -18,13 +19,13 @@ import com.filadeatras.fila_de_atras.models.User.ViewUser;
 public class UserRestController {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserService serviceUser;
 	
 	@JsonView(ViewUser.class)
 	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
 	public ResponseEntity<User> postController (@PathVariable long id){
 		
-		User userFound = userRepository.getOne(id);
+		User userFound = serviceUser.findById(id);
 		if(userFound==null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

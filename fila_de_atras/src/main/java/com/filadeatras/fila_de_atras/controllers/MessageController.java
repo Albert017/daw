@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.filadeatras.fila_de_atras.UserComponent;
 import com.filadeatras.fila_de_atras.models.Message;
 import com.filadeatras.fila_de_atras.models.User;
-import com.filadeatras.fila_de_atras.repositories.MessageRepository;
 import com.filadeatras.fila_de_atras.repositories.UserRepository;
 
 import java.util.LinkedList;
 import java.util.List;
+import com.filadeatras.fila_de_atras.services.MessageService;;
 
 @Controller
 public class MessageController extends NavbarController{
 	@Autowired
-	private MessageRepository repository;
+	private MessageService serviceMsg;
 	
 	@Autowired
 	private  UserRepository repositoryUser;
@@ -30,26 +30,11 @@ public class MessageController extends NavbarController{
 	private UserComponent userComponent;
 	
 	
-	// Metodo que te devuelve una lista con los diferentes usuarios con los que tienes mensajes
-	private static void getMessageWithDifferentSender(List<Message> lista, List<Message> result){
-		if(lista != null){
-			for(Message msg : lista){
-				boolean found=false;
-				for(int i=0; i<result.size()&&!found;i++){
-					found = msg.getMessageSender().getUsername().equals(result.get(i).getMessageSender().getUsername());
-				}
-				if(!found){
-					result.add(msg);
-				}
-				
-			}
-		}
-		
-	}
 	
-	private static void loadDeletedMessage(MessageRepository repository, Model model, User userC){
+	
+	private static void loadDeletedMessage(MessageService serviceMsg, Model model, User userC){
 		
-		List<Message> eliminados = repository.findBymessageAddresseeAndMessageDeletedOrderByIdDesc(userC, true);
+		List<Message> eliminados = serviceMsg.findBymessageAddresseeAndMessageDeletedOrderByIdDesc(userC, true);
 		if(eliminados.size()==0){
 			model.addAttribute("sinMensajes", true);
 		}
@@ -64,24 +49,24 @@ public class MessageController extends NavbarController{
 		model.addAttribute("conversation",false);
 	}
 	
-	private static void readMessages(List<Message> messageU1toU2, User user, MessageRepository repository){
+	private static void readMessages(List<Message> messageU1toU2, User user, MessageService serviceMsg){
 		//Read Messages
 		
 		for (Message message : messageU1toU2) {
 			if(user.getId()==message.getMessageAddressee().getId()){
 				message.setMessageNew(false);
-				repository.save(message);
+				serviceMsg.save(message);
 						
 			}
 		}
 	}
 	
 	
-	private static void loadUsernameMessage(MessageRepository repository, Model model, User userC, User user_aux){
-		//List<Message> messageU1toU2 = repository.findByMessageAddresseeAndMessageSenderAndMessageDeletedOrderByIdDesc(userC, user_aux, false);
-		List<Message> messageU1toU2 = repository.findConversationByUserIdOrderByIdDesc(userC.getId(), user_aux.getId());
+	private static void loadUsernameMessage(MessageService serviceMsg, Model model, User userC, User user_aux){
+		//List<Message> messageU1toU2 = serviceMsg.findByMessageAddresseeAndMessageSenderAndMessageDeletedOrderByIdDesc(userC, user_aux, false);
+		List<Message> messageU1toU2 = serviceMsg.findConversationByUserIdOrderByIdDesc(userC.getId(), user_aux.getId());
 		
-		readMessages(messageU1toU2, userC, repository);
+		readMessages(messageU1toU2, userC, serviceMsg);
 
 		if(messageU1toU2.size()==0){
 			model.addAttribute("sinMensajes", true);
@@ -101,10 +86,10 @@ public class MessageController extends NavbarController{
 		
 	}
 	
-	private static void loadMessage(MessageRepository repository, Model model, User userC){
-		List<Message> msg = repository.findBymessageAddresseeAndMessageDeletedOrderByIdDesc(userC, false);
+	private static void loadMessage(MessageService serviceMsg, Model model, User userC){
+		List<Message> msg = serviceMsg.findBymessageAddresseeAndMessageDeletedOrderByIdDesc(userC, false);
 		List<Message> newMsg = new LinkedList<Message>();
-		getMessageWithDifferentSender(msg, newMsg);
+		serviceMsg.getMessageWithDifferentSender(msg, newMsg);
 		
 		if(newMsg.size()==0){
 			model.addAttribute("sinMensajes", true);
@@ -121,7 +106,7 @@ public class MessageController extends NavbarController{
 	@RequestMapping("/mensajes")
 	public String messageController(Model model){
 		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
-		loadMessage(repository, model, conectedUser);
+		loadMessage(serviceMsg, model, conectedUser);
 		loadNavbar(model);
 		
 		return "user-mensajes";
@@ -137,7 +122,7 @@ public class MessageController extends NavbarController{
 	@RequestMapping("/mensajes/eliminados")
 	public String deletedMessageController(Model model){
 		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
-		loadDeletedMessage(repository, model, conectedUser);
+		loadDeletedMessage(serviceMsg, model, conectedUser);
 		loadNavbar(model);
 		
 		return "user-mensajesConversacion";
@@ -151,7 +136,7 @@ public class MessageController extends NavbarController{
 		if(user_aux != null){
 			User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
 			loadNavbar(model);
-			loadUsernameMessage(repository, model, conectedUser, user_aux);
+			loadUsernameMessage(serviceMsg, model, conectedUser, user_aux);
 					
 			return "user-mensajesConversacion";
 		}
@@ -169,15 +154,15 @@ public class MessageController extends NavbarController{
 	@RequestMapping(value="/mensajes/eliminados/movido/{id}")
 	public String sentToDeletedController(Model model, @PathVariable Long id){
 		loadNavbar(model);
-		Message msg = repository.findMessageById(id);
+		Message msg = serviceMsg.findMessageById(id);
 		msg.setMessageDeleted(true);
-		repository.save(msg);
+		serviceMsg.save(msg);
 		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
 		if(conectedUser.equals(msg.getMessageAddressee())){
-			loadUsernameMessage(repository, model, conectedUser, msg.getMessageSender());
+			loadUsernameMessage(serviceMsg, model, conectedUser, msg.getMessageSender());
 		}
 		else{
-			loadUsernameMessage(repository, model, conectedUser, msg.getMessageAddressee());
+			loadUsernameMessage(serviceMsg, model, conectedUser, msg.getMessageAddressee());
 		}
 		
 		
@@ -187,12 +172,12 @@ public class MessageController extends NavbarController{
 	@RequestMapping(value="/mensajes/eliminado/{id}", method = RequestMethod.POST)
 	public String DeleteController(Model model, @PathVariable Long id){
 		loadNavbar(model);
-		Message msg = repository.findMessageById(id);
+		Message msg = serviceMsg.findMessageById(id);
 		msg.setMessageDeleted(true);
-		repository.delete(msg);
+		serviceMsg.delete(msg);
 
 		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
-		loadDeletedMessage(repository, model, conectedUser);
+		loadDeletedMessage(serviceMsg, model, conectedUser);
 		
 		return "user-mensajesConversacion";
 	}
@@ -207,10 +192,10 @@ public class MessageController extends NavbarController{
 		
 		if(uDest != null){
 			Message msg = new Message(mensaje, conectedUser, uDest);
-			repository.save(msg);
+			serviceMsg.save(msg);
 			
 			
-			loadMessage(repository, model, conectedUser);
+			loadMessage(serviceMsg, model, conectedUser);
 			
 			return "user-mensajes";
 		}
@@ -231,9 +216,9 @@ public class MessageController extends NavbarController{
 		
 		if(uDest != null){
 			Message msg = new Message(mensaje, conectedUser, uDest);
-			repository.save(msg);
+			serviceMsg.save(msg);
 			
-			loadUsernameMessage(repository, model, conectedUser, uDest);
+			loadUsernameMessage(serviceMsg, model, conectedUser, uDest);
 			model.addAttribute("send-msg", uDest);
 			
 			return "user-mensajesConversacion";
