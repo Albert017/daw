@@ -26,4 +26,19 @@ public class CommentService {
 		return repositoryComment.findAllByreport(report);
 	}
 
+	public void save(Comment c){
+		
+		repositoryComment.save(c);
+	}
+	
+	public void delete(Comment c){
+		
+		repositoryComment.delete(c);
+		
+	}
+	
+	public Comment findOne(Long id){
+		
+		return repositoryComment.findOne(id);
+	}
 }

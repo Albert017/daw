@@ -9,23 +9,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.filadeatras.fila_de_atras.UserComponent;
 import com.filadeatras.fila_de_atras.models.Post;
 import com.filadeatras.fila_de_atras.models.User;
-import com.filadeatras.fila_de_atras.repositories.PostRepository;
-import com.filadeatras.fila_de_atras.repositories.UserRepository;
+import com.filadeatras.fila_de_atras.services.PostService;
+import com.filadeatras.fila_de_atras.services.UserService;
+
 
 @Controller
 public class SearchController extends NavbarController{
 	
 	@Autowired
-	PostRepository postRepository;
+	PostService postService;
 	@Autowired
-	UserRepository userRepository;
+	UserService userService;
 	@Autowired
 	UserComponent userComponent;
 	
 	@RequestMapping(value="/search")
 	public String postSearch(Model model, @RequestParam("searchedPost") String consultedPost){
-		Post currPost = postRepository.findBypostTitle(consultedPost);
-		User u= userRepository.findByusername(consultedPost);
+		Post currPost = postService.findBypostTitle(consultedPost);
+		User u= userService.findByusername(consultedPost);
 			loadNavbar(model);
 			model.addAttribute("Post",currPost);
 			model.addAttribute("User",u);

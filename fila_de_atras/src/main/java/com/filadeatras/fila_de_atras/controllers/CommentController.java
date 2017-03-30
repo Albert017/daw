@@ -13,21 +13,22 @@ import com.filadeatras.fila_de_atras.UserComponent;
 import com.filadeatras.fila_de_atras.models.Comment;
 import com.filadeatras.fila_de_atras.models.Post;
 import com.filadeatras.fila_de_atras.models.User;
-import com.filadeatras.fila_de_atras.repositories.CommentRepository;
-import com.filadeatras.fila_de_atras.repositories.PostRepository;
 import com.filadeatras.fila_de_atras.repositories.UserRepository;
+import com.filadeatras.fila_de_atras.services.CommentService;
+import com.filadeatras.fila_de_atras.services.PostService;
+import com.filadeatras.fila_de_atras.services.UserService;
 
 @Controller
 public class CommentController extends NavbarController{
 	
 	@Autowired
-	private CommentRepository commentRepository;
+	private CommentService serviceComment;
 	
 	@Autowired
-	private PostRepository postRepository;
+	private PostService servicePost;
 	
 	@Autowired
-	private UserRepository userRepository;
+	private UserService serviceUser;
 	
 	@Autowired
 	UserComponent userComponent;
@@ -44,14 +45,14 @@ public class CommentController extends NavbarController{
 		loadNavbar(model);
 		
 		Long id = Long.parseLong(cPost);
-		Post currPost = postRepository.findOne(id);
+		Post currPost = servicePost.findOne(id);
 
-		User currUser = userRepository.findByusername(userComponent.getLoggedUser().getUsername());
+		User currUser = serviceUser.findByusername(userComponent.getLoggedUser().getUsername());
 		
 		Comment newComment = new Comment(cContent,currUser,currPost);
-		commentRepository.save(newComment);
+		serviceComment.save(newComment);
 		
-		currPost = postRepository.findOne(id);
+		currPost = servicePost.findOne(id);
 		
 		model.addAttribute("Post",currPost);
 		model.addAttribute("PostComments",currPost.getPostComments());

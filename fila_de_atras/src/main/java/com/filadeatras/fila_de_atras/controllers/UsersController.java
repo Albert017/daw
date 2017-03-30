@@ -19,21 +19,21 @@ import com.filadeatras.fila_de_atras.models.Comment;
 import com.filadeatras.fila_de_atras.models.Follower;
 import com.filadeatras.fila_de_atras.models.Post;
 import com.filadeatras.fila_de_atras.models.User;
-import com.filadeatras.fila_de_atras.repositories.CommentRepository;
-import com.filadeatras.fila_de_atras.repositories.PostRepository;
-import com.filadeatras.fila_de_atras.repositories.UserRepository;
+import com.filadeatras.fila_de_atras.services.CommentService;
+import com.filadeatras.fila_de_atras.services.PostService;
+import com.filadeatras.fila_de_atras.services.UserService;
 
 
 @Controller
 public class UsersController extends NavbarController{
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 	
 	@Autowired
-	private CommentRepository commentRepository;
+	private CommentService commentService;
 
 	@Autowired
-	private PostRepository postRepository;
+	private PostService postService;
 	
 	@Autowired
 	UserComponent userComponent;
@@ -48,7 +48,7 @@ public class UsersController extends NavbarController{
 	public String usersController(Model model,
 			@PathVariable String reqUserName){
 		loadNavbar(model);
-		User viewUser = userRepository.findByusername(reqUserName);
+		User viewUser = userService.findByusername(reqUserName);
 		if (viewUser==null){
 			model.addAttribute("ErrorMessage","User not found.");
 			return "errorPage";
@@ -57,7 +57,7 @@ public class UsersController extends NavbarController{
 			if(userComponent.isLoggedUser()){
 				if(viewUser.equals(userComponent.getLoggedUser())){
 					loadProfileNavbar(model);
-					List<Post> postListCurr = userRepository.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
+					List<Post> postListCurr = userService.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
 					model.addAttribute("Posts",postListCurr);
 					
 					return "profile";
@@ -72,7 +72,7 @@ public class UsersController extends NavbarController{
 			model.addAttribute("UserViewUser",viewUser);
 			model.addAttribute("UserViewPost",ranPost);
 			if(userComponent.isLoggedUser()){
-				User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
+				User conectedUser = userService.findOne(userComponent.getLoggedUser().getId());
 				model.addAttribute("isFollowing", conectedUser.isFollowing(viewUser));
 			}
 			
@@ -85,7 +85,7 @@ public class UsersController extends NavbarController{
 	public String profileController(Model model){
 		
 		loadProfileNavbar(model);
-		List<Post> postListCurr = userRepository.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
+		List<Post> postListCurr = userService.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
 		model.addAttribute("Posts",postListCurr);
 		
 		return "profile";
@@ -94,7 +94,7 @@ public class UsersController extends NavbarController{
 	@RequestMapping("/followers")
 	public String profileFollowersController(Model model){
 		loadProfileNavbar(model);
-		User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
+		User conectedUser = userService.findOne(userComponent.getLoggedUser().getId());
 		LinkedList<Follower> followers = new LinkedList<Follower>();
 		for(int i=0; i< conectedUser.getUserFollowers().size();i++){
 			User user = conectedUser.getUserFollowers().get(i);
@@ -111,7 +111,7 @@ public class UsersController extends NavbarController{
 	public String profileFollowingController(Model model){
 		
 		loadProfileNavbar(model);
-		User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
+		User conectedUser = userService.findOne(userComponent.getLoggedUser().getId());
 		model.addAttribute("followingList", conectedUser.getUserFollowing());
 		
 		return "following";
@@ -121,10 +121,10 @@ public class UsersController extends NavbarController{
 	public String unfollowUser_followingController(Model model, @PathVariable String username){
 		
 		
-		User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
-		User unfollowUser = userRepository.findByusername(username);
+		User conectedUser = userService.findOne(userComponent.getLoggedUser().getId());
+		User unfollowUser = userService.findByusername(username);
 		conectedUser.deleteFollowing(unfollowUser);
-		userRepository.save(conectedUser);
+		userService.save(conectedUser);
 		model.addAttribute("followingList", conectedUser.getUserFollowing());
 		loadProfileNavbar(model);
 		
@@ -137,10 +137,10 @@ public class UsersController extends NavbarController{
 	public String followUser_followersController(Model model, @PathVariable String username){
 		
 		
-		User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
-		User followUser = userRepository.findByusername(username);
+		User conectedUser = userService.findOne(userComponent.getLoggedUser().getId());
+		User followUser = userService.findByusername(username);
 		conectedUser.addFollowing(followUser);
-		userRepository.save(conectedUser);
+		userService.save(conectedUser);
 		LinkedList<Follower> followers = new LinkedList<Follower>();
 		for(int i=0; i< conectedUser.getUserFollowers().size();i++){
 			User user = conectedUser.getUserFollowers().get(i);
@@ -156,7 +156,7 @@ public class UsersController extends NavbarController{
 	@RequestMapping(value="/user/{username}/follow", method = RequestMethod.POST)
 	public String followUser_usersController(Model model, @PathVariable String username){
 		
-		User followUser = userRepository.findByusername(username);
+		User followUser = userService.findByusername(username);
 		if (followUser==null){
 			model.addAttribute("ErrorMessage","User not found.");
 			return "errorPage";
@@ -169,9 +169,9 @@ public class UsersController extends NavbarController{
 			
 			
 			if(userComponent.isLoggedUser()){
-				User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
+				User conectedUser = userService.findOne(userComponent.getLoggedUser().getId());
 				conectedUser.addFollowing(followUser);
-				userRepository.save(conectedUser);
+				userService.save(conectedUser);
 				model.addAttribute("isFollowing", conectedUser.isFollowing(followUser));
 			}
 			//model.addAttribute("followersList", conectedUser.getUserFollowers());
@@ -187,7 +187,7 @@ public class UsersController extends NavbarController{
 	@RequestMapping(value="/user/{username}/unfollow", method = RequestMethod.POST)
 	public String unfollowUser_usersController(Model model, @PathVariable String username){
 		
-		User followUser = userRepository.findByusername(username);
+		User followUser = userService.findByusername(username);
 		if (followUser==null){
 			model.addAttribute("ErrorMessage","User not found.");
 			return "errorPage";
@@ -200,9 +200,9 @@ public class UsersController extends NavbarController{
 			
 			
 			if(userComponent.isLoggedUser()){
-				User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
+				User conectedUser = userService.findOne(userComponent.getLoggedUser().getId());
 				conectedUser.deleteFollowing(followUser);
-				userRepository.save(conectedUser);
+				userService.save(conectedUser);
 				model.addAttribute("isFollowing", conectedUser.isFollowing(followUser));
 			}
 			//model.addAttribute("followersList", conectedUser.getUserFollowers());
@@ -222,7 +222,7 @@ public class UsersController extends NavbarController{
 		
 		loadProfileNavbar(model);
 		
-		model.addAttribute("reportedPostList",postRepository.findAllByreport(true));
+		model.addAttribute("reportedPostList",postService.findAllByreport(true));
 	
 		return "reports-posts";
 	}
@@ -232,7 +232,7 @@ public class UsersController extends NavbarController{
 		
 		loadProfileNavbar(model);
 		
-		model.addAttribute("reportedUserList",userRepository.findAllByreport(true));
+		model.addAttribute("reportedUserList",userService.findAllByreport(true));
 	
 		return "reports-users";
 	}
@@ -242,7 +242,7 @@ public class UsersController extends NavbarController{
 		
 		loadProfileNavbar(model);
 		
-		model.addAttribute("reportedCommentList",commentRepository.findAllByreport(true));
+		model.addAttribute("reportedCommentList",commentService.findAllByreport(true));
 	
 		return "reports-comments";
 	}
@@ -281,17 +281,17 @@ public class UsersController extends NavbarController{
 	
 	@RequestMapping(value="/profile/delete/post/{id}",  method = RequestMethod.POST)
 	public String deletePostController(Model model, @PathVariable Long id){
-		Post p = postRepository.findOne(id);
+		Post p = postService.findOne(id);
 		if(p.getPostComments().size()>0){
 			for(int i=0; i<p.getPostComments().size();i++){
-				commentRepository.delete(p.getPostComments().get(i));
+				commentService.delete(p.getPostComments().get(i));
 			}	
 		}
 		
-		postRepository.delete(p);
+		postService.delete(p);
 
 		loadProfileNavbar(model);
-		List<Post> postListCurr = userRepository.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
+		List<Post> postListCurr = userService.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
 		model.addAttribute("Posts",postListCurr);
 	
 		return "profile";
@@ -299,37 +299,37 @@ public class UsersController extends NavbarController{
 	
 	@RequestMapping(value="/deleteReportComment/{id}")
 	public String deleteReportCommentController(Model model, @PathVariable Long id){
-		Comment p = commentRepository.findOne(id);
+		Comment p = commentService.findOne(id);
 		
-		commentRepository.delete(p);
+		commentService.delete(p);
 
 		loadProfileNavbar(model);
 		
-		model.addAttribute("reportedCommentList",commentRepository.findAllByreport(true));
+		model.addAttribute("reportedCommentList",commentService.findAllByreport(true));
 	
 		return "profile";
 	}
 	@RequestMapping(value="/deleteReportUser/{id}")
 	public String deleteReportUserController(Model model, @PathVariable Long id){
-		User user= userRepository.findOne(id);
-		userRepository.delete(user);
+		User user= userService.findOne(id);
+		userService.delete(user);
 		
 		loadProfileNavbar(model);
 		
-		model.addAttribute("reportedUserList",userRepository.findAllByreport(true));
+		model.addAttribute("reportedUserList",userService.findAllByreport(true));
 	
 		return "profile";
 	}
 	
 	@RequestMapping(value="/deleteReportPost/{id}")
 	public String deleteReportPostController(Model model, @PathVariable Long id){
-		Post p = postRepository.findOne(id);
+		Post p = postService.findOne(id);
 		
-		postRepository.delete(p);
+		postService.delete(p);
 		
 		loadProfileNavbar(model);
 		
-		model.addAttribute("reportedPostList",postRepository.findAllByreport(true));
+		model.addAttribute("reportedPostList",postService.findAllByreport(true));
 	
 		return "profile";
 	}
@@ -337,37 +337,37 @@ public class UsersController extends NavbarController{
 
 	@RequestMapping(value="/falseReportComment/{id}")
 	public String handleFalseReportComment(Model model,@PathVariable("id") long id){
-		Comment comment= commentRepository.findOne(id);
+		Comment comment= commentService.findOne(id);
 		comment.setReport(false);
-		commentRepository.save(comment);
+		commentService.save(comment);
 		
 		loadProfileNavbar(model);
 		
-		model.addAttribute("reportedCommentList",commentRepository.findAllByreport(true));
+		model.addAttribute("reportedCommentList",commentService.findAllByreport(true));
 		
 		return "profile";
 	}
 	@RequestMapping(value="/falseReportUser/{id}")
 	public String handleFalseReportUser(Model model,@PathVariable("id") long id){
-		User user= userRepository.findOne(id);
+		User user= userService.findOne(id);
 		user.setReport(false);
-		userRepository.save(user);
+		userService.save(user);
 		
 		loadProfileNavbar(model);
 		
-		model.addAttribute("reportedUserList",userRepository.findAllByreport(true));
+		model.addAttribute("reportedUserList",userService.findAllByreport(true));
 		
 		return "profile";
 	}
 	@RequestMapping(value="/falseReportPost/{id}")
 	public String handleFalseReportPost(Model model,@PathVariable("id") long id){
-		Post post= postRepository.findOne(id);
+		Post post= postService.findOne(id);
 		post.setReport(false);
-		postRepository.save(post);
+		postService.save(post);
 		
 		loadProfileNavbar(model);
 		
-		model.addAttribute("reportedPostList",postRepository.findAllByreport(true));
+		model.addAttribute("reportedPostList",postService.findAllByreport(true));
 		
 		return "profile";
 	
@@ -382,9 +382,9 @@ public class UsersController extends NavbarController{
 			model.addAttribute("ErrorMessage","Could not edit profile info.");
 			return "errorPage";
 		}else{
-			User u= userRepository.findOne(userComponent.getLoggedUser().getId());
+			User u= userService.findOne(userComponent.getLoggedUser().getId());
 			u.setUserPasswordHash(new BCryptPasswordEncoder().encode(nPass));
-			userRepository.save(u);
+			userService.save(u);
 			userComponent.setLoggedUser(u);
 			return "redirect:/profile";
 		}
@@ -401,7 +401,7 @@ public class UsersController extends NavbarController{
 		
 		loadProfileNavbar(model);
 		
-		User u= userRepository.findOne(id);
+		User u= userService.findOne(id);
 		if (u.getId()!=userComponent.getLoggedUser().getId()){
 			model.addAttribute("ErrorMessage","Could not edit profile info.");
 			return "errorPage";
@@ -413,8 +413,8 @@ public class UsersController extends NavbarController{
 			u.setUserLocation(newLoc);
 			u.setUserLink(newLink);
 			
-			userRepository.save(u);
-			userComponent.setLoggedUser(userRepository.findOne(id));
+			userService.save(u);
+			userComponent.setLoggedUser(userService.findOne(id));
 			loadProfileNavbar(model);
 			return "profile";
 		} catch (Exception e){

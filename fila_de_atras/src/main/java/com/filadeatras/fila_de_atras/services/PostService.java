@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.filadeatras.fila_de_atras.models.Comment;
 import com.filadeatras.fila_de_atras.models.Post;
 import com.filadeatras.fila_de_atras.models.User;
 import com.filadeatras.fila_de_atras.repositories.PostRepository;
@@ -78,6 +79,22 @@ public class PostService {
 	public Post findBypostTitle(String postTitle){
 		
 		return repositoryPost.findBypostTitle(postTitle);
+	}
+	
+	public List<Post> findAll(){
+		
+		return repositoryPost.findAll();
+	}
+	
+	public void save(Post p){
+		
+		repositoryPost.save(p);
+	}
+	
+	public void delete(Post p){
+		
+		repositoryPost.delete(p);
+		
 	}
 		
 }

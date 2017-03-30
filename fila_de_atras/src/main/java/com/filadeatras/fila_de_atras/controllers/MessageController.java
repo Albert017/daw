@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.filadeatras.fila_de_atras.UserComponent;
 import com.filadeatras.fila_de_atras.models.Message;
 import com.filadeatras.fila_de_atras.models.User;
-import com.filadeatras.fila_de_atras.repositories.UserRepository;
 
 import java.util.LinkedList;
 import java.util.List;
-import com.filadeatras.fila_de_atras.services.MessageService;;
+import com.filadeatras.fila_de_atras.services.MessageService;
+import com.filadeatras.fila_de_atras.services.UserService;;
 
 @Controller
 public class MessageController extends NavbarController{
@@ -24,7 +24,7 @@ public class MessageController extends NavbarController{
 	private MessageService serviceMsg;
 	
 	@Autowired
-	private  UserRepository repositoryUser;
+	private  UserService ServiceUser;
 	
 	@Autowired
 	private UserComponent userComponent;
@@ -105,7 +105,7 @@ public class MessageController extends NavbarController{
 	
 	@RequestMapping("/mensajes")
 	public String messageController(Model model){
-		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
+		User conectedUser = ServiceUser.findOne(userComponent.getLoggedUser().getId());
 		loadMessage(serviceMsg, model, conectedUser);
 		loadNavbar(model);
 		
@@ -121,7 +121,7 @@ public class MessageController extends NavbarController{
 	
 	@RequestMapping("/mensajes/eliminados")
 	public String deletedMessageController(Model model){
-		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
+		User conectedUser = ServiceUser.findOne(userComponent.getLoggedUser().getId());
 		loadDeletedMessage(serviceMsg, model, conectedUser);
 		loadNavbar(model);
 		
@@ -132,9 +132,9 @@ public class MessageController extends NavbarController{
 	public String messageUserController(Model model, @PathVariable String username){
 		loadNavbar(model);
 		
-		User user_aux = repositoryUser.findByusername(username);
+		User user_aux = ServiceUser.findByusername(username);
 		if(user_aux != null){
-			User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
+			User conectedUser = ServiceUser.findOne(userComponent.getLoggedUser().getId());
 			loadNavbar(model);
 			loadUsernameMessage(serviceMsg, model, conectedUser, user_aux);
 					
@@ -157,7 +157,7 @@ public class MessageController extends NavbarController{
 		Message msg = serviceMsg.findMessageById(id);
 		msg.setMessageDeleted(true);
 		serviceMsg.save(msg);
-		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
+		User conectedUser = ServiceUser.findOne(userComponent.getLoggedUser().getId());
 		if(conectedUser.equals(msg.getMessageAddressee())){
 			loadUsernameMessage(serviceMsg, model, conectedUser, msg.getMessageSender());
 		}
@@ -176,7 +176,7 @@ public class MessageController extends NavbarController{
 		msg.setMessageDeleted(true);
 		serviceMsg.delete(msg);
 
-		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
+		User conectedUser = ServiceUser.findOne(userComponent.getLoggedUser().getId());
 		loadDeletedMessage(serviceMsg, model, conectedUser);
 		
 		return "user-mensajesConversacion";
@@ -187,8 +187,8 @@ public class MessageController extends NavbarController{
 			@RequestParam(value="message-content", required=true) String mensaje){
 		
 		loadNavbar(model);
-		User uDest = repositoryUser.findByusername(dest);
-		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
+		User uDest = ServiceUser.findByusername(dest);
+		User conectedUser = ServiceUser.findOne(userComponent.getLoggedUser().getId());
 		
 		if(uDest != null){
 			Message msg = new Message(mensaje, conectedUser, uDest);
@@ -210,8 +210,8 @@ public class MessageController extends NavbarController{
 	@RequestMapping(value="/mensajes/{username}/enviado" , method = RequestMethod.POST)
 	public String sentMessageConversationController(Model model, 
 			@RequestParam(value="message-content", required=true) String mensaje, @PathVariable String username){
-		User uDest = repositoryUser.findByusername(username);
-		User conectedUser = repositoryUser.findOne(userComponent.getLoggedUser().getId());
+		User uDest = ServiceUser.findByusername(username);
+		User conectedUser = ServiceUser.findOne(userComponent.getLoggedUser().getId());
 		loadNavbar(model);
 		
 		if(uDest != null){

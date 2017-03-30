@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.filadeatras.fila_de_atras.models.User;
-import com.filadeatras.fila_de_atras.repositories.UserRepository;
+import com.filadeatras.fila_de_atras.services.UserService;
 
 
 @Controller
 public class SignupController {
 	
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 	
 	@RequestMapping(value={"/signup"})
 	public String signupController(Model model, HttpServletRequest request){
@@ -29,7 +29,7 @@ public class SignupController {
 			@RequestParam(value="email", required=true) String uEmail,
 			@RequestParam(value="password", required=true) String uPass){
 		try{
-			userRepository.save(new User(uName,uPass,uEmail,"ROLE_USER"));
+			userService.save(new User(uName,uPass,uEmail,"ROLE_USER"));
 			return "login";
 		}catch (Exception e){
 			model.addAttribute("signupError",true);

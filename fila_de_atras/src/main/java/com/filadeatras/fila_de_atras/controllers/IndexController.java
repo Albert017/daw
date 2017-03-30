@@ -25,9 +25,10 @@ import com.filadeatras.fila_de_atras.UserComponent;
 import com.filadeatras.fila_de_atras.models.Comment;
 import com.filadeatras.fila_de_atras.models.Post;
 import com.filadeatras.fila_de_atras.models.User;
-import com.filadeatras.fila_de_atras.repositories.CommentRepository;
-import com.filadeatras.fila_de_atras.repositories.PostRepository;
-import com.filadeatras.fila_de_atras.repositories.UserRepository;
+import com.filadeatras.fila_de_atras.services.CommentService;
+import com.filadeatras.fila_de_atras.services.PostService;
+import com.filadeatras.fila_de_atras.services.UserService;
+
 
 @Controller
 public class IndexController extends NavbarController{
@@ -39,13 +40,13 @@ public class IndexController extends NavbarController{
 	private static final String HEADERS_FOLDER = "headers";
 		
 	@Autowired
-	PostRepository postRepository;
+	PostService postService;
 	
 	@Autowired
-	UserRepository userRepository;
+	UserService userService;
 	
 	@Autowired
-	CommentRepository commentRepository;
+	CommentService commentService;
 	
 	@Autowired
 	UserComponent userComponent;
@@ -55,15 +56,15 @@ public class IndexController extends NavbarController{
 	public String indexController(Model model, HttpServletRequest request){
 		loadNavbar(model);
 		
-		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
+		Post post1= postService.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
-		Post post2= postRepository.findTop1BypostUpVotesMonth(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear()).get(0);
+		Post post2= postService.findTop1BypostUpVotesMonth(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear()).get(0);
 		if(post2 != null){
 			model.addAttribute("BestPostOfMonth",post2);
 		}
-		Post post3= postRepository.findTop1BypostUpVotesDay(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear(), LocalDateTime.now().getDayOfMonth()).get(0);
+		Post post3= postService.findTop1BypostUpVotesDay(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear(), LocalDateTime.now().getDayOfMonth()).get(0);
 		if(post3 != null){
 			model.addAttribute("BestPostOfDay",post3);
 		}
@@ -72,14 +73,14 @@ public class IndexController extends NavbarController{
 		int currentYear= LocalDateTime.now().getYear();
 		Post bestPost=null;
 		if(postWeek==0){
-			bestPost = postRepository.findTop1BypostUpVotesWeek(postWeek, currentYear, 53, currentYear-1).get(0);
+			bestPost = postService.findTop1BypostUpVotesWeek(postWeek, currentYear, 53, currentYear-1).get(0);
 		}
 		else{
-			bestPost = postRepository.findTop1BypostUpVotesWeek(postWeek, currentYear).get(0);
+			bestPost = postService.findTop1BypostUpVotesWeek(postWeek, currentYear).get(0);
 		}
 		if(bestPost!=null)
 			model.addAttribute("BestPostOfWeek", bestPost);
-		List<Post> original = postRepository.findAll();
+		List<Post> original = postService.findAll();
 		Collections.reverse(original);
 		model.addAttribute("Posts",original.subList(0,Math.min(original.size(), 10)));
 		return "indexNew";
@@ -88,7 +89,7 @@ public class IndexController extends NavbarController{
 	@RequestMapping(value={"/indexScroll/{interval}"})
 	public String indexScrollPosts(Model model,
 			@PathVariable int interval){
-		List<Post> original = postRepository.findAll();
+		List<Post> original = postService.findAll();
 		Collections.reverse(original);
 		List<Post> newPosts = null;
 		if (interval*10<original.size()){
@@ -104,15 +105,15 @@ public class IndexController extends NavbarController{
 	
 	@RequestMapping(value={"/trending"})
 	public String indexTrendingController(Model model, HttpServletRequest request){
-		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
+		Post post1= postService.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
-		Post post2= postRepository.findTop1BypostUpVotesMonth(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear()).get(0);
+		Post post2= postService.findTop1BypostUpVotesMonth(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear()).get(0);
 		if(post2 != null){
 			model.addAttribute("BestPostOfMonth",post2);
 		}
-		Post post3= postRepository.findTop1BypostUpVotesDay(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear(), LocalDateTime.now().getDayOfMonth()).get(0);
+		Post post3= postService.findTop1BypostUpVotesDay(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear(), LocalDateTime.now().getDayOfMonth()).get(0);
 		if(post3 != null){
 			model.addAttribute("BestPostOfDay",post3);
 		}
@@ -121,30 +122,30 @@ public class IndexController extends NavbarController{
 		int currentYear= LocalDateTime.now().getYear();
 		Post bestPost=null;
 		if(postWeek==0){
-			bestPost = postRepository.findTop1BypostUpVotesWeek(postWeek, currentYear, 53, currentYear-1).get(0);
+			bestPost = postService.findTop1BypostUpVotesWeek(postWeek, currentYear, 53, currentYear-1).get(0);
 		}
 		else{
-			bestPost = postRepository.findTop1BypostUpVotesWeek(postWeek, currentYear).get(0);
+			bestPost = postService.findTop1BypostUpVotesWeek(postWeek, currentYear).get(0);
 		}
 		if(bestPost!=null)
 			model.addAttribute("BestPostOfWeek", bestPost);
 		loadNavbar(model);
-		List<Post> original = postRepository.findAllByOrderByPostUpVotesDesc();
+		List<Post> original = postService.findAllByOrderByPostUpVotesDesc();
 		model.addAttribute("Posts",original);
 		return "indexTrending";
 	}
 	
 	@RequestMapping(value={"/random"})
 	public String indexRandomController(Model model, HttpServletRequest request){
-		Post post1= postRepository.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
+		Post post1= postService.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post1 != null){
 			model.addAttribute("BestPostOfYear",post1);
 		}
-		Post post2= postRepository.findTop1BypostUpVotesMonth(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear()).get(0);
+		Post post2= postService.findTop1BypostUpVotesMonth(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear()).get(0);
 		if(post2 != null){
 			model.addAttribute("BestPostOfMonth",post2);
 		}
-		Post post3= postRepository.findTop1BypostUpVotesDay(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear(), LocalDateTime.now().getDayOfMonth()).get(0);
+		Post post3= postService.findTop1BypostUpVotesDay(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear(), LocalDateTime.now().getDayOfMonth()).get(0);
 		if(post3 != null){
 			model.addAttribute("BestPostOfDay",post3);
 		}
@@ -153,15 +154,15 @@ public class IndexController extends NavbarController{
 		int currentYear= LocalDateTime.now().getYear();
 		Post bestPost=null;
 		if(postWeek==0){
-			bestPost = postRepository.findTop1BypostUpVotesWeek(postWeek, currentYear, 53, currentYear-1).get(0);
+			bestPost = postService.findTop1BypostUpVotesWeek(postWeek, currentYear, 53, currentYear-1).get(0);
 		}
 		else{
-			bestPost = postRepository.findTop1BypostUpVotesWeek(postWeek, currentYear).get(0);
+			bestPost = postService.findTop1BypostUpVotesWeek(postWeek, currentYear).get(0);
 		}
 		if(bestPost!=null)
 			model.addAttribute("BestPostOfWeek", bestPost);
 		loadNavbar(model);
-		List<Post> postListCurr = postRepository.findAll();
+		List<Post> postListCurr = postService.findAll();
 		Post ranPost = null;
 		if (postListCurr.size()>0){
 			ranPost = postListCurr.get((int)(Math.random()*postListCurr.size()));
@@ -213,10 +214,10 @@ public class IndexController extends NavbarController{
 					filesFolder.mkdirs();
 				}
 				Post p = new Post(imageTitle, currentUser, opcion);
-				postRepository.save(p);
-				User userAux = userRepository.findByusername(currentUser.getUsername());
+				postService.save(p);
+				User userAux = userService.findByusername(currentUser.getUsername());
 				userAux.getUserPosts().add(p);
-				userRepository.save(userAux);
+				userService.save(userAux);
 				File uploadedFile = new File(filesFolder.getAbsolutePath(),+p.getId()+".jpg");
 				file.transferTo(uploadedFile);
 				model.addAttribute("Post",p);
@@ -267,7 +268,7 @@ public class IndexController extends NavbarController{
 				File uploadedFile = new File(filesFolder.getAbsolutePath(),+currentUser.getId()+".jpg");
 				file.transferTo(uploadedFile);
 				
-				User conectedUser = userRepository.findOne(userComponent.getLoggedUser().getId());
+				User conectedUser = userService.findById(userComponent.getLoggedUser().getId());
 				model.addAttribute("followersList", conectedUser.getUserFollowers());
 								
 				return "followers";
@@ -356,27 +357,27 @@ public class IndexController extends NavbarController{
 	
 	@RequestMapping(value="/reportPost/{id}")
 	public String handleReportPost(Model model,@PathVariable("id") long id){
-		Post post= postRepository.findOne(id);
+		Post post= postService.findOne(id);
 		post.setReport(true);
-		postRepository.save(post);
-		model.addAttribute("Post",postRepository.findOne(id));
+		postService.save(post);
+		model.addAttribute("Post",postService.findOne(id));
 		
 		return "/";
 	}
 	@RequestMapping(value="/reportUser/{id}")
 	public String handleReportUser(Model model,@PathVariable("id") long id){
-		User user= userRepository.findOne(id);
+		User user= userService.findById(id);
 		user.setReport(true);
-		userRepository.save(user);
+		userService.save(user);
 		
 		return "/";
 	}
 	
 	@RequestMapping(value="/reportComment/{id}")
 	public String handleReportComment(Model model,@PathVariable("id") long id){
-		Comment comment= commentRepository.findOne(id);
+		Comment comment= commentService.findOne(id);
 		comment.setReport(true);
-		commentRepository.save(comment);
+		commentService.save(comment);
 		
 		return "/";
 	}
