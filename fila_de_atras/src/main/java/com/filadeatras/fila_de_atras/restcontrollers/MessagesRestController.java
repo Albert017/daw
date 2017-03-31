@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,6 +43,31 @@ public class MessagesRestController {
 		}
 		return new ResponseEntity<>(msgFound,HttpStatus.OK);
 	}
+	
+	@JsonView(ViewMessage.class)
+	@RequestMapping(value = "/conversacion/{username}", method=RequestMethod.GET)
+	public ResponseEntity<List<Message>>getMessageByUsername(@PathVariable String username){
+		
+		User user = serviceUser.findByusername(username);
+		List<Message> msgFound = serviceMessage.findConversationByUserIdOrderByIdDesc(userComponent.getLoggedUser().getId(), user.getId());
+		if(msgFound==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(msgFound,HttpStatus.OK);
+	}
+	
+	
+	@JsonView(ViewMessage.class)
+	@RequestMapping(value = "/eliminados", method=RequestMethod.GET)
+	public ResponseEntity<List<Message>>getMessageByUsername(){
+		
+		User userC = serviceUser.findById(userComponent.getLoggedUser().getId());
+		List<Message> msgDeleted = serviceMessage.findBymessageAddresseeAndMessageDeletedOrderByIdDesc(userC, true);
+		if(msgDeleted==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(msgDeleted,HttpStatus.OK);
+	}
 
 
 
@@ -56,32 +82,40 @@ public class MessagesRestController {
 		serviceMessage.delete(msgDeleted);
 		return new ResponseEntity<>(msgDeleted,HttpStatus.OK);
 	}
-	
-	
-	@JsonView(ViewMessage.class)
-	@RequestMapping(value = "/a/{username}", method=RequestMethod.GET)
-	public ResponseEntity<Collection<Message>> getMessagesByUsername(@PathVariable String username){
-		System.out.println("no peto aun");
-		User user = serviceUser.findByusername(username);
-		if(user==null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		System.out.println("no peto aun3");
-		List<Message> messageConver = serviceMessage.findConversationByUserIdOrderByIdDesc(userComponent.getLoggedUser().getId(), user.getId());
-		return new ResponseEntity<>(messageConver,HttpStatus.OK);
-	}
 
-	/*
+	
 	@JsonView(ViewMessage.class)
-	@RequestMapping(value = "/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<Message> delete2MessageById(@PathVariable long id){
+	@RequestMapping(value = "/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Message> putMessageById(@PathVariable long id, @RequestBody Message updateMessage){
 		
-		Message msgDeleted = serviceMessage.getOne(id);
-		if(msgDeleted==null){
+		Message msg = serviceMessage.getOne(id);
+		if(msg==null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		serviceMessage.delete(msgDeleted);
-		return new ResponseEntity<>(msgDeleted,HttpStatus.OK);
-	}*/
+		if(id != updateMessage.getId()){
+			updateMessage.setId(id);
+		}
+		serviceMessage.save(updateMessage);
+		return new ResponseEntity<>(updateMessage,HttpStatus.OK);
+	}
+	
+	@JsonView(ViewMessage.class)
+	@RequestMapping(value = "/", method=RequestMethod.POST)
+	public ResponseEntity<Message> postMessageById(@RequestBody Message updateMessage){
+		
+		serviceMessage.save(updateMessage);
+		return new ResponseEntity<>(updateMessage,HttpStatus.CREATED);
+	}
+	
+	@JsonView(ViewMessage.class)
+	@RequestMapping(value = "/", method=RequestMethod.GET)
+	public ResponseEntity<List<Message>> getAllMessage(){
+		
+		List<Message> msg = serviceMessage.findAll();
+		if(msg==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(msg,HttpStatus.OK);
+	}
 }
 

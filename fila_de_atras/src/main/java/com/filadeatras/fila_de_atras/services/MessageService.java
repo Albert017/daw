@@ -38,11 +38,6 @@ public List<Message> findBymessageAddresseeAndMessageDeletedOrderByIdDesc(User m
 	
 }
 
-public List<Message> findByMessageAddresseeAndMessageSenderAndMessageDeletedOrderByIdDesc(User messageAddressee, User messageSender, boolean messageDeleted){
-	
-	return repository.findByMessageAddresseeAndMessageSenderAndMessageDeletedOrderByIdDesc(messageAddressee, messageSender, messageDeleted);
-}
-
 
 public List <Message> findByMessageAddresseeAndMessageNew(User user, boolean messageRead){
 	
@@ -76,6 +71,11 @@ public Message getOne(Long id){
 	return repository.getOne(id);
 }
 
+public List<Message> findAll(){
+	
+	return repository.findAll();
+
+}
 
 
 }

@@ -63,7 +63,7 @@ public class MessageController extends NavbarController{
 	
 	
 	private static void loadUsernameMessage(MessageService serviceMsg, Model model, User userC, User user_aux){
-		//List<Message> messageU1toU2 = serviceMsg.findByMessageAddresseeAndMessageSenderAndMessageDeletedOrderByIdDesc(userC, user_aux, false);
+		
 		List<Message> messageU1toU2 = serviceMsg.findConversationByUserIdOrderByIdDesc(userC.getId(), user_aux.getId());
 		
 		readMessages(messageU1toU2, userC, serviceMsg);
