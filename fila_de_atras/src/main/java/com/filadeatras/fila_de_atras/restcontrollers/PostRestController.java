@@ -1,5 +1,7 @@
 package com.filadeatras.fila_de_atras.restcontrollers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,11 +37,17 @@ public class PostRestController {
 	}
 	
 	@JsonView(ViewPost.class)
-	@RequestMapping(value="/subirPost", method=RequestMethod.POST)
+	@RequestMapping(value="/uploadPost", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public Post nuevoAnuncio(@RequestBody Post post) {
+	public Post newPost(@RequestBody Post post) {
 		servicePost.save(post);
+		//falta comprobar si el user existe
 		return post;
 	}
 	
+	@JsonView(ViewPost.class)
+	@RequestMapping(value="/getAllPosts", method=RequestMethod.GET)
+	public List<Post> getAllPost(){
+		return servicePost.findAll();
+	}
 }

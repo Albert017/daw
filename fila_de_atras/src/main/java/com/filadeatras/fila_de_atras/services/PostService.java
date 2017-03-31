@@ -96,5 +96,5 @@ public class PostService {
 		repositoryPost.delete(p);
 		
 	}
-		
+			
 }
