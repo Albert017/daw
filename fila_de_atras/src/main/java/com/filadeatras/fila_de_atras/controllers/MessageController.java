@@ -50,8 +50,6 @@ public class MessageController extends NavbarController{
 	}
 	
 	private static void readMessages(List<Message> messageU1toU2, User user, MessageService serviceMsg){
-		//Read Messages
-		
 		for (Message message : messageU1toU2) {
 			if(user.getId()==message.getMessageAddressee().getId()){
 				message.setMessageNew(false);
@@ -87,9 +85,8 @@ public class MessageController extends NavbarController{
 	}
 	
 	private static void loadMessage(MessageService serviceMsg, Model model, User userC){
-		List<Message> msg = serviceMsg.findBymessageAddresseeAndMessageDeletedOrderByIdDesc(userC, false);
-		List<Message> newMsg = new LinkedList<Message>();
-		serviceMsg.getMessageWithDifferentSender(msg, newMsg);
+		
+		List<Message> newMsg = serviceMsg.getMessageWithDifferentSender(userC);
 		
 		if(newMsg.size()==0){
 			model.addAttribute("sinMensajes", true);
