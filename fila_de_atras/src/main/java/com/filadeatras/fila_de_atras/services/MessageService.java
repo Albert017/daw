@@ -1,5 +1,6 @@
 package com.filadeatras.fila_de_atras.services;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,9 @@ public class MessageService {
 private MessageRepository repository;
 
 //Metodo que te devuelve una lista con los diferentes usuarios con los que tienes mensajes
-	public void getMessageWithDifferentSender(List<Message> lista, List<Message> result){
+	public List<Message> getMessageWithDifferentSender(User userC){
+		List<Message> lista = findBymessageAddresseeAndMessageDeletedOrderByIdDesc(userC, false);
+		List<Message> result = new LinkedList<Message>();
 		if(lista != null){
 			for(Message msg : lista){
 				boolean found=false;
@@ -29,6 +32,7 @@ private MessageRepository repository;
 				
 			}
 		}
+		return result;
 		
 	}
 

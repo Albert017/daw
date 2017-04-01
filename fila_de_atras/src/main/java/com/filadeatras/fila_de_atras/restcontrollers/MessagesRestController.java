@@ -1,6 +1,5 @@
 package com.filadeatras.fila_de_atras.restcontrollers;
 
-import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +14,6 @@ import com.filadeatras.fila_de_atras.UserComponent;
 import com.filadeatras.fila_de_atras.models.Message;
 import com.filadeatras.fila_de_atras.models.Message.ViewMessage;
 import com.filadeatras.fila_de_atras.models.User;
-import com.filadeatras.fila_de_atras.repositories.MessageRepository;
 import com.filadeatras.fila_de_atras.services.MessageService;
 import com.filadeatras.fila_de_atras.services.UserService;
 import java.util.List;
@@ -34,10 +32,10 @@ public class MessagesRestController {
 	private UserComponent userComponent;
 	
 	@JsonView(ViewMessage.class)
-	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Message>getMessageById(@PathVariable long id){
-		
-		Message msgFound = serviceMessage.getOne(id);
+	@RequestMapping(value = "/conversaciones", method=RequestMethod.GET)
+	public ResponseEntity<List<Message>>getMessages(@PathVariable long id){
+		User userC = serviceUser.findById(userComponent.getLoggedUser().getId());
+		List<Message> msgFound = serviceMessage.getMessageWithDifferentSender(userC);;
 		if(msgFound==null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -101,17 +99,17 @@ public class MessagesRestController {
 	
 	@JsonView(ViewMessage.class)
 	@RequestMapping(value = "/", method=RequestMethod.POST)
-	public ResponseEntity<Message> postMessageById(@RequestBody Message updateMessage){
+	public ResponseEntity<Message> postMessageById(@RequestBody Message newMessage){
 		
-		serviceMessage.save(updateMessage);
-		return new ResponseEntity<>(updateMessage,HttpStatus.CREATED);
+		serviceMessage.save(newMessage);
+		return new ResponseEntity<>(newMessage,HttpStatus.CREATED);
 	}
 	
 	@JsonView(ViewMessage.class)
 	@RequestMapping(value = "/", method=RequestMethod.GET)
 	public ResponseEntity<List<Message>> getAllMessage(){
-		
-		List<Message> msg = serviceMessage.findAll();
+		User userC = serviceUser.findById(userComponent.getLoggedUser().getId());
+		List<Message> msg = serviceMessage.findBymessageAddresseeAndMessageDeletedOrderByIdDesc(userC, false);
 		if(msg==null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
