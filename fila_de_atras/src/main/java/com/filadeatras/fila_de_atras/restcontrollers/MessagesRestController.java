@@ -33,7 +33,7 @@ public class MessagesRestController {
 	
 	@JsonView(ViewMessage.class)
 	@RequestMapping(value = "/conversaciones", method=RequestMethod.GET)
-	public ResponseEntity<List<Message>>getMessages(@PathVariable long id){
+	public ResponseEntity<List<Message>>getMessages(){
 		User userC = serviceUser.findById(userComponent.getLoggedUser().getId());
 		List<Message> msgFound = serviceMessage.getMessageWithDifferentSender(userC);;
 		if(msgFound==null){
