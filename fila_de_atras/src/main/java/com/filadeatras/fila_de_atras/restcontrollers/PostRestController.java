@@ -1,5 +1,6 @@
 package com.filadeatras.fila_de_atras.restcontrollers;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +47,78 @@ public class PostRestController {
 	}
 	
 	@JsonView(ViewPost.class)
-	@RequestMapping(value="/getAllPosts", method=RequestMethod.GET)
-	public List<Post> getAllPost(){
-		return servicePost.findAll();
+	@RequestMapping(value="/getCategoryPost/{tag}", method=RequestMethod.GET)
+	public ResponseEntity<List<Post>> getFromACategoryPost(@PathVariable String tag){
+		List<Post> posts = servicePost.findByPostTag(tag);
+		if(posts.isEmpty()){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(posts, HttpStatus.OK);
 	}
+	
+	@JsonView(ViewPost.class)
+	@RequestMapping(value="/", method=RequestMethod.GET)
+	public ResponseEntity<List<Post>> getAllPost(){
+		List<Post> posts = servicePost.findAll();
+		if(posts==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(posts,HttpStatus.OK);
+	}
+	
+	@JsonView(ViewPost.class)
+	@RequestMapping(value="/getPostOfTheMonth/", method=RequestMethod.GET)
+	public ResponseEntity<Post> getPostofTheMonth(){
+		Post post = servicePost.findTop1BypostUpVotesMonth(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear()).get(0);
+		if(post==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(post, HttpStatus.OK);
+	}
+	
+	@JsonView(ViewPost.class)
+	@RequestMapping(value="/getPostOfTheDay/", method=RequestMethod.GET)
+	public ResponseEntity<Post> getPostofTheDay(){
+		Post post = servicePost.findTop1BypostUpVotesDay(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear(), LocalDateTime.now().getDayOfMonth()).get(0);
+		if(post==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(post, HttpStatus.OK);
+	}
+	
+	@JsonView(ViewPost.class)
+	@RequestMapping(value="/getPostOfTheYear/", method=RequestMethod.GET)
+	public ResponseEntity<Post> getPostofTheYear(){
+		Post post = servicePost.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
+		if(post==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(post, HttpStatus.OK);
+	}
+	
+	@JsonView(ViewPost.class)
+	@RequestMapping(value="/getPostOfTheWeek/", method=RequestMethod.GET)
+	public ResponseEntity<Post> getPostofTheWeek(){
+		int currentDayofTheWeek= LocalDateTime.now().getDayOfWeek().getValue();
+		int postWeek=(LocalDateTime.now().getDayOfYear() - currentDayofTheWeek + 10)/7;
+		int currentYear= LocalDateTime.now().getYear();
+		Post bestPost=null;
+		if(postWeek==0){
+			bestPost = servicePost.findTop1BypostUpVotesWeek(postWeek, currentYear, 53, currentYear-1).get(0);
+		}
+		else{
+			bestPost = servicePost.findTop1BypostUpVotesWeek(postWeek, currentYear).get(0);
+		}
+		if(bestPost==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(bestPost, HttpStatus.OK);
+	}
+	/*
+	@JsonView(ViewPost.class)
+	@RequestMapping(value="/modifyPost/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Post> modifyPost(@PathVariable long id, @RequestBody Post post){
+		Post p = servicePost.findOne(id);
+	}
+	*/
 }
