@@ -86,3 +86,12 @@ El perfil del administrador es casi idéntico que el de un usuario corriente con
 ### Diagrama de clases y templates
 ![Diagrama de clases y templates](/screenshots/diagramadeclasesytemplates.PNG)
 
+### Documentación API REST
+#### Post
+* Para acceder a un post en concreto con su id: /api/post/id
+* Para subir un post: /api/post/uploadPost
+* Para acceder al post del día: /api/post/getPostOfTheDay/
+* Para acceder al post del mes: /api/post/getPostOfTheMonth/
+* Para acceder al post de la semana: /api/post/getPostOfTheWeek/
+* Para acceder al post del año: /api/post/getPostOfTheYear/
+* Para acceder a la lista de posts de una categoria: /api/posts/getCategoryPost/categoria
