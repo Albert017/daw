@@ -1,18 +1,18 @@
 # La Fila de Atrás
 
-##Descripción:
+## Descripción:
 * Se trata de una aplicación de entretenimiento basada en la participación de los usuarios. Estos pueden compartir imágenes, vídeos y textos cortos que consideren divertidos a través de la página con el resto de visitantes.
 * La parte pública consiste en una lista de los distintos elementos subidos por los usuarios registrados. Se pude seleccionar una temática específica o "tag", para filtrar los resultados, así como ver los comentarios de los usuarios y la puntuación.
 * Se pueden crear cuentas de usuario para acceder a la parte privada. Un usuario registrado puede subir imágenes, vídeos y textos a la plataforma; cambiar su avatar y enviar mensajes a otros usuarios.
 * Los administradores pueden borrar elementos subidos por los usuarios y comentarios e inhabilitar sus cuentas si fuera necesario.
 
-##Entidades:
+## Entidades:
 * *Usuario*: Cada usuario tendrá un nombre de usuario y otros datos.
 * *Publicaciones*: Las publicaciones tienen una puntuación, fecha de publicación, autor y contenido.
 * *Comentarios*: Un usuario puede escribir un comentario bajo una publicación.
 * *Mensajes*: Un usuario puede enviar mensajes de texto a otro.
 
-##Integrantes:
+## Integrantes:
 * García González, Helena
   * Email: h.garciago@alumnos.urjc.es
   * GitHub: [helogargon](https://github.com/helogargon)
@@ -85,13 +85,3 @@ El perfil del administrador es casi idéntico que el de un usuario corriente con
 
 ### Diagrama de clases y templates
 ![Diagrama de clases y templates](/screenshots/diagramadeclasesytemplates.PNG)
-
-### Documentación API REST
-#### Post
-* Para acceder a un post en concreto con su id: /api/post/id
-* Para subir un post: /api/post/uploadPost
-* Para acceder al post del día: /api/post/getPostOfTheDay/
-* Para acceder al post del mes: /api/post/getPostOfTheMonth/
-* Para acceder al post de la semana: /api/post/getPostOfTheWeek/
-* Para acceder al post del año: /api/post/getPostOfTheYear/
-* Para acceder a la lista de posts de una categoria: /api/posts/getCategoryPost/categoria
