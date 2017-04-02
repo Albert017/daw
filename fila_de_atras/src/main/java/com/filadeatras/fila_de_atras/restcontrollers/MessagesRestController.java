@@ -47,6 +47,9 @@ public class MessagesRestController {
 	public ResponseEntity<List<Message>>getMessageByUsername(@PathVariable String username){
 		
 		User user = serviceUser.findByusername(username);
+		if(user==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 		List<Message> msgFound = serviceMessage.findConversationByUserIdOrderByIdDesc(userComponent.getLoggedUser().getId(), user.getId());
 		if(msgFound==null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

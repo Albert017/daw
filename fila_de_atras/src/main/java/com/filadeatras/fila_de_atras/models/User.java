@@ -19,6 +19,7 @@ public class User {
 	public interface UserSendMessage extends Message.MessageAddressee{}
 	public interface UserReceiveMessage extends Message.MessageSender{}
 	public interface ViewUser extends User.UserPost, Post.PostBasic, UserReceiveMessage, UserSendMessage, Comment.CommentId{}
+
 		@JsonView(UserPost.class)
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
@@ -27,6 +28,7 @@ public class User {
 		@JsonView(UserPost.class)
 		@Column(unique=true)
 		private String username;
+
 		@JsonView(ViewUser.class)
 		@Column(unique=true)
 		private String userEmail;
@@ -46,8 +48,10 @@ public class User {
 
 		@JsonView(ViewUser.class)
 		private String userBiography;
+
 		@JsonView(ViewUser.class)
 		private String userLocation;
+
 		@JsonView(ViewUser.class)
 		private String userLink;
 		
@@ -165,15 +169,33 @@ public class User {
 		public void addFollowing(User following) {
 			this.userFollowing.add(following);
 		}
-		
-		public boolean isFollowing(User user){
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (id != user.id) return false;
+        return username.equals(user.username);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + username.hashCode();
+        return result;
+    }
+
+    public boolean isFollowing(User user){
 			for(int i=0; i<this.getUserFollowing().size(); i++){
 				if(this.getUserFollowing().get(i).equals(user)){
 					return true;
 				}
 			}
 			return false;
-			
+
 		}
 		
 		public List<User> getUserFollowers() {
