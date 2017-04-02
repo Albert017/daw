@@ -3,6 +3,7 @@ package com.filadeatras.fila_de_atras.restcontrollers;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.filadeatras.fila_de_atras.UserComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,9 @@ public class PostRestController {
 	
 	@Autowired
 	private UserService serviceUser;
+
+	@Autowired
+	UserComponent userComponent;
 	
 	@JsonView(ViewPost.class)
 	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
@@ -46,8 +50,7 @@ public class PostRestController {
 	@RequestMapping(value="/", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public Post newPost(@RequestBody Post post) {
-		servicePost.save(post);
-		return post;
+		return servicePost.createPost(post,userComponent.getLoggedUser());
 	}
 	
 	@JsonView(ViewPost.class)

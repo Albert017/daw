@@ -87,10 +87,16 @@ public class PostService {
 	}
 	
 	public void save(Post p){
-		
+
 		repositoryPost.save(p);
 	}
-	
+
+	public Post createPost(Post p, User author){
+		Post newPost = new Post(p.getPostTitle(),author,p.getPostTag());
+		repositoryPost.save(newPost);
+		return newPost;
+	}
+
 	public void delete(Post p){
 		
 		repositoryPost.delete(p);

@@ -57,11 +57,9 @@ public class UserRestController {
 		if(userFound==null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		
 		if(updateUser.getId()!=id){
 			updateUser.setId(id);
 		}
-		
 		serviceUser.save(updateUser);
 		return new ResponseEntity<>(updateUser,HttpStatus.OK);
 	}
