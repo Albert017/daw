@@ -24,7 +24,7 @@ public class Comment {
 	@JsonView(PostComment.class)
 	@ManyToOne
 	private User commentUser;
-	@JsonView(CommentId.class)
+	@JsonView(PostComment.class)
 	@ManyToOne
 	private Post commentPost;
 	

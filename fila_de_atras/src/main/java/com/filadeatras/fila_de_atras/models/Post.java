@@ -22,7 +22,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 public class Post {
 	public interface PostBasic{}
-	public interface ViewPost extends User.UserPost, Comment.PostComment, PostBasic{}
+	public interface ViewPost extends User.UserPost, Comment.CommentId, PostBasic{}
+	
 	
 	@JsonView(PostBasic.class)
 	@Id
@@ -32,9 +33,11 @@ public class Post {
 	@JsonView(PostBasic.class)
 	private String postTitle;
 	
+	@JsonView(ViewPost.class)
 	@ManyToOne
 	private User postAuthor;
 	
+	@JsonView(ViewPost.class)
 	@OneToMany(mappedBy="commentPost",cascade=CascadeType.REMOVE)
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<Comment> postComments;
