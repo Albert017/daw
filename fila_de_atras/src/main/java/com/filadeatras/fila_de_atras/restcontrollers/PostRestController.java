@@ -149,11 +149,37 @@ public class PostRestController {
 		}
 		return new ResponseEntity<>(bestPost, HttpStatus.OK);
 	}
-	/*
+
 	@JsonView(ViewPost.class)
-	@RequestMapping(value="/modifyPost/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Post> modifyPost(@PathVariable long id, @RequestBody Post post){
+	@RequestMapping(value="/reportPost/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Post> reportPost(@PathVariable long id){
 		Post p = servicePost.findOne(id);
+		if(p==null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		p.setReport(true);
+		servicePost.save(p);
+		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
-	*/
+	
+	@JsonView(ViewPost.class)
+	@RequestMapping(value="/upvotePost/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Post> upvotePost(@PathVariable long id){
+		Post p = servicePost.findOne(id);
+		if(p==null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		p.setPostUpVotes(p.getPostUpVotes()+1);
+		servicePost.save(p);
+		return new ResponseEntity<>(p, HttpStatus.OK);
+	}
+
+	@JsonView(ViewPost.class)
+	@RequestMapping(value="/downvotePost/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Post> downvotePost(@PathVariable long id){
+		Post p = servicePost.findOne(id);
+		if(p==null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		p.setPostDownVotes(p.getPostDownVotes()+1);
+		servicePost.save(p);
+		return new ResponseEntity<>(p, HttpStatus.OK);
+	}
 }
