@@ -53,11 +53,15 @@ public class UserRestController {
 	@JsonView(ViewUser.class)
 	@RequestMapping(value = "/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<User> putUser (@PathVariable long id, @RequestBody User updateUser){
-		
+		User userFound = serviceUser.findById(id);
+		if(userFound==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 		
 		if(updateUser.getId()!=id){
 			updateUser.setId(id);
 		}
+		
 		serviceUser.save(updateUser);
 		return new ResponseEntity<>(updateUser,HttpStatus.OK);
 	}
