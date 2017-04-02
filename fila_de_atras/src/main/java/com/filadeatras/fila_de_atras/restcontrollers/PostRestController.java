@@ -37,7 +37,7 @@ public class PostRestController {
 	
 	@JsonView(ViewPost.class)
 	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Post> postController (@PathVariable long id){
+	public ResponseEntity<Post> postGetController (@PathVariable long id){
 		
 		Post postFound = servicePost.findOne(id);
 		if(postFound==null){
@@ -45,6 +45,18 @@ public class PostRestController {
 		}
 		return new ResponseEntity<>(postFound,HttpStatus.OK);
 	}
+
+    @JsonView(ViewPost.class)
+    @RequestMapping(value = "/{id}", method=RequestMethod.DELETE)
+    public ResponseEntity<Post> postController(@PathVariable long id){
+        Post postFound = servicePost.findOne(id);
+        if(postFound==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        Post postDeleted = servicePost.deletePost(postFound,userComponent.getLoggedUser());
+        if (postDeleted==null) return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(postDeleted,HttpStatus.OK);
+    }
 	
 	@JsonView(ViewPost.class)
 	@RequestMapping(value="/", method=RequestMethod.POST)

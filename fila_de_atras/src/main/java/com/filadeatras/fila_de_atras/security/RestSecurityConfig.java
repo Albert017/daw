@@ -50,6 +50,7 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
         TODO Protected URLs to be implemented as examples above.
         */
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/post/").hasRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/post/").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/post/upvotePost/**").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/post/downvotePost/**").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/post/reportPost/**").hasRole("USER");

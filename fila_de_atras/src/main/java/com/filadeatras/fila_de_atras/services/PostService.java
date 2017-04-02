@@ -98,9 +98,19 @@ public class PostService {
 	}
 
 	public void delete(Post p){
-		
 		repositoryPost.delete(p);
-		
 	}
+
+	public Post deletePost(Post postDel,User reqUser){
+        if (postDel.getPostAuthor().equals(reqUser)){
+            repositoryPost.delete(postDel);
+            return postDel;
+        }
+        if(reqUser.getRoles().contains("ROLE_ADMIN")){
+            repositoryPost.delete(postDel);
+            return postDel;
+        }
+        return null;
+    }
 			
 }
