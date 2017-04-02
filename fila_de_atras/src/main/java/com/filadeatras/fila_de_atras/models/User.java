@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.filadeatras.fila_de_atras.serializers.UserFullSerializer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -259,9 +261,13 @@ public class User {
 			return this.id==user.id;
 		}
 
-		public boolean isReport() {
-			return report;
-		}
+        public boolean isReport() {
+        return report;
+    }
+
+        public boolean getReport() {
+        return report;
+    }
 
 		public void setReport(boolean report) {
 			this.report = report;
