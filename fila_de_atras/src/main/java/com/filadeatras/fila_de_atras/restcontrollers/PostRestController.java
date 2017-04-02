@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.filadeatras.fila_de_atras.models.Post;
 import com.filadeatras.fila_de_atras.models.Post.ViewPost;
+import com.filadeatras.fila_de_atras.models.User;
 import com.filadeatras.fila_de_atras.repositories.PostRepository;
 import com.filadeatras.fila_de_atras.services.PostService;
+import com.filadeatras.fila_de_atras.services.UserService;
 
 @RestController
 @RequestMapping("/api/post")
@@ -25,6 +27,9 @@ public class PostRestController {
 
 	@Autowired
 	private PostService servicePost;
+	
+	@Autowired
+	private UserService serviceUser;
 	
 	@JsonView(ViewPost.class)
 	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
@@ -38,11 +43,10 @@ public class PostRestController {
 	}
 	
 	@JsonView(ViewPost.class)
-	@RequestMapping(value="/uploadPost", method=RequestMethod.POST)
+	@RequestMapping(value="/", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public Post newPost(@RequestBody Post post) {
 		servicePost.save(post);
-		//falta comprobar si el user existe
 		return post;
 	}
 	
@@ -60,6 +64,37 @@ public class PostRestController {
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public ResponseEntity<List<Post>> getAllPost(){
 		List<Post> posts = servicePost.findAll();
+		if(posts==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(posts,HttpStatus.OK);
+	}
+	
+	@JsonView(ViewPost.class)
+	@RequestMapping(value="/reported/", method=RequestMethod.GET)
+	public ResponseEntity<List<Post>> getAllReportedPost(){
+		List<Post> posts = servicePost.findAllByreport(true);
+		if(posts==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(posts,HttpStatus.OK);
+	}
+	
+	@JsonView(ViewPost.class)
+	@RequestMapping(value="/nonReported/", method=RequestMethod.GET)
+	public ResponseEntity<List<Post>> getAllNonReportedPost(){
+		List<Post> posts = servicePost.findAllByreport(false);
+		if(posts==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(posts,HttpStatus.OK);
+	}
+	
+	@JsonView(ViewPost.class)
+	@RequestMapping(value="/user/{username}/", method=RequestMethod.GET)
+	public ResponseEntity<List<Post>> getAllUserPost(@PathVariable String username){
+		User u = serviceUser.findByusername(username);
+		List<Post> posts = servicePost.findBypostAuthor(u);
 		if(posts==null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

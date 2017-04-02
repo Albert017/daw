@@ -18,7 +18,7 @@ public class PostService {
 	
 	public Post findOne(Long id){
 		
-		return repositoryPost.findOne(id);
+		return repositoryPost.getOne(id);
 	}
 	
 	public List<Post> findBypostAuthor(User postAuthor){
