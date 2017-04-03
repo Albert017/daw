@@ -2,17 +2,15 @@ package com.filadeatras.fila_de_atras.restcontrollers;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 import com.filadeatras.fila_de_atras.UserComponent;
+import com.filadeatras.fila_de_atras.models.Comment;
+import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.filadeatras.fila_de_atras.models.Post;
@@ -23,7 +21,7 @@ import com.filadeatras.fila_de_atras.services.PostService;
 import com.filadeatras.fila_de_atras.services.UserService;
 
 @RestController
-@RequestMapping("/api/post")
+@RequestMapping("/api/posts")
 public class PostRestController {
 
 	@Autowired
@@ -48,7 +46,7 @@ public class PostRestController {
 
     @JsonView(ViewPost.class)
     @RequestMapping(value = "/{id}", method=RequestMethod.DELETE)
-    public ResponseEntity<Post> postController(@PathVariable long id){
+    public ResponseEntity<Post> postDeleteController(@PathVariable long id){
         Post postFound = servicePost.findOne(id);
         if(postFound==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -57,7 +55,18 @@ public class PostRestController {
         if (postDeleted==null) return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         return new ResponseEntity<>(postDeleted,HttpStatus.OK);
     }
-	
+
+    @JsonView(Comment.PostComment.class)
+    @RequestMapping(value="/{id}/comments/", method=RequestMethod.POST)
+    public ResponseEntity<Comment> postAddComment (@PathVariable long id, @RequestBody Map<String,String> allValues){
+        Post post = servicePost.findOne(id);
+        if (post==null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        Comment newCom = servicePost.addComment(post,allValues.get("commentContent"),userComponent.getLoggedUser());
+        if (newCom == null) return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(newCom,HttpStatus.OK);
+    }
+
+
 	@JsonView(ViewPost.class)
 	@RequestMapping(value="/", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)

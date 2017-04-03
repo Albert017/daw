@@ -2,6 +2,9 @@ package com.filadeatras.fila_de_atras.services;
 
 import java.util.List;
 
+import com.filadeatras.fila_de_atras.models.Comment;
+import com.filadeatras.fila_de_atras.repositories.CommentRepository;
+import com.filadeatras.fila_de_atras.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +14,16 @@ import com.filadeatras.fila_de_atras.repositories.PostRepository;
 
 @Service
 public class PostService {
-	
+
 	@Autowired
 	private PostRepository repositoryPost;
+
+	@Autowired
+	private UserRepository userRepository;
+
+	@Autowired
+	private CommentRepository commentRepository;
+
 	
 	public Post findOne(Long id){
 		
@@ -111,5 +121,20 @@ public class PostService {
         }
         return null;
     }
-			
+
+    public Comment addComment(Post post, String com, User loggedUser) {
+		User author = userRepository.findOne(loggedUser.getId());
+		if (com==null) return null;
+		Comment newComm = new Comment(com,author,post);
+		commentRepository.save(newComm);
+		return newComm;
+    }
+
+	public Comment findOneComment(long idCom) {
+		return commentRepository.findOne(idCom);
+	}
+
+	public void deleteComment(Comment com) {
+		commentRepository.delete(com);
+	}
 }

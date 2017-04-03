@@ -52,3 +52,10 @@ Uso de la parte de Usuarios de la API REST de la aplicación.
 	   "userPassword": "123456",
 	   "userEmail": "a.a@a.com"
         } 
+
+##Comments.
+Uso de la parte de Comments de la API REST de la aplicación.
+
+* Enviar un comentario a un post api/posts/{idPost}/comments MÉTODO: POST
+  * Campos necesarios: "commentContent" de tipo String.
+* Eliminar un comentario, solo administrador. api/comments/{id} MÉTODO: DELETE

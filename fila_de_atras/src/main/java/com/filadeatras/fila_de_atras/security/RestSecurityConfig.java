@@ -49,6 +49,9 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/books/**").hasRole("ADMIN");
         TODO Protected URLs to be implemented as examples above.
         */
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/comments/**").hasRole("ADMIN");
+
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/posts/{id}/comments/").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/posts/").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/posts/**").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/posts/upvote/**").hasRole("USER");
