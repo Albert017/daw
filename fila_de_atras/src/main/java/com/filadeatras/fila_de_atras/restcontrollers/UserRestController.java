@@ -8,11 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.filadeatras.fila_de_atras.serializers.UserFullSerializer;
+import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +23,10 @@ import com.filadeatras.fila_de_atras.UserComponent;
 import com.filadeatras.fila_de_atras.models.User;
 import com.filadeatras.fila_de_atras.models.User.ViewUser;
 
+import java.util.Map;
+
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserRestController {
 
 	@Autowired
@@ -78,26 +78,27 @@ public class UserRestController {
 	@RequestMapping(value = "/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<User> putUser (@PathVariable long id, @RequestBody User updateUser){
 		User userFound = serviceUser.findById(id);
+		if(userComponent.getLoggedUser().getId()!=id) return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		if(userFound==null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		if(updateUser.getId()!=id){
-			updateUser.setId(id);
-		}
-		serviceUser.save(updateUser);
+        userFound = serviceUser.updateUser(userFound,updateUser);
+		if (userFound==null) return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		return new ResponseEntity<>(updateUser,HttpStatus.OK);
 	}
 	
 	@JsonView(ViewUser.class)
 	@RequestMapping(value = "/", method=RequestMethod.POST)
-	public ResponseEntity<User> postUser (@RequestBody User newUser){
-		
-		serviceUser.save(newUser);
+	public ResponseEntity<User> postUser (@RequestBody Map<String,String> allValues){
+		User newUser = serviceUser.createNew(allValues);
+		if (newUser == null){
+		    return  new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 		return new ResponseEntity<>(newUser,HttpStatus.CREATED);
 	}
 	
 	@JsonView(ViewUser.class)
-	@RequestMapping(value = "/", method=RequestMethod.GET)
+	@RequestMapping(value = "/self", method=RequestMethod.GET)
 	public ResponseEntity<User> getMyUser (){
 		
 		if(userComponent.isLoggedUser()){
@@ -119,4 +120,20 @@ public class UserRestController {
 		}
 		return new ResponseEntity<>(userFound,HttpStatus.OK);
 	}
+
+    @RequestMapping(value = "/{id}/followers", method=RequestMethod.PUT)
+    public ResponseEntity<Object> followUser (@PathVariable long id){
+        User toFollow = serviceUser.findOne(id);
+        if (toFollow==null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        serviceUser.follow(userComponent.getLoggedUser(),toFollow);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{id}/followers", method=RequestMethod.DELETE)
+    public ResponseEntity<Object> unfollowUser (@PathVariable long id){
+        User toUnFollow = serviceUser.findOne(id);
+        if (toUnFollow==null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        serviceUser.unfollow(userComponent.getLoggedUser(),toUnFollow);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

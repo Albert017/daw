@@ -35,12 +35,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/tag/wtf").permitAll();
         http.authorizeRequests().antMatchers("/tag/savage").permitAll();
         
-        http.authorizeRequests().antMatchers("/user/{username}/{id}/up-vote").permitAll();
-        http.authorizeRequests().antMatchers("/user/{username}/{id}/down-vote").permitAll();
-        http.authorizeRequests().antMatchers("/post/{id}/down-vote").permitAll();
-        http.authorizeRequests().antMatchers("/post/{id}/up-vote").permitAll();
-        http.authorizeRequests().antMatchers("/index/{id}/down-vote").permitAll();
-        http.authorizeRequests().antMatchers("/index/{id}/up-vote").permitAll();
+        http.authorizeRequests().antMatchers("/user/{username}/{id}/up-vote").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/user/{username}/{id}/down-vote").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/post/{id}/down-vote").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/post/{id}/up-vote").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/index/{id}/down-vote").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/index/{id}/up-vote").hasAnyRole("USER");
 
         // Private pages (all other pages)
         http.authorizeRequests().antMatchers("/users/addPost").hasAnyRole("USER");

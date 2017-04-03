@@ -66,7 +66,7 @@ public class PostRestController {
 	}
 	
 	@JsonView(ViewPost.class)
-	@RequestMapping(value="/getCategoryPost/{tag}", method=RequestMethod.GET)
+	@RequestMapping(value="/tag/{tag}", method=RequestMethod.GET)
 	public ResponseEntity<List<Post>> getFromACategoryPost(@PathVariable String tag){
 		List<Post> posts = servicePost.findByPostTag(tag);
 		if(posts.isEmpty()){
@@ -117,7 +117,7 @@ public class PostRestController {
 	}
 	
 	@JsonView(ViewPost.class)
-	@RequestMapping(value="/getPostOfTheMonth/", method=RequestMethod.GET)
+	@RequestMapping(value="/best/month/", method=RequestMethod.GET)
 	public ResponseEntity<Post> getPostofTheMonth(){
 		Post post = servicePost.findTop1BypostUpVotesMonth(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear()).get(0);
 		if(post==null){
@@ -127,7 +127,7 @@ public class PostRestController {
 	}
 	
 	@JsonView(ViewPost.class)
-	@RequestMapping(value="/getPostOfTheDay/", method=RequestMethod.GET)
+	@RequestMapping(value="/best/day/", method=RequestMethod.GET)
 	public ResponseEntity<Post> getPostofTheDay(){
 		Post post = servicePost.findTop1BypostUpVotesDay(LocalDateTime.now().getMonth().toString(), LocalDateTime.now().getYear(), LocalDateTime.now().getDayOfMonth()).get(0);
 		if(post==null){
@@ -137,7 +137,7 @@ public class PostRestController {
 	}
 	
 	@JsonView(ViewPost.class)
-	@RequestMapping(value="/getPostOfTheYear/", method=RequestMethod.GET)
+	@RequestMapping(value="/best/year/", method=RequestMethod.GET)
 	public ResponseEntity<Post> getPostofTheYear(){
 		Post post = servicePost.findFirst1ByYearOrderByPostUpVotesDesc(LocalDateTime.now().getYear()).get(0);
 		if(post==null){
@@ -147,7 +147,7 @@ public class PostRestController {
 	}
 	
 	@JsonView(ViewPost.class)
-	@RequestMapping(value="/getPostOfTheWeek/", method=RequestMethod.GET)
+	@RequestMapping(value="/best/week/", method=RequestMethod.GET)
 	public ResponseEntity<Post> getPostofTheWeek(){
 		int currentDayofTheWeek= LocalDateTime.now().getDayOfWeek().getValue();
 		int postWeek=(LocalDateTime.now().getDayOfYear() - currentDayofTheWeek + 10)/7;
@@ -166,7 +166,7 @@ public class PostRestController {
 	}
 
 	@JsonView(ViewPost.class)
-	@RequestMapping(value="/reportPost/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="/report/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Post> reportPost(@PathVariable long id){
 		Post p = servicePost.findOne(id);
 		if(p==null)
@@ -177,7 +177,7 @@ public class PostRestController {
 	}
 	
 	@JsonView(ViewPost.class)
-	@RequestMapping(value="/upvotePost/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="/upvote/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Post> upvotePost(@PathVariable long id){
 		Post p = servicePost.findOne(id);
 		if(p==null)
@@ -188,7 +188,7 @@ public class PostRestController {
 	}
 
 	@JsonView(ViewPost.class)
-	@RequestMapping(value="/downvotePost/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="/downvote/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Post> downvotePost(@PathVariable long id){
 		Post p = servicePost.findOne(id);
 		if(p==null)

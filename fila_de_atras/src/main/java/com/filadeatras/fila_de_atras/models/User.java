@@ -1,9 +1,6 @@
 package com.filadeatras.fila_de_atras.models;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.*;
 
@@ -40,10 +37,10 @@ public class User {
 		private List<String> roles;
 		
 		@ManyToMany
-		private List<User> userFollowing;
+		private Set<User> userFollowing;
 		
-		@ManyToMany(mappedBy="userFollowing",cascade=CascadeType.REMOVE)
-		private List<User> userFollowers;
+		@ManyToMany(mappedBy="userFollowing",cascade=CascadeType.ALL)
+		private Set<User> userFollowers;
 		
 		private String userPasswordHash;
 		
@@ -87,8 +84,8 @@ public class User {
 			userComments = new LinkedList<>();
 			userSentMessages = new LinkedList<>();
 			userReceivedMessages = new LinkedList<>();
-			userFollowers = new LinkedList<>();
-			userFollowing = new LinkedList<>();
+			userFollowers = new HashSet<>();
+			userFollowing = new HashSet<>();
 			userPosts = new LinkedList<>();
 			report=false;
 			userBiography="";
@@ -191,32 +188,28 @@ public class User {
     }
 
     public boolean isFollowing(User user){
-			for(int i=0; i<this.getUserFollowing().size(); i++){
-				if(this.getUserFollowing().get(i).equals(user)){
-					return true;
-				}
-			}
-			return false;
+
+			return this.getUserFollowing().contains(user);
 
 		}
-		
-		public List<User> getUserFollowers() {
-			return userFollowers;
-		}
-		
-		public void setUserFollowers(List<User> userFollowers) {
-			this.userFollowers = userFollowers;
-		}
 
-		public List<User> getUserFollowing() {
-			return userFollowing;
-		}
+    public Set<User> getUserFollowing() {
+        return userFollowing;
+    }
 
-		public void setUserFollowing(List<User> userFollowing) {
-			this.userFollowing = userFollowing;
-		}
-		
-		public List<Post> getUserPosts() {
+    public void setUserFollowing(Set<User> userFollowing) {
+        this.userFollowing = userFollowing;
+    }
+
+    public Set<User> getUserFollowers() {
+        return userFollowers;
+    }
+
+    public void setUserFollowers(Set<User> userFollowers) {
+        this.userFollowers = userFollowers;
+    }
+
+    public List<Post> getUserPosts() {
 			return userPosts;
 		}
 		

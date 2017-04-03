@@ -96,8 +96,7 @@ public class UsersController extends NavbarController{
 		loadProfileNavbar(model);
 		User conectedUser = userService.findOne(userComponent.getLoggedUser().getId());
 		LinkedList<Follower> followers = new LinkedList<Follower>();
-		for(int i=0; i< conectedUser.getUserFollowers().size();i++){
-			User user = conectedUser.getUserFollowers().get(i);
+		for(User user:conectedUser.getUserFollowers()){
 			boolean isFollowing = conectedUser.getUserFollowing().contains(user);
 			followers.addLast(new Follower(user, isFollowing));	
 		}
@@ -142,8 +141,7 @@ public class UsersController extends NavbarController{
 		conectedUser.addFollowing(followUser);
 		userService.save(conectedUser);
 		LinkedList<Follower> followers = new LinkedList<Follower>();
-		for(int i=0; i< conectedUser.getUserFollowers().size();i++){
-			User user = conectedUser.getUserFollowers().get(i);
+		for(User user:conectedUser.getUserFollowers()){
 			boolean isFollowing = conectedUser.getUserFollowing().contains(user);
 			followers.addLast(new Follower(user, isFollowing));	
 		}

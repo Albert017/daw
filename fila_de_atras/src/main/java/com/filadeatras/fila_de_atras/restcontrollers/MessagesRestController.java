@@ -19,7 +19,7 @@ import com.filadeatras.fila_de_atras.services.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/mensajes")
+@RequestMapping("/api/messages")
 public class MessagesRestController {
 	
 	@Autowired
@@ -32,7 +32,7 @@ public class MessagesRestController {
 	private UserComponent userComponent;
 	
 	@JsonView(ViewMessage.class)
-	@RequestMapping(value = "/conversaciones", method=RequestMethod.GET)
+	@RequestMapping(value = "/conversations", method=RequestMethod.GET)
 	public ResponseEntity<List<Message>>getMessages(){
 		User userC = serviceUser.findById(userComponent.getLoggedUser().getId());
 		List<Message> msgFound = serviceMessage.getMessageWithDifferentSender(userC);;
@@ -43,7 +43,7 @@ public class MessagesRestController {
 	}
 	
 	@JsonView(ViewMessage.class)
-	@RequestMapping(value = "/conversacion/{username}", method=RequestMethod.GET)
+	@RequestMapping(value = "/conversations/{username}", method=RequestMethod.GET)
 	public ResponseEntity<List<Message>>getMessageByUsername(@PathVariable String username){
 		
 		User user = serviceUser.findByusername(username);
@@ -59,7 +59,7 @@ public class MessagesRestController {
 	
 	
 	@JsonView(ViewMessage.class)
-	@RequestMapping(value = "/eliminados", method=RequestMethod.GET)
+	@RequestMapping(value = "/deleted", method=RequestMethod.GET)
 	public ResponseEntity<List<Message>>getMessageByUsername(){
 		
 		User userC = serviceUser.findById(userComponent.getLoggedUser().getId());
@@ -80,11 +80,16 @@ public class MessagesRestController {
 		if(msgDeleted==null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		serviceMessage.delete(msgDeleted);
-		return new ResponseEntity<>(msgDeleted,HttpStatus.OK);
+		if(userComponent.getLoggedUser().equals(msgDeleted.getMessageSender())||userComponent.getLoggedUser().equals(msgDeleted.getMessageAddressee())){
+            //serviceMessage.delete(msgDeleted);
+            msgDeleted.setMessageDeleted(true);
+            return new ResponseEntity<>(msgDeleted,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+
 	}
 
-	
+	/*
 	@JsonView(ViewMessage.class)
 	@RequestMapping(value = "/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Message> putMessageById(@PathVariable long id, @RequestBody Message updateMessage){
@@ -99,13 +104,14 @@ public class MessagesRestController {
 		serviceMessage.save(updateMessage);
 		return new ResponseEntity<>(updateMessage,HttpStatus.OK);
 	}
+	*/
 	
 	@JsonView(ViewMessage.class)
 	@RequestMapping(value = "/", method=RequestMethod.POST)
 	public ResponseEntity<Message> postMessageById(@RequestBody Message newMessage){
-		
-		serviceMessage.save(newMessage);
-		return new ResponseEntity<>(newMessage,HttpStatus.CREATED);
+		Message sentMsg = serviceMessage.newMsg(newMessage, userComponent.getLoggedUser());
+        if (sentMsg==null) return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<>(sentMsg,HttpStatus.CREATED);
 	}
 	
 	@JsonView(ViewMessage.class)

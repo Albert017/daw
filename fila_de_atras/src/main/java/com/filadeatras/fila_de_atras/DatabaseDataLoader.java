@@ -74,13 +74,17 @@ public class DatabaseDataLoader {
 	    		if(i>0){
 	    			Message m = new Message("Texto de prueba "+i, newUs[0], newUs[1]);
 	    			messageRepository.save(m);
-	    			newUs[0].addFollowing(newUs[i]);
 	    			userRepository.save(newUs[0]);
 	    		}
 	    		Message m = new Message("Texto de prueba aux "+i, newUs[i], newUs[1]);
 	    		messageRepository.save(m);
 	    	}
-	    	
+	    	//No se por que, pero añadir following dentro del bucle no funciona.
+			newUs[0].addFollowing(newUs[1]);
+			newUs[0].addFollowing(newUs[2]);
+			newUs[0].addFollowing(newUs[3]);
+			newUs[0].addFollowing(newUs[4]);
+			userRepository.save(newUs[0]);
 	    	for(int i=0; i<11; i++){
 				if(i<4){
 					Post p =new Post("Prueba "+i, newUs[i], "funny");
