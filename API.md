@@ -53,7 +53,7 @@ Uso de la parte de Usuarios de la API REST de la aplicación.
 	   "userEmail": "a.a@a.com"
         } 
 
-##Comments.
+## Comments.
 Uso de la parte de Comments de la API REST de la aplicación.
 
 * Enviar un comentario a un post api/posts/{idPost}/comments MÉTODO: POST
