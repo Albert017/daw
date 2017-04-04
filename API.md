@@ -6,7 +6,7 @@ Uso de la parte de Posts de la API REST de la aplicación.
 * Para acceder a un post en concreto con su id: /api/posts/id MÉTODO: GET
 * Borrar un post, el administrador puede borrar cualquiera y un usuario los suyos. /api/posts/{id} MÉTODO: DELETE
 * Para subir un post estando logeado: /api/post/ MÉTODO: POST
-  * Parámetors: "postTitle","tag"
+  * Parámetors: "postTitle","postTag"
 * Para conseguir todos los posts: /api/posts/ MÉTODO: GET
 * Para conseguir posts con una característica concreta:
   * Para acceder a todos los posts reportados: /api/posts/reported/ MÉTODO: GET
