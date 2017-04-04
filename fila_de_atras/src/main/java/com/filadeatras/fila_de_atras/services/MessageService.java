@@ -60,7 +60,6 @@ private UserRepository userRepository;
 
 
 	public List<Message> findConversationByUserIdOrderByIdDesc(Long id1, Long id2){
-
 		return repository.findConversationByUserIdOrderByIdDesc(id1, id2);
 	}
 
@@ -76,7 +75,7 @@ private UserRepository userRepository;
 	}
 
 	public Message getOne(Long id){
-		return repository.getOne(id);
+		return repository.findOne(id);
 	}
 
 	public List<Message> findAll(){
