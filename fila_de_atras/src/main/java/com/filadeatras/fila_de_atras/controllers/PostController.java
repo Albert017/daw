@@ -72,10 +72,7 @@ public class PostController extends NavbarController{
 	@RequestMapping(value="/profile/post/{id}/up-vote", method = RequestMethod.POST)
 	public String postProfileUpVoteController(Model model,
 			@PathVariable Long id){
-	
-		Post currPost = postService.findOne(id);
-		currPost.setPostUpVotes(currPost.getPostUpVotes()+1);
-		postService.save(currPost);
+		postService.upVotePost(id);
 		
 		List<Post> postListCurr = userService.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
 		model.addAttribute("Posts",postListCurr);
@@ -89,9 +86,7 @@ public class PostController extends NavbarController{
 	public String postProfileDownVoteController(Model model,
 			@PathVariable Long id){
 	
-		Post currPost = postService.findOne(id);
-		currPost.setPostDownVotes(currPost.getPostDownVotes()+1);
-		postService.save(currPost);
+		postService.downVotePost(id);
 		
 		List<Post> postListCurr = userService.findByusername(userComponent.getLoggedUser().getUsername()).getUserPosts();
 		model.addAttribute("Posts",postListCurr);
@@ -128,9 +123,7 @@ public class PostController extends NavbarController{
 		}
 		if(p4!=null)
 			model.addAttribute("BestPostOfWeek", p4);
-		Post currPost = postService.findOne(id);
-		currPost.setPostDownVotes(currPost.getPostDownVotes()+1);
-		postService.save(currPost);
+		postService.downVotePost(id);
 		
 		loadNavbar(model);
 		List<Post> original = postService.findAll();
@@ -169,9 +162,7 @@ public class PostController extends NavbarController{
 		}
 		if(p4!=null)
 			model.addAttribute("BestPostOfWeek", p4);
-		Post currPost = postService.findOne(id);
-		currPost.setPostUpVotes(currPost.getPostUpVotes()+1);
-		postService.save(currPost);
+		postService.upVotePost(id);
 		
 		//return "index";
 		return "redirect:/index";
@@ -264,9 +255,7 @@ public class PostController extends NavbarController{
 			model.addAttribute("ErrorMessage","User not found.");
 			return "errorPage";
 		} else{
-			Post currPost = postService.findOne(id);
-			currPost.setPostUpVotes(currPost.getPostUpVotes()+1);
-			postService.save(currPost);
+			postService.upVotePost(id);
 			List<Post> postListCurr = viewUser.getUserPosts();
 			Post ranPost = null;
 			if (postListCurr.size()>0){
@@ -289,9 +278,7 @@ public class PostController extends NavbarController{
 			model.addAttribute("ErrorMessage","User not found.");
 			return "errorPage";
 		} else{
-			Post currPost = postService.findOne(id);
-			currPost.setPostDownVotes(currPost.getPostDownVotes()+1);
-			postService.save(currPost);
+			postService.downVotePost(id);
 			List<Post> postListCurr = viewUser.getUserPosts();
 			Post ranPost = null;
 			if (postListCurr.size()>0){

@@ -137,4 +137,17 @@ public class PostService {
 	public void deleteComment(Comment com) {
 		commentRepository.delete(com);
 	}
+	
+	public void upVotePost(long id){
+
+		Post currPost = this.findOne(id);
+		currPost.setPostUpVotes(currPost.getPostUpVotes()+1);
+		this.save(currPost);
+	}
+	public void downVotePost(long id){
+
+		Post currPost = this.findOne(id);
+		currPost.setPostUpVotes(currPost.getPostUpVotes()+1);
+		this.save(currPost);
+	}
 }
