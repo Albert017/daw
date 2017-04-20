@@ -169,10 +169,9 @@ public class MessageController extends NavbarController{
 	@RequestMapping(value="/mensajes/eliminado/{id}", method = RequestMethod.POST)
 	public String DeleteController(Model model, @PathVariable Long id){
 		loadNavbar(model);
-		Message msg = serviceMsg.findMessageById(id);
-		msg.setMessageDeleted(true);
-		serviceMsg.delete(msg);
-
+		
+		serviceMsg.deleteMessage(id);
+		
 		User conectedUser = ServiceUser.findOne(userComponent.getLoggedUser().getId());
 		loadDeletedMessage(serviceMsg, model, conectedUser);
 		

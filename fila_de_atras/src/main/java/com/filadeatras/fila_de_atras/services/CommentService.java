@@ -51,8 +51,11 @@ public class CommentService {
 		return repositoryComment.findOne(id);
 	}
 	
-	public void crearComentario(Long id, String content, User u){
+	public void crearComentario(long id, String content, User u){
 		Comment newComment = new Comment(content,serviceUser.findByusername(userComponent.getLoggedUser().getUsername()),servicePost.findOne(id));
 		this.save(newComment);
+	}
+	public void deleteComment(long id){
+		this.delete(this.findOne(id));
 	}
 }

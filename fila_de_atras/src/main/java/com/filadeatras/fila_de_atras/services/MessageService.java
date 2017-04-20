@@ -92,4 +92,10 @@ private UserRepository userRepository;
 		repository.save(createdMsg);
 		return createdMsg;
     }
+    
+    public void deleteMessage(long id){
+    	Message msg = this.findMessageById(id);
+		msg.setMessageDeleted(true);
+		this.delete(msg);
+    }
 }
