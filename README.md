@@ -84,5 +84,5 @@ El perfil del administrador es casi idéntico que el de un usuario corriente con
 ![Diagrama de Base de datos](/screenshots/diagramabasededatosatributos.png)
 
 ### Diagrama de clases y templates
-![Diagrama de clases y templates](/screenshots/diagramadeClases.PNG)
-![Diagrama de clases y templates](/screenshots/diagramadeTemplates.PNG)
+![Diagrama de clases y templates](/screenshots/diagramaClases.PNG)
+![Diagrama de clases y templates](/screenshots/DiadramaTemplates.PNG)
