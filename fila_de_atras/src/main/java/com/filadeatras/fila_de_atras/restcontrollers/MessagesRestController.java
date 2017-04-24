@@ -43,7 +43,7 @@ public class MessagesRestController {
 	}
 	
 	@JsonView(ViewMessage.class)
-	@RequestMapping(value = "/conversations/{username}", method=RequestMethod.GET)
+	@RequestMapping(value = "/conversations={username}", method=RequestMethod.GET)
 	public ResponseEntity<List<Message>>getMessageByUsername(@PathVariable String username){
 		
 		User user = serviceUser.findByusername(username);
@@ -73,7 +73,7 @@ public class MessagesRestController {
 
 
 	@JsonView(ViewMessage.class)
-	@RequestMapping(value = "/{id}", method=RequestMethod.DELETE)
+	@RequestMapping(value = "/delete={id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Message> deleteMessageById(@PathVariable long id){
 		
 		Message msgDeleted = serviceMessage.getOne(id);
@@ -83,6 +83,7 @@ public class MessagesRestController {
 		if(userComponent.getLoggedUser().equals(msgDeleted.getMessageSender())||userComponent.getLoggedUser().equals(msgDeleted.getMessageAddressee())){
             //serviceMessage.delete(msgDeleted);
             msgDeleted.setMessageDeleted(true);
+            serviceMessage.save(msgDeleted);
             return new ResponseEntity<>(msgDeleted,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);

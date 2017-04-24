@@ -63,7 +63,7 @@ public class UserRestController {
 	}
 	
 	@JsonView(ViewUser.class)
-	@RequestMapping(value = "/{id}", method=RequestMethod.DELETE)
+	@RequestMapping(value = "/delete={id}", method=RequestMethod.DELETE)
 	public ResponseEntity<User> deleteUser (@PathVariable long id){
 		
 		User userDeleted = serviceUser.findById(id);
@@ -75,7 +75,7 @@ public class UserRestController {
 	}
 	
 	@JsonView(ViewUser.class)
-	@RequestMapping(value = "/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value = "/put={id}", method=RequestMethod.PUT)
 	public ResponseEntity<User> putUser (@PathVariable long id, @RequestBody User updateUser){
 		User userFound = serviceUser.findById(id);
 		if(userComponent.getLoggedUser().getId()!=id) return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -111,7 +111,7 @@ public class UserRestController {
 	}
 	
 	@JsonView(ViewUser.class)
-	@RequestMapping(value = "/name/{username}", method=RequestMethod.GET)
+	@RequestMapping(value = "/name={username}", method=RequestMethod.GET)
 	public ResponseEntity<User> getUser (@PathVariable String username){
 		
 		User userFound = serviceUser.findByusername(username);

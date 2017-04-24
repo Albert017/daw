@@ -45,7 +45,7 @@ public class PostRestController {
 	}
 
     @JsonView(ViewPost.class)
-    @RequestMapping(value = "/{id}", method=RequestMethod.DELETE)
+    @RequestMapping(value = "/delete={id}", method=RequestMethod.DELETE)
     public ResponseEntity<Post> postDeleteController(@PathVariable long id){
         Post postFound = servicePost.findOne(id);
         if(postFound==null){
@@ -75,7 +75,7 @@ public class PostRestController {
 	}
 	
 	@JsonView(ViewPost.class)
-	@RequestMapping(value="/tag/{tag}", method=RequestMethod.GET)
+	@RequestMapping(value="/tag={tag}", method=RequestMethod.GET)
 	public ResponseEntity<List<Post>> getFromACategoryPost(@PathVariable String tag){
 		List<Post> posts = servicePost.findByPostTag(tag);
 		if(posts.isEmpty()){
@@ -115,7 +115,7 @@ public class PostRestController {
 	}
 	
 	@JsonView(ViewPost.class)
-	@RequestMapping(value="/user/{username}/", method=RequestMethod.GET)
+	@RequestMapping(value="/user={username}/", method=RequestMethod.GET)
 	public ResponseEntity<List<Post>> getAllUserPost(@PathVariable String username){
 		User u = serviceUser.findByusername(username);
 		List<Post> posts = servicePost.findBypostAuthor(u);
@@ -175,7 +175,7 @@ public class PostRestController {
 	}
 
 	@JsonView(ViewPost.class)
-	@RequestMapping(value="/report/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="/report={id}", method=RequestMethod.PUT)
 	public ResponseEntity<Post> reportPost(@PathVariable long id){
 		Post p = servicePost.findOne(id);
 		if(p==null)
@@ -186,7 +186,7 @@ public class PostRestController {
 	}
 	
 	@JsonView(ViewPost.class)
-	@RequestMapping(value="/upvote/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="/upvote={id}", method=RequestMethod.PUT)
 	public ResponseEntity<Post> upvotePost(@PathVariable long id){
 		Post p = servicePost.findOne(id);
 		if(p==null)
@@ -197,7 +197,7 @@ public class PostRestController {
 	}
 
 	@JsonView(ViewPost.class)
-	@RequestMapping(value="/downvote/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="/downvote={id}", method=RequestMethod.PUT)
 	public ResponseEntity<Post> downvotePost(@PathVariable long id){
 		Post p = servicePost.findOne(id);
 		if(p==null)
