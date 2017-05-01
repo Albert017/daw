@@ -9,12 +9,14 @@ import { HotPageComponent } from './hot-page/hot-page.component';
 
 
 import { routing } from './app.routing';
+import { TrendingPageComponent } from './trending-page/trending-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HotPageComponent
+    HotPageComponent,
+    TrendingPageComponent
   ],
   imports: [
     BrowserModule,
