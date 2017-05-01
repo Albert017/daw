@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-hot-page',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hot-page.component.css']
 })
 export class HotPageComponent implements OnInit {
-
+ 
   constructor() { }
 
   ngOnInit() {
