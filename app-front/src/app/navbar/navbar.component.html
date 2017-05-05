@@ -13,8 +13,8 @@
                     <li><a href="/trending">Trending</a></li>
                     <li><a href="/random">Random</a></li>
                     <!--Ejemplo de botón que se desprende desde abajo-->
-                    <li class="dropdown">
-                        <!--Título botón--><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tags <span class="caret"></span></a>
+                    <li ngbDropdown class="dropdown">
+                        <!--Título botón,--><a ngbDropdownToggle  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tags <span class="caret"></span></a>
                         <!--Submenú-->
                         <ul class="dropdown-menu">
                             <li><a href="/tag/funny">Funny</a></li>
@@ -38,10 +38,10 @@
                 <ul class="nav navbar-nav navbar-right"> 
                 #loggedUser
                 	<li><a href="/users/addPost/"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
-                    <li class="dropdown">
+                    <li ngbDropdown class="dropdown">
                         <!--Título botón-->
                         #currentUser
-                        <a href="/profile" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/id" />username <span class="caret"></span></a>
+                        <a href="/profile" class="myaccount-link" ngbDropdownToggle data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/id" />username <span class="caret"></span></a>
                         /currentUser
                         <!--Submenú-->
                         <ul class="dropdown-menu">
