@@ -35,28 +35,25 @@
                     <button type="submit" class="btn btn-default"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </button>
                 </form>
                 <!--Menus después de la busqueda: Inicio de sesión-->
-                <ul class="nav navbar-nav navbar-right"> 
-                #loggedUser
-                	<li><a href="/users/addPost/"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
-                    <li ngbDropdown class="dropdown">
-                        <!--Título botón-->
-                        #currentUser
-                        <a href="/profile" class="myaccount-link" ngbDropdownToggle data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/id" />username <span class="caret"></span></a>
-                        /currentUser
-                        <!--Submenú-->
-                        <ul class="dropdown-menu">
-                            <li><a href="/profile">Profile</a></li>
-                            <li><a href="/settings">Tools</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="/logout">Log out</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="/mensajes">E-mail <span class="badge">numEmail</span></a></li> 
-                    /loggedUser
-                    ^loggedUser
-                    <li><a href="/login">Iniciar Sesion</a></li>
-                    <li><a href="/signup">Registrarse</a></li> 
-                    /loggedUser</ul>
+                <ul *ngIf="loginService.isLogged" class="nav navbar-nav navbar-right">
+                        <li><a href="/users/addPost/"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
+                        <li ngbDropdown class="dropdown">
+                            <!--Título botón-->
+                            <a href="/profile" class="myaccount-link" ngbDropdownToggle data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/id" />username <span class="caret"></span></a>
+                            <!--Submenú-->
+                            <ul class="dropdown-menu">
+                                <li><a href="/profile">Profile</a></li>
+                                <li><a href="/settings">Tools</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/logout">Log out</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/mensajes">E-mail <span class="badge">numEmail</span></a></li>
+                </ul>
+                <ul *ngIf="loginService.isNotLogged" class="nav navbar-nav navbar-right">
+                        <li><a href="/login">Iniciar Sesion</a></li>
+                        <li><a href="/signup">Registrarse</a></li>
+                </ul>
             </div>
         </div>
     </nav>
