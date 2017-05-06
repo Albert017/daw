@@ -13,7 +13,8 @@ import { routing } from './app.routing';
 import { TrendingPageComponent } from './trending-page/trending-page.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { UserComponent } from './user/user.component';
-import { HttpClientComponent } from './http-client/http-client.component';
+import { PostIndexComponent } from './post/post-index.component';
+//import { HttpClientComponent } from './http-client/http-client.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HttpClientComponent } from './http-client/http-client.component';
     TrendingPageComponent,
     LogInComponent,
     UserComponent,
-    HttpClientComponent
+    PostIndexComponent
+    //HttpClientComponent
   ],
   imports: [
     NgbModule.forRoot(),
