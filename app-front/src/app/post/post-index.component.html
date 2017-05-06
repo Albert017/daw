@@ -49,11 +49,11 @@
                 </form>
                 <!--Menus después de la busqueda: Inicio de sesión-->
                 <ul class="nav navbar-nav navbar-right"> 
-                {{#loggedUser}}
+                #loggedUser
                 	<li><a href="/users/addPost/"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
                     <li class="dropdown">
                         <!--Título botón-->
-                        <a href="/profile" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/{{id}}" />{{username}} <span class="caret"></span></a>
+                        <a href="/profile" class="myaccount-link" data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/id" />username <span class="caret"></span></a>
                         
                         <!--Submenú-->
                         <ul class="dropdown-menu">
@@ -63,12 +63,12 @@
                             <li><a href="/logout">Log out</a></li>
                         </ul>
                     </li>
-                    <li><a href="/mensajes">E-mail <span class="badge">{{numEmail}}</span></a></li> 
-                    {{/loggedUser}} 
-                    {{^loggedUser}}
+                    <li><a href="/mensajes">E-mail <span class="badge">numEmail</span></a></li> 
+                    /loggedUser
+                    ^loggedUser
                     <li><a href="/login">Iniciar Sesion</a></li>
                     <li><a href="/signup">Registrarse</a></li> 
-                    {{/loggedUser}} </ul>
+                    /loggedUser </ul>
             </div>
         </div>
     </nav>
@@ -85,78 +85,76 @@
             <!--Contenido Izquierda-->
             <div class="hidden-xs col-md-2">
                 <div class="side-left">
-                	{{#BestPostOfYear}}
+                	#BestPostOfYear
                     <div class="thumbnail">
-                        <a href="/bestPostYear"><img src="/postimg/{{id}}" alt="" />
+                        <a href="/bestPostYear"><img src="/postimg/id" alt="" />
                             <div class="caption">
-                                <p>{{postTitle}}</p>
+                                <p>postTitle</p>
                             </div>
                         </a>
                     </div>
-                    {{/BestPostOfYear}}
-                    {{#BestPostOfMonth}}
+                    /BestPostOfYear
+                    #BestPostOfMonth
                     <div class="thumbnail">
-                        <a href="/bestPOstMonth"><img src="/postimg/{{id}}" alt="" />
+                        <a href="/bestPOstMonth"><img src="/postimg/id" alt="" />
                             <div class="caption">
-                                <p>{{postTitle}}</p>
+                                <p>postTitle</p>
                             </div>
                         </a>
                     </div>
-                    {{/BestPostOfMonth}}
-                    {{#BestPostOfDay}}
+                    /BestPostOfMonth
+                    #BestPostOfDay
                     <div class="thumbnail">
-                        <a href="/bestPostDay"><img src="/postimg/{{id}}" alt="" />
+                        <a href="/bestPostDay"><img src="/postimg/id" alt="" />
                             <div class="caption">
-                                <p>{{postTitle}}</p>
+                                <p>postTitle</p>
                             </div>
                         </a>
                     </div>
-                    {{/BestPostOfDay}}
-                    {{#BestPostOfWeek}}
+                    /BestPostOfDay
+                    #BestPostOfWeek
                     <div class="thumbnail">
-                        <a href="/bestPostWeek"><img src="/postimg/{{id}}" alt="" />
+                        <a href="/bestPostWeek"><img src="/postimg/id" alt="" />
                             <div class="caption">
-                                <p>{{postTitle}}</p>
+                                <p>postTitle</p>
                             </div>
                         </a>
                     </div>
-                    {{/BestPostOfWeek}}
+                    /BestPostOfWeek
                 </div>
             </div>
             <!--Posts - Contenido central -->
             <div class="col-xs-12 col-md-6">
-           	{{^Post}}
+           	^Post
                 <div class="side-middle">
                 	<p class="text-center text-info">Post not found.</p>
                 </div>
-           	{{/Post}}
+           	/Post
                 <!--Post-->
-          	{{#Post}}
+          	#Post
                 <div class="side-middle"> 
                     <div class="thumbnail">
-                        <a href="/post/{{id}}"><img class="img-post" src="/postimg/{{id}}" /></a>
-                        <form action="/reportPost/{{id}}" method="PUT" enctype="multipart/form-data" class="reportLink">
+                        <a href="/post/id"><img class="img-post" src="/postimg/id" /></a>
+                        <form action="/reportPost/id" method="PUT" enctype="multipart/form-data" class="reportLink">
 							<input type='submit' class="btn btn-primary" name='report' value='Report' />
 						</form>
                         <div class="caption">
-                            <h3>{{postTitle}}</h3>
-                            <p><a class="votes" href="/user/{{postAuthor.username}}">{{postAuthor.username}} </a> {{postDate}}  <span class="label label-primary">{{postTag}}</span></p>
+                            <h3>postTitle</h3>
+                            <p><a class="votes" href="/user/postAuthor.username">postAuthor.username </a> postDate  <span class="label label-primary">postTag</span></p>
                             <p> 
-                            <div id="up-votes">
-	                            <form action="/post/{{id}}/up-vote" method="POST">
-	                            	<button type="submit" class="btn btn-primary" ><i class="fa fa-arrow-up" aria-hidden="true"></i></button> 
-	                            </form>
-                            </div>
-                            <div id=down-votes">
-	                            <form action="/post/{{id}}/down-vote" method="POST">
-	                            	<button type="submit" class="btn btn-primary" role="button"><i class="fa fa-arrow-down" aria-hidden="true"></i></button> 
-	                            	
-	                            </form>
-                            </div>
-                            
-                            	
-                            	<a class="votes"> Upvotes <span class="badge">{{postUpVotes}}</span></a> 
-                            	<a class="votes"> Downvotes <span class="badge">{{postDownVotes}}</span></a> 
+                                <span id="up-votes">
+                                    <form action="/post/id/up-vote" method="POST">
+                                        <button type="submit" class="btn btn-primary" ><i class="fa fa-arrow-up" aria-hidden="true"></i></button> 
+                                    </form>
+                                </span>
+                                <span id="down-votes">
+                                    <form action="/post/id/down-vote" method="POST">
+                                        <button type="submit" class="btn btn-primary" role="button"><i class="fa fa-arrow-down" aria-hidden="true"></i></button> 
+                                        
+                                    </form>
+                                </span>
+                            	<a class="votes"> Upvotes <span class="badge">postUpVotes</span></a> 
+                            	<a class="votes"> Downvotes <span class="badge">postDownVotes</span></a> 
                             	<a class="votes"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a> 
                             </p>
                             <div>
@@ -169,39 +167,39 @@
                 	
                 </div>
                 <!--Comentarios-->
-                {{#postComments}}
+                #postComments
 	                <div class="panel panel-default">
-	                	<form action="/reportComment/{{id}}" method="PUT" enctype="multipart/form-data" class="reportLink">
-							<input type='submit' class="btn btn-primary" name='report' value='Report' />
+	                	<form action="/reportComment/id" method="PUT" enctype="multipart/form-data" class="reportLink">
+							<input type='submit' class="btn btn-primary" name='report' value='Report'>
 						</form>
-	                    <div class="panel-heading"> <a href="/user/{{commentUser.username}}" class="votes"><img alt="" class="userIconImgCom" src="/avatarimg/{{commentUser.id}}" /> {{commentUser.username}}</a> </div>
-	                    <div class="panel-body">{{commentContent}}</div>
+	                    <div class="panel-heading"> <a href="/user/commentUser.username" class="votes"><img alt="" class="userIconImgCom" src="/avatarimg/commentUser.id" /> commentUser.username</a> </div>
+	                    <div class="panel-body">commentContent</div>
 	                </div>
-                {{/postComments}}
-                {{#loggedUser}}
+                /postComments
+                #loggedUser
 	                <div class="panel panel-default">
-	                    <div class="panel-heading"> <a href="/user/{{username}}" class="votes"> <img alt="" class="userIconImgCom" src="/avatarimg/{{id}}" /> {{username}}</a> </div>
+	                    <div class="panel-heading"> <a href="/user/username" class="votes"> <img alt="" class="userIconImgCom" src="/avatarimg/id" /> username</a> </div>
 	                    <div class="panel-body ">
 	                    	<form class="form-horizontal" action="/addComment" method="POST">
 	                    		<fieldset >
-	                    		<input type="text" name="commentContent" class="input-xlarge col-lg-12"></input><br/>
-	                    		<input type="hidden" name="commentPost" value="{{Post.id}}"></input><br/>
-	                    		<input class="btn btn-success" type="submit" value="Comment"></input><br/>
+	                    		<input type="text" name="commentContent" class="input-xlarge col-lg-12"><br/>
+	                    		<input type="hidden" name="commentPost" value="Post.id"><br/>
+	                    		<input class="btn btn-success" type="submit" value="Comment"><br/>
 	                    		</fieldset>
 	                    	</form>
 	                    </div>
 	                </div>
-                {{/loggedUser}}
-          	{{/Post}}
+                /loggedUser
+          	/Post
           	<hr>
-          	{{#User}}
+          	#User
 	          	<div class="panel panel-default">
-	          			<form action="/reportUser/{{id}}" method="PUT" enctype="multipart/form-data" class="reportLink">
+	          			<form action="/reportUser/id" method="PUT" enctype="multipart/form-data" class="reportLink">
 							<input type='submit' class="btn btn-primary" name='report' value='Report' />
 						</form>
-                      <div class="panel-body"> <a href="/user/{{username}}"><img alt="" src="../avatarimg/{{id}}" class="profile-followers" /> {{username}}</a></div>
+                      <div class="panel-body"> <a href="/user/username"><img alt="" src="../avatarimg/id" class="profile-followers" /> username</a></div>
                 </div>
-          	{{/User}}
+          	/User
             </div>
             <!--Redes sociales - Contenido derecha-->
             <div class="hidden-xs col-md-3">

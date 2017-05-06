@@ -7,10 +7,10 @@ import { PostIndexComponent} from './post/post-index.component';
 
 const appRoutes = [
   { path: 'hot', component: HotPageComponent, useAsDefault: true },
-  { path: '', redirectTo: 'hot', pathMatch: 'full' },
   { path: 'trending', component: TrendingPageComponent},
   { path: 'login', component: LogInComponent},
-  { path: 'post', component: PostIndexComponent}
+  { path: 'post', component: PostIndexComponent},
+  { path: '', redirectTo: 'hot', pathMatch: 'full' }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
