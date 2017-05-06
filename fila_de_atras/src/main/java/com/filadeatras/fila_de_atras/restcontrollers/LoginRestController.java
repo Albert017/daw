@@ -1,7 +1,9 @@
 package com.filadeatras.fila_de_atras.restcontrollers;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.filadeatras.fila_de_atras.UserComponent;
 import com.filadeatras.fila_de_atras.models.User;
+import com.filadeatras.fila_de_atras.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,20 +25,24 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/api")
 public class LoginRestController {
 
+    @Autowired
+    private UserService serviceUser;
+
     private static final Logger log = LoggerFactory.getLogger(LoginRestController.class);
 
     @Autowired
     private UserComponent userComponent;
 
+    @JsonView(User.ViewUser.class)
     @RequestMapping(value = "/logIn", method= RequestMethod.GET)
-    public ResponseEntity<String> logInRestController () {
+    public ResponseEntity<User> logInRestController () {
         if (!userComponent.isLoggedUser()) {
             log.info("Not user logged");
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         } else {
-            User loggedUser = userComponent.getLoggedUser();
+            User loggedUser = serviceUser.findOne(userComponent.getLoggedUser().getId());
             log.info("Logged as " + loggedUser.getUsername());
-            return new ResponseEntity<>(loggedUser.getUsername(), HttpStatus.OK);
+            return new ResponseEntity<>(loggedUser, HttpStatus.OK);
         }
     }
 
