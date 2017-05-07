@@ -10,6 +10,7 @@ const appRoutes = [
   { path: 'trending', component: TrendingPageComponent},
   { path: 'login', component: LogInComponent},
   { path: 'post', component: PostIndexComponent},
+ // { path: 'post/:id', component: PostIndexComponent},
   { path: '', redirectTo: 'hot', pathMatch: 'full' }
 ];
 
