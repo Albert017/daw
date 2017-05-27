@@ -17,8 +17,7 @@ export class HotPageComponent implements OnInit {
   private postWeek: Post;
   private postDay: Post;
 
-  constructor(private http: Http) {
-    //Get Posts
+  putPosts(){
       let url=URL + "/posts/";
       this.http.get(url).subscribe(
         response => {
@@ -30,6 +29,12 @@ export class HotPageComponent implements OnInit {
       },
         error => console.error(error)
       );
+  }
+
+  constructor(private http: Http) {
+      let url:string;
+    //Get Posts
+      this.putPosts();
       //Get best of the year
       url= URL + "/posts/best/year/";
       this.http.get(url).subscribe(
@@ -70,5 +75,6 @@ export class HotPageComponent implements OnInit {
 
   ngOnInit() {
   }
+
 
 }

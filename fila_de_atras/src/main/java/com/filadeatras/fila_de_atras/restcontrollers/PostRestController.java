@@ -206,4 +206,13 @@ public class PostRestController {
 		servicePost.save(p);
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
+	@JsonView(ViewPost.class)
+	@RequestMapping(value="/trending", method=RequestMethod.GET)
+	public ResponseEntity<List<Post>> getTrendingPost(){
+		List<Post> posts = servicePost.findAllByOrderByPostUpVotesDesc();
+		if(posts==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(posts,HttpStatus.OK);
+	}
 }
