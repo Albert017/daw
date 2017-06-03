@@ -1,0 +1,16 @@
+              #followersList
+	                <div class="panel panel-default">
+	                    <div class="panel-body"><a href="/user/follower.username"> <img alt="" src="/avatarimg/follower.id" class="profile-followers" />follower.username</a>
+	                        #isFollowing
+	                        <form action="/unfollow/follower.username" method="POST" class="form-follow">
+	                        	<button type="submit" class="btn btn-success button-followers">Following</button>
+	                        </form>
+	                        /isFollowing
+	                        ^isFollowing
+	                        <form action="/follow/follower.username" method="POST" class="form-follow">
+	                        	<button type="submit" class="btn btn-success button-follow-user">Follow</button>
+	                        </form>
+	                        /isFollowing
+	                    </div>
+	                </div>
+                /followersList

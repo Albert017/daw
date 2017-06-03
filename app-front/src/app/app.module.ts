@@ -17,6 +17,13 @@ import { UserComponent } from './user/user.component';
 import { PostIndexComponent } from './post/post-index.component';
 
 import { ApiPostsService } from './api-posts.service';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { ProfilePostsComponent } from './profile-posts/profile-posts.component';
+import { ProfileFollowersComponent } from './profile-followers/profile-followers.component';
+import { ProfileFollowingComponent } from './profile-following/profile-following.component';
+import { ProfileReportUsersComponent } from './profile-report-users/profile-report-users.component';
+import { ProfileReportPostsComponent } from './profile-report-posts/profile-report-posts.component';
+import { ProfileReportCommentsComponent } from './profile-report-comments/profile-report-comments.component';
 //import { HttpClientComponent } from './http-client/http-client.component';
 
 @NgModule({
@@ -27,7 +34,14 @@ import { ApiPostsService } from './api-posts.service';
     TrendingPageComponent,
     LogInComponent,
     UserComponent,
-    PostIndexComponent
+    PostIndexComponent,
+    ProfilePageComponent,
+    ProfilePostsComponent,
+    ProfileFollowersComponent,
+    ProfileFollowingComponent,
+    ProfileReportUsersComponent,
+    ProfileReportPostsComponent,
+    ProfileReportCommentsComponent
     //HttpClientComponent
   ],
   imports: [

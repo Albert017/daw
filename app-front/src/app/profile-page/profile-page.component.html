@@ -1,0 +1,51 @@
+#currentUser
+    <header id="page-top" style="background-image: url(/headerimg/id)">
+        <div class="container header-info">
+            <div class="header-user-info"> <img class="img-center" alt="" src="/avatarimg/id" />
+                <div class="intro-text">
+                    <p><span class="name">username</span></p>
+                </div>
+            </div>
+        </div>
+    </header>
+    /currentUser
+    <div class="row">
+        <div class="hidden-xs col-md-3">
+            <div class="btn-group-vertical separation-profile" role="group" aria-label="...">
+            	<a href="/edit-profile"><button type="button" class="btn btn-default">Edit profile<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
+                <a href="/changeAvatar"><button type="button" class="btn btn-default">Avatar<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
+                <a href="/changeHeader"><button type="button" class="btn btn-default">Header<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6"><div class="menu-profile">
+                <ul class="nav nav-pills">
+                    <li role="presentation"><a (click)="goToMenu('posts');">My Posts</a></li>
+                    <li role="presentation"><a class="followers-following" (click)="goToMenu('followers');"> Followers <span class="badge badge-header">numFollowers</span></a></li>
+                    <li role="presentation"><a class="followers-following" (click)="goToMenu('following');"> Following <span class="badge badge-header">numFollowings</span></a></li>
+                    #isUserAdmin
+                    <li role="presentation"><a (click)="goToMenu('reportUsers');">Reported Users</a></li>
+                    <li role="presentation"><a (click)="goToMenu('reportPosts');">Reported posts</a></li>
+                    <li role="presentation"><a (click)="goToMenu('reportComments');">Reported comments</a></li>
+                    /isUserAdmin
+                </ul>
+            </div>
+            <div class="side-middle" [ngSwitch]="html">
+                <div *ngSwitchCase="'posts'"><app-profile-posts></app-profile-posts></div>
+                <div *ngSwitchCase="'followers'"><app-profile-followers></app-profile-followers></div>
+                <div *ngSwitchCase="'following'"><app-profile-following></app-profile-following></div>
+                <div *ngSwitchCase="'reportUsers'"><app-profile-report-users></app-profile-report-users></div>
+                <div *ngSwitchCase="'reportPosts'"><app-profile-report-posts></app-profile-report-posts></div>
+                <div *ngSwitchCase="'reportComments'"><app-profile-report-comments></app-profile-report-comments></div>
+                <div *ngSwitchDefault>...</div>
+            </div>
+        </div>
+        <!--Redes sociales-->
+        <div class="hidden-xs col-md-3">
+            <div id="RedesSociales">
+                <label>Siguenos en</label>
+                <a href="/index"><img src="/img/icon_twitter.png" class="social" /></a>
+                <a href="/index"><img src="/img/icon_instagram.png" class="social" /></a>
+                <a href="/index"><img src="/img/icon_facebook.png" class="social" /></a>
+            </div>
+        </div>
+    </div>
