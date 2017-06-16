@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Http } from '@angular/http';
 import { Post} from 'app/post/post.entity';
@@ -31,7 +32,7 @@ export class HotPageComponent implements OnInit {
       );
   }
 
-  constructor(private http: Http) {
+  constructor(private route: ActivatedRoute, private router: Router, private http: Http) {
       let url:string;
     //Get Posts
       this.putPosts();
@@ -75,6 +76,5 @@ export class HotPageComponent implements OnInit {
 
   ngOnInit() {
   }
-
 
 }

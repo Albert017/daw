@@ -13,7 +13,7 @@ const appRoutes = [
   { path: 'login', component: LogInComponent},
   { path: 'post', component: PostIndexComponent},
   { path: 'profile', component: ProfilePageComponent},
- // { path: 'post/:id', component: PostIndexComponent},
+  { path: 'post/:id', component: PostIndexComponent},
   { path: '', redirectTo: 'hot', pathMatch: 'full' }
 ];
 

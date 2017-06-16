@@ -13,7 +13,7 @@
                 <div class="side-left">
                     <div *ngIf="postYear!==undefined" class="thumbnail">
                     	<p class="text-center text-warning">Best of this year.</p>
-                        <a href="/bestPostYear"><img src="src/assets/files/{{postYear.id}}.jpg" alt="" />
+                        <a [routerLink]="['/post',postYear.id]"><img src="src/assets/files/{{postYear.id}}.jpg" alt="" />
                             <div class="caption">
                                 <p>{{postYear.postTitle}}</p>
                             </div>
@@ -21,7 +21,7 @@
                     </div>
 	              	<div *ngIf="postMonth !== undefined" class="thumbnail">
                    		<p class="text-center text-warning">Best of this month.</p>
-	                    <a href="/bestPOstMonth"><img src="src/assets/files/{{postMonth.id}}.jpg" alt="" />
+	                    <a [routerLink]="['/post',postMonth.id]"><img src="src/assets/files/{{postMonth.id}}.jpg" alt="" />
 	                        <div class="caption">
 	                             <p>{{postMonth.postTitle}}</p>
 	                        </div>
@@ -29,7 +29,7 @@
 	                </div>
                     <div *ngIf="postWeek !== undefined" class="thumbnail">
                    		<p class="text-center text-warning">Best of this week.</p>
-                        <a href="/bestPostWeek"><img src="src/assets/files/{{postWeek.id}}.jpg" alt="" />
+                        <a [routerLink]="['/post',postWeek.id]"><img src="src/assets/files/{{postWeek.id}}.jpg" alt="" />
                             <div class="caption">
                                 <p>{{postWeek.postTitle}}</p>
                             </div>
@@ -37,7 +37,7 @@
                     </div>
                     <div *ngIf="postDay !== undefined" class="thumbnail">
                     	<p class="text-center text-warning">Best of today.</p>
-                        <a href="/bestPostDay"><img src="src/assets/files/{{postDay.id}}.jpg" alt="" />
+                        <a [routerLink]="['/post',postDay.id]"><img src="src/assets/files/{{postDay.id}}.jpg" alt="" />
                             <div class="caption">
                                 <p>{{postDay.postTitle}}</p>
                             </div>
@@ -51,7 +51,7 @@
                 <div class="side-middle"> 
                 <div *ngIf="posts.length>0;else notPost">
                     <div *ngFor="let post of posts" class="thumbnail">
-                        <a href="/post/{{post.id}}"><img class="img-post" src="src/assets/files/{{post.id}}.jpg" /></a>
+                        <a [routerLink]="['/post',post.id]"><img class="img-post" src="src/assets/files/{{post.id}}.jpg" /></a>
                         <form action="/reportPost/id" method="PUT" enctype="multipart/form-data" class="reportLink">
 							              <input type='submit' class="btn btn-primary" name='report' value='Report' />
 					            	</form>
