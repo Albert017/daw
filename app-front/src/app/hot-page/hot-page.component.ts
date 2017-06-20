@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Http } from '@angular/http';
@@ -12,6 +12,9 @@ const URL = 'http://localhost:8080/api';
   styleUrls: ['./hot-page.component.css']
 })
 export class HotPageComponent implements OnInit {
+    @Input() 
+    id: string;
+
   private posts:Post[]=[];
   private postYear: Post;
   private postMonth: Post;
@@ -33,6 +36,7 @@ export class HotPageComponent implements OnInit {
   }
 
   constructor(private route: ActivatedRoute, private router: Router, private http: Http) {
+      console.log("hijo: "+this.id);
       let url:string;
     //Get Posts
       this.putPosts();
