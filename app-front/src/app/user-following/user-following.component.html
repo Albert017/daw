@@ -1,16 +1,19 @@
-#followersList
-<div class="panel panel-default">
-  <div class="panel-body">
-    <a href="/user/follower.username"> <img alt="" src="/avatarimg/follower.id" class="profile-followers" />follower.username</a>
-    #isFollowing
-    <form action="/unfollow/follower.username" method="POST" class="form-follow">
-      <button type="submit" class="btn btn-success button-followers">Following</button>
-    </form>
-    /isFollowing ^isFollowing
-    <form action="/follow/follower.username" method="POST" class="form-follow">
-      <button type="submit" class="btn btn-success button-follow-user">Follow</button>
-    </form>
-    /isFollowing
+<div *ngIf="user.userFollowing.length>0;else notFollowing">
+  <div *ngFor="let following of user.userFollowing" class="thumbnail">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <a href="/user/{{following.id}}"> <img alt="" src="src/assets/avatars/{{following.id}}.jpg" class="profile-followers" />{{following.username}}</a>
+        <form action="/unfollow/follower.username" method="POST" class="form-follow">
+          <button type="submit" class="btn btn-success button-followers">Following</button>
+        </form>
+        <form action="/follow/follower.username" method="POST" class="form-follow">
+          <button type="submit" class="btn btn-success button-follow-user">Follow</button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
-/followersList
+
+<ng-template #notFollowing>
+  <p class="text-center text-info">No sigue a nadie<p>
+</ng-template>

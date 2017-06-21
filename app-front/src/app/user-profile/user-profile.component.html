@@ -7,8 +7,8 @@
     </div>
   </div>
   <div class="followers-container">
-    <div id="Up"></div> <a class="followers-following"> Followers <span class="badge badge-header">{{user.userFollowers.size}}</span></a>
-    <a class="followers-following"> Following <span class="badge badge-header">{{user.userFollowing.size}}</span></a>
+    <div id="Up"></div> <a class="followers-following"> Followers <span class="badge badge-header">{{numFollowers}}</span></a>
+    <a class="followers-following"> Following <span class="badge badge-header">{{numFollowing}}</span></a>
   </div>
   <div class="followers-container">
     <p></p>
@@ -31,24 +31,24 @@
     </div>
   </div>
   <div class="col-xs-12 col-md-6"><div class="menu-profile">
-    <!--
                 <ul class="nav nav-pills">
-                    <li role="presentation"><a (click)="goToMenu('posts');">My Posts</a></li>
-                    <li role="presentation"><a class="followers-following" (click)="goToMenu('followers');"> Followers <span class="badge badge-header">numFollowers</span></a></li>
-                    <li role="presentation"><a class="followers-following" (click)="goToMenu('following');"> Following <span class="badge badge-header">numFollowings</span></a></li>
+                    <li role="presentation"><a (click)="goToMenu('posts');">{{user.username}}'s Posts</a></li>
+                    <li role="presentation"><a class="followers-following" (click)="goToMenu('followers');"> Followers <span class="badge badge-header">{{numFollowers}}</span></a></li>
+                    <li role="presentation"><a class="followers-following" (click)="goToMenu('following');"> Following <span class="badge badge-header">{{numFollowing}}</span></a></li>
+                    <!--
                     #isUserAdmin
                     <li role="presentation"><a (click)="goToMenu('reportUsers');">Reported Users</a></li>
                     <li role="presentation"><a (click)="goToMenu('reportPosts');">Reported posts</a></li>
                     <li role="presentation"><a (click)="goToMenu('reportComments');">Reported comments</a></li>
                     /isUserAdmin
+                    -->
                 </ul>
             </div>
-            -->
             <div class="side-middle" [ngSwitch]="html">
                 <div *ngSwitchCase="'posts'"><app-user-post></app-user-post></div>
-                <!--
-                <div *ngSwitchCase="'followers'"><app-profile-followers></app-profile-followers></div>
-                -->
+                
+                <div *ngSwitchCase="'followers'"><app-user-followers></app-user-followers></div>
+                
                 <div *ngSwitchCase="'following'"><app-user-following></app-user-following></div>
                 <!--
                 <div *ngSwitchCase="'reportUsers'"><app-profile-report-users></app-profile-report-users></div>

@@ -26,6 +26,9 @@ private user : User = {
       userFollowers: [],
       userPosts: []
     };
+private numFollowers:number;
+private numFollowing:number;
+
   constructor(private route: ActivatedRoute, private router: Router, private http: Http) { 
     let userId = route.snapshot.params['id'];
     this.getUserInfo(userId);
@@ -44,6 +47,10 @@ private user : User = {
         response => {
           let data = response.json();
           this.user=data;
+          this.numFollowers=this.user.userFollowers.length;
+          this.numFollowing=this.user.userFollowing.length;
+          console.log("Followers "+ this.numFollowers);
+          console.log("Following "+ this.numFollowing);
       },
         error  => console.error(error)
       );

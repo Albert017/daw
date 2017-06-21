@@ -1,3 +1,19 @@
-<p>
-  user-followers works!
-</p>
+<div *ngIf="user.userFollowers.length>0;else notFollowing">
+  <div *ngFor="let following of user.userFollowers" class="thumbnail">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <a href="/user/{{following.id}}"> <img alt="" src="src/assets/avatars/{{following.id}}.jpg" class="profile-followers" />{{following.username}}</a>
+        <form action="/unfollow/follower.username" method="POST" class="form-follow">
+          <button type="submit" class="btn btn-success button-followers">Following</button>
+        </form>
+        <form action="/follow/follower.username" method="POST" class="form-follow">
+          <button type="submit" class="btn btn-success button-follow-user">Follow</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #notFollowing>
+  <p class="text-center text-info">No le sigue nadie<p>
+</ng-template>
