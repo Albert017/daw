@@ -1,0 +1,37 @@
+<div *ngIf="user.userPosts.length>0;else notPost">
+  <div *ngFor="let post of user.userPosts" class="thumbnail">
+    <a href="/post/{{post.id}}"><img class="img-post" src="src/assets/files/{{post.id}}.jpg" /></a>
+    <form action="/reportPost/id" method="PUT" enctype="multipart/form-data" class="reportLink">
+      <input type='submit' class="btn btn-primary" name='report' value='Report' />
+    </form>
+    <!-- <a href="/reportPost/{{id}}" class="reportLink">Report</a>-->
+    <div class="caption">
+      <h3>{{post.postTitle}}</h3>
+      <p><a class="votes" href="/users/{{user.username}}">{{user.username}} </a>{{post.postDate}} <span class="label label-primary">{{post.postTag}}</span></p>
+      <p>
+        <div id="up-votes">
+          <form action="/index/id/up-vote" method="POST">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+          </form>
+        </div>
+        <div id="down-votes">
+          <form action="/index/id/down-vote" method="POST">
+            <button type="submit" class="btn btn-primary" role="button"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+
+          </form>
+        </div>
+        <a class="votes"> Upvotes <span class="badge">{{post.postUpVotes}}</span></a>
+        <a class="votes"> Downvotes <span class="badge">{{post.postDownVotes}}</span></a>
+        <a class="votes"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a>
+        <div>
+          <a href="#" class="social-network-post"><img src="src/assets/img/icon_twitter.png" class="social-post" /></a>
+          <a href="#" class="social-network-post"><img src="src/assets/img/icon_instagram.png" class="social-post" /></a>
+          <a href="#" class="social-network-post"><img src="src/assets/img/icon_facebook.png" class="social-post" /></a>
+        </div>
+    </div>
+  </div>
+</div>
+<ng-template #notPost>
+  <p class="text-center text-info">No hay posts
+    <p>
+</ng-template>

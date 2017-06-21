@@ -1,18 +1,20 @@
 
-export class User{
+import { Post } from "app/post/post.entity";
+
+export class User {
     id?: number;
     username: string;
     userEmail?:string;
-    roles: string[];
-    userFollowers?: User[];
-    userFollowing?: User[];
-    userPasswordHash?: string;
     userBiography?: string;
     userLocation?: string;
     userLink?: string;
+    report?: boolean;
+    roles: string[];
+    userFollowing?: User[];
+    userFollowers?: User[];
+    userPosts?: Post[];
+    userPasswordHash?: string;
     userComments?: string; //temporalmente hasta que se implemente la clase userComments
     userSentMessages?: string;
     userReceivedMessages?: string;
-    userPosts?: string;
-    report?: boolean;
 }

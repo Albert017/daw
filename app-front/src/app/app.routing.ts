@@ -6,6 +6,7 @@ import { LogInComponent} from './log-in/log-in.component';
 import { PostIndexComponent} from './post/post-index.component';
 import { ProfilePageComponent} from './profile-page/profile-page.component';
 import { ProfilePostsComponent} from './profile-posts/profile-posts.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const appRoutes = [
   { path: 'hot', component: HotPageComponent, useAsDefault: true },
@@ -14,6 +15,7 @@ const appRoutes = [
   { path: 'post', component: PostIndexComponent},
   { path: 'profile', component: ProfilePageComponent},
   { path: 'post/:id', component: PostIndexComponent},
+  { path: 'user/:id', component: UserProfileComponent},
   { path: '', redirectTo: 'hot', pathMatch: 'full' }
 ];
 

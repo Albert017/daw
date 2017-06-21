@@ -24,6 +24,10 @@ import { ProfileFollowingComponent } from './profile-following/profile-following
 import { ProfileReportUsersComponent } from './profile-report-users/profile-report-users.component';
 import { ProfileReportPostsComponent } from './profile-report-posts/profile-report-posts.component';
 import { ProfileReportCommentsComponent } from './profile-report-comments/profile-report-comments.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserFollowersComponent } from './user-followers/user-followers.component';
+import { UserFollowingComponent } from './user-following/user-following.component';
+import { UserPostComponent } from './user-post/user-post.component';
 //import { HttpClientComponent } from './http-client/http-client.component';
 
 @NgModule({
@@ -41,7 +45,11 @@ import { ProfileReportCommentsComponent } from './profile-report-comments/profil
     ProfileFollowingComponent,
     ProfileReportUsersComponent,
     ProfileReportPostsComponent,
-    ProfileReportCommentsComponent
+    ProfileReportCommentsComponent,
+    UserProfileComponent,
+    UserFollowersComponent,
+    UserFollowingComponent,
+    UserPostComponent
     //HttpClientComponent
   ],
   imports: [

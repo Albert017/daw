@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Post} from 'app/post/post.entity';
+import { User } from  'app/user/user.entity';
 
 const URL = 'http://localhost:8080/api';
 
@@ -11,6 +12,7 @@ const URL = 'http://localhost:8080/api';
 })
 export class ProfilePostsComponent implements OnInit {
   private posts:Post[]=[];
+  private user: User;
 
   constructor(private http: Http) {
     let url=URL + "/posts/";
