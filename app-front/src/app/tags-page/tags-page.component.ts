@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Http } from '@angular/http';
 import { Post} from 'app/post/post.entity';
@@ -6,16 +7,20 @@ import { Post} from 'app/post/post.entity';
 const URL = 'http://localhost:8080/api';
 
 @Component({
-  selector: 'app-trending-page',
-  templateUrl: './trending-page.component.html',
-  styleUrls: ['./trending-page.component.css']
+  selector: 'app-tags-page',
+  templateUrl: './tags-page.component.html',
+  styleUrls: ['./tags-page.component.css']
 })
-export class TrendingPageComponent implements OnInit {
- private posts:Post[]=[];
+export class TagsPageComponent implements OnInit {
+private posts:Post[]=[];
+private tags:string;
 
-  constructor(private http: Http) {
-    //Get Posts
-      let url=URL + "/posts/trending";
+
+  constructor(private route: ActivatedRoute, private router: Router,private http: Http) {
+    this.route.params.subscribe(params => {
+        this.tags = params['tags'];
+      });
+     let url=URL + "/posts/tag="+this.tags;
       this.http.get(url).subscribe(
         response => {
           let data = response.json();
@@ -26,8 +31,8 @@ export class TrendingPageComponent implements OnInit {
       },
         error => console.error(error)
       );
-     
    }
+
   ngOnInit() {
   }
 

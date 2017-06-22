@@ -6,45 +6,7 @@
     </header>
     <div class="container-fluid">
         <div class="row">
-            <!--Para dejar margen-->
-            <div class="hidden-xs col-md-1"></div>
-            <!--Contenido Izquierda-->
-            <div class="hidden-xs col-md-2">
-                <div class="side-left">
-                    <div *ngIf="postYear!==undefined" class="thumbnail">
-                    	<p class="text-center text-warning">Best of this year.</p>
-                        <a href="/bestPostYear"><img src="src/assets/files/{{postYear.id}}.jpg" alt="" />
-                            <div class="caption">
-                                <p>{{postYear.postTitle}}</p>
-                            </div>
-                        </a>
-                    </div>
-	              	<div *ngIf="postMonth !== undefined" class="thumbnail">
-                   		<p class="text-center text-warning">Best of this month.</p>
-	                    <a href="/bestPOstMonth"><img src="src/assets/files/{{postMonth.id}}.jpg" alt="" />
-	                        <div class="caption">
-	                             <p>{{postMonth.postTitle}}</p>
-	                        </div>
-	                    </a>
-	                </div>
-                    <div *ngIf="postWeek !== undefined" class="thumbnail">
-                   		<p class="text-center text-warning">Best of this week.</p>
-                        <a href="/bestPostWeek"><img src="src/assets/files/{{postWeek.id}}.jpg" alt="" />
-                            <div class="caption">
-                                <p>{{postWeek.postTitle}}</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div *ngIf="postDay !== undefined" class="thumbnail">
-                    	<p class="text-center text-warning">Best of today.</p>
-                        <a href="/bestPostDay"><img src="src/assets/files/{{postDay.id}}.jpg" alt="" />
-                            <div class="caption">
-                                <p>{{postDay.postTitle}}</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <app-best-posts></app-best-posts>
 
             <!--Posts - Contenido central -->
             <div class="col-xs-12 col-md-6">
@@ -87,15 +49,7 @@
                     </ng-template>
                 </div>
             </div>
-                        <!--Redes sociales - Contenido derecha-->
-            <div class="hidden-xs col-md-3">
-                <div id="RedesSociales">
-                    <label>Siguenos en</label>
-                    <a href="https://twitter.com/LafiladeatrasFA"><img src="src/assets/img/icon_twitter.png" class="social" /></a>
-                    <a href="https://www.instagram.com/lafiladeatras/"><img src="src/assets/img/icon_instagram.png" class="social" /></a>
-                    <a href="#"><img src="src/assets/img/icon_facebook.png" class="social" /></a>
-                </div>
-            </div>
+            <app-social-networks></app-social-networks>
         </div>
     </div>
     <!-- Boton ir arriba-->

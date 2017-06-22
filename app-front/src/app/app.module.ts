@@ -28,6 +28,10 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserFollowersComponent } from './user-followers/user-followers.component';
 import { UserFollowingComponent } from './user-following/user-following.component';
 import { UserPostComponent } from './user-post/user-post.component';
+import { BestPostsComponent } from './best-posts/best-posts.component';
+import { SocialNetworksComponent } from './social-networks/social-networks.component';
+import { RandomPageComponent } from './random-page/random-page.component';
+import { TagsPageComponent } from './tags-page/tags-page.component';
 //import { HttpClientComponent } from './http-client/http-client.component';
 
 @NgModule({
@@ -49,7 +53,11 @@ import { UserPostComponent } from './user-post/user-post.component';
     UserProfileComponent,
     UserFollowersComponent,
     UserFollowingComponent,
-    UserPostComponent
+    UserPostComponent,
+    BestPostsComponent,
+    SocialNetworksComponent,
+    RandomPageComponent,
+    TagsPageComponent
     //HttpClientComponent
   ],
   imports: [
