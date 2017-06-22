@@ -13,7 +13,7 @@ public goTo: string;
 
   constructor(private loginService: LoginService) {
 
-        this.loginService.logIn("user1","pass1");
+        //this.loginService.logIn("user1","pass1");
    }
 
   ngOnInit() {

@@ -16,28 +16,30 @@
                 <div class="login-method">
                     <form class="form-horizontal" action="/login" method="POST">
                         <fieldset>
+                            <!--
                             <div id="legend">
                             <legend class="">Log in</legend>
                             #loginerror
                                 <span id="error"><p>Wrong username or password</p></span>
                             /loginerror
                             </div>
+                            -->
                             <div class="control-group">
                                 <!-- Username -->
                                 <label class="control-label" for="username">Username</label>
                                 <div class="controls">
-                                    <input type="text" id="username" name="username" placeholder="" class="input-xlarge"> </div>
+                                    <input #user type="text" id="username" name="username" placeholder="" class="input-xlarge"> </div>
                             </div>
                             <div class="control-group">
                                 <!-- Password-->
                                 <label class="control-label" for="password">Password</label>
                                 <div class="controls">
-                                    <input type="password" id="password" name="password" placeholder="" class="input-xlarge"> </div>
+                                    <input #pass  type="password" id="password" name="password" placeholder="" class="input-xlarge"> </div>
                             </div>
                             <div class="control-group">
                                 <!-- Button -->
                                 <div class="controls" id="btnlogin">
-                                    <input class="btn btn-success" type="submit" value="Log in"/>
+                                    <input class="btn btn-success" (click)="logIn(user.value, pass.value);" type="submit" value="Log in"/>
                                 </div>
                             </div>
                         </fieldset>
