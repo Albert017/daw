@@ -8,7 +8,6 @@ import { LoginService } from 'app/login.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-public goTo: string;
 
 
   constructor(private loginService: LoginService) {
@@ -19,8 +18,4 @@ public goTo: string;
   ngOnInit() {
   }
 
-  redirection(link: string){
-    this.goTo=link;
-    console.log("padre: "+this.goTo);
-  }
 }
