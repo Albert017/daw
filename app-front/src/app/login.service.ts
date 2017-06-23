@@ -1,14 +1,9 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
+import { User} from 'app/user/user.entity';
 import 'rxjs/Rx';
 
 const URL = 'http://localhost:8080/api';
-
-export interface User {
-    id?: number;
-    username: string;
-    roles: string[];
-}
 
 @Injectable()
 export class LoginService {
