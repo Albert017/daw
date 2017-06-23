@@ -28,13 +28,13 @@
                                 <!-- Username -->
                                 <label class="control-label" for="username">Username</label>
                                 <div class="controls">
-                                    <input #user type="text" id="username" name="username" placeholder="" class="input-xlarge"> </div>
+                                    <input #user [(ngModel)]="username" type="text" id="username" name="username" placeholder="" class="input-xlarge"> </div>
                             </div>
                             <div class="control-group">
                                 <!-- Password-->
                                 <label class="control-label" for="password">Password</label>
                                 <div class="controls">
-                                    <input #pass  type="password" id="password" name="password" placeholder="" class="input-xlarge"> </div>
+                                    <input #pass [(ngModel)]="password" type="password" id="password" name="password" placeholder="" class="input-xlarge"> </div>
                             </div>
                             <div class="control-group">
                                 <!-- Button -->

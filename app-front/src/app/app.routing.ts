@@ -19,6 +19,7 @@ const appRoutes = [
   { path: 'post/:id', component: PostIndexComponent},
   { path: 'user/:id', component: UserProfileComponent},
   { path: 'random', component: RandomPageComponent},
+  { path: 'logOut', component: HotPageComponent},
   { path: 'tag/:tags', component: TagsPageComponent},
   { path: '', redirectTo: 'hot', pathMatch: 'full' }
 ];

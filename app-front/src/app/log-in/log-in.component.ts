@@ -11,14 +11,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class LogInComponent implements OnInit {
 
   loggedUser: LoginService;
+  private username:string;
+  private password: string;
 
   constructor(public loginService: LoginService, private router: Router) { }
 
 
-  public logIn(username:string, password: string){
-    console.log("username "+ username);
-    console.log("password "+ password);
-    this.loginService.logIn(username, password);
+  public logIn(){
+    console.log("username "+ this.username);
+    console.log("password "+ this.password);
+    this.loginService.logIn(this.username, this.password);
     this.loggedUser=this.loginService;
     console.log(this.loggedUser.isLogged);
   }

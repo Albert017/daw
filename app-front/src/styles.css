@@ -255,3 +255,287 @@ body {
 	float: right;
 	margin:3px;
 }
+#newPost {
+	color: white;
+}
+
+.panel-default >.panel-heading {
+	background-color: black;
+	color: white;
+}
+
+
+.panel-default {
+	border-color: gainsboro;
+}
+
+.uploadPost {
+	display: inline-block;
+}
+
+.upload {
+	display: inline-block;
+}
+
+
+
+#publishButton {
+	text-align: center;
+}
+.login-method {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    text-align: center;
+}
+
+.login {
+    width: 25em;
+    padding-bottom: 1em;
+}
+
+.login:hover {
+    width: 26em;
+}
+
+#or {
+    padding-top: 17em;
+}
+
+#btnlogin {
+    padding-top: 1em;
+}
+.img-profile-message {
+    height: 6em;
+    margin-left: -0.5em;
+}
+
+.menu li {
+    border-left-style: inset;
+}
+
+.menu li a {
+    color: black;
+}
+
+.message {
+    height: 7em;
+}
+
+.panel-message {
+    margin-top: -1em
+}
+
+.message-content {
+    height: 7em;
+    padding-top: 1px;
+    width: 90%;
+    padding-left: 1px;
+}
+
+.message-text {
+    height: 7em;
+    width: 80%;
+    margin-left: 1px;
+}
+
+.message-text p {
+    padding-top: 1em;
+    margin-left: 1.1em;
+    padding-left: 1em;
+}
+
+.message a:link {
+    text-decoration: none;
+    color: black;
+}
+.message a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.panel-heading a:link{
+	text-decoration: none;
+    color: white;
+}
+
+.panel-heading a:visited { 
+    color: white;
+}
+.message a {
+    color: black;
+}
+
+input[type=checkbox] {
+    margin-top: -4.5em;
+    margin-left: 27.5em;
+}
+
+.user-rmt {
+    margin-top: -1.1em;
+    margin-left: -1.1em;
+    height: 7em;
+    border-right-color: beige;
+    border-right-style: inset;
+}
+
+.img-profile-message {
+    height: 7em;
+    margin-left: -1.1em;
+}
+
+.mailbox {
+    margin-bottom: 5em;
+}
+
+#legend {
+    padding-top: 2em;
+}
+
+#btn-mailbox {
+    padding-right: 1em;
+    margin-bottom: 1.5em;
+}
+
+#btn-message {
+    padding-right: 1em;
+}
+
+.conversation {
+    padding-top: 1em;
+}
+
+.conversation button {
+    margin: -3em 0.25em;
+}
+.btn-primary {
+    background-color: white;
+    color: black;
+    border-color: darkslategray;
+}
+.thumbnail {
+    border:5px solid black;
+    margin-top: 6px;
+}
+.btn-primary.focus {
+  color: #fff;
+  background-color: black;
+  border-color: #122b40;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: black;
+  border-color: black;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: black;
+  border-color: black;
+}
+a.bg-primary:hover,
+a.bg-primary:focus {
+  background-color: black;
+}
+a.text-primary:hover,
+a.text-primary:focus {
+  color: black;
+}
+.label-primary[href]:hover,
+.label-primary[href]:focus {
+  background-color: black;
+}
+.btn-primary:focus,
+.btn-primary.focus {
+  color: #fff;
+  background-color: black;
+  border-color: black;
+}
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+  color: #fff;
+  background-color: black;
+  border-color: black;
+}
+.badge {
+    background-color: black;
+}
+
+.panel-heading>.votes{
+	color: white;
+}
+.votes {
+    color: black;
+}
+.votes:hover{
+    text-decoration: none;
+    color:darkslategrey;
+}
+
+#comment {
+    top:3;
+}
+#date:hover{
+    text-decoration: none;
+    color:darkslategrey;
+}
+#date {
+    color:darkblue;
+}
+
+.userIconImg {
+    width: 100;
+	border-radius: 5px;
+}
+
+.panel-default>.panel-heading {
+	background-color: black;
+}
+
+#tocomment {
+    background-color: #eee;
+        border: 1px solid #ccc;
+}
+
+#commentInput {
+    width: 750;
+}
+
+.minHeight{
+	height: 100px;
+}
+
+.delete-btn{
+	position: relative;
+    margin: -35px 20px;
+}
+
+.header-user-info img {
+	height: 100;
+	border-radius: 5px;
+}
+
+#up-votes{
+	float:left;
+}
+#down-votes{
+	float:right;
+}
+
+.img-post{
+	width: 600px;
+	padding-bottom: 12px;
+	padding-top: 12px;
+}
+.signup-method {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    text-align: center;
+}

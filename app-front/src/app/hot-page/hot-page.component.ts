@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Http } from '@angular/http';
+import { LoginService } from "app/login.service";
 import { Post} from 'app/post/post.entity';
 
 const URL = 'http://localhost:8080/api';
