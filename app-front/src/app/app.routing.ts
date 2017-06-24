@@ -18,6 +18,7 @@ import {EditProfilePageComponent } from './edit-profile-page/edit-profile-page.c
 import { MessagePageComponent } from './message-page/message-page.component';
 import { MessageNewComponent } from './message-new/message-new.component';
 import { MessageReadComponent } from './message-read/message-read.component';
+import { SignupPageComponent } from './signup-page/signup-page.component';
 
 const appRoutes = [
   { path: 'hot', component: HotPageComponent, useAsDefault: true },
@@ -39,6 +40,7 @@ const appRoutes = [
   { path: 'messages', component: MessagePageComponent},
   { path: 'newMessage', component: MessageNewComponent},
   { path: 'conversation', component: MessageReadComponent},
+  { path: 'signup', component: SignupPageComponent},
   { path: '', redirectTo: 'hot', pathMatch: 'full' }
 ];
 
