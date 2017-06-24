@@ -16,14 +16,10 @@
                 <div class="login-method">
                     <form class="form-horizontal" action="/login" method="POST">
                         <fieldset>
-                            <!--
                             <div id="legend">
-                            <legend class="">Log in</legend>
-                            #loginerror
-                                <span id="error"><p>Wrong username or password</p></span>
-                            /loginerror
+                                <span *ngIf="!loginService.isLogged" id="error"><p>User not logged.</p></span>
+                                <ng-template #elseBlock><span id="success"><p>User logged.</p></span></ng-template>
                             </div>
-                            -->
                             <div class="control-group">
                                 <!-- Username -->
                                 <label class="control-label" for="username">Username</label>

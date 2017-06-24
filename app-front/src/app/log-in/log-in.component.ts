@@ -19,7 +19,6 @@ export class LogInComponent implements OnInit {
 
   public logIn(){
     console.log("username "+ this.username);
-    console.log("password "+ this.password);
     this.loginService.logIn(this.username, this.password);
     this.loggedUser=this.loginService;
     console.log(this.loggedUser.isLogged);
