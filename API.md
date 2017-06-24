@@ -17,6 +17,7 @@ Uso de la parte de Posts de la API REST de la aplicación.
   * Para acceder al post de la semana: /api/posts/best/week/ MÉTODO: GET
   * Para acceder al post del año: /api/posts/best/year/ MÉTODO: GET
   * Para acceder a la lista de posts de una categoria: /api/posts/tag={tag} MÉTODO: GET
+  * Para acceder a los post que tengan el mismo ttulo: /api/posts/search={postTitle} MÉTODO: GET
 * Para reportar un post con su id estando logeado: /api/posts/report={id} MÉTODO: PUT
 * Para subir un voto a un post con su id estando logeado: /api/posts/upvote={id} MÉTODO: PUT
 * Para bajar un voto a un post con su id estando logeado: /api/posts/downvote={id} MÉTODO: PUT
