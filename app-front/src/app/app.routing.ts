@@ -15,6 +15,9 @@ import { AddPostPageComponent } from './add-post-page/add-post-page.component';
 import { ChangeAvatarPageComponent } from './change-avatar-page/change-avatar-page.component';
 import { ChangeHeaderPageComponent} from './change-header-page/change-header-page.component';
 import {EditProfilePageComponent } from './edit-profile-page/edit-profile-page.component';
+import { MessagePageComponent } from './message-page/message-page.component';
+import { MessageNewComponent } from './message-new/message-new.component';
+import { MessageReadComponent } from './message-read/message-read.component';
 
 const appRoutes = [
   { path: 'hot', component: HotPageComponent, useAsDefault: true },
@@ -33,6 +36,9 @@ const appRoutes = [
   { path: 'changeAvatar', component: ChangeAvatarPageComponent},
   { path: 'changeHeader', component: ChangeHeaderPageComponent},
   { path: 'edit-profile', component: EditProfilePageComponent},
+  { path: 'messages', component: MessagePageComponent},
+  { path: 'newMessage', component: MessageNewComponent},
+  { path: 'conversation', component: MessageReadComponent},
   { path: '', redirectTo: 'hot', pathMatch: 'full' }
 ];
 

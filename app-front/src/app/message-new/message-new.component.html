@@ -1,0 +1,75 @@
+ <header>
+        <div id="Up"></div>
+        <div class="hidden-xs col-md-12" id="title">
+            <div>LA FILA DE ATRAS <img alt="Brand" src="src/assets/img/logoTitulo_blanco.png" /></div>
+        </div>
+    </header>
+    <div class="container-fluid">
+
+        <div class="row">
+            <!--Para dejar margen-->
+            <div class="hidden-xs col-md-1"></div>
+
+
+            <!--Contenido Izquierda-->
+            <div class="col-xs-12 col-md-8">
+                <div id="legend">
+                    <legend class="">Mis Mensajes</legend>
+                </div>
+                <div class="hidden-xs col-md-3">
+
+                    <div class="side-left">
+                        <div class="menu">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="/mensajes">RECIBIDOS</a></li>
+                                <li><a href="/mensajes/eliminados">ELIMINADOS</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--Posts - Contenido central -->
+                <div class="col-xs-12 col-md-9">
+                	
+                    <div class="side-middle">
+                    #error
+                	<span id="error">Error al enviar el mensaje</span>
+                	/error
+                        <div class="mailbox">
+                            <form action="/mensajes/enviado" method="POST">
+                                <div class="form-group">
+                                    <label for="inputdefault">Destinatario:</label>
+                                    <input class="form-control" id="destinatario" name="destinatario" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputdefault">Mensaje:</label>
+                                    <textarea class="form-control" id="message-content" name="message-content" rows="10"></textarea>
+                                </div>
+                            
+
+                            <div id="btn-message">
+                                <input type="submit" class="btn btn-default navbar-right" value="Enviar">
+
+                            </div>
+						</form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Redes sociales - Contenido derecha-->
+            <app-social-networks></app-social-networks>
+            <!--Para dejar margen-->
+            <div class="hidden-xs col-md-1 "></div>
+        </div>
+    </div>
+
+    <!-- Boton ir arriba-->
+    <div class="col-md-12 toup">
+
+        <div class="toUp">
+            <a href="#Up" type="button" class="btn btn-primary  btn-toUp btn-md navbar-right"><span class="glyphicon glyphicon-arrow-up" aria-hidden="false"></span></a>
+        </div>
+    </div>
