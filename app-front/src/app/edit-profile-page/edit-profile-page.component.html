@@ -1,0 +1,55 @@
+#currentUser
+    <header id="page-top" style="background-image: url(/headerimg/id}">
+        <div class="container header-info">
+            <div class="header-user-info"> <img style="width:100" class="img-center" alt="" src="/avatarimg/id" />
+                <div class="intro-text">
+                    <p><span class="name">username</span></p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="row">
+        <!--Para dejar margen-->
+        <div class="hidden-xs col-md-1"></div>
+        <!--Posts-->
+        <div class="col-xs-12 col-md-6">
+        <form action="/uploadProfileNewData/id" method="PUT"
+		enctype="multipart/form-data">
+            <div class="panel panel-inverse panel-profile">
+                <div class="panel-heading">
+                    <h1><strong>Edit profile</strong></h1> </div>
+                <div class="panel-body">
+                    <hr/>
+                    <div>
+                        <div class="input-group text-profile"> <span class="input-group-addon" id="basic-addon1">Username</span>
+                            <input type="text" class="form-control" name="username" aria-describedby="basic-addon1" value="username"> </div>
+                        <p><small>The name that appear in your profile</small></p>
+                        <div class="input-group text-profile"> <span class="input-group-addon" id="basic-addon1">E-mail</span>
+                            <input type="text" class="form-control" name="email" aria-describedby="basic-addon1" value="userEmail"> </div>
+                        <div class="input-group text-profile"> <span class="input-group-addon" id="basic-addon1">Biography</span>
+                            <input type="text" class="form-control" name="biography" aria-describedby="basic-addon1" value="userBiography"> </div>
+                        <p><small>Tell something about you</small></p>
+                        <div class="input-group text-profile"> <span class="input-group-addon" id="basic-addon1">Location</span>
+                            <input type="text" class="form-control" name="location" aria-describedby="basic-addon1" value="userLocation"> </div>
+                        <p><small>Where are you from?</small></p>
+                        <div class="input-group text-profile"> <span class="input-group-addon" id="basic-addon1">Links</span>
+                            <input type="text" class="form-control" name="links" aria-describedby="basic-addon1" value="userLink"> </div>
+                        <p><small>Have you a blog or a web site?</small></p>
+                    </div>
+                </div>
+            </div>
+            <input type='submit' class="btn btn-default save-profile-button" name='enviar' value='Save changes' />
+            </form>
+        </div>        
+        <div class="hidden-xs col-md-1"></div>
+    /currentUser
+        <!--Redes sociales-->
+        <div class="hidden-xs col-md-3">
+            <div class="edit-profile-right-side">
+                <div class="list-group"> <a href="#" class="list-group-item active">Encuentra amigos (coming soon)</a> <a href="#" class="list-group-item">En twitter</a> <a href="#" class="list-group-item">En facebook</a> </div>
+                <div class="list-group"> <a href="#" class="list-group-item active">Invita amigos (coming soon)</a> <a href="#" class="list-group-item">En twitter</a> <a href="#" class="list-group-item">En facebook</a> </div>
+                <div class="list-group"> <a href="#" class="list-group-item active">Asocia cuentas (coming soon)</a> <a href="#" class="list-group-item">De twitter</a> <a href="#" class="list-group-item">De facebook</a> </div>
+            </div>
+        </div>
+        <div class="hidden-xs col-md-1"></div>
+    </div>

@@ -1,0 +1,67 @@
+#currentUser
+    <header id="page-top" style="background-image: url(/headerimg/id)">
+        <div class="container header-info">
+            <div class="header-user-info"> <img style="width:100" class="img-center" alt="" src="/avatarimg/id" />
+                <div class="intro-text">
+                    <p><span class="name">username</span></p>
+                </div>
+            </div>
+        </div>
+    </header>
+    /currentUser
+    <div class="row">
+        <div class="hidden-xs col-md-3">
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="menu-profile">
+                <ul class="nav nav-pills">
+                    <li role="presentation"><a href="/profile">Home</a></li>
+                </ul>
+            </div>
+            <!-- Form to add a post-->
+            <div class="side-middle">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1>Subir post</h1> </div>
+                    <div class="panel-body">
+                    	<form action="/uploadPost" method="post"
+		enctype="multipart/form-data">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <label class="control-label" for="postTitle">
+                                    <h3>Título del post</h3></label>
+                                <div class="controls">
+                                    <input type="text" id="postTitle" name="imageTitleFileUploader" placeholder="" class="input-xlarge"></div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h3>Imagen del post</h3>
+                                <div class="upload">
+                                    <label class="control-label" for="postURL">Subir imagen</label>
+                                    <input type="file" id="postURL" name="file" placeholder="" class="input-xlarge"> <!-- <a href="#" class="btn btn-primary" role="button">OK</a>--> </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <label class="control-label" for="postTitle">
+                                    <h3>Choose a tag:</h3></label>
+                                    <hr>
+                                    	<input type="radio" value="funny" name="op" checked="checked">Funny<br>
+                                    	<input type="radio" value="animals" name="op">Animals<br>
+                                    	<input type="radio" value="anime" name="op">Anime and Manga<br>
+                                    	<input type="radio" value="movies" name="op">Movies and TV<br>
+                                    	<input type="radio" value="wtf" name="op">WTF<br>
+                                    	<input type="radio" value="savage" name="op">Savage<br>
+                                    
+                            </div>
+                        </div>
+                    	<input type='submit' class="btn btn-primary" name='enviar' value='Enviar' />
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Redes sociales-->
+        <app-social-networks></app-social-networks>
+    </div>

@@ -1,0 +1,50 @@
+#currentUser
+    <header id="page-top" style="background-image: url(/headerimg/id)">
+        <div class="container header-info">
+            <div class="header-user-info"> <img style="width:100" class="img-center" alt="" src="/avatarimg/id" />
+                <div class="intro-text">
+                    <p><span class="name">username</span></p>
+                </div>
+            </div>
+        </div>
+    </header>
+    /currentUser
+    <div class="row">
+        <div class="hidden-xs col-md-3">
+            <div class="btn-group-vertical separation-profile" role="group" aria-label="...">
+            	<a href="/edit-profile"><button type="button" class="btn btn-default">Edit profile<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
+                <a href="/changeAvatar"><button type="button" class="btn btn-default">Avatar<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
+                <a href="/changeHeader"><button type="button" class="btn btn-default">Header<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="menu-profile">
+                <ul class="nav nav-pills">
+                    <li role="presentation"><a href="/profile">Home</a></li>                
+                </ul>
+            </div>
+            <!-- Form to add a post-->
+            <div class="side-middle">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1>Cambiar avatar</h1> </div>
+                    <div class="panel-body">
+                    	<form action="/uploadAvatar" method="post"
+		enctype="multipart/form-data">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h3>Imagen del avatar</h3>
+                                <div class="upload">
+                                    <label class="control-label" for="postURL">Subir imagen</label>
+                                    <input type="file" id="postURL" name="file" placeholder="" class="input-xlarge"></div>
+                            </div>
+                        </div>
+                    	<input type='submit' class="btn btn-primary" name='enviar' value='Enviar' />
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Redes sociales-->
+        <app-social-networks></app-social-networks>
+    </div>

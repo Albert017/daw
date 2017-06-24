@@ -11,6 +11,10 @@ import { RandomPageComponent } from './random-page/random-page.component';
 import { TagsPageComponent } from './tags-page/tags-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { UserToolsComponent } from './user-tools/user-tools.component';
+import { AddPostPageComponent } from './add-post-page/add-post-page.component';
+import { ChangeAvatarPageComponent } from './change-avatar-page/change-avatar-page.component';
+import { ChangeHeaderPageComponent} from './change-header-page/change-header-page.component';
+import {EditProfilePageComponent } from './edit-profile-page/edit-profile-page.component';
 
 const appRoutes = [
   { path: 'hot', component: HotPageComponent, useAsDefault: true },
@@ -25,6 +29,10 @@ const appRoutes = [
   { path: 'tag/:tags', component: TagsPageComponent},
   { path: 'search/:find', component: SearchPageComponent},
   { path: 'settings', component: UserToolsComponent},
+  { path: 'addPost', component: AddPostPageComponent},
+  { path: 'changeAvatar', component: ChangeAvatarPageComponent},
+  { path: 'changeHeader', component: ChangeHeaderPageComponent},
+  { path: 'edit-profile', component: EditProfilePageComponent},
   { path: '', redirectTo: 'hot', pathMatch: 'full' }
 ];
 

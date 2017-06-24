@@ -37,6 +37,10 @@ import { UserToolsComponent } from './user-tools/user-tools.component';
 import { SettingsPageComponent } from './settings-page/settings-page.component';
 import { SettingsNotificationsComponent } from './settings-notifications/settings-notifications.component';
 import { SettingsPasswordComponent } from './settings-password/settings-password.component';
+import { AddPostPageComponent } from './add-post-page/add-post-page.component';
+import { ChangeHeaderPageComponent } from './change-header-page/change-header-page.component';
+import { ChangeAvatarPageComponent } from './change-avatar-page/change-avatar-page.component';
+import { EditProfilePageComponent } from './edit-profile-page/edit-profile-page.component';
 //import { HttpClientComponent } from './http-client/http-client.component';
 
 @NgModule({
@@ -67,7 +71,11 @@ import { SettingsPasswordComponent } from './settings-password/settings-password
     UserToolsComponent,
     SettingsPageComponent,
     SettingsNotificationsComponent,
-    SettingsPasswordComponent
+    SettingsPasswordComponent,
+    AddPostPageComponent,
+    ChangeHeaderPageComponent,
+    ChangeAvatarPageComponent,
+    EditProfilePageComponent
     //HttpClientComponent
   ],
   imports: [
