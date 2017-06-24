@@ -68,12 +68,15 @@ export class LoginService {
 
     logOut() {
 
-        return this.http.get(URL + '/logOut', { withCredentials: true }).map(
+        return this.http.get(URL + '/logOut', { withCredentials: true }).subscribe(
             response => {
                 this.isLogged = false;
                 this.isNotLogged = !this.isLogged;
                 this.isAdmin = false;
                 return response;
+            },
+            error => {
+                return error;
             }
         );
     }

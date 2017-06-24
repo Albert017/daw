@@ -45,7 +45,7 @@
                                 <li><a [routerLink]="['/profile']">Profile</a></li>
                                 <li><a [routerLink]="['/settings']">Tools</a></li>
                                 <li role="separator" class="divider']"></li>
-                                <li><a [routerLink]="['/logOut']">Log out</a></li>
+                                <li (click)="logOut();"><a>Log out</a></li>
                             </ul>
                         </li>
                         <li><a [routerLink]="['/messages']">E-mail <span class="badge">numEmail</span></a></li>
