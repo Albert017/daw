@@ -367,7 +367,6 @@ body {
 
 input[type=checkbox] {
     margin-top: -4.5em;
-    margin-left: 27.5em;
 }
 
 .user-rmt {
@@ -526,7 +525,7 @@ a.text-primary:focus {
 	float:left;
 }
 #down-votes{
-	float:right;
+	float:left;
 }
 
 .img-post{

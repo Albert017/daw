@@ -10,6 +10,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RandomPageComponent } from './random-page/random-page.component';
 import { TagsPageComponent } from './tags-page/tags-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
+import { UserToolsComponent } from './user-tools/user-tools.component';
 
 const appRoutes = [
   { path: 'hot', component: HotPageComponent, useAsDefault: true },
@@ -23,6 +24,7 @@ const appRoutes = [
   { path: 'logOut', component: HotPageComponent},
   { path: 'tag/:tags', component: TagsPageComponent},
   { path: 'search/:find', component: SearchPageComponent},
+  { path: 'settings', component: UserToolsComponent},
   { path: '', redirectTo: 'hot', pathMatch: 'full' }
 ];
 

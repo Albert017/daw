@@ -1,0 +1,43 @@
+#currentUser
+    <header id="page-top" style="background-image: url(/headerimg/id)">
+        <div class="container header-info">
+            <div class="header-user-info"> <img style="width:100" class="img-center" alt="" src="/avatarimg/id" />
+                <div class="intro-text">
+                    <p><span class="name">username</span></p>
+                </div>
+            </div>
+        </div>
+    </header>
+    /currentUser
+    <div class="row">
+        <!--Para dejar margen-->
+        <div class="hidden-xs col-sm-1 col-md-1"></div>
+        <!--Posts-->
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="panel panel-inverse panel-profile">
+                <div class="panel-heading">
+                    <h1><strong>Settings</strong></h1>
+                </div>
+                <div class="menu-profile">
+                    <ul class="nav nav-pills">
+                        <li role="presentation"><a (click)="goToMenu('settings');">Security</a></li>
+                        <li role="presentation"><a (click)="goToMenu('password');">Password</a></li>
+                        <li role="presentation"><a (click)="goToMenu('notifications');"> Notifications</a></li>
+                    </ul>
+                </div>
+                <div class="panel-body" [ngSwitch]="html">
+                  <div *ngSwitchCase="'settings'"><app-settings-page></app-settings-page></div>
+                  <div *ngSwitchCase="'password'"><app-settings-password></app-settings-password></div>
+                  <div *ngSwitchCase="'notifications'"><app-settings-notifications></app-settings-notifications></div>
+                  <div *ngSwitchDefault>...</div>
+                </div>
+            </div>
+            <!--Asegurarse de que cuando se vaya de la página porque le ha dado a otra pestaña salga un mensaje que le pregunte si está seguro de salir si no ha guardado los cambios realizados-->
+            <div class="btn-group btn-group-lg profile-save-button" role="group" aria-label="...">
+                <button type="button" class="btn btn-default save-profile-button"><strong>Save changes</strong></button>
+            </div>
+        </div>
+        <!--Redes sociales-->
+        <div class="hidden-xs col-sm-2 col-md-5">
+        </div>
+    </div>

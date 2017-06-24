@@ -33,6 +33,10 @@ import { SocialNetworksComponent } from './social-networks/social-networks.compo
 import { RandomPageComponent } from './random-page/random-page.component';
 import { TagsPageComponent } from './tags-page/tags-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
+import { UserToolsComponent } from './user-tools/user-tools.component';
+import { SettingsPageComponent } from './settings-page/settings-page.component';
+import { SettingsNotificationsComponent } from './settings-notifications/settings-notifications.component';
+import { SettingsPasswordComponent } from './settings-password/settings-password.component';
 //import { HttpClientComponent } from './http-client/http-client.component';
 
 @NgModule({
@@ -59,7 +63,11 @@ import { SearchPageComponent } from './search-page/search-page.component';
     SocialNetworksComponent,
     RandomPageComponent,
     TagsPageComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    UserToolsComponent,
+    SettingsPageComponent,
+    SettingsNotificationsComponent,
+    SettingsPasswordComponent
     //HttpClientComponent
   ],
   imports: [
