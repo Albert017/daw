@@ -32,6 +32,7 @@ import { BestPostsComponent } from './best-posts/best-posts.component';
 import { SocialNetworksComponent } from './social-networks/social-networks.component';
 import { RandomPageComponent } from './random-page/random-page.component';
 import { TagsPageComponent } from './tags-page/tags-page.component';
+import { SearchPageComponent } from './search-page/search-page.component';
 //import { HttpClientComponent } from './http-client/http-client.component';
 
 @NgModule({
@@ -57,7 +58,8 @@ import { TagsPageComponent } from './tags-page/tags-page.component';
     BestPostsComponent,
     SocialNetworksComponent,
     RandomPageComponent,
-    TagsPageComponent
+    TagsPageComponent,
+    SearchPageComponent
     //HttpClientComponent
   ],
   imports: [

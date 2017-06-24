@@ -1,5 +1,7 @@
 package com.filadeatras.fila_de_atras.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +27,7 @@ public class SearchController extends NavbarController{
 	
 	@RequestMapping(value="/search")
 	public String postSearch(Model model, @RequestParam("searchedPost") String consultedPost){
-		Post currPost = postService.findBypostTitle(consultedPost);
+		List<Post> currPost = postService.findBypostTitle(consultedPost);
 		User u= userService.findByusername(consultedPost);
 			loadNavbar(model);
 			model.addAttribute("Post",currPost);

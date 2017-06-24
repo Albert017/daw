@@ -215,4 +215,15 @@ public class PostRestController {
 		}
 		return new ResponseEntity<>(posts,HttpStatus.OK);
 	}
+	
+	@JsonView(ViewPost.class)
+	@RequestMapping(value = "/search={postTitle}", method=RequestMethod.GET)
+	public ResponseEntity<List<Post>> searchedPostGetController (@PathVariable String postTitle){
+		
+		List<Post> postFound = servicePost.findBypostTitle(postTitle);
+		if(postFound==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(postFound,HttpStatus.OK);
+	}
 }

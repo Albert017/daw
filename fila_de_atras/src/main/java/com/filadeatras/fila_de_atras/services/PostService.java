@@ -85,7 +85,7 @@ public class PostService {
 	}
 	
 	
-	public Post findBypostTitle(String postTitle){
+	public List<Post> findBypostTitle(String postTitle){
 		
 		return repositoryPost.findBypostTitle(postTitle);
 	}

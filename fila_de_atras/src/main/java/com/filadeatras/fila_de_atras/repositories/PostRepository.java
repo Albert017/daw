@@ -30,6 +30,6 @@ public interface PostRepository extends JpaRepository<Post, Long>{
 	@Query("select po from Post po where (po.postWeek = ?1 and po.year = ?2) or (po.postWeek = ?3 and po.year = ?4) order by po.postUpVotes desc")
 	List<Post> findTop1BypostUpVotesWeek(int week1, int year1, int week2, int year2);
 	
-	Post findBypostTitle(String postTitle);
+	List<Post> findBypostTitle(String postTitle);
 
 }

@@ -8,7 +8,8 @@ import { ProfilePageComponent} from './profile-page/profile-page.component';
 import { ProfilePostsComponent} from './profile-posts/profile-posts.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RandomPageComponent } from './random-page/random-page.component';
-import { TagsPageComponent} from './tags-page/tags-page.component';
+import { TagsPageComponent } from './tags-page/tags-page.component';
+import { SearchPageComponent } from './search-page/search-page.component';
 
 const appRoutes = [
   { path: 'hot', component: HotPageComponent, useAsDefault: true },
@@ -21,6 +22,7 @@ const appRoutes = [
   { path: 'random', component: RandomPageComponent},
   { path: 'logOut', component: HotPageComponent},
   { path: 'tag/:tags', component: TagsPageComponent},
+  { path: 'search/:find', component: SearchPageComponent},
   { path: '', redirectTo: 'hot', pathMatch: 'full' }
 ];
 
