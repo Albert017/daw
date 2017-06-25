@@ -8,7 +8,6 @@ import {Comment} from "app/comment.model";
 import { Http, Response, RequestOptions, Headers  } from '@angular/http';
 import { LoginService } from 'app/login.service';
 import { User } from "app/user/user.entity";
-import { Comment } from 'app/comment/comment.entity';
 import 'rxjs/Rx';
 
 const URL = 'http://localhost:8080/api';
