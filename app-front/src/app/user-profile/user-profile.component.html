@@ -1,6 +1,6 @@
-<header id="page-top" style="background-image: url(src/assets/headers/{{user.id}}.jpg)">
+<header id="page-top" [style.background-image]="'url(' + headerBackground + ')'">
   <div class="container header-info">
-    <div class="header-user-info"> <img class="img-center" alt="" src="src/assets/avatars/{{user.id}}.jpg" />
+    <div class="header-user-info"> <img id="imgUser" class="img-center" alt="" src="./src/assets/avatars/{{user.id}}.jpg" />
       <div class="intro-text">
         <p><span class="name">{{user.username}}</span></p>
       </div>

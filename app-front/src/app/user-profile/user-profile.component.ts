@@ -13,6 +13,7 @@ const URL = 'http://localhost:8080/api';
 })
 export class UserProfileComponent implements OnInit {
 private html:string ="posts";
+private headerBackground:string;
 private user : User = {
       id: 0,
       username: "Cargando...",
@@ -51,6 +52,7 @@ private numFollowing:number;
           this.user=data;
           this.numFollowers=this.user.userFollowers.length;
           this.numFollowing=this.user.userFollowing.length;
+          this.headerBackground="./src/assets/headers/"+ this.user.id+".jpg";
           console.log("Followers "+ this.numFollowers);
           console.log("Following "+ this.numFollowing);
           console.log(data);
