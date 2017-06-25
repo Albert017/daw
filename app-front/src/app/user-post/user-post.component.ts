@@ -30,14 +30,14 @@ export class UserPostComponent implements OnInit {
     };
 
   constructor(private http: Http, private route: ActivatedRoute, private router: Router) {
-    let userId = route.snapshot.params['id'];
-    this.getUserInfo(userId);
+    let username = route.snapshot.params['name'];
+    this.getUserInfo(username);
    }
 
   ngOnInit() {
   }
-  getUserInfo(id:number){
-    let url=URL + "/users/"+id;
+  getUserInfo(username:string){
+    let url=URL + "/users/name="+username;
       this.http.get(url).subscribe(
         response => {
           let data = response.json();

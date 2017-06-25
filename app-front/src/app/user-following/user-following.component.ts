@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import  {  Http  }  from  '@angular/http';
 
 import { Router, ActivatedRoute } from '@angular/router';
-import { Post} from 'app/post/post.entity';
-import { User } from  'app/user/user.entity';
+import { Post } from 'app/post/post.entity';
+import { User } from 'app/user/user.entity';
 
 const URL = 'http://localhost:8080/api';
 
@@ -15,22 +15,30 @@ const URL = 'http://localhost:8080/api';
 export class UserFollowingComponent implements OnInit {
 
   private html: string = "posts";
-  private user: User = {
-    id: 0,
-    username: "Cargando...",
-    userEmail: "Cargando...",
-    userBiography: "Cargando...",
-    userLocation: "Cargando...",
-    userLink: "",
-    report: false,
-    roles: [],
-    userFollowing: [],
-    userFollowers: [],
-    userPosts: []
-  };
+  private id: number;
+  private following: User[];
   constructor(private route: ActivatedRoute, private router: Router, private http: Http) {
-    let userId = route.snapshot.params['id'];
-    this.getUserInfo(userId);
+    let userId = route.snapshot.params['name'];
+    let url = URL + "/users/name=" + userId;
+    this.http.get(url).subscribe(
+      response => {
+        let data = response.json();
+        this.id = data.id;
+        let url2 = URL + "/users/" + data.id;
+        this.http.get(url2).subscribe(
+          response => {
+            let data2 = response.json();
+            console.log(data2.userFollowing);
+            this.following = data2.userFollowing;
+          },
+          error => console.error(error)
+        );
+        console.log(this.following);
+        console.log(data.id);
+        console.log(this.id);
+      },
+      error => console.error(error)
+    );
   }
 
   ngOnInit() {
@@ -39,16 +47,4 @@ export class UserFollowingComponent implements OnInit {
   goToMenu(menu: string) {
     this.html = menu;
   }
-
-  getUserInfo(id: number) {
-    let url = URL + "/users/" + id;
-    this.http.get(url).subscribe(
-      response  =>  {
-        let  data  =  response.json();
-        this.user = data;
-      },
-      error   =>  console.error(error)
-    );
-  }
-
 }

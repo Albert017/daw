@@ -15,22 +15,31 @@ const URL = 'http://localhost:8080/api';
 export class UserFollowersComponent implements OnInit {
 
   private html: string = "posts";
-  private user: User = {
-    id: 0,
-    username: "Cargando...",
-    userEmail: "Cargando...",
-    userBiography: "Cargando...",
-    userLocation: "Cargando...",
-    userLink: "",
-    report: false,
-    roles: [],
-    userFollowing: [],
-    userFollowers: [],
-    userPosts: []
-  };
-  constructor(private route: ActivatedRoute, private router: Router, private http: Http) {
-    let userId = route.snapshot.params['id'];
-    this.getUserInfo(userId);
+  private followers: User[];
+  private id:number;
+
+    constructor(private route: ActivatedRoute, private router: Router, private http: Http) {
+    let userId = route.snapshot.params['name'];
+    let url = URL + "/users/name=" + userId;
+    this.http.get(url).subscribe(
+      response => {
+        let data = response.json();
+        this.id = data.id;
+        let url2 = URL + "/users/" + data.id;
+        this.http.get(url2).subscribe(
+          response => {
+            let data2 = response.json();
+            console.log(data2.userFollowing);
+            this.followers = data2.userFollowers;
+          },
+          error => console.error(error)
+        );
+        console.log(this.followers);
+        console.log(data.id);
+        console.log(this.id);
+      },
+      error => console.error(error)
+    );
   }
 
   ngOnInit() {
@@ -38,16 +47,5 @@ export class UserFollowersComponent implements OnInit {
 
   goToMenu(menu: string) {
     this.html = menu;
-  }
-
-  getUserInfo(id: number) {
-    let url = URL + "/users/" + id;
-    this.http.get(url).subscribe(
-      response  =>  {
-        let  data  =  response.json();
-        this.user = data;
-      },
-      error   =>  console.error(error)
-    );
   }
 }

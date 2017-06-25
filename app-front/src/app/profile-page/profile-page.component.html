@@ -1,14 +1,12 @@
-#currentUser
-    <header id="page-top" style="background-image: url(src/assets/headerimg/id)">
+<header id="page-top" style="background-image: url(src/assets/headerimg/id)">
         <div class="container header-info">
             <div class="header-user-info"> <img class="img-center" alt="" src="src/assets/avatarimg/id" />
                 <div class="intro-text">
-                    <p><span class="name">username</span></p>
+                    <p><span class="name">{{loginService.user.username}}</span></p>
                 </div>
             </div>
         </div>
     </header>
-    /currentUser
     <div class="row">
         <div class="hidden-xs col-md-3">
             <div class="btn-group-vertical separation-profile" role="group" aria-label="...">
@@ -20,13 +18,13 @@
         <div class="col-xs-12 col-md-6"><div class="menu-profile">
                 <ul class="nav nav-pills">
                     <li role="presentation"><a (click)="goToMenu('posts');">My Posts</a></li>
-                    <li role="presentation"><a class="followers-following" (click)="goToMenu('followers');"> Followers <span class="badge badge-header">numFollowers</span></a></li>
-                    <li role="presentation"><a class="followers-following" (click)="goToMenu('following');"> Following <span class="badge badge-header">numFollowings</span></a></li>
-                    #isUserAdmin
+                    <li role="presentation"><a class="followers-following" (click)="goToMenu('followers');"> Followers <span class="badge badge-header">{{this.numFollowers}}</span></a></li>
+                    <li role="presentation"><a class="followers-following" (click)="goToMenu('following');"> Following <span class="badge badge-header">{{this.numFollowing}}</span></a></li>
+                    <div *ngIf="isAdminLogged==true;">
                     <li role="presentation"><a (click)="goToMenu('reportUsers');">Reported Users</a></li>
                     <li role="presentation"><a (click)="goToMenu('reportPosts');">Reported posts</a></li>
                     <li role="presentation"><a (click)="goToMenu('reportComments');">Reported comments</a></li>
-                    /isUserAdmin
+                    </div>
                 </ul>
             </div>
             <div class="side-middle" [ngSwitch]="html">

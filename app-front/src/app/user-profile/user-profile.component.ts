@@ -30,8 +30,9 @@ private numFollowers:number;
 private numFollowing:number;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: Http) { 
-    let userId = route.snapshot.params['id'];
-    this.getUserInfo(userId);
+    let username = route.snapshot.params['name'];
+    this.getUserInfo(username);
+    console.log(this.user);
   }
 
   ngOnInit() {
@@ -41,8 +42,9 @@ private numFollowing:number;
     this.html=menu;
   }
 
-  getUserInfo(id:number){
-    let url=URL + "/users/"+id;
+  getUserInfo(username:string){
+    console.log("entre");
+    let url=URL + "/users/name="+username;
       this.http.get(url).subscribe(
         response => {
           let data = response.json();
@@ -51,9 +53,11 @@ private numFollowing:number;
           this.numFollowing=this.user.userFollowing.length;
           console.log("Followers "+ this.numFollowers);
           console.log("Following "+ this.numFollowing);
+          console.log(data);
       },
         error  => console.error(error)
       );
+    console.log(this.user);
   }
 
 }

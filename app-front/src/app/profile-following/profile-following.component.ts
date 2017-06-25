@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from "app/login.service";
+
+import  {  Http  }  from  '@angular/http';
+import { User } from "app/user/user.entity";
+
+const URL = 'http://localhost:8080/api';
 
 @Component({
   selector: 'app-profile-following',
@@ -7,7 +13,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileFollowingComponent implements OnInit {
 
-  constructor() { }
+  private followings:User[];
+
+  constructor(public loginService: LoginService, private http: Http) {
+    let url = URL + "/users/" + this.loginService.user.id;
+    this.http.get(url).subscribe(
+      response => {
+        let data = response.json();
+        this.followings=data.userFollowers;
+      },
+      error => console.error(error)
+    );
+   }
 
   ngOnInit() {
   }

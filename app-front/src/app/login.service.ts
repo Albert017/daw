@@ -16,6 +16,13 @@ export class LoginService {
     constructor(private http: Http) {
     }
 
+    getUser(){
+         return this.user;
+    }
+
+    isAdminMethod(){
+        return this.isAdmin;
+    }
     reqIsLogged() {
 
         const headers = new Headers({

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Post} from 'app/post/post.entity';
-import { User } from  'app/user/user.entity';
+import { User } from 'app/user/user.entity';
+import { LoginService } from "app/login.service";
+
+import { Router, ActivatedRoute } from '@angular/router';
 
 const URL = 'http://localhost:8080/api';
 
@@ -11,20 +14,19 @@ const URL = 'http://localhost:8080/api';
   styleUrls: ['./profile-posts.component.css']
 })
 export class ProfilePostsComponent implements OnInit {
-  private posts:Post[]=[];
-  private user: User;
 
-  constructor(private http: Http) {
-    let url=URL + "/posts/";
+  private posts: Post[];
+
+  constructor(public loginService: LoginService, private route: ActivatedRoute, private router: Router, private http: Http) {
+    console.log(this.loginService.user.userPosts);
+    let url=URL + "/posts/user="+this.loginService.user.username+"/";
       this.http.get(url).subscribe(
         response => {
           let data = response.json();
-          for (var i = 0; i < data.length; i++) {
-            let post = data[i];
-            this.posts.push(post);
-          }
+          this.posts=data;
+          console.log(data);
       },
-        error => console.error(error)
+        error  => console.error(error)
       );
    }
 

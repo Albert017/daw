@@ -39,7 +39,7 @@
                         <li><a [routerLink]="['/addPost']"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
                         <li ngbDropdown class="dropdown">
                             <!--Título botón-->
-                            <a class="myaccount-link" ngbDropdownToggle data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/id" />username <span class="caret"></span></a>
+                            <a [routerLink]="['/profile']" class="myaccount-link" ngbDropdownToggle data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/id" />{{loginService.user.username}} <span class="caret"></span></a>
                             <!--Submenú-->
                             <ul class="dropdown-menu">
                                 <li><a [routerLink]="['/profile']">Profile</a></li>
