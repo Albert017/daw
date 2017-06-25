@@ -48,7 +48,6 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
 import { ProfilePostFollowingComponent } from './profile-post-following/profile-post-following.component';
 import { MessageComponent } from './message/message.component';
 import { MessageConversationComponent } from './message-conversation/message-conversation.component';
-import { CommentComponent } from './comment/comment.component';
 //import { HttpClientComponent } from './http-client/http-client.component';
 
 @NgModule({
@@ -90,8 +89,7 @@ import { CommentComponent } from './comment/comment.component';
     SignupPageComponent,
     ProfilePostFollowingComponent,
     MessageComponent,
-    MessageConversationComponent,
-    CommentComponent
+    MessageConversationComponent
     //HttpClientComponent
   ],
   imports: [
