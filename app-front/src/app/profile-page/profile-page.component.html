@@ -17,8 +17,8 @@
         </div>
         <div class="col-xs-12 col-md-6"><div class="menu-profile">
                 <ul class="nav nav-pills">
-                    <li role="presentation"><a (click)="goToMenu('followingPosts');">My following's Posts</a></li>
                     <li role="presentation"><a (click)="goToMenu('posts');">My Posts</a></li>
+                    <li role="presentation"><a (click)="goToMenu('followingPosts');">My following's Posts</a></li>
                     <li role="presentation"><a class="followers-following" (click)="goToMenu('followers');"> Followers <span class="badge badge-header">{{this.numFollowers}}</span></a></li>
                     <li role="presentation"><a class="followers-following" (click)="goToMenu('following');"> Following <span class="badge badge-header">{{this.numFollowing}}</span></a></li>
                     <div *ngIf="isAdminLogged==true;">
