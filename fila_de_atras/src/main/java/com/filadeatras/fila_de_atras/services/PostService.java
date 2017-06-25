@@ -102,6 +102,9 @@ public class PostService {
 
 	public Post createPost(Post p, User author){
 		Post newPost = new Post(p.getPostTitle(),author,p.getPostTag());
+		User userAux = userRepository.findByusername(author.getUsername());
+		userAux.getUserPosts().add(p);
+		userRepository.save(userAux);
 		repositoryPost.save(newPost);
 		return newPost;
 	}
