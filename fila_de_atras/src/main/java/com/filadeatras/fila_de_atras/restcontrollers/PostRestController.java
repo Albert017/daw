@@ -1,5 +1,6 @@
 package com.filadeatras.fila_de_atras.restcontrollers;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,10 +22,14 @@ import com.filadeatras.fila_de_atras.models.User;
 import com.filadeatras.fila_de_atras.repositories.PostRepository;
 import com.filadeatras.fila_de_atras.services.PostService;
 import com.filadeatras.fila_de_atras.services.UserService;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/posts")
 public class PostRestController {
+
+
+    private static final String FILES_FOLDER = "files";
 
 	@Autowired
 	private PostService servicePost;
@@ -72,8 +77,27 @@ public class PostRestController {
 	@JsonView(ViewPost.class)
 	@RequestMapping(value="/", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public Post newPost(@RequestBody Post post) {
-		return servicePost.createPost(post,userComponent.getLoggedUser());
+	public Post newPost(@RequestParam("imageTitleFileUploader") String imageTitle,
+						@RequestParam("file") MultipartFile file, @RequestParam("op") String opcion)
+	{
+	    Post post = null;
+        User currentUser=userComponent.getLoggedUser();
+        if (!file.isEmpty()) {
+            try {
+                File filesFolder = new File(FILES_FOLDER);
+                if (!filesFolder.exists()) {
+                    filesFolder.mkdirs();
+                }
+                Post p = new Post(imageTitle, currentUser, opcion);
+                p = servicePost.createPost(p, currentUser);
+                File uploadedFile = new File(filesFolder.getAbsolutePath(), +p.getId() + ".jpg");
+                file.transferTo(uploadedFile);
+                post = p;
+            } catch (Exception e){
+                post = null;
+            }
+        }
+        return post;
 	}
 	
 	@JsonView(ViewPost.class)

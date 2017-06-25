@@ -3,7 +3,7 @@ import { Post } from '../post/post.entity';
 export class Comment{
     id?: number;
     commentContent: string;
-    CommentUser:User;
+    commentUser:User;
     commentPost: Post;
     report?: boolean;
 }

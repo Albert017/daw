@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top"><a name="Up"></a>
         <!--Contenido de la barra de navegación-->
         <div class="container-fluid">
             <!--Imagen-->
@@ -39,13 +39,12 @@
                         <li><a [routerLink]="['/addPost']"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
                         <li ngbDropdown class="dropdown">
                             <!--Título botón-->
-                            <a [routerLink]="['/profile']" class="myaccount-link" ngbDropdownToggle data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="./src/assets/avatars/{{loginService.user.id}}.jpg" />{{loginService.user.username}} <span class="caret"></span></a>
+                            <a class="myaccount-link" ngbDropdownToggle data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="./src/assets/avatars/{{loginService.user.id}}.jpg" />{{loginService.user.username}} <span class="caret"></span></a>
                             <!--Submenú-->
                             <ul class="dropdown-menu">
                                 <li><a [routerLink]="['/profile']">Profile</a></li>
                                 <li><a [routerLink]="['/settings']">Tools</a></li>
-                                <li role="separator" class="divider']"></li>
-                                <li><a [routerLink]="['/logOut']">Log out</a></li>
+                                <li><a (click)="logOut();">Log out</a></li>
                             </ul>
                         </li>
                         <li><a [routerLink]="['/messages']">E-mail <span class="badge">{{numEmails}}</span></a></li>
