@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Http } from '@angular/http';
 import { User } from 'app/user/user.entity';
+import { LoginService } from "app/login.service";
+import { UserService } from "app/user/user.service";
 
 const URL = 'http://localhost:8080/api';
 
@@ -30,7 +32,7 @@ private user : User = {
 private numFollowers:number;
 private numFollowing:number;
 
-  constructor(private route: ActivatedRoute, private router: Router, private http: Http) { 
+  constructor(private route: ActivatedRoute, private router: Router, private http: Http, private loginService: LoginService, private userService: UserService) { 
     let username = route.snapshot.params['name'];
     this.getUserInfo(username);
     console.log(this.user);

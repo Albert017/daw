@@ -4,6 +4,8 @@ import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Post} from 'app/post/post.entity';
 import { User } from  'app/user/user.entity';
+import { ApiPostsService } from "app/api-posts.service";
+import { LoginService } from "app/login.service";
 
 const URL = 'http://localhost:8080/api';
 
@@ -30,7 +32,7 @@ export class UserPostComponent implements OnInit {
       userPosts: []
     };
 
-  constructor(private http: Http, private route: ActivatedRoute, private router: Router) {
+  constructor(private http: Http, private route: ActivatedRoute, private router: Router, private apiPostsService: ApiPostsService, private loginService:LoginService) {
     this.username = route.snapshot.params['name'];
     this.getUserInfo();
     this.getUserPosts();

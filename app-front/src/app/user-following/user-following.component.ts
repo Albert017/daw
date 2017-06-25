@@ -4,6 +4,7 @@ import  {  Http  }  from  '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Post } from 'app/post/post.entity';
 import { User } from 'app/user/user.entity';
+import { UserService } from "app/user/user.service";
 
 const URL = 'http://localhost:8080/api';
 
@@ -17,7 +18,7 @@ export class UserFollowingComponent implements OnInit {
   private html: string = "posts";
   private id: number;
   private following: User[]=[];
-  constructor(private route: ActivatedRoute, private router: Router, private http: Http) {
+  constructor(private route: ActivatedRoute, private router: Router, private http: Http, userService: UserService) {
     let userId = route.snapshot.params['name'];
     let url = URL + "/users/name=" + userId;
     this.http.get(url).subscribe(

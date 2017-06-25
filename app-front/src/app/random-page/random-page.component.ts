@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Http } from '@angular/http';
 import { Post} from 'app/post/post.entity';
+import { ApiPostsService } from "app/api-posts.service";
+import { LoginService } from "app/login.service";
 
 const URL = 'http://localhost:8080/api';
 
@@ -15,7 +17,7 @@ export class RandomPageComponent implements OnInit {
   private posts:Post[]=[];
   private post:Post;
 
-  constructor(private http: Http) {
+  constructor(private http: Http,private loginService: LoginService, private apiPostsService: ApiPostsService) {
     let url=URL + "/posts/";
       this.http.get(url).subscribe(
         response => {

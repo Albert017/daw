@@ -2,6 +2,8 @@ import { Component, OnInit} from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Http } from '@angular/http';
 import { Post} from 'app/post/post.entity';
+import { LoginService } from "app/login.service";
+import { ApiPostsService } from "app/api-posts.service";
 
 const URL = 'http://localhost:8080/api';
 
@@ -13,7 +15,7 @@ const URL = 'http://localhost:8080/api';
 export class TrendingPageComponent implements OnInit {
  private posts:Post[]=[];
 
-  constructor(private http: Http) {
+  constructor(private http: Http,private loginService: LoginService, private apiPostsService: ApiPostsService) {
     //Get Posts
       let url=URL + "/posts/trending";
       this.http.get(url).subscribe(

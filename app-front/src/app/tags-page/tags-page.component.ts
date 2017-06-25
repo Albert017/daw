@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Http } from '@angular/http';
 import { Post} from 'app/post/post.entity';
+import { LoginService } from "app/login.service";
+import { ApiPostsService } from "app/api-posts.service";
 
 const URL = 'http://localhost:8080/api';
 
@@ -16,7 +18,7 @@ private posts:Post[]=[];
 private tags:string;
 
 
-  constructor(private route: ActivatedRoute, private router: Router,private http: Http) {
+  constructor(private route: ActivatedRoute, private router: Router,private http: Http,private loginService: LoginService, private apiPostsService: ApiPostsService) {
     this.route.params.subscribe(params => {
         this.tags = params['tags'];
       });

@@ -9,6 +9,7 @@ import { Http, Response, RequestOptions, Headers  } from '@angular/http';
 import { LoginService } from 'app/login.service';
 import { User } from "app/user/user.entity";
 import 'rxjs/Rx';
+import { ApiPostsService } from "app/api-posts.service";
 
 const URL = 'http://localhost:8080/api';
 
@@ -25,7 +26,7 @@ export class PostIndexComponent implements OnInit {
   loggedUser: User;
   comment:Comment = {commentContent: ""};
 
-  constructor(private route: ActivatedRoute, private router: Router,private http: Http,private loginService: LoginService) {
+  constructor(private route: ActivatedRoute, private router: Router,private http: Http,private loginService: LoginService, private apiPostsService: ApiPostsService) {
       
       this.loggedUser = this.loginService.getUser();
 

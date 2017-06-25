@@ -5,6 +5,7 @@ import { User } from 'app/user/user.entity';
 import { LoginService } from "app/login.service";
 
 import { Router, ActivatedRoute } from '@angular/router';
+import { ApiPostsService } from "app/api-posts.service";
 
 const URL = 'http://localhost:8080/api';
 
@@ -18,7 +19,7 @@ export class ProfilePostsComponent implements OnInit {
   private posts: Post[]=[];
   private post: Post;
 
-  constructor(public loginService: LoginService, private route: ActivatedRoute, private router: Router, private http: Http) {
+  constructor(public loginService: LoginService, private route: ActivatedRoute, private router: Router, private http: Http, private apiPostsService: ApiPostsService) {
     
     let url=URL + "/posts/user="+this.loginService.user.username+"/";
     

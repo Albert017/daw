@@ -16,6 +16,7 @@ import { LogInComponent } from './log-in/log-in.component';
 import { UserComponent } from './user/user.component';
 import { PostIndexComponent } from './post/post-index.component';
 
+import { UserService} from './user/user.service';
 import { ApiPostsService } from './api-posts.service';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ProfilePostsComponent } from './profile-posts/profile-posts.component';
@@ -102,7 +103,7 @@ import { MessageDeletedComponent } from './message-deleted/message-deleted.compo
     HttpModule,
     routing
   ],
-  providers: [LoginService, ApiPostsService],
+  providers: [LoginService, ApiPostsService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,13 +2,7 @@
   <div *ngFor="let following of followers" class="">
     <div class="panel panel-default">
       <div class="panel-body">
-        <a href="/user/{{following.id}}"> <img alt="" src="src/assets/avatars/{{following.id}}.jpg" class="profile-followers" />{{following.username}}</a>
-        <form action="/unfollow/follower.username" method="POST" class="form-follow">
-          <button type="submit" class="btn btn-success button-followers">Following</button>
-        </form>
-        <form action="/follow/follower.username" method="POST" class="form-follow">
-          <button type="submit" class="btn btn-success button-follow-user">Follow</button>
-        </form>
+        <a href="/user/{{following.username}}"> <img alt="" src="src/assets/avatars/{{following.id}}.jpg" class="profile-followers" />{{following.username}}</a>
       </div>
     </div>
   </div>

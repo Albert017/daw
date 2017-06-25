@@ -3,6 +3,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Http } from '@angular/http';
 import { LoginService } from "app/login.service";
 import { Post} from 'app/post/post.entity';
+import { ApiPostsService } from "app/api-posts.service";
 
 const URL = 'http://localhost:8080/api';
 
@@ -16,7 +17,7 @@ export class HotPageComponent implements OnInit {
   private posts:Post[]=[];
 
 
-  constructor(private http: Http) {
+  constructor(private http: Http,private loginService: LoginService, private apiPostsService: ApiPostsService) {
      let url=URL + "/posts/";
       this.http.get(url).subscribe(
         response => {
