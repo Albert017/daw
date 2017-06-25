@@ -29,7 +29,6 @@ export class ProfilePostFollowingComponent implements OnInit {
             let post = data[i];
             this.posts.push(post);
         }
-        console.log(this.posts[0].postAuthor);
       },
         error => console.error(error)
       );

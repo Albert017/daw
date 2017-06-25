@@ -13,14 +13,16 @@ const URL = 'http://localhost:8080/api';
 })
 export class ProfileFollowersComponent implements OnInit {
 
-  private followers: User[];
+  private followers: User[]=[];
 
   constructor(public loginService: LoginService, private http: Http) {
     let url = URL + "/users/" + this.loginService.user.id;
     this.http.get(url).subscribe(
       response => {
         let data = response.json();
-        this.followers=data.userFollowers;
+        for(var i=0; i<data.userFollowers.length;i++){
+          this.followers.push(data.userFollowers[i]);
+        }
       },
       error => console.error(error)
     );

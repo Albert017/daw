@@ -1,8 +1,8 @@
 <div *ngIf="followers.length>0;else notFollowing">
-  <div *ngFor="let following of followers" class="thumbnail">
+  <div *ngFor="let following of followers" class="">
     <div class="panel panel-default">
       <div class="panel-body">
-        <a [routerLink]="['/user',followings.username]"> <img alt="" src="src/assets/avatars/{{following.id}}.jpg" class="profile-followers" />{{following.username}}</a>
+        <a [routerLink]="['/user',followers.username]"> <img alt="" src="src/assets/avatars/{{following.id}}.jpg" class="profile-followers" />{{following.username}}</a>
         <form action="/unfollow/follower.username" method="POST" class="form-follow">
           <button type="submit" class="btn btn-success button-followers">Following</button>
         </form>

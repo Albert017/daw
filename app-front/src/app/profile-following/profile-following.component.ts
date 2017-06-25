@@ -13,19 +13,20 @@ const URL = 'http://localhost:8080/api';
 })
 export class ProfileFollowingComponent implements OnInit {
 
-  private followings:User[];
+  private followings:User[]=[];
 
   constructor(public loginService: LoginService, private http: Http) {
     let url = URL + "/users/" + this.loginService.user.id;
     this.http.get(url).subscribe(
       response => {
         let data = response.json();
-        this.followings=data.userFollowing;
+        for(var i=0; i<data.userFollowing.length;i++){
+          this.followings.push(data.userFollowing[i]);
+        }
       },
       error => console.error(error)
     );
-   }
-
+  }
   ngOnInit() {
   }
 
