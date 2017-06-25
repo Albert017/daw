@@ -89,3 +89,6 @@ El perfil del administrador es casi idéntico que el de un usuario corriente con
 
 ### Diagrama Padres/hijos (Fase 5)
 ![Diagrama Padres/hijos (Fase 5)](/screenshots/diagrama_padreshijos_fase5.PNG)
+
+### Diagrama clases angular (Fase 5)
+![Diagrama clases angular (Fase 5)](/screenshots/diagrama_clases_angular_fase5.PNG)
