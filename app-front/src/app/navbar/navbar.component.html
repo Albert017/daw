@@ -47,7 +47,7 @@
                                 <li><a (click)="logOut();">Log out</a></li>
                             </ul>
                         </li>
-                        <li><a [routerLink]="['/messages']">E-mail <span class="badge">numEmail</span></a></li>
+                        <li><a [routerLink]="['/messages']">E-mail <span class="badge">{{numEmails}}</span></a></li>
                 </ul>
                 <ul *ngIf="loginService.isNotLogged" class="nav navbar-nav navbar-right">
                         <li><a [routerLink]="['/login']">Iniciar Sesion</a></li>
