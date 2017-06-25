@@ -53,9 +53,7 @@ public class User {
 
 		@JsonView(ViewUser.class)
 		private String userLink;
-		
 
-		@JsonView(ViewUser.class)
 		@OneToMany(mappedBy="commentUser",cascade=CascadeType.REMOVE)
 		private List<Comment> userComments;
 		

@@ -38,4 +38,9 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['/search', this.searchedPost]);
   }
 
+  logOut(){
+    this.loginService.logOut();
+    this.router.navigate(['/hot']);
+  }
+
 }
