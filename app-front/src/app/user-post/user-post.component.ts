@@ -15,6 +15,7 @@ const URL = 'http://localhost:8080/api';
 export class UserPostComponent implements OnInit {
 
   private posts:Post[]=[];
+  username:string;
   private user : User = {
       id: 0,
       username: "Cargando...",
@@ -30,15 +31,15 @@ export class UserPostComponent implements OnInit {
     };
 
   constructor(private http: Http, private route: ActivatedRoute, private router: Router) {
-    let username = route.snapshot.params['name'];
-    this.getUserInfo(username);
-    this.getUserPosts(username);
+    this.username = route.snapshot.params['name'];
+    this.getUserInfo();
+    this.getUserPosts();
    }
 
   ngOnInit() {
   }
-  getUserInfo(username:string){
-    let url=URL + "/users/name="+username;
+  getUserInfo(){
+    let url=URL + "/users/name="+this.username;
       this.http.get(url).subscribe(
         response => {
           let data = response.json();
@@ -47,8 +48,8 @@ export class UserPostComponent implements OnInit {
         error  => console.error(error)
       );
   }
-  getUserPosts(username:string){
-    let url=URL + "/posts/user="+username+"/";
+  getUserPosts(){
+    let url=URL + "/posts/user="+this.username+"/";
         this.http.get(url).subscribe(
           response => {
             let data = response.json();
