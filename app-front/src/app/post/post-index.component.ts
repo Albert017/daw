@@ -7,7 +7,6 @@ import { Post } from './post.entity';
 import { Http, Response, RequestOptions, Headers  } from '@angular/http';
 import { LoginService } from 'app/login.service';
 import { User } from "app/user/user.entity";
-import { Comment } from "app/comment/comment.entity";
 import 'rxjs/Rx';
 
 const URL = 'http://localhost:8080/api';
@@ -24,7 +23,6 @@ export class PostIndexComponent implements OnInit {
   private post:Post;
   loggedUser: User;
   commentContent:string;
-  myComment: Comment;
 
   constructor(private route: ActivatedRoute, private router: Router,private http: Http,private loginService: LoginService) {
       
@@ -48,8 +46,7 @@ export class PostIndexComponent implements OnInit {
 
   onSubmit(postId: string){
     let url= URL + "/posts/"+postId+"/comments/";
-    this.myComment.commentContent= this.commentContent;
-    let data= JSON.stringify(this.myComment);
+    let data= JSON.stringify(this.commentContent);
     
     const headers = new Headers({
             'Authorization': 'Basic ' + utf8_to_b64(this.loggedUser.username + ":" + this.loggedUser.userPasswordHash),
