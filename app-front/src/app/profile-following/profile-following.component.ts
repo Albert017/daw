@@ -20,7 +20,7 @@ export class ProfileFollowingComponent implements OnInit {
     this.http.get(url).subscribe(
       response => {
         let data = response.json();
-        this.followings=data.userFollowers;
+        this.followings=data.userFollowing;
       },
       error => console.error(error)
     );

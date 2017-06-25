@@ -12,7 +12,7 @@ const URL = 'http://localhost:8080/api';
   styleUrls: ['./profile-page.component.css']
 })
 export class ProfilePageComponent implements OnInit {
-  private html:string ="posts";
+  private html:string ="followingPosts";
   private isAdminLogged: boolean;
 
 private numFollowers:number;

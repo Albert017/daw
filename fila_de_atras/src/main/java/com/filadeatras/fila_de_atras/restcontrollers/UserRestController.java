@@ -18,11 +18,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.filadeatras.fila_de_atras.services.PostService;
 import com.filadeatras.fila_de_atras.services.UserService;
 import com.filadeatras.fila_de_atras.UserComponent;
 import com.filadeatras.fila_de_atras.models.User;
+import com.filadeatras.fila_de_atras.models.Post;
 import com.filadeatras.fila_de_atras.models.User.ViewUser;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -31,6 +35,9 @@ public class UserRestController {
 
 	@Autowired
 	private UserService serviceUser;
+	@Autowired
+	private PostService servicePost;
+
 	
 	@Autowired UserComponent userComponent;
 
@@ -106,6 +113,20 @@ public class UserRestController {
 			return new ResponseEntity<>(userC,HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		
+		
+	}
+	
+	@JsonView(ViewUser.class)
+	@RequestMapping(value = "/followingPosts={id}", method=RequestMethod.GET)
+	public ResponseEntity<List<Post>> getMyFollowingPosts (@PathVariable long id){
+		
+			User userC = serviceUser.findById(id);
+			List<Post> followingPosts = new LinkedList();
+			for(User following: userC.getUserFollowing()){
+				followingPosts.addAll(servicePost.findBypostAuthor(following));
+			}
+			return new ResponseEntity<>(followingPosts,HttpStatus.OK);
 		
 		
 	}

@@ -32,6 +32,7 @@ export class UserPostComponent implements OnInit {
   constructor(private http: Http, private route: ActivatedRoute, private router: Router) {
     let username = route.snapshot.params['name'];
     this.getUserInfo(username);
+    this.getUserPosts(username);
    }
 
   ngOnInit() {
@@ -46,6 +47,16 @@ export class UserPostComponent implements OnInit {
         error  => console.error(error)
       );
   }
-
+  getUserPosts(username:string){
+    let url=URL + "/posts/user="+username+"/";
+        this.http.get(url).subscribe(
+          response => {
+            let data = response.json();
+            this.posts=data;
+            console.log(data);
+        },
+          error  => console.error(error)
+        );
+    }
 
 }
