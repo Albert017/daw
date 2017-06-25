@@ -25,7 +25,8 @@ export class HotPageComponent implements OnInit {
           for (var i = 0; i < data.length; i++) {
             let post = data[i];
             this.posts.push(post);
-          }
+        }
+        this.posts = this.posts.reverse();
       },
         error => console.error(error)
       );

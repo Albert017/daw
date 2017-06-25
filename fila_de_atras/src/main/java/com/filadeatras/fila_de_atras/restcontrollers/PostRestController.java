@@ -201,6 +201,17 @@ public class PostRestController {
 	}
 
 	@JsonView(ViewPost.class)
+	@RequestMapping(value="/unreport={id}", method=RequestMethod.PUT)
+	public ResponseEntity<Post> unreportPost(@PathVariable long id){
+		Post p = servicePost.findOne(id);
+		if(p==null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		p.setReport(false);
+		servicePost.save(p);
+		return new ResponseEntity<>(p, HttpStatus.OK);
+	}
+
+	@JsonView(ViewPost.class)
 	@RequestMapping(value="/report={id}", method=RequestMethod.PUT)
 	public ResponseEntity<Post> reportPost(@PathVariable long id){
 		Post p = servicePost.findOne(id);

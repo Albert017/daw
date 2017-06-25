@@ -1,41 +1,37 @@
-#reportedPostList
 	                    <div class="panel panel-default">
-	                        <div class="panel-body">
-	                            <div class="thumbnail">
-			                        <a href="/post/id"><img src="/postimg/id" /></a>
-			                        <div class="caption">
-			                        <h3>postTitle</h3>
-		                            <p><a class="votes" href="/user/postAuthor.username">postAuthor.username </a> postDate  <span class="label label-primary">postTag</span></p>
-		                            <p> 
-		                            <div id="up-votes">
-			                            <form action="/post/id/up-vote" method="POST">
-			                            	<button type="submit" class="btn btn-primary" ><i class="fa fa-arrow-up" aria-hidden="true"></i></button> 
-			                            </form>
-		                            </div>
-		                            <div id="down-votes">
-			                            <form action="/post/id/down-vote" method="POST">
-			                            	<button type="submit" class="btn btn-primary" role="button"><i class="fa fa-arrow-down" aria-hidden="true"></i></button> 
-			                            </form>
-		                            </div>
-		                            
-		                            	
-		                            	<a class="votes"> Upvotes <span class="badge">postUpVotes</span></a> 
-		                            	<a class="votes"> Downvotes <span class="badge">postDownVotes</span></a> 
-		                            	<a class="votes"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a> 
-		                            
-			                            <div>
-			                                <a href="index.html" class="social-network-post"><img src="img/icon_twitter.png" class="social-post" /></a>
-			                                <a href="index.html" class="social-network-post"><img src="img/icon_instagram.png" class="social-post" /></a>
-			                                <a href="index.html" class="social-network-post"><img src="img/icon_facebook.png" class="social-post" /></a>
-			                            </div>
-			                        </div>
-			                    </div>
+	                        <div *ngFor="let post of posts" class="panel-body">
+	                            <div  class="thumbnail">
+									<a [routerLink]="['/post',post.id]"><img class="img-post" src="src/assets/files/{{post.id}}.jpg" /></a>
+									<div class="caption">
+										<h3>{{post.postTitle}}</h3>
+										<p><a class="votes" [routerLink]="['/user',post.postAuthor.username]">{{post.postAuthor.username}} </a>{{post.postDate}} <span class="label label-primary">{{post.postTag}}</span></p>
+										<p> 
+										<div id="up-votes">
+											<form action="/index/id/up-vote" method="POST">
+												<button type="submit" class="btn btn-primary" ><i class="fa fa-arrow-up" aria-hidden="true"></i></button> 
+											</form>
+										</div>
+										<div id="down-votes">
+											<form action="/index/id/down-vote" method="POST">
+												<button type="submit" class="btn btn-primary" role="button"><i class="fa fa-arrow-down" aria-hidden="true"></i></button> 
+												
+											</form>
+										</div>
+											<a class="votes"> Upvotes <span class="badge">{{post.postUpVotes}}</span></a> 
+											<a class="votes"> Downvotes <span class="badge">{{post.postDownVotes}}</span></a> 
+											<a class="votes"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a>
+										<div>
+											<a href="#" class="social-network-post"><img src="src/assets/img/icon_twitter.png" class="social-post" /></a>
+											<a href="#" class="social-network-post"><img src="src/assets/img/icon_instagram.png" class="social-post" /></a>
+											<a href="#" class="social-network-post"><img src="src/assets/img/icon_facebook.png" class="social-post" /></a>
+										</div>
+									</div>
+								</div>
 	                            <form action="/deleteReportPost/id" method="DELETE" enctype="multipart/form-data" class="btn btn-default button-report-users">
-									<input type='submit' class="btn btn-primary" name='deleteComment' value='Delete post' style="background-color:rgba(255, 0, 0, 0.81)"/> <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
+									<input type='submit' (click)="deletePost(post);" class="btn btn-primary" name='deleteComment' value='Delete post' style="background-color:rgba(255, 0, 0, 0.81)"/> <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
 								</form>
 								<form action="/falseReportPost/id" method="PUT" enctype="multipart/form-data" class="btn btn-default button-report-users">
-									<input type='submit' class="btn btn-primary" name='falsereport' value='Delete from report list ' /><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+									<input type='submit' (click)="unmarkPost(post);" class="btn btn-primary" name='falsereport' value='Delete from report list ' /><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 								</form>
 	                        </div>
 	                    </div>
-                    /reportedPostList

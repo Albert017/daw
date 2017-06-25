@@ -21,11 +21,9 @@
                     <li role="presentation"><a (click)="goToMenu('followingPosts');">My following's Posts</a></li>
                     <li role="presentation"><a class="followers-following" (click)="goToMenu('followers');"> Followers <span class="badge badge-header">{{this.numFollowers}}</span></a></li>
                     <li role="presentation"><a class="followers-following" (click)="goToMenu('following');"> Following <span class="badge badge-header">{{this.numFollowing}}</span></a></li>
-                    <div *ngIf="isAdminLogged==true;">
-                    <li role="presentation"><a (click)="goToMenu('reportUsers');">Reported Users</a></li>
-                    <li role="presentation"><a (click)="goToMenu('reportPosts');">Reported posts</a></li>
-                    <li role="presentation"><a (click)="goToMenu('reportComments');">Reported comments</a></li>
-                    </div>
+                    <li *ngIf="isAdminLogged==true;" role="presentation"><a (click)="goToMenu('reportUsers');">Reported Users</a></li>
+                    <li *ngIf="isAdminLogged==true;" role="presentation"><a (click)="goToMenu('reportPosts');">Reported posts</a></li>
+                    <li *ngIf="isAdminLogged==true;" role="presentation"><a (click)="goToMenu('reportComments');">Reported comments</a></li>
                 </ul>
             </div>
             <div class="side-middle" [ngSwitch]="html">
