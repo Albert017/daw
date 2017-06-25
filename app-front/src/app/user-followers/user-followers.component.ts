@@ -15,7 +15,7 @@ const URL = 'http://localhost:8080/api';
 export class UserFollowersComponent implements OnInit {
 
   private html: string = "posts";
-  private followers: User[];
+  private followers: User[]=[];
   private id:number;
 
     constructor(private route: ActivatedRoute, private router: Router, private http: Http) {
@@ -34,9 +34,6 @@ export class UserFollowersComponent implements OnInit {
           },
           error => console.error(error)
         );
-        console.log(this.followers);
-        console.log(data.id);
-        console.log(this.id);
       },
       error => console.error(error)
     );

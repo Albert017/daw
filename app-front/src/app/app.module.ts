@@ -46,8 +46,10 @@ import { MessageNewComponent } from './message-new/message-new.component';
 import { MessageReadComponent } from './message-read/message-read.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { ProfilePostFollowingComponent } from './profile-post-following/profile-post-following.component';
-import { MessageComponent } from './message/message.component';
-import { MessageConversationComponent } from './message-conversation/message-conversation.component';
+import { MessageComponent } from "app/message/message.component";
+import { MessageDeletedComponent } from './message-deleted/message-deleted.component';
+// import { MessageComponent } from './message/message.component';
+// import { CommentComponent } from './comment/comment.component';
 //import { HttpClientComponent } from './http-client/http-client.component';
 
 @NgModule({
@@ -89,7 +91,8 @@ import { MessageConversationComponent } from './message-conversation/message-con
     SignupPageComponent,
     ProfilePostFollowingComponent,
     MessageComponent,
-    MessageConversationComponent
+    MessageDeletedComponent,
+    // CommentComponent
     //HttpClientComponent
   ],
   imports: [

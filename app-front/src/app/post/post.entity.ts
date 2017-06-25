@@ -7,6 +7,6 @@ export class Post{
     postDate: string;
     postUpVotes: number;
     postDownVotes: number;
-    postComments?: string; //Por ahora asi
+    postComments?: Object[]; //Por ahora asi
     report?: boolean;
 }

@@ -1,4 +1,4 @@
-
+import {Comment} from "app/comment.model";
 import { Post } from "app/post/post.entity";
 
 export class User {
@@ -14,7 +14,7 @@ export class User {
     userFollowers?: User[];
     userPosts?: Post[];
     userPasswordHash?: string;
-    userComments?: string; //temporalmente hasta que se implemente la clase userComments
+    userComments?: Comment[]; //temporalmente hasta que se implemente la clase userComments
     userSentMessages?: string;
     userReceivedMessages?: string;
 }

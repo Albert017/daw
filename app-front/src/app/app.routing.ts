@@ -19,6 +19,7 @@ import { MessagePageComponent } from './message-page/message-page.component';
 import { MessageNewComponent } from './message-new/message-new.component';
 import { MessageReadComponent } from './message-read/message-read.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
+import { MessageDeletedComponent } from "app/message-deleted/message-deleted.component";
 
 const appRoutes = [
   { path: 'hot', component: HotPageComponent, useAsDefault: true },
@@ -39,7 +40,8 @@ const appRoutes = [
   { path: 'edit-profile', component: EditProfilePageComponent},
   { path: 'messages', component: MessagePageComponent},
   { path: 'newMessage', component: MessageNewComponent},
-  { path: 'conversation', component: MessageReadComponent},
+  { path: 'conversation/:name', component: MessageReadComponent},
+  {path: 'deletedMessages', component:MessageDeletedComponent},
   { path: 'signup', component: SignupPageComponent},
   { path: '', redirectTo: 'hot', pathMatch: 'full' }
 ];

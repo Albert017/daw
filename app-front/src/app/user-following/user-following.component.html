@@ -1,5 +1,5 @@
 <div *ngIf="following.length>0;else notFollowing">
-  <div *ngFor="let follow of following" class="thumbnail">
+  <div *ngFor="let follow of following" class="">
     <div class="panel panel-default">
       <div class="panel-body">
         <a href="/user/{{follow.id}}"> <img alt="" src="src/assets/avatars/{{follow.id}}.jpg" class="profile-followers" />{{follow.username}}</a>

@@ -16,7 +16,7 @@ export class UserFollowingComponent implements OnInit {
 
   private html: string = "posts";
   private id: number;
-  private following: User[];
+  private following: User[]=[];
   constructor(private route: ActivatedRoute, private router: Router, private http: Http) {
     let userId = route.snapshot.params['name'];
     let url = URL + "/users/name=" + userId;
@@ -33,9 +33,6 @@ export class UserFollowingComponent implements OnInit {
           },
           error => console.error(error)
         );
-        console.log(this.following);
-        console.log(data.id);
-        console.log(this.id);
       },
       error => console.error(error)
     );

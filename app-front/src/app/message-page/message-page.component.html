@@ -17,8 +17,8 @@
         <div class="side-left">
           <div class="menu">
             <ul class="nav nav-pills nav-stacked">
-              <li><a href="/mensajes">RECIBIDOS</a></li>
-              <li><a href="/mensajes/eliminados">ELIMINADOS</a></li>
+              <li><a [routerLink]="['/messages']">RECIBIDOS</a></li>
+              <li><a [routerLink]="['/deletedMessages']">ELIMINADOS</a></li>
             </ul>
           </div>
         </div>
@@ -37,7 +37,7 @@
           </div>
           <div class="col-xs-12 col-md-12">
             <div *ngIf="messages!=null;else notMessages">
-              <div *ngFor="let message of messages" class="thumbnail">
+              <div *ngFor="let message of messages">
                 <div class="mailbox">
                   <div class="panel panel-default panel-message ">
                     <div class="panel-body message">
@@ -50,15 +50,16 @@
                       <div class="col-xs-8 col-md-8">
 
                         <div class="message-content">
-                          <a href="/conversation">
+                          <a [routerLink]="['/conversation', message.messageSender.username]">
                             <div class="message-text">
                               <div *ngIf="message.messageNew==true">
                                 <span class="glyphicon glyphicon-envelope" aria-hidden="false"> Nuevo</span>
                               </div>
                               <p>{{message.messageContent}}</p>
+                               <input type="checkbox" class="checkbox-message"> 
                             </div>
                           </a>
-                          <input type="checkbox" class="checkbox-message"> </div>
+                          </div>
                       </div>
                     </div>
                   </div>
