@@ -5,6 +5,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Post } from './post.entity';
 //import {HttpClient} from "../HttpClient/HttpClient";
 import { Http, Response } from '@angular/http';
+import { LoginService } from 'app/login.service';
+import { User } from "app/user/user.entity";
 
 const URL = 'http://localhost:8080/api';
 
@@ -18,8 +20,12 @@ export class PostIndexComponent implements OnInit {
   //post : Post; //para empezar, luego sera un array creo. Elena
   private idPost: number;
   private post:Post;
+  loggedUser: User;
 
-  constructor(private route: ActivatedRoute, private router: Router,private http: Http) {
+  constructor(private route: ActivatedRoute, private router: Router,private http: Http,private loginService: LoginService) {
+      
+      this.loggedUser = this.loginService.getUser();
+      
       this.route.params.subscribe(params => {
         this.idPost = params['id'];
       });

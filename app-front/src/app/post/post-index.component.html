@@ -56,12 +56,12 @@
 	                	<form action="/reportComment/comment.id" method="PUT" enctype="multipart/form-data" class="reportLink">
 							<input type='submit' class="btn btn-primary" name='report' value='Report'>
 						</form>
-	                    <div class="panel-heading"> <a href="/user/{{comment.commentUser.username}}" class="votes"><img alt="" class="userIconImgCom" src="/avatarimg/{{comment.commentUser.id}}" /> {{comment.commentUser.username}}</a> </div>
+	                    <div class="panel-heading"> <a href="/user/{{comment.commentUser.username}}" class="votes"><img alt="" class="userIconImgCom" src="./src/assets/avatars/{{comment.commentUser.id}}.jpg" /> {{comment.commentUser.username}}</a> </div>
 	                    <div class="panel-body">{{comment.commentContent}}</div>
 	                </div>
-                #loggedUser
+                <div *ngIf="loginService.isLogged && (loggedUser!=null)">
 	                <div class="panel panel-default">
-	                    <div class="panel-heading"> <a href="/user/username" class="votes"> <img alt="" class="userIconImgCom" src="/avatarimg/id" /> username</a> </div>
+	                    <div class="panel-heading"> <a [routerLink]="['/user',loginService.user.username]" class="votes"> <img alt="" class="userIconImgCom" src="./src/assets/avatars/{{loginService.user.id}}.jpg" />{{loginService.user.username}}</a> </div>
 	                    <div class="panel-body ">
 	                    	<form class="form-horizontal" action="/addComment" method="POST">
 	                    		<fieldset >
@@ -72,8 +72,7 @@
 	                    	</form>
 	                    </div>
 	                </div>
-                /loggedUser
-          	/Post
+                </div>
           	<hr>
             </div>
             <app-social-networks></app-social-networks>
