@@ -3,13 +3,13 @@ import { Post } from "app/post/post.entity";
 
 export class User {
     id?: number;
-    username: string;
+    username?: string;
     userEmail?:string;
     userBiography?: string;
     userLocation?: string;
     userLink?: string;
     report?: boolean;
-    roles: string[];
+    roles?: string[];
     userFollowing?: User[];
     userFollowers?: User[];
     userPosts?: Post[];

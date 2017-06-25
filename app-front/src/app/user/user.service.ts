@@ -2,11 +2,13 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { Http } from "@angular/http";
 import { ApiPostsService } from "app/api-posts.service";
+import { LoginService } from "app/login.service";
+import { User } from "app/user/user.entity";
 
 @Injectable()
 export class UserService{
 
-    constructor(private http: Http, private apiService:ApiPostsService) {
+    constructor(private http: Http, private apiService:ApiPostsService, private loginService: LoginService) {
 
     }
     ngOnInit() {
@@ -32,6 +34,20 @@ export class UserService{
                 return response.json();
             },
             error => {
+                return this.handleError(error);
+            })
+    }
+
+    updateUser(user:User){
+        let url = "http://localhost:8080/api/users/put="+this.loginService.user.id;
+        let options = this.apiService.getOptions();
+        return this.http.put(url,user,options).subscribe(
+            response => {
+                alert("User info updated.");
+                return response.json();
+            },
+            error => {
+                alert("Couldn't update user info.");
                 return this.handleError(error);
             })
     }
