@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from "app/user/user.entity";
+import { LoginService } from "app/login.service";
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-user-tools',
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserToolsComponent implements OnInit {
   private html: string = "settings";
-  constructor() { }
+  private isAdminLogged: boolean;
+
+  constructor(public loginService: LoginService,private http: Http) {
+    this.isAdminLogged = this.loginService.isAdminMethod();
+   }
 
   ngOnInit() {
   }
@@ -15,5 +22,7 @@ export class UserToolsComponent implements OnInit {
   goToMenu(s: string){
     this.html=s;
   }
-
+background():string{
+    return "url(./src/assets/headers/"+this.loginService.user.id+".jpg)";
+  }
 }

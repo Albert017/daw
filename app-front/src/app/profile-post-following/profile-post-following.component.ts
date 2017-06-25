@@ -15,18 +15,36 @@ const URL = 'http://localhost:8080/api';
 })
 export class ProfilePostFollowingComponent implements OnInit {
 
-  private posts: Post[];
+  private posts: Post[]=[];
+  private user: User;
 
   constructor(public loginService: LoginService, private route: ActivatedRoute, private router: Router, private http: Http) {
-    console.log(this.loginService.user.userPosts);
-    let url = URL + "/users/followingPosts="+this.loginService.user.id;
+    
+    
+    let url = URL + "/users/"+this.loginService.user.id;
     this.http.get(url).subscribe(
       response => {
-        let data = response.json();
-        this.posts=data;
+        this.user = response.json();
       },
       error => console.error(error)
     );
+    if(this.user.userFollowing!=null){
+      console.log("OK");
+      for(var i=0; i<this.user.userFollowing.length;i++){
+        let url=URL + "/posts/user="+this.user.username+"/";
+      
+        this.http.get(url).subscribe(
+          response => {
+            let data = response.json();
+            for (var i = 0; i < data.length; i++) {
+              let post = data[i];
+              this.posts.push(post);
+            }
+        },
+          error => console.error(error)
+        );
+      }
+    }
    }
 
   ngOnInit() {

@@ -1,4 +1,4 @@
-<div *ngIf="posts.length>0;else notPost">
+<div *ngIf="posts!=null;else notPost">
   <div *ngFor="let post of posts" class="thumbnail">
     <a [routerLink]="['/post',post.id]"><img class="img-post" src="src/assets/files/{{post.id}}.jpg" /></a>
     <form action="/reportPost/id" method="PUT" enctype="multipart/form-data" class="reportLink">
@@ -35,7 +35,6 @@
   </div>
 </div>
 <ng-template #notPost>
-  <p class="text-center text-info">No hay posts
-    <p>
+  <p class="text-center text-info">No hay posts </p>
 </ng-template>
 
