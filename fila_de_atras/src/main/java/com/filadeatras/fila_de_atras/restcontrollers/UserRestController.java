@@ -118,20 +118,6 @@ public class UserRestController {
 	}
 	
 	@JsonView(ViewUser.class)
-	@RequestMapping(value = "/followingPosts={id}", method=RequestMethod.GET)
-	public ResponseEntity<List<Post>> getMyFollowingPosts (@PathVariable long id){
-		
-			User userC = serviceUser.findById(id);
-			List<Post> followingPosts = new LinkedList();
-			for(User following: userC.getUserFollowing()){
-				followingPosts.addAll(servicePost.findBypostAuthor(following));
-			}
-			return new ResponseEntity<>(followingPosts,HttpStatus.OK);
-		
-		
-	}
-	
-	@JsonView(ViewUser.class)
 	@RequestMapping(value = "/name={username}", method=RequestMethod.GET)
 	public ResponseEntity<User> getUser (@PathVariable String username){
 		

@@ -1,4 +1,4 @@
-<div *ngIf="posts!=null;else notPost">
+<div *ngIf="posts.length>0;else notPost">
   <div *ngFor="let post of posts" class="thumbnail">
     <a [routerLink]="['/post',post.id]"><img class="img-post" src="src/assets/files/{{post.id}}.jpg" /></a>
     <form action="/reportPost/id" method="PUT" enctype="multipart/form-data" class="reportLink">
@@ -8,8 +8,7 @@
     <div class="caption">
       <h3>{{post.postTitle}}</h3>
       <p><a class="votes" [routerLink]="['/user', post.postAuthor]">{{post.postAuthor}} </a>{{post.postDate}}
-        <span
-          class="label label-primary">{{post.postTag}}</span>
+        <span  class="label label-primary">{{post.postTag}}</span>
       </p>
       <p>
         <div id="up-votes">

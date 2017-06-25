@@ -1,6 +1,7 @@
 package com.filadeatras.fila_de_atras.restcontrollers;
 
 import java.time.LocalDateTime;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.filadeatras.fila_de_atras.models.Post;
 import com.filadeatras.fila_de_atras.models.Post.ViewPost;
+import com.filadeatras.fila_de_atras.models.User.ViewUser;
 import com.filadeatras.fila_de_atras.models.User;
 import com.filadeatras.fila_de_atras.repositories.PostRepository;
 import com.filadeatras.fila_de_atras.services.PostService;
@@ -225,5 +227,22 @@ public class PostRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(postFound,HttpStatus.OK);
+	}
+
+	
+	@JsonView(ViewUser.class)
+	@RequestMapping(value = "/followingPosts={id}", method=RequestMethod.GET)
+	public ResponseEntity<List<Post>> getMyFollowingPosts (@PathVariable long id){
+		
+			User userC = serviceUser.findById(id);
+			List<Post> followingPosts = new LinkedList();
+			for(User following: userC.getUserFollowing()){
+				List<Post> followingPostAux =servicePost.findBypostAuthor(following);
+				for(Post p: followingPostAux)
+					followingPosts.add(p);
+			}
+			return new ResponseEntity<>(followingPosts,HttpStatus.OK);
+		
+		
 	}
 }
