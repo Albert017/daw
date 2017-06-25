@@ -3,6 +3,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
 import { Post} from 'app/post/post.entity';
+import { ApiPostsService } from "app/api-posts.service";
+import { LoginService } from "app/login.service";
 
 const URL = 'http://localhost:8080/api';
 
@@ -16,7 +18,7 @@ export class SearchPageComponent implements OnInit {
   private post:Post;
   private title:string;
 
-  constructor(private route: ActivatedRoute, private router: Router,private http: Http) {
+  constructor(private route: ActivatedRoute, private router: Router,private http: Http, private apiPostsService: ApiPostsService, private loginService: LoginService) {
       this.route.params.subscribe(params => {
         this.title = params['find'];
       });

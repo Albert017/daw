@@ -13,16 +13,16 @@
       </p>
       <p>
         <div id="up-votes">
-          <form action="/index/id/up-vote" method="POST">
-            <button type="submit" class="btn btn-primary"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-          </form>
-        </div>
-        <div id="down-votes">
-          <form action="/index/id/down-vote" method="POST">
-            <button type="submit" class="btn btn-primary" role="button"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-
-          </form>
-        </div>
+	                            <form action="/index/id/up-vote" method="POST">
+	                            	<button type="submit" (click)="apiPostsService.upvotePost(post.id);" class="btn btn-primary" ><i class="fa fa-arrow-up" aria-hidden="true"></i></button> 
+	                            </form>
+                            </div>
+                            <div id="down-votes">
+	                            <form action="/index/id/down-vote" method="POST">
+	                            	<button type="submit" (click)="apiPostsService.upvotePost(post.id);" class="btn btn-primary" role="button"><i class="fa fa-arrow-down" aria-hidden="true"></i></button> 
+	                            	
+	                            </form>
+                            </div>
         <a class="votes"> Upvotes <span class="badge">{{post.postUpVotes}}</span></a>
         <a class="votes"> Downvotes <span class="badge">{{post.postDownVotes}}</span></a>
         <a class="votes"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a>

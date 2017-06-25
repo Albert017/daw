@@ -28,12 +28,12 @@
                             <p> 
                             <div id="up-votes">
 	                            <form action="/index/id/up-vote" method="POST">
-	                            	<button type="submit" class="btn btn-primary" ><i class="fa fa-arrow-up" aria-hidden="true"></i></button> 
+	                            	<button type="submit" (click)="apiPostsService.upvotePost(post.id);" class="btn btn-primary" ><i class="fa fa-arrow-up" aria-hidden="true"></i></button> 
 	                            </form>
                             </div>
                             <div id="down-votes">
 	                            <form action="/index/id/down-vote" method="POST">
-	                            	<button type="submit" class="btn btn-primary" role="button"><i class="fa fa-arrow-down" aria-hidden="true"></i></button> 
+	                            	<button type="submit" (click)="apiPostsService.upvotePost(post.id);" class="btn btn-primary" role="button"><i class="fa fa-arrow-down" aria-hidden="true"></i></button> 
 	                            	
 	                            </form>
                             </div>

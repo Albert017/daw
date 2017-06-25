@@ -16,19 +16,18 @@
                         <form *ngIf="loginService.isLogged" action="/reportPost/id" method="PUT" enctype="multipart/form-data" class="reportLink">
                             <input type='submit' class="btn btn-primary" (click)="apiPostsService.reportPost(post.id);" name='report' value='Report' />
                         </form>
-                        <!-- <a href="/reportPost/{{id}}" class="reportLink">Report</a>-->
                         <div class="caption">
                             <h3>{{post.postTitle}}</h3>
                             <p><a class="votes" [routerLink]="['/user',post.postAuthor.username]">{{post.postAuthor.username}} </a>{{post.postDate}} <span class="label label-primary">{{post.postTag}}</span></p>
                             <p> 
                             <div id="up-votes">
 	                            <form action="/index/id/up-vote" method="POST">
-	                            	<button type="submit" class="btn btn-primary" ><i class="fa fa-arrow-up" aria-hidden="true"></i></button> 
+	                            	<button type="submit" (click)="apiPostsService.upvotePost(post.id);" class="btn btn-primary" ><i class="fa fa-arrow-up" aria-hidden="true"></i></button> 
 	                            </form>
                             </div>
                             <div id="down-votes">
 	                            <form action="/index/id/down-vote" method="POST">
-	                            	<button type="submit" class="btn btn-primary" role="button"><i class="fa fa-arrow-down" aria-hidden="true"></i></button> 
+	                            	<button type="submit" (click)="apiPostsService.upvotePost(post.id);" class="btn btn-primary" role="button"><i class="fa fa-arrow-down" aria-hidden="true"></i></button> 
 	                            	
 	                            </form>
                             </div>
