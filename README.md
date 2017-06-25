@@ -86,3 +86,6 @@ El perfil del administrador es casi idéntico que el de un usuario corriente con
 ### Diagrama de clases y templates
 ![Diagrama de clases y templates](/screenshots/diagramaClases.PNG)
 ![Diagrama de clases y templates](/screenshots/DiadramaTemplates.PNG)
+
+### Diagrama Padres/hijos (Fase 5)
+![Diagrama Padres/hijos (Fase 5)](/screenshots/diagrama_padreshijos_fase5.PNG)
