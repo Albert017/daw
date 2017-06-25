@@ -4,9 +4,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 //import { PostService } from './post.service';
 import { Post } from './post.entity';
 //import {HttpClient} from "../HttpClient/HttpClient";
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, Headers  } from '@angular/http';
 import { LoginService } from 'app/login.service';
 import { User } from "app/user/user.entity";
+import 'rxjs/Rx';
 
 const URL = 'http://localhost:8080/api';
 
@@ -21,11 +22,12 @@ export class PostIndexComponent implements OnInit {
   private idPost: number;
   private post:Post;
   loggedUser: User;
+  commentContent:string;
 
   constructor(private route: ActivatedRoute, private router: Router,private http: Http,private loginService: LoginService) {
       
       this.loggedUser = this.loginService.getUser();
-      
+
       this.route.params.subscribe(params => {
         this.idPost = params['id'];
       });
@@ -41,6 +43,23 @@ export class PostIndexComponent implements OnInit {
 
    }
   ngOnInit() {}
+
+  onSubmit(postId: string){
+    let url= URL + "/posts/"+postId+"/comments/";
+    let data= JSON.stringify(this.commentContent);
+    
+    const headers = new Headers({
+            'Authorization': 'Basic ' + utf8_to_b64(this.loggedUser.username + ":" + this.loggedUser.userPasswordHash),
+            'X-Requested-With': 'XMLHttpRequest',
+            'Content-type': 'application/json'
+        });
+
+    const options = new RequestOptions({ withCredentials: true, headers });
+    this.http.post(url, data, options).subscribe(
+        response=> console.log(response),
+        error=> console.log(error)
+    );
+  }
  /*
   constructor(private router: Router, activatedRoute: ActivatedRoute,private postService: PostService, private http: Http) {
     let postId = activatedRoute.snapshot.params['id'];
@@ -52,4 +71,9 @@ export class PostIndexComponent implements OnInit {
       post => this.post = post);
   }
 */
+}
+function utf8_to_b64(str) {
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
+        return String.fromCharCode(<any>'0x' + p1);
+    }));
 }

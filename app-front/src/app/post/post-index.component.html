@@ -63,10 +63,9 @@
 	                <div class="panel panel-default">
 	                    <div class="panel-heading"> <a [routerLink]="['/user',loginService.user.username]" class="votes"> <img alt="" class="userIconImgCom" src="./src/assets/avatars/{{loginService.user.id}}.jpg" />{{loginService.user.username}}</a> </div>
 	                    <div class="panel-body ">
-	                    	<form class="form-horizontal" action="/addComment" method="POST">
+	                    	<form class="form-horizontal" action="/addComment" (ngSubmit)="onSubmit(post.id)" method="POST">
 	                    		<fieldset >
-	                    		<input type="text" name="commentContent" class="input-xlarge col-lg-12"><br/>
-	                    		<input type="hidden" name="commentPost" value="Post.id"><br/>
+	                    		<input type="text" [(ngModel)]="commentContent" name="commentContent" class="input-xlarge col-lg-12"><br/>
 	                    		<input class="btn btn-success" type="submit" value="Comment"><br/>
 	                    		</fieldset>
 	                    	</form>
