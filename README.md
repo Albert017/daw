@@ -92,3 +92,5 @@ El perfil del administrador es casi idéntico que el de un usuario corriente con
 
 ### Diagrama clases angular (Fase 5)
 ![Diagrama clases angular (Fase 5)](/screenshots/diagrama_clases_angular_fase5.PNG)
+
+https://youtu.be/kGMeBxjBybE - Demo SPA fase 5
