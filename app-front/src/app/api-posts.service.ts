@@ -44,7 +44,7 @@ export class ApiPostsService {
         return response.json();
       },
       error => {
-        alert("Couldn't upvote post. Only logged users can vote.");
+        alert("Couldn't downvote post. Only logged users can vote.");
         return this.handleError(error);
       }
     )
