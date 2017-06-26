@@ -33,10 +33,10 @@
                                 <h3>Imagen de cabecera</h3>
                                 <div class="upload">
                                     <label class="control-label" for="postURL">Subir imagen</label>
-                                    <input type="file" id="postURL" name="file" placeholder="" class="btn btn-primary"></div>
+                                    <input type="file" id="postURL" name="file" (change)="fileChange($event)" placeholder="" class="btn btn-primary"></div>
                             </div>
                         </div>
-                    	<input type='submit' class="btn btn-primary" name='enviar' value='Enviar' />
+                    	<input type='submit' (click)="upload();" class="btn btn-primary" name='enviar' value='Enviar' />
                     </form>
                     </div>
                 </div>

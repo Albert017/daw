@@ -1,6 +1,6 @@
 <div *ngIf="posts.length>0;else notPost">
   <div *ngFor="let post of posts" class="thumbnail">
-    <a href="/post/{{post.id}}"><img class="img-post" src="src/assets/files/{{post.id}}.jpg" /></a>
+    <a href="/post/{{post.id}}" [routerLink]="['/post',post.id]"><img class="img-post" src="/postimg/{{post.id}}.jpg" /></a>
     <form *ngIf="loginService.isLogged" action="/reportPost/id" method="PUT" enctype="multipart/form-data" class="reportLink">
       <input type='submit' class="btn btn-primary" (click)="apiPostsService.reportPost(post.id);" name='report' value='Report' />
     </form>

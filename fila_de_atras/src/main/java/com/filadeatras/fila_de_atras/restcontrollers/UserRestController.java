@@ -12,11 +12,7 @@ import com.filadeatras.fila_de_atras.serializers.UserFullSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.filadeatras.fila_de_atras.services.PostService;
@@ -25,7 +21,9 @@ import com.filadeatras.fila_de_atras.UserComponent;
 import com.filadeatras.fila_de_atras.models.User;
 import com.filadeatras.fila_de_atras.models.Post;
 import com.filadeatras.fila_de_atras.models.User.ViewUser;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +37,9 @@ public class UserRestController {
 	@Autowired
 	private PostService servicePost;
 
+    private static final String AVATARS_FOLDER = "avatars";
+
+    private static final String HEADERS_FOLDER = "headers";
 	
 	@Autowired UserComponent userComponent;
 
@@ -193,5 +194,47 @@ public class UserRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(users,HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/avatar/", method=RequestMethod.POST)
+    public ResponseEntity<String> setNewAvatar(@RequestParam("file") MultipartFile file){
+        User currentUser=userComponent.getLoggedUser();
+
+        if (!file.isEmpty()) {
+            try {
+                File filesFolder = new File(AVATARS_FOLDER);
+                if (!filesFolder.exists()) {
+                    filesFolder.mkdirs();
+                }
+                File uploadedFile = new File(filesFolder.getAbsolutePath(),+currentUser.getId()+".jpg");
+                file.transferTo(uploadedFile);
+            } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }else {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/header/", method=RequestMethod.POST)
+    public ResponseEntity<String> setNewHeader(@RequestParam("file") MultipartFile file){
+        User currentUser=userComponent.getLoggedUser();
+
+        if (!file.isEmpty()) {
+            try {
+                File filesFolder = new File(HEADERS_FOLDER);
+                if (!filesFolder.exists()) {
+                    filesFolder.mkdirs();
+                }
+                File uploadedFile = new File(filesFolder.getAbsolutePath(),+currentUser.getId()+".jpg");
+                file.transferTo(uploadedFile);
+            } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }else {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

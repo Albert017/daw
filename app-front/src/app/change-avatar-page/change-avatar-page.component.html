@@ -34,10 +34,10 @@
                                 <h3>Imagen del avatar</h3>
                                 <div class="upload">
                                     <label class="control-label" for="postURL">Subir imagen</label>
-                                    <input type="file" id="postURL" name="file" placeholder="" class="input-xlarge"></div>
+                                    <input type="file" id="postURL" (change)="fileChange($event)" name="file" placeholder="" class="input-xlarge"></div>
                             </div>
                         </div>
-                    	<input type='submit' class="btn btn-primary" name='enviar' value='Enviar' />
+                    	<input type='submit' (click)="upload();" class="btn btn-primary" name='enviar' value='Enviar' />
                     </form>
                     </div>
                 </div>
