@@ -372,16 +372,21 @@ public class IndexController extends NavbarController{
 		
 		return "/";
 	}
-	
+
 	@RequestMapping(value="/reportComment/{id}")
 	public String handleReportComment(Model model,@PathVariable("id") long id){
 		Comment comment= commentService.findOne(id);
 		comment.setReport(true);
 		commentService.save(comment);
-		
+
 		return "/";
 	}
 
-	
-	
+	@RequestMapping(value="/new")
+	public String serveAngular(){
+		return "/new/index.html";
+	}
+
+
+
 }
