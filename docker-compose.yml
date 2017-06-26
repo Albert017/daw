@@ -1,0 +1,31 @@
+version: '2'
+ 
+services:
+  mysql:
+    image: mysql
+    container_name: mysql-spring
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=filadeatras
+    #restart: always
+    networks:
+      - spring_mysql_network
+ 
+  spring-repository:
+    depends_on:
+      - mysql
+    image: filadeatras/prueba1
+    container_name: springbackend
+    ports:
+      - 8080:8080
+    links:
+      - mysql:mysql
+    #restart: always
+    networks:
+      - spring_mysql_network
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/filadeatras
+
+networks:
+  spring_mysql_network:
+    driver: bridge
