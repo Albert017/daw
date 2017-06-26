@@ -56,4 +56,48 @@ export class UserService{
         console.log(error);
         return Observable.throw("Server error (" + error.status + "): " + error.text())
     }
+
+    reportUser(id : number){
+        let url = "http://localhost:8080/api/users/report="+id;
+        let options = this.apiService.getOptions();
+        this.http.put(url,null,options).subscribe(
+        response => {
+            alert("User reported succesfully.");
+            return response.json();
+        },
+        error => {
+            alert("Couldn't report user.");
+            return this.handleError(error);
+        }
+        )
+    }
+
+    unreportUser(id : number){
+        let url = "http://localhost:8080/api/users/unreport="+id;
+        let options = this.apiService.getOptions();
+        this.http.put(url,null,options).subscribe(
+        response => {
+            alert("User reported succesfully.");
+            return response.json();
+        },
+        error => {
+            alert("Couldn't report user.");
+            return this.handleError(error);
+        }
+        )
+    }
+
+    deleteUser(id: number){
+        let url = "http://localhost:8080/api/users/delete="+id;
+        let options = this.apiService.getOptions();
+        return this.http.delete(url,options).subscribe(
+            response => {
+                alert("User deleted succesfully.");
+                return response.json();
+            },
+            error => {
+                alert("Couldn't delete user.");
+                return this.handleError(error);
+            })
+    }
 }

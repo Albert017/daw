@@ -53,17 +53,20 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/posts/{id}/comments/").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/posts/").hasRole("USER");
-        http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/posts/**").hasRole("USER");
-        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/posts/upvote/**").hasRole("USER");
-        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/posts/downvote/**").hasRole("USER");
-        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/posts/report/**").hasRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/posts**").hasRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/posts/upvote**").hasRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/posts/downvote**").hasRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/posts/report**").hasRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/posts/unreport**").hasRole("ADMIN");
 
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/messages**").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/messages**").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/messages**").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/messages**").hasRole("USER");
 
-        http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/users/{id}").hasRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/users/**").hasRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/users/report**").hasRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/users/unreport**").hasRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/users/**").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/users/self").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/users/{id}/followers").hasRole("USER");

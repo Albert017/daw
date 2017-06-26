@@ -23,7 +23,6 @@
                     <li role="presentation"><a class="followers-following" (click)="goToMenu('following');"> Following <span class="badge badge-header">{{this.numFollowing}}</span></a></li>
                     <li *ngIf="isAdminLogged==true;" role="presentation"><a (click)="goToMenu('reportUsers');">Reported Users</a></li>
                     <li *ngIf="isAdminLogged==true;" role="presentation"><a (click)="goToMenu('reportPosts');">Reported posts</a></li>
-                    <li *ngIf="isAdminLogged==true;" role="presentation"><a (click)="goToMenu('reportComments');">Reported comments</a></li>
                 </ul>
             </div>
             <div class="side-middle" [ngSwitch]="html">
@@ -33,7 +32,6 @@
                 <div *ngSwitchCase="'following'"><app-profile-following></app-profile-following></div>
                 <div *ngSwitchCase="'reportUsers'"><app-profile-report-users></app-profile-report-users></div>
                 <div *ngSwitchCase="'reportPosts'"><app-profile-report-posts></app-profile-report-posts></div>
-                <div *ngSwitchCase="'reportComments'"><app-profile-report-comments></app-profile-report-comments></div>
                 <div *ngSwitchDefault>...</div>
             </div>
         </div>

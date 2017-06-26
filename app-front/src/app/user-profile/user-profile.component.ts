@@ -17,7 +17,7 @@ export class UserProfileComponent implements OnInit {
 private html:string ="posts";
 private headerBackground:string;
 private user : User = {
-      id: 0,
+      id: 1,
       username: "Cargando...",
       userEmail: "Cargando...",
       userBiography: "Cargando...",
@@ -62,6 +62,10 @@ private numFollowing:number;
         error  => console.error(error)
       );
     console.log(this.user);
+  }
+
+  background():string{
+    return "url(./src/assets/headers/"+this.user.id+".jpg)";
   }
 
 }

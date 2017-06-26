@@ -116,6 +116,28 @@ public class UserRestController {
 		
 		
 	}
+
+	@JsonView(ViewUser.class)
+	@RequestMapping(value = "/report={id}", method=RequestMethod.PUT)
+	public ResponseEntity<User> reportUser(@PathVariable long id){
+		User u = serviceUser.findOne(id);
+		if(u==null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		u.setReport(true);
+		serviceUser.save(u);
+		return new ResponseEntity<>(u, HttpStatus.OK);
+	}
+
+	@JsonView(ViewUser.class)
+	@RequestMapping(value = "/unreport={id}", method=RequestMethod.PUT)
+	public ResponseEntity<User> unreportUser(@PathVariable long id){
+		User u = serviceUser.findOne(id);
+		if(u==null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		u.setReport(false);
+		serviceUser.save(u);
+		return new ResponseEntity<>(u, HttpStatus.OK);
+	}
 	
 	@JsonView(ViewUser.class)
 	@RequestMapping(value = "/name={username}", method=RequestMethod.GET)
@@ -142,5 +164,15 @@ public class UserRestController {
         if (toUnFollow==null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         serviceUser.unfollow(userComponent.getLoggedUser(),toUnFollow);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @JsonView(ViewUser.class)
+    @RequestMapping(value = "/replist/", method=RequestMethod.GET)
+    public ResponseEntity<List<User>> getAllReportedUsers(){
+        List<User> users = serviceUser.findAllByreport(true);
+        if(users==null||users.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(users,HttpStatus.OK);
     }
 }

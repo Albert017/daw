@@ -1,4 +1,4 @@
-<header id="page-top" [style.background-image]="'url(' + headerBackground + ')'">
+<header id="page-top" [style.background-image]="background()">
   <div class="container header-info">
     <div class="header-user-info"> <img id="imgUser" class="img-center" alt="" src="./src/assets/avatars/{{user.id}}.jpg" />
       <div class="intro-text">
@@ -18,7 +18,7 @@
   <div class="hidden-xs col-md-3">
     <div class="btn-group-vertical separation-profile" role="group" aria-label="...">
       <form action="/reportUser/{{user.id}}" method="PUT" enctype="multipart/form-data" class="reportLink">
-        <input type='submit' class="btn btn-primary" name='report' value='Report' />
+        <input type='submit' (click)="userService.reportUser(user.id)" class="btn btn-primary" name='report' value='Report' />
       </form>
     </div>
   </div>
