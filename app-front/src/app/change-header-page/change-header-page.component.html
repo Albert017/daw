@@ -1,20 +1,18 @@
-#currentUser
-    <header id="page-top" style="background-image: url(src/assets/headerimg/id)">
+<header id="page-top" [style.background-image]="background()">
         <div class="container header-info">
-            <div class="header-user-info"> <img style="width:100" class="img-center" alt="" src="src/assets/avatarimg/id" />
+            <div class="header-user-info"> <img id="imgProfile" class="img-center" alt="" src="./src/assets/avatars/{{loginService.user.id}}.jpg" />
                 <div class="intro-text">
-                    <p><span class="name">username</span></p>
+                    <p><span class="name">{{loginService.user.username}}</span></p>
                 </div>
             </div>
         </div>
     </header>
-    /currentUser
     <div class="row">
         <div class="hidden-xs col-md-3">
             <div class="btn-group-vertical separation-profile" role="group" aria-label="...">
-            	<a href="/edit-profile"><button type="button" class="btn btn-default">Edit profile<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
-                <a href="/changeAvatar"><button type="button" class="btn btn-default">Avatar<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
-                <a href="/changeHeader"><button type="button" class="btn btn-default">Header<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
+            	<a href="/edit-profile" [routerLink]="['/edit-profile']"><button  type="button" class="btn btn-default">Edit profile<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
+                <a href="/changeAvatar" [routerLink]="['/changeAvatar']"><button type="button" class="btn btn-default">Avatar<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
+                <a href="/changeHeader" [routerLink]="['/changeHeader']"><button type="button" class="btn btn-default">Header<span class="glyphicon glyphicon-pencil alignment-profile" aria-hidden="true"></span></button></a>
             </div>
         </div>
         <div class="col-xs-12 col-md-6">

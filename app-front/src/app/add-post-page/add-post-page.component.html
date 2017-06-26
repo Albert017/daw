@@ -1,6 +1,6 @@
-    <header id="page-top" style="background-image: url(src/assets/headerimg/{{loginService.user.id}})">
+<header id="page-top" [style.background-image]="background()">
         <div class="container header-info">
-            <div class="header-user-info"> <img style="width:100" class="img-center" alt="" src="src/assets/avatarimg/{{loginService.user.id}}" />
+            <div class="header-user-info"> <img id="imgProfile" class="img-center" alt="" src="./src/assets/avatars/{{loginService.user.id}}.jpg" />
                 <div class="intro-text">
                     <p><span class="name">{{loginService.user.username}}</span></p>
                 </div>
@@ -11,11 +11,6 @@
         <div class="hidden-xs col-md-3">
         </div>
         <div class="col-xs-12 col-md-6">
-            <div class="menu-profile">
-                <ul class="nav nav-pills">
-                    <li role="presentation"><a href="/profile">Home</a></li>
-                </ul>
-            </div>
             <!-- Form to add a post-->
             <div class="side-middle">
                 <div class="panel panel-default">
