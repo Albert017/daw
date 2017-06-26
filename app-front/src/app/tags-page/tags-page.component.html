@@ -2,7 +2,7 @@
     <header>
         <div id="Up"></div>
         <div class="hidden-xs col-md-12" id="title">
-            <div>LA FILA DE ATRAS <img alt="Brand" src="src/assets/img/logoTitulo_blanco.png" /></div>
+            <div>LA FILA DE ATRAS <img alt="Brand" src="/img/logoTitulo_blanco.png" /></div>
         </div>
     </header>
     <div class="container-fluid">
@@ -13,7 +13,7 @@
                 <div class="side-middle">
                     <div *ngIf="posts.length>0;else notPost">
                         <div *ngFor="let post of posts" class="thumbnail">
-                            <a [routerLink]="['/post',post.id]"><img class="img-post" src="/postimg/{{post.id}}.jpg" /></a>
+                            <a [routerLink]="['/post',post.id]"><img class="img-post" src="/postimg/{{post.id}}" /></a>
                             <form *ngIf="loginService.isLogged" action="/reportPost/id" method="PUT" enctype="multipart/form-data" class="reportLink">
                                 <input type='submit' class="btn btn-primary" (click)="apiPostsService.reportPost(post.id);" name='report' value='Report' /> </form>
                             <!-- <a href="/reportPost/{{id}}" class="reportLink">Report</a>-->
@@ -32,9 +32,9 @@
                                         </form>
                                     </div> <a class="votes"> Upvotes <span class="badge">{{post.postUpVotes}}</span></a> <a class="votes"> Downvotes <span class="badge">{{post.postDownVotes}}</span></a> <a class="votes"> Comments <span id="comment" class="glyphicon glyphicon-comment" aria-hidden="true"></span></a>
                                     <div>
-                                        <a href="#" class="social-network-post"><img src="src/assets/img/icon_twitter.png" class="social-post" /></a>
-                                        <a href="#" class="social-network-post"><img src="src/assets/img/icon_instagram.png" class="social-post" /></a>
-                                        <a href="#" class="social-network-post"><img src="src/assets/img/icon_facebook.png" class="social-post" /></a>
+                                        <a href="#" class="social-network-post"><img src="/img/icon_twitter.png" class="social-post" /></a>
+                                        <a href="#" class="social-network-post"><img src="/img/icon_instagram.png" class="social-post" /></a>
+                                        <a href="#" class="social-network-post"><img src="/img/icon_facebook.png" class="social-post" /></a>
                                     </div>
                             </div>
                         </div>

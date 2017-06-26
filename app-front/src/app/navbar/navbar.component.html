@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <!--Imagen-->
             <div class="navbar-header">
-                <a class="navbar-brand" href="/"><img class="brand" alt="Brand" src="src/assets/img/icon.png" /></a>
+                <a class="navbar-brand" href="/"><img class="brand" alt="Brand" src="/img/icon.png" /></a>
             </div>
             <!--Resto del contenido-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -39,7 +39,7 @@
                         <li><a [routerLink]="['/addPost']"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add post</a></li>
                         <li ngbDropdown class="dropdown">
                             <!--Título botón-->
-                            <a class="myaccount-link" ngbDropdownToggle data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="./src/assets/avatars/{{loginService.user.id}}.jpg" />{{loginService.user.username}} <span class="caret"></span></a>
+                            <a class="myaccount-link" ngbDropdownToggle data-toggle="dropdown" role="button" aria-expanded="false"><img alt="" class="img-profile-mini" src="/avatarimg/{{loginService.user.id}}" />{{loginService.user.username}} <span class="caret"></span></a>
                             <!--Submenú-->
                             <ul class="dropdown-menu">
                                 <li><a [routerLink]="['/profile']">Profile</a></li>

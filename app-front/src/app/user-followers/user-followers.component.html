@@ -2,7 +2,7 @@
   <div *ngFor="let following of followers" class="">
     <div class="panel panel-default">
       <div class="panel-body">
-        <a href="/user/{{following.username}}" [routerLink]="['/user',following.username]"> <img alt="" src="src/assets/avatars/{{following.id}}.jpg" class="profile-followers" />{{following.username}}</a>
+        <a href="/user/{{following.username}}" [routerLink]="['/user',following.username]"> <img alt="" src="/avatarimg/{{following.id}}" class="profile-followers" />{{following.username}}</a>
       </div>
     </div>
   </div>

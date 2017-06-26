@@ -1,7 +1,7 @@
 <header>
   <div id="Up"></div>
   <div class="hidden-xs col-md-12" id="title">
-    <div>LA FILA DE ATRAS <img alt="Brand" src="src/assets/img/logoTitulo_blanco.png" /></div>
+    <div>LA FILA DE ATRAS <img alt="Brand" src="/img/logoTitulo_blanco.png" /></div>
   </div>
 </header>
 <div class="container-fluid">
@@ -42,7 +42,7 @@
                   <div class="conversation">
                     <div class="panel panel-default">
                       <div class="panel-heading">
-                        <a [routerLink]="['/user', message.messageSender.username]" class="votes"><img alt="" class="userIconImgCom" src="./src/assets/avatars/{{message.messageSender.id}}.jpg" />                          {{message.messageSender.username}}</a>
+                        <a [routerLink]="['/user', message.messageSender.username]" class="votes"><img alt="" class="userIconImgCom" src="/avatarimg/{{message.messageSender.id}}" />                          {{message.messageSender.username}}</a>
                         
                       </div>
                       <div class="panel-body">

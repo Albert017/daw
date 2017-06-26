@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	                        <div *ngFor="let usu of users" class="panel-body">
-								<img alt="" src="src/assets/avatarimg/{{usu.id}}.jpg" class="profile-followers" /> {{usu.username}}
+								<img alt="" src="/avatarimg/{{usu.id}}" class="profile-followers" /> {{usu.username}}
 	                            <form action="/deleteReportUser/id" method="DELETE" enctype="multipart/form-data" class="btn btn-default button-report-users">
 									<input type='submit' (click)="deleteUser(usu)" class="btn btn-primary" name='deleteComment' value='Delete user' style="background-color:rgba(255, 0, 0, 0.81)"/> <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
 								</form>

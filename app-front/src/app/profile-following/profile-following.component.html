@@ -2,7 +2,7 @@
   <div *ngFor="let following of followings" class="">
     <div class="panel panel-default">
       <div class="panel-body">
-        <a [routerLink]="['/user',following.username]"> <img alt="" src="src/assets/avatars/{{following.id}}.jpg" class="profile-followers" />{{following.username}}</a>
+        <a [routerLink]="['/user',following.username]"> <img alt="" src="/avatarimg/{{following.id}}" class="profile-followers" />{{following.username}}</a>
         <form action="/unfollow/follower.username" method="POST" class="form-follow">
           <button type="submit" class="btn btn-success button-followers">Following</button>
         </form>

@@ -54,7 +54,7 @@ private numFollowing:number;
           this.user=data;
           this.numFollowers=this.user.userFollowers.length;
           this.numFollowing=this.user.userFollowing.length;
-          this.headerBackground="./src/assets/headers/"+ this.user.id+".jpg";
+          this.headerBackground="/headerimg/"+ this.user.id;
           console.log("Followers "+ this.numFollowers);
           console.log("Following "+ this.numFollowing);
           console.log(data);
@@ -65,7 +65,7 @@ private numFollowing:number;
   }
 
   background():string{
-    return "url(./src/assets/headers/"+this.user.id+".jpg)";
+    return "url(/headerimg/"+this.user.id+")";
   }
 
 }

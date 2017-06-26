@@ -46,6 +46,6 @@ export class ChangeHeaderPageComponent implements OnInit {
 
 
   background():string{
-    return "url(./src/assets/headers/"+this.loginService.user.id+".jpg)";
+    return "url(/headerimg/"+this.loginService.user.id+")";
   }
 }

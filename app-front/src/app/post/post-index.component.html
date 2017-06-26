@@ -2,7 +2,7 @@
     <header>
         <div id="Up"></div>
         <div class="hidden-xs col-md-12" id="title">
-            <div>LA FILA DE ATRAS <img alt="Brand" src="src/assets/img/logoTitulo_blanco.png" /></div>
+            <div>LA FILA DE ATRAS <img alt="Brand" src="/img/logoTitulo_blanco.png" /></div>
         </div>
     </header>
     <div class="container-fluid">
@@ -17,7 +17,7 @@
                 <div class="side-middle"> 
                 <div>
                     <div class="thumbnail">
-                        <a><img class="img-post" src="/postimg/{{post.id}}.jpg" /></a>
+                        <a><img class="img-post" src="/postimg/{{post.id}}" /></a>
                         <form *ngIf="loginService.isLogged" action="/reportPost/id" method="PUT" enctype="multipart/form-data" class="reportLink">
                             <input type='submit' class="btn btn-primary" (click)="apiPostsService.reportPost(post.id);" name='report' value='Report' />
                         </form>
@@ -40,9 +40,9 @@
                             	<a class="votes"> Upvotes <span class="badge">{{post.postUpVotes}}</span></a> 
                             	<a class="votes"> Downvotes <span class="badge">{{post.postDownVotes}}</span></a>
                             <div>
-                                <a href="#" class="social-network-post"><img src="src/assets/img/icon_twitter.png" class="social-post" /></a>
-                                <a href="#" class="social-network-post"><img src="src/assets/img/icon_instagram.png" class="social-post" /></a>
-                                <a href="#" class="social-network-post"><img src="src/assets/img/icon_facebook.png" class="social-post" /></a>
+                                <a href="#" class="social-network-post"><img src="/img/icon_twitter.png" class="social-post" /></a>
+                                <a href="#" class="social-network-post"><img src="/img/icon_instagram.png" class="social-post" /></a>
+                                <a href="#" class="social-network-post"><img src="/img/icon_facebook.png" class="social-post" /></a>
                             </div>
                         </div>
                     </div>
@@ -56,12 +56,12 @@
 	                	<form action="/reportComment/comment.id" method="PUT" enctype="multipart/form-data" class="reportLink">
 							<input type='submit' class="btn btn-primary" name='report' value='Report'>
 						</form>
-	                    <div class="panel-heading"> <a href="/user/{{comment.commentUser.username}}" class="votes"><img alt="" class="userIconImgCom" src="./src/assets/avatars/{{comment.commentUser.id}}.jpg" /> {{comment.commentUser.username}}</a> </div>
+	                    <div class="panel-heading"> <a href="/user/{{comment.commentUser.username}}" class="votes"><img alt="" class="userIconImgCom" src="/avatarimg/{{comment.commentUser.id}}" /> {{comment.commentUser.username}}</a> </div>
 	                    <div class="panel-body">{{comment.commentContent}}</div>
 	                </div>
                 <div *ngIf="loginService.isLogged && (loggedUser!=null)">
 	                <div class="panel panel-default">
-	                    <div class="panel-heading"> <a [routerLink]="['/user',loginService.user.username]" class="votes"> <img alt="" class="userIconImgCom" src="./src/assets/avatars/{{loginService.user.id}}.jpg" />{{loginService.user.username}}</a> </div>
+	                    <div class="panel-heading"> <a [routerLink]="['/user',loginService.user.username]" class="votes"> <img alt="" class="userIconImgCom" src="/avatarimg/{{loginService.user.id}}" />{{loginService.user.username}}</a> </div>
 	                    <div class="panel-body ">
 	                    	<form class="form-horizontal" action="/addComment" method="POST">
 	                    		<fieldset >
